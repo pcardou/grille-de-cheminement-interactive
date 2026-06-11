@@ -1,0 +1,2161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Université Laval - Suivi des Cours</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #fafafa;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #e30513 0%, #c70410 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(227, 5, 19, 0.2);
+            border-bottom: 4px solid #ffc103;
+        }
+
+        header h1 {
+            font-size: 36px;
+            margin-bottom: 8px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            font-size: 15px;
+            opacity: 0.95;
+            font-weight: 300;
+            letter-spacing: 0.3px;
+        }
+
+        .container {
+            max-width: 1800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .table-wrapper {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            overflow-x: auto;
+            overflow-y: hidden;
+            border-top: 5px solid #ffc103;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+            min-width: 1680px;
+        }
+
+        thead {
+            background: linear-gradient(to bottom, #e30513, #d60310);
+            color: white;
+        }
+
+        th,
+        td {
+            width: calc(100% / 12);
+        }
+
+        th {
+            padding: 18px 14px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 13px;
+            border-right: 1px solid rgba(255, 255, 255, 0.15);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        th:last-child {
+            border-right: none;
+        }
+
+        td {
+            padding: 18px 14px;
+            text-align: center;
+            border-right: 1px solid #e8e8e8;
+            border-bottom: 1px solid #e8e8e8;
+            font-size: 14px;
+        }
+
+        td:last-child {
+            border-right: none;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background-color: #fafbff;
+        }
+
+        /* First column styling */
+        td:first-child {
+            font-weight: 600;
+            background: linear-gradient(to right, #f5f5f5, white);
+            color: #e30513;
+        }
+
+        tbody tr:hover td:first-child {
+            background: linear-gradient(to right, #f0f0f0, #fafbff);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #666;
+            font-size: 12px;
+            margin-top: 40px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .logo-text {
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            margin-top: 8px;
+            opacity: 0.9;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex: 0 0 auto;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: auto;
+            height: auto;
+            margin-left: -20px;
+            margin-top: -40px;
+            margin-bottom: -40px;
+            padding: 0.5in;
+        }
+
+        .logo-container img {
+            width: 4in;
+            height: auto;
+        }
+
+        .department-info {
+            text-align: left;
+        }
+
+        .department-name {
+            font-size: 13px;
+            font-weight: 500;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        .header-center {
+            flex: 1;
+            text-align: center;
+        }
+
+        .header-center h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+            order: 2;
+        }
+
+        .header-center p {
+            font-size: 16px;
+            margin: 0;
+            order: 1;
+        }
+
+        .header-center {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-right {
+            flex: 0 0 auto;
+            width: 80px;
+        }
+
+        .summary-box {
+            margin-top: 28px;
+            background-color: #fff8ef;
+            border: 1px solid #f4d7c2;
+            border-left: 6px solid #e30513;
+            border-radius: 10px;
+            padding: 22px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .summary-box h2 {
+            margin: 0 0 12px;
+            font-size: 20px;
+            color: #3c1b1b;
+        }
+
+        .rules-panel {
+            margin-top: 28px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 22px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .rules-panel h2 {
+            margin: 0 0 16px;
+            font-size: 20px;
+            color: #1f1f1f;
+        }
+
+        .programme-info {
+            margin-bottom: 16px;
+            font-size: 15px;
+            color: #333;
+            line-height: 1.6;
+            font-weight: 600;
+        }
+
+        .rule-card {
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 18px;
+            background: #fafafa;
+        }
+
+        .rule-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 15px;
+            color: #2d2d2d;
+            font-weight: 600;
+        }
+
+        .course-list {
+            display: grid;
+            gap: 10px;
+        }
+
+        :root { --cell-width: 110px; --cell-height: 44px; }
+
+        .course-line {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 10px;
+            background: white;
+            border: 1px solid #e6e6e6;
+            border-radius: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .course-line span {
+            font-size: 14px;
+            color: #2f2f2f;
+            line-height: 1.2;
+        }
+
+        .course-line .code {
+            flex: 0 0 120px;
+            font-weight: 700;
+        }
+
+        .course-line .title {
+            flex: 1 1 auto;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .course-line .credits {
+            flex: 0 0 110px;
+            text-align: left;
+            color: #555;
+            font-weight: 600;
+        }
+
+        .course-tile {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: var(--cell-width);
+            height: var(--cell-height);
+            border-radius: 8px;
+            background: linear-gradient(135deg, #e30513, #ff6f61);
+            color: white;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            cursor: grab;
+            user-select: none;
+            padding: 6px;
+            box-sizing: border-box;
+        }
+
+        /* When a course has been placed in the table, hide its tile in the rules panel */
+        .course-tile.placed {
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .draggable-course { cursor: grab; }
+
+        .table-wrapper td.drop-target {
+            position: relative;
+        }
+
+        .table-wrapper td.drop-target.drag-over {
+            background-color: #fff4e5;
+            outline: 2px dashed #e30513;
+        }
+
+        .table-wrapper td.drop-target .dropped-tile {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: var(--cell-width);
+            height: var(--cell-height);
+            border-radius: 6px;
+            background: linear-gradient(135deg, #ffb800, #ff6f61);
+            color: #111;
+            font-weight: 700;
+            text-align: center;
+            padding: 4px 6px;
+            box-sizing: border-box;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .left-panel {
+            margin-top: 18px;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: flex-start;
+        }
+
+        .left-panel label {
+            font-weight: 600;
+            color: #3c1b1b;
+            font-size: 14px;
+        }
+
+        .left-panel select {
+            width: 260px;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            background: white;
+            color: #111;
+            font-weight: 600;
+        }
+
+        .summary-box pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        @media (max-width: 1024px) {
+            .header-content {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+
+            .header-center {
+                order: 3;
+                flex-basis: 100%;
+            }
+
+            .header-right {
+                display: none;
+            }
+
+            .header-center h1 {
+                font-size: 24px;
+            }
+        }
+
+        .dropped-tile.prerequis-manquants {
+            outline: 3px solid #c0392b;
+            box-shadow: 0 0 8px rgba(192, 57, 43, 0.5);
+        }
+
+        .dropped-tile.cours-non-offert {
+            outline: 3px solid #c0392b;
+            box-shadow: 0 0 8px rgba(192, 57, 43, 0.5);
+        }
+
+        .dropped-tile.cours-en-conflit {
+            outline: 3px solid #c0392b;
+            box-shadow: 0 0 8px rgba(192, 57, 43, 0.5);
+        }
+
+        .dropped-tile .tile-code {
+            flex: 1 1 auto;
+            min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            text-align: center;
+        }
+
+        .dropped-tile .section-select {
+            flex: 0 0 auto;
+            font-size: 10px;
+            padding: 1px 2px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.3);
+            color: #111;
+            border-radius: 3px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .dropped-tile .section-select:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        /* ---- Wrapper panneau règles + boîte de log ---- */
+        .rules-log-wrapper {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            margin-top: 28px;
+        }
+
+        .rules-log-wrapper .rules-panel {
+            flex: 2;
+            min-width: 0;
+            max-height: 720px;
+            overflow-y: auto;
+            margin-top: 0;
+        }
+
+        #cours-search {
+            display: block;
+            width: 100%;
+            padding: 8px 12px;
+            margin-bottom: 14px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #333;
+            background-color: #fafafa;
+            box-sizing: border-box;
+        }
+
+        #cours-search:focus {
+            outline: 2px solid #e30513;
+            background-color: #fff;
+        }
+
+        .log-box {
+            flex: 1;
+            min-width: 0;
+            max-height: 720px;
+            overflow-y: auto;
+            background-color: #1e1e2e;
+            border-radius: 10px;
+            padding: 16px 18px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        .log-box h2 {
+            margin: 0 0 12px;
+            font-size: 16px;
+            color: #cdd6f4;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #45475a;
+            padding-bottom: 8px;
+        }
+
+        .log-entry {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 1.6;
+            color: #cdd6f4;
+            margin-bottom: 2px;
+            word-break: break-word;
+        }
+
+        .log-entry.log-warning { color: #f9e2af; }
+        .log-entry.log-error   { color: #f38ba8; }
+
+        .cheminement-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 10px;
+        }
+
+        #btn-grille-horaire {
+            padding: 8px 18px;
+            background: linear-gradient(135deg, #e30513, #c70410);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(227, 5, 19, 0.3);
+            letter-spacing: 0.3px;
+        }
+
+        #btn-grille-horaire:hover {
+            background: linear-gradient(135deg, #c70410, #a5030d);
+        }
+
+        .cheminement-table-top {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+
+        .cheminement-table-bottom {
+            margin-top: 4px;
+        }
+
+        #scroll-sync-bar {
+            flex: 1;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            height: 14px;
+        }
+
+        #scroll-sync-bar::-webkit-scrollbar { height: 8px; }
+        #scroll-sync-bar::-webkit-scrollbar-track { background: #f0f0f0; border-radius: 4px; }
+        #scroll-sync-bar::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+        #scroll-sync-bar::-webkit-scrollbar-thumb:hover { background: #aaa; }
+
+        #scroll-sync-inner { height: 1px; }
+
+        .btn-add-table {
+            width: 26px;
+            height: 26px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            background: #e30513;
+            color: white;
+            border: none;
+            font-size: 20px;
+            line-height: 1;
+            cursor: pointer;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(227,5,19,0.3);
+            transition: background 0.15s;
+        }
+
+        .btn-add-table:hover { background: #c70410; }
+        .log-entry.log-info    { color: #89dceb; }
+        .log-entry.log-section {
+            color: #b4befe;
+            font-weight: 600;
+            margin-top: 8px;
+            border-top: 1px solid #45475a;
+            padding-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="header-left">
+                <div class="logo-container">
+                    <img src="images/UL_FSG_GMGL_C_d_RGB.png" alt="Université Laval - FSG - Génie Mécanique et Génie Industriel">
+                </div>
+            </div>
+            <div class="header-center">
+                <h1>Baccalauréat en génie mécanique</h1>
+                <p>Grille de cheminement interactive</p>
+            </div>
+            <div class="header-right"></div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="left-panel">
+            <label for="cheminement-select">Spécialisation :</label>
+            <select id="cheminement-select">
+                <option>Cheminement sans concentration</option>
+                <option>Robotique</option>
+                <option>Génie du bâtiment durable</option>
+            </select>
+        </div>
+        <div class="cheminement-actions">
+            <button id="btn-grille-horaire" onclick="ouvrirGrilleHoraire()">Grille horaire de session</button>
+        </div>
+        <div class="cheminement-table-top">
+            <div id="scroll-sync-bar"><div id="scroll-sync-inner"></div></div>
+            <button class="btn-add-table" onclick="ajouterColonne()" title="Ajouter une session">+</button>
+        </div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cours complétés</th>
+                        <th>A26</th>
+                        <th>H27</th>
+                        <th>E27</th>
+                        <th>A27</th>
+                        <th>H28</th>
+                        <th>E28</th>
+                        <th>A28</th>
+                        <th>H29</th>
+                        <th>E29</th>
+                        <th>A29</th>
+                        <th>H30</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="cheminement-table-bottom">
+            <button class="btn-add-table" onclick="ajouterRangee()" title="Ajouter une rangée">+</button>
+        </div>
+
+        <div class="rules-log-wrapper">
+            <div class="rules-panel" id="rules-panel">
+                <h2>Activités pédagogiques à compléter</h2>
+                <input type="search" id="cours-search" placeholder="Rechercher par sigle…" autocomplete="off">
+                <div id="rules-list">
+                    <p>Aucun programme chargé pour le moment.</p>
+                </div>
+            </div>
+            <div class="log-box" id="log-box">
+                <h2>Analyse du cheminement</h2>
+                <div id="log-content"></div>
+            </div>
+        </div>
+
+        <div class="summary-box" id="programme-summary-box">
+            <h2>Résumé du programme chargé</h2>
+            <pre id="programme-summary-text">Aucun programme chargé pour le moment.</pre>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Université Laval. Tous droits réservés.</p>
+        <p style="margin-top: 8px;">Pour toute question, commentaire ou problème à signaler, veuillez écrire à Philippe Cardou&#8202;<a href="mailto:pcardou@gmc.ulaval.ca" title="pcardou@gmc.ulaval.ca" style="color: #e30513; text-decoration: none;">&#9993;</a>.</p>
+    </footer>
+
+    <script>
+        class VersionProgramme {
+            #titre;
+            #version;
+            #specialisations = [];
+            #creditsExiges;
+            #regles = [];
+            #sourceName = '';
+
+            constructor(titre, version, specialisations = [], creditsExiges = 0, sourceName = '') {
+                this.#setTitre(titre);
+                this.#setVersion(version);
+                this.#setSpecialisations(specialisations);
+                this.#setCreditsExiges(creditsExiges);
+                this.#sourceName = sourceName;
+            }
+
+            static Regle = class {
+                #titreRegle;
+                #minCreditsRegle;
+                #maxCreditsRegle;
+                #coursRegle;
+                #titresCoursRegle;
+                #creditsCoursRegle;
+                #specialisation;
+
+                constructor(titreRegle, minCreditsRegle, maxCreditsRegle, coursRegle = [], titresCoursRegle = [], creditsCoursRegle = [], specialisation = '') {
+                    this.#setTitreRegle(titreRegle);
+                    this.#setMinCreditsRegle(minCreditsRegle);
+                    this.#setMaxCreditsRegle(maxCreditsRegle);
+                    this.#setCoursRegle(coursRegle);
+                    this.#setTitresCoursRegle(titresCoursRegle);
+                    this.#setCreditsCoursRegle(creditsCoursRegle);
+                    this.#setSpecialisation(specialisation);
+                }
+
+                #setTitreRegle(value) {
+                    if (typeof value !== 'string') throw new TypeError('titre-regle doit être une chaîne de caractères');
+                    this.#titreRegle = value;
+                }
+
+                #setSpecialisation(value) {
+                    if (typeof value !== 'string') throw new TypeError('specialisation doit être une chaîne de caractères');
+                    this.#specialisation = value;
+                }
+
+                #setMinCreditsRegle(value) {
+                    if (!Number.isInteger(value) || value < 0 || value > 255) throw new RangeError('min-credits-regle doit être un entier entre 0 et 255');
+                    this.#minCreditsRegle = value;
+                }
+
+                #setMaxCreditsRegle(value) {
+                    if (!Number.isInteger(value) || value < 0 || value > 255) throw new RangeError('max-credits-regle doit être un entier entre 0 et 255');
+                    this.#maxCreditsRegle = value;
+                }
+
+                #setCoursRegle(value) {
+                    if (!Array.isArray(value) || !value.every(item => typeof item === 'string')) throw new TypeError('cours-regle doit être une liste de chaînes');
+                    this.#coursRegle = [...value];
+                }
+
+                #setTitresCoursRegle(value) {
+                    if (!Array.isArray(value) || !value.every(item => typeof item === 'string')) throw new TypeError('titres-cours-regle doit être une liste de chaînes');
+                    this.#titresCoursRegle = [...value];
+                }
+
+                #setCreditsCoursRegle(value) {
+                    if (!Array.isArray(value) || !value.every(item => typeof item === 'string')) throw new TypeError('credits-cours-regle doit être une liste de chaînes');
+                    this.#creditsCoursRegle = [...value];
+                }
+
+                get titreRegle() { return this.#titreRegle; }
+                get minCreditsRegle() { return this.#minCreditsRegle; }
+                get maxCreditsRegle() { return this.#maxCreditsRegle; }
+                get coursRegle() { return [...this.#coursRegle]; }
+                get titresCoursRegle() { return [...this.#titresCoursRegle]; }
+                get creditsCoursRegle() { return [...this.#creditsCoursRegle]; }
+                get specialisation() { return this.#specialisation; }
+            };
+
+            #setTitre(value) { if (typeof value !== 'string') throw new TypeError('titre doit être une chaîne de caractères'); this.#titre = value; }
+            #setVersion(value) { if (typeof value !== 'string') throw new TypeError('version doit être une chaîne de caractères'); this.#version = value; }
+            #setSpecialisations(value) { if (!Array.isArray(value) || !value.every(item => typeof item === 'string')) throw new TypeError('specialisations doit être une liste de chaînes de caractères'); this.#specialisations = [...value]; }
+            #setCreditsExiges(value) { if (!Number.isInteger(value) || value < 0 || value > 255) throw new RangeError('credits-exiges doit être un entier entre 0 et 255'); this.#creditsExiges = value; }
+
+            addRegle(regle) { if (!(regle instanceof VersionProgramme.Regle)) throw new TypeError('regle doit être une instance de VersionProgramme.Regle'); this.#regles.push(regle); }
+
+            static async chargeVersionProgramme(path, selectedSpecialisation = 'Cheminement sans concentration') {
+                const resp = await fetch(path);
+                if (!resp.ok) throw new Error(`Impossible de charger le fichier CSV: ${resp.status} ${resp.statusText}`);
+                const text = await resp.text();
+                const rows = text.split(/\r?\n/).map(line => line.split(';').map(cell => cell.trim()));
+
+                const getCell = (row, index) => (row && typeof row[index] === 'string') ? row[index] : '';
+                const parseCredits = (value) => {
+                    const n = Number.parseInt(value, 10);
+                    return Number.isInteger(n) ? n : null;
+                };
+                const isRuleHeaderRow = (row) => row && !getCell(row, 0) && !!getCell(row, 1);
+
+                const parseRuleHeader = (row) => {
+                    const titreRegle = getCell(row, 1);
+                    const minCreditsRaw = getCell(row, 3);
+                    const maxCreditsRaw = getCell(row, 4);
+                    const minCreditsValue = parseCredits(minCreditsRaw);
+                    const maxCreditsValue = parseCredits(maxCreditsRaw);
+                    const minCreditsRegle = Number.isInteger(minCreditsValue) ? minCreditsValue : (Number.isInteger(maxCreditsValue) ? maxCreditsValue : 0);
+                    const maxCreditsRegle = Number.isInteger(maxCreditsValue) ? maxCreditsValue : minCreditsRegle;
+                    return { titreRegle, minCreditsRegle, maxCreditsRegle };
+                };
+
+                const collectCourseCodes = (startIndex, sectionEndIndex) => {
+                    const cours = [];
+                    const titres = [];
+                    const credits = [];
+                    let i = startIndex;
+                    for (; i < rows.length && i < sectionEndIndex; i += 1) {
+                        const row = rows[i];
+                        if (!row) continue;
+                        if (getCell(row, 0) || getCell(row, 1)) break;
+                        const code = getCell(row, 2);
+                        if (!code) continue;
+                        cours.push(code);
+                        titres.push(getCell(row, 3) || '');
+                        credits.push(getCell(row, 4) || '');
+                    }
+                    return { cours, titres, credits, nextIndex: i };
+                };
+
+                const loadRequiredCourseRule = (sectionStartIndex, specialisationName) => {
+                    let i = sectionStartIndex;
+                    while (i < rows.length && rows[i] && !isRuleHeaderRow(rows[i]) && !getCell(rows[i], 0)) {
+                        i += 1;
+                    }
+                    if (i >= rows.length || !isRuleHeaderRow(rows[i])) {
+                        return { regle: null, nextIndex: sectionStartIndex };
+                    }
+                    const { titreRegle, minCreditsRegle, maxCreditsRegle } = parseRuleHeader(rows[i]);
+                    if (titreRegle.toLowerCase() !== 'cours obligatoires') {
+                        return { regle: null, nextIndex: sectionStartIndex };
+                    }
+                    const { cours, titres, credits, nextIndex } = collectCourseCodes(i + 1, rows.length);
+                    return { regle: new VersionProgramme.Regle('Cours obligatoires', minCreditsRegle, maxCreditsRegle, cours, titres, credits, specialisationName), nextIndex };
+                };
+
+                const findSectionIndex = (label) => rows.findIndex(row => getCell(row, 0) === label);
+                const sectionIndex = findSectionIndex('Activités de formation communes');
+                if (sectionIndex === -1) throw new Error('Section "Activités de formation communes" introuvable');
+
+                const programmeTitle = getCell(rows[0], 1) || 'Titre inconnu';
+                const programmeVersion = getCell(rows[1], 1) || '??';
+                const specialisations = [];
+                const rules = [];
+
+                let i = sectionIndex + 1;
+                while (i < rows.length) {
+                    const row = rows[i];
+                    if (!row) { i += 1; continue; }
+                    if (getCell(row, 0)) break;
+                    if (!isRuleHeaderRow(row)) { i += 1; continue; }
+                    const { titreRegle, minCreditsRegle, maxCreditsRegle } = parseRuleHeader(row);
+                    const { cours, titres, credits, nextIndex } = collectCourseCodes(i + 1, rows.length);
+                    rules.push({ regle: new VersionProgramme.Regle(titreRegle, minCreditsRegle, maxCreditsRegle, cours, titres, credits, 'Activités communes') });
+                    i = nextIndex;
+                }
+
+                const findNextSpecialisation = (startIndex) => {
+                    for (let j = startIndex; j < rows.length; j += 1) {
+                        if (getCell(rows[j], 0)) return j;
+                    }
+                    return -1;
+                };
+
+                while (i < rows.length) {
+                    const specRow = rows[i];
+                    if (!specRow) { i += 1; continue; }
+                    const specialisationName = getCell(specRow, 0);
+                    if (!specialisationName) { i += 1; continue; }
+                    specialisations.push(specialisationName);
+                    const nextSpec = findNextSpecialisation(i + 1);
+                    const sectionEnd = nextSpec !== -1 ? nextSpec : rows.length;
+                    if (specialisationName === selectedSpecialisation) {
+                        const requiredCourseRule = loadRequiredCourseRule(i + 1, specialisationName);
+                        let ruleIndex = i + 1;
+                        if (requiredCourseRule.regle) {
+                            rules.push({ regle: requiredCourseRule.regle });
+                            ruleIndex = requiredCourseRule.nextIndex;
+                        }
+                        while (ruleIndex < sectionEnd) {
+                            const row = rows[ruleIndex];
+                            if (!row) { ruleIndex += 1; continue; }
+                            if (!isRuleHeaderRow(row)) { ruleIndex += 1; continue; }
+                            const { titreRegle, minCreditsRegle, maxCreditsRegle } = parseRuleHeader(row);
+                            const { cours, titres, credits, nextIndex } = collectCourseCodes(ruleIndex + 1, sectionEnd);
+                            rules.push({ regle: new VersionProgramme.Regle(titreRegle, minCreditsRegle, maxCreditsRegle, cours, titres, credits, specialisationName) });
+                            ruleIndex = nextIndex;
+                        }
+                    }
+                    i = sectionEnd;
+                }
+
+                const sourceName = path.replace(/^.*[\\\/]/, '').replace(/\.[^/.]+$/, '');
+                const programme = new VersionProgramme(programmeTitle, programmeVersion, specialisations, 0, sourceName);
+                rules.forEach((item, index) => {
+                    const { regle } = item;
+                    programme.addRegle(regle);
+                    programme[`regle${index + 1}`] = regle;
+                });
+                return programme;
+            }
+
+            get titre() { return this.#titre; }
+            get version() { return this.#version; }
+            get specialisations() { return [...this.#specialisations]; }
+            get creditsExiges() { return this.#creditsExiges; }
+            get regles() { return [...this.#regles]; }
+            get sourceName() { return this.#sourceName; }
+        }
+
+        class Cours {
+            #sigle;
+            #titre;
+            #credits;
+            #prealables;
+            #url;
+            #sessions = [];
+
+            constructor(sigle, titre, credits, prealables, url) {
+                if (typeof sigle !== 'string' || !sigle) throw new TypeError('sigle doit être une chaîne non vide');
+                if (typeof titre !== 'string') throw new TypeError('titre doit être une chaîne');
+                if (!Number.isInteger(credits) || credits < 0) throw new RangeError('credits doit être un entier positif ou nul');
+                if (typeof prealables !== 'string') throw new TypeError('prealables doit être une chaîne');
+                if (typeof url !== 'string') throw new TypeError('url doit être une chaîne');
+                this.#sigle = sigle;
+                this.#titre = titre;
+                this.#credits = credits;
+                this.#prealables = prealables;
+                this.#url = url;
+            }
+
+            addSession(session) {
+                if (!(session instanceof Cours.Session)) throw new TypeError('session doit être une instance de Cours.Session');
+                this.#sessions.push(session);
+            }
+
+            get sigle() { return this.#sigle; }
+            get titre() { return this.#titre; }
+            get credits() { return this.#credits; }
+            get prealables() { return this.#prealables; }
+            get url() { return this.#url; }
+            get sessions() { return [...this.#sessions]; }
+
+            static Session = class Session {
+                #code;
+                #sections = [];
+
+                constructor(code) {
+                    if (typeof code !== 'string' || !code) throw new TypeError('code doit être une chaîne non vide');
+                    this.#code = code;
+                }
+
+                addSection(section) {
+                    if (!(section instanceof Session.Section)) throw new TypeError('section doit être une instance de Cours.Session.Section');
+                    this.#sections.push(section);
+                }
+
+                get code() { return this.#code; }
+                get sections() { return [...this.#sections]; }
+                get estFuture() { return this.#sections.length === 0; }
+
+                static Section = class Section {
+                    #nom;
+                    #mode;
+                    #plages = [];
+
+                    constructor(nom, mode) {
+                        if (typeof nom !== 'string' || !nom) throw new TypeError('nom doit être une chaîne non vide');
+                        if (typeof mode !== 'string') throw new TypeError('mode doit être une chaîne');
+                        this.#nom = nom;
+                        this.#mode = mode;
+                    }
+
+                    addPlage(plage) {
+                        if (!(plage instanceof Section.PlageHoraire)) throw new TypeError('plage doit être une instance de Cours.Session.Section.PlageHoraire');
+                        this.#plages.push(plage);
+                    }
+
+                    get nom() { return this.#nom; }
+                    get mode() { return this.#mode; }
+                    get plages() { return [...this.#plages]; }
+
+                    static PlageHoraire = class PlageHoraire {
+                        #jour;
+                        #heureDebut;
+                        #heureFin;
+
+                        constructor(jour, heureDebut, heureFin) {
+                            this.#jour = Number.isInteger(jour) ? jour : (parseInt(jour) || 0);
+                            this.#heureDebut = heureDebut;
+                            this.#heureFin = heureFin;
+                        }
+
+                        get jour() { return this.#jour; }
+                        get heureDebut() { return this.#heureDebut; }
+                        get heureFin() { return this.#heureFin; }
+                    }
+                }
+            }
+        }
+
+        async function chargeCours(siglesFiltre = null) {
+            function parseCSVLine(line) {
+                const result = [];
+                let current = '';
+                let inQuotes = false;
+                for (const ch of line) {
+                    if (ch === '"') {
+                        inQuotes = !inQuotes;
+                    } else if (ch === ',' && !inQuotes) {
+                        result.push(current);
+                        current = '';
+                    } else {
+                        current += ch;
+                    }
+                }
+                result.push(current);
+                return result;
+            }
+
+            const parseCSV = (text) => text.split(/\r?\n/).map(parseCSVLine);
+
+            const [coursResp, plagesResp] = await Promise.all([
+                fetch('cours.csv'),
+                fetch('plages-horaires.csv'),
+            ]);
+            if (!coursResp.ok) throw new Error(`Impossible de charger cours.csv : ${coursResp.status}`);
+            if (!plagesResp.ok) throw new Error(`Impossible de charger plages-horaires.csv : ${plagesResp.status}`);
+
+            const coursRows = parseCSV(await coursResp.text());
+            const plagesRows = parseCSV(await plagesResp.text());
+            const coursMap = new Map();
+
+            for (let i = 1; i < coursRows.length; i++) {
+                const row = coursRows[i];
+                if (!row || !(row[0] || '').trim()) continue;
+                const sigle = row[0].trim();
+                if (siglesFiltre && !siglesFiltre.has(sigle)) continue;
+                coursMap.set(sigle, new Cours(
+                    sigle,
+                    (row[1] || '').trim(),
+                    parseInt(row[2]) || 0,
+                    (row[3] || '').trim(),
+                    (row[4] || '').trim(),
+                ));
+            }
+
+            const sessionsIndex = new Map();  // "sigle:session" → Session
+            const sectionsIndex = new Map(); // "sigle:session:section" → Section
+
+            for (let i = 1; i < plagesRows.length; i++) {
+                const row = plagesRows[i];
+                if (!row || !(row[0] || '').trim()) continue;
+                const sigle = row[0].trim();
+                const cours = coursMap.get(sigle);
+                if (!cours) continue;
+                const codeSession = (row[1] || '').trim();
+                const nomSection = (row[2] || '').trim();
+
+                const sessionKey = `${sigle}:${codeSession}`;
+                if (!sessionsIndex.has(sessionKey)) {
+                    const sessionObj = new Cours.Session(codeSession);
+                    cours.addSession(sessionObj);
+                    sessionsIndex.set(sessionKey, sessionObj);
+                }
+
+                if (!nomSection) continue; // session future : pas de section
+
+                const sectionKey = `${sessionKey}:${nomSection}`;
+                if (!sectionsIndex.has(sectionKey)) {
+                    const sectionObj = new Cours.Session.Section(nomSection, (row[3] || '').trim());
+                    sessionsIndex.get(sessionKey).addSection(sectionObj);
+                    sectionsIndex.set(sectionKey, sectionObj);
+                }
+
+                sectionsIndex.get(sectionKey).addPlage(new Cours.Session.Section.PlageHoraire(
+                    parseInt(row[4]) || 0,
+                    (row[5] || '').trim(),
+                    (row[6] || '').trim(),
+                ));
+            }
+
+            return coursMap;
+        }
+
+        function renderProgrammeSummary(programme) {
+            const lines = [];
+            lines.push(`Source : ${programme.sourceName}`);
+            lines.push(`Titre : ${programme.titre}`);
+            lines.push(`Version : ${programme.version}`);
+            lines.push(`Spécialisations : ${programme.specialisations.join(', ')}`);
+            lines.push(`Crédits exigés : ${programme.creditsExiges}`);
+            lines.push(`Nombre de règles : ${programme.regles.length}`);
+            programme.regles.forEach((regle) => {
+                lines.push('---');
+                lines.push(`${regle.titreRegle} (${regle.specialisation})`);
+                lines.push(`Crédits minimum : ${regle.minCreditsRegle}`);
+                lines.push(`Crédits maximum : ${regle.maxCreditsRegle}`);
+                lines.push('Cours de la règle :');
+                if (regle.coursRegle.length) {
+                    regle.coursRegle.forEach((cours, idx) => {
+                        const titre = regle.titresCoursRegle[idx] || '(Titre inconnu)';
+                        lines.push(`  ${idx + 1}. ${cours} — ${titre}`);
+                    });
+                } else {
+                    lines.push('  (Aucun cours)');
+                }
+            });
+            return lines.join('\n');
+        }
+
+        function logMessage(msg, type = 'info', showTimestamp = true) {
+            const content = document.getElementById('log-content');
+            if (!content) return;
+            const entry = document.createElement('div');
+            entry.className = `log-entry log-${type}`;
+            if (showTimestamp) {
+                const now = new Date();
+                const ts = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')}`;
+                entry.textContent = `[${ts}] ${msg}`;
+            } else {
+                entry.textContent = msg;
+            }
+            content.appendChild(entry);
+            content.scrollTop = content.scrollHeight;
+        }
+
+        function detecterSiglesMalformes(coursMap) {
+            const sigleStandard = /^[A-Z]{2,4}-\d{4}$/;
+            const patternToken = /\b([A-Z]{2,5}[\s-]\d+)\b/g;
+            const signales = new Set();
+            coursMap.forEach((cours, sigle) => {
+                const prealables = (cours.prealables || '').trim();
+                if (!prealables) return;
+                let m;
+                patternToken.lastIndex = 0;
+                while ((m = patternToken.exec(prealables)) !== null) {
+                    const token = m[1];
+                    const normalise = token.replace(/\s+/g, '-');
+                    if (!sigleStandard.test(normalise)) {
+                        const cle = `${sigle}:${token}`;
+                        if (!signales.has(cle)) {
+                            signales.add(cle);
+                            logMessage(`Sigle non standard dans les préalables de ${sigle} : « ${token} » (${token.length} car., attendu 8)`, 'warning');
+                        }
+                    }
+                }
+            });
+        }
+
+        function afficherBilanCredits(programme) {
+            const siglesGrille = new Set();
+            document.querySelectorAll('.table-wrapper tbody tr td .dropped-tile').forEach(t => {
+                if (t.dataset.code) siglesGrille.add(t.dataset.code);
+            });
+
+            let totalAccumule = 0;
+            let totalExige = 0;
+
+            programme.regles.forEach(regle => {
+                let creditsAccumules = 0;
+                regle.coursRegle.forEach((code, idx) => {
+                    if (siglesGrille.has(code)) {
+                        creditsAccumules += parseInt(regle.creditsCoursRegle[idx]) || 0;
+                    }
+                });
+                const creditsExiges = regle.maxCreditsRegle;
+                totalAccumule += creditsAccumules;
+                totalExige += creditsExiges;
+
+                const section = regle.specialisation || 'Activités communes';
+                const type = creditsAccumules >= creditsExiges ? 'info' : 'warning';
+                logMessage(`${regle.titreRegle} (${section}) : ${creditsAccumules} cr. / ${creditsExiges} cr.`, type, false);
+            });
+
+            const totalType = totalAccumule >= totalExige ? 'info' : 'warning';
+            logMessage(`Total : ${totalAccumule} cr. / ${totalExige} cr.`, totalType, false);
+        }
+
+        // siglesAvant      : sigles des tuiles dans les colonnes strictement à gauche
+        //                    (indices 0 à colIndex-1) — pour les préalables normaux.
+        // siglesSimultanes : sigles des tuiles dans la même colonne ou à gauche
+        //                    (indices 0 à colIndex) — pour les préalables simultanés (*).
+        function verifiePrealables(coursAVerifier, siglesAvant, siglesSimultanes = new Set()) {
+            const prealables = (coursAVerifier.prealables || '').trim();
+            if (!prealables) return { prealablesReussis: true, coursManquants: '' };
+
+            const manquants = [];
+
+            // 1. Supprimer les plages de crédits du type "1000 à 4999"
+            let expr = prealables.replace(/\d+\s*[àa]\s*\d+\s+/gi, '');
+
+            // 2. Remplacer "Crédits exigés : N" par true (toujours satisfait)
+            expr = expr.replace(/Cr[eé]dits\s+exig[eé]s?\s*:\s*\d+/gi, 'true');
+
+            // 3. Préalable simultané SIGLE * : satisfait si présent dans la même colonne ou à gauche
+            expr = expr.replace(/([A-Z]{2,4}-\d{4})\s*\*/g, (match, sigle) => {
+                if (siglesSimultanes.has(sigle)) return 'true';
+                manquants.push(sigle + ' *');
+                return 'false';
+            });
+
+            // 4. Préalable normal SIGLE : satisfait si présent dans une colonne strictement à gauche
+            expr = expr.replace(/[A-Z]{2,4}-\d{4}/g, (sigle) => {
+                if (siglesAvant.has(sigle)) return 'true';
+                manquants.push(sigle);
+                return 'false';
+            });
+
+            // 5. Remplacer ET → && et OU → || (délimiteurs de mot pour éviter les faux positifs)
+            expr = expr.replace(/\bET\b/g, '&&').replace(/\bOU\b/g, '||');
+
+            // 6. Sanitisation : remplacer tout token résiduel non-JS par 'false'
+            //    Cela couvre les sigles malformés (ex. "IFT 10426*" avec espace au lieu
+            //    de tiret) qui n'ont pas été capturés par les étapes précédentes.
+            //    — Les mots alphabétiques restants (ni true ni false) → false
+            //    — Les astérisques et nombres orphelins → supprimés
+            expr = expr.replace(/[A-Za-z][A-Za-z0-9]*/g,
+                t => (t === 'true' || t === 'false') ? t : 'false');
+            expr = expr.replace(/\*/g, '');
+            expr = expr.replace(/\b\d+\b/g, '');
+
+            // 7. Évaluer l'expression avec le moteur JS
+            let prealablesReussis = true;
+            try {
+                prealablesReussis = !!new Function('"use strict"; return (' + expr + ')')();
+            } catch (e) {
+                prealablesReussis = true;
+            }
+
+            return {
+                prealablesReussis,
+                coursManquants: prealablesReussis ? '' : manquants.join(' ET ')
+            };
+        }
+
+        class ConflitDHoraire {
+            constructor(plageHoraire, sessionCode, sigle1, sigle2, nomSection1, nomSection2) {
+                this.plageHoraire = plageHoraire;
+                this.sessionCode = sessionCode;
+                this.sigle1 = sigle1;
+                this.sigle2 = sigle2;
+                this.nomSection1 = nomSection1;
+                this.nomSection2 = nomSection2;
+            }
+        }
+
+        // entries : [{sigle, sessionCode, section}, ...]
+        // section : instance de Cours.Session.Section (a .nom et .plages)
+        function verifieConflitsDHoraires(entries) {
+            const conflits = [];
+
+            function heureEnMinutes(str) {
+                if (!str) return NaN;
+                const p = str.split(':');
+                return parseInt(p[0]) * 60 + (parseInt(p[1]) || 0);
+            }
+
+            function minutesEnHeure(mins) {
+                const h = Math.floor(mins / 60);
+                const m = mins % 60;
+                return m === 0 ? `${h}h` : `${h}h${String(m).padStart(2, '0')}`;
+            }
+
+            for (let i = 0; i < entries.length; i++) {
+                for (let j = i + 1; j < entries.length; j++) {
+                    const a = entries[i];
+                    const b = entries[j];
+                    if (a.sigle === b.sigle) continue;
+
+                    for (const plageA of a.section.plages) {
+                        for (const plageB of b.section.plages) {
+                            if (plageA.jour !== plageB.jour) continue;
+                            const debutA = heureEnMinutes(plageA.heureDebut);
+                            const finA   = heureEnMinutes(plageA.heureFin);
+                            const debutB = heureEnMinutes(plageB.heureDebut);
+                            const finB   = heureEnMinutes(plageB.heureFin);
+                            if (isNaN(debutA) || isNaN(finA) || isNaN(debutB) || isNaN(finB)) continue;
+                            if (debutA < finB && debutB < finA) {
+                                const debutConflit = Math.max(debutA, debutB);
+                                const finConflit   = Math.min(finA, finB);
+                                const plage = new Cours.Session.Section.PlageHoraire(
+                                    plageA.jour,
+                                    minutesEnHeure(debutConflit),
+                                    minutesEnHeure(finConflit)
+                                );
+                                conflits.push(new ConflitDHoraire(
+                                    plage, a.sessionCode,
+                                    a.sigle, b.sigle,
+                                    a.section.nom, b.section.nom
+                                ));
+                            }
+                        }
+                    }
+                }
+            }
+            return conflits;
+        }
+
+        function verifierConflitsDHorairesTableau() {
+            document.querySelectorAll('.table-wrapper .dropped-tile.cours-en-conflit')
+                .forEach(t => t.classList.remove('cours-en-conflit'));
+
+            const JOURS = {1:'lundi', 2:'mardi', 3:'mercredi', 4:'jeudi', 5:'vendredi', 6:'samedi', 7:'dimanche'};
+            const headers = document.querySelectorAll('.table-wrapper thead tr th');
+
+            for (let colIndex = 1; colIndex < headers.length; colIndex++) {
+                const sessionCode = headers[colIndex].textContent.trim();
+                if (!/^[AHE]\d{2}$/.test(sessionCode)) continue;
+
+                const entries = [];
+                document.querySelectorAll('.table-wrapper tbody tr').forEach(tr => {
+                    const cell = tr.cells[colIndex];
+                    if (!cell) return;
+                    const tile = cell.querySelector('.dropped-tile');
+                    if (!tile || !tile.dataset.code) return;
+
+                    const sigle = tile.dataset.code;
+                    const cours = tousLesCours.get(sigle);
+                    if (!cours) return;
+
+                    const select = tile.querySelector('select.section-select');
+                    const selectedNom = select ? select.value : null;
+                    const sections = trouverSectionsDisponibles(cours, sessionCode);
+                    if (sections.length === 0) return;
+
+                    const section = selectedNom
+                        ? (sections.find(s => s.nom === selectedNom) || sections[0])
+                        : sections[0];
+
+                    entries.push({ sigle, sessionCode, section, tile });
+                });
+
+                if (entries.length < 2) continue;
+
+                const conflits = verifieConflitsDHoraires(
+                    entries.map(e => ({ sigle: e.sigle, sessionCode: e.sessionCode, section: e.section }))
+                );
+
+                conflits.forEach(conflit => {
+                    entries.find(e => e.sigle === conflit.sigle1)?.tile.classList.add('cours-en-conflit');
+                    entries.find(e => e.sigle === conflit.sigle2)?.tile.classList.add('cours-en-conflit');
+
+                    const jour = JOURS[conflit.plageHoraire.jour] || `jour ${conflit.plageHoraire.jour}`;
+                    logMessage(`${conflit.sigle1} et ${conflit.sigle2} en ${conflit.sessionCode} : Les cours ${conflit.sigle1} et ${conflit.sigle2} sont en conflit d'horaire dans la plage horaire du ${jour} de ${conflit.plageHoraire.heureDebut} à ${conflit.plageHoraire.heureFin}.`, 'error', false);
+                });
+            }
+        }
+
+        function verifieCoursOffert(cours, sessionCode) {
+            return cours.sessions.some(s => s.code === sessionCode);
+        }
+
+        function verifierPrealablesTableau() {
+            if (!tousLesCours || tousLesCours.size === 0) return;
+
+            // Effacer le journal pour refléter l'état courant du cheminement
+            const logContent = document.getElementById('log-content');
+            if (logContent) logContent.innerHTML = '';
+
+            const headers = document.querySelectorAll('.table-wrapper thead tr th');
+
+            // Vérifier les tuiles dans toutes les colonnes sauf la première (« Cours complétés »)
+            document.querySelectorAll('.table-wrapper tbody tr td:not(:first-child) .dropped-tile').forEach(tile => {
+                const cours = tousLesCours.get(tile.dataset.code);
+                if (!cours) {
+                    tile.classList.remove('prerequis-manquants');
+                    tile.classList.remove('cours-non-offert');
+                    tile.removeAttribute('title');
+                    return;
+                }
+
+                // Index de colonne de la tuile courante (0 = « Cours complétés »)
+                const td = tile.closest('td');
+                const colIndex = td ? td.cellIndex : Infinity;
+                const sessionName = headers[colIndex] ? headers[colIndex].textContent.trim() : '';
+
+                // Vérifier si le cours est offert à cette session
+                const sessionValide = /^[AHE]\d{2}$/.test(sessionName);
+                const estOffert = !sessionValide || verifieCoursOffert(cours, sessionName);
+                tile.classList.toggle('cours-non-offert', !estOffert);
+                if (!estOffert) {
+                    logMessage(`${tile.dataset.code} en ${sessionName} : Le cours ${tile.dataset.code} ne sera pas offert à la session ${sessionName}.`, 'error', false);
+                }
+
+                // Construire les deux ensembles en un seul parcours du tableau
+                const siglesAvant = new Set();      // colonnes 0 à colIndex-1 (préalables normaux)
+                const siglesSimultanes = new Set();  // colonnes 0 à colIndex   (préalables simultanés *)
+                document.querySelectorAll('.table-wrapper tbody tr').forEach(tr => {
+                    for (let c = 0; c <= colIndex; c++) {
+                        const cell = tr.cells[c];
+                        if (!cell) continue;
+                        const t = cell.querySelector('.dropped-tile');
+                        if (!t || !t.dataset.code) continue;
+                        if (c < colIndex) siglesAvant.add(t.dataset.code);
+                        siglesSimultanes.add(t.dataset.code);
+                    }
+                });
+
+                const { prealablesReussis, coursManquants } = verifiePrealables(cours, siglesAvant, siglesSimultanes);
+                tile.classList.toggle('prerequis-manquants', !prealablesReussis);
+                tile.title = prealablesReussis ? '' : `Préalables manquants : ${coursManquants}`;
+
+                if (!prealablesReussis) {
+                    logMessage(`${tile.dataset.code} en ${sessionName} : Il manque au moins un des cours préalables dans l'expression logique ${cours.prealables}.`, 'error', false);
+                }
+            });
+
+            // Conflits d'horaires
+            verifierConflitsDHorairesTableau();
+
+            // Bilan des crédits
+            if (programmeActuel) {
+                logMessage('Bilan des crédits', 'section', false);
+                afficherBilanCredits(programmeActuel);
+            }
+
+            // Mise à jour de la grille horaire si elle est ouverte
+            if (popupGrilleHoraire && !popupGrilleHoraire.closed) {
+                try { popupGrilleHoraire.rafraichirGrilleHoraire(); } catch (e) {}
+            }
+        }
+
+        function formatRuleCredits(regle) {
+            if (regle.minCreditsRegle === regle.maxCreditsRegle) {
+                return `${regle.minCreditsRegle}`;
+            }
+            return `${regle.minCreditsRegle} à ${regle.maxCreditsRegle}`;
+        }
+
+        function renderRulesPanel(programme, selectedSpecialisation) {
+            const container = document.getElementById('rules-list');
+            if (!container) return;
+            container.innerHTML = '';
+            const searchInput = document.getElementById('cours-search');
+            if (searchInput) searchInput.value = '';
+
+            const programmeInfo = document.createElement('div');
+            programmeInfo.className = 'programme-info';
+            programmeInfo.textContent = `${programme.titre} - ${programme.version} - ${selectedSpecialisation}`;
+            container.appendChild(programmeInfo);
+
+            if (!programme.regles.length) {
+                const empty = document.createElement('p');
+                empty.textContent = 'Aucune règle trouvée pour la spécialisation sélectionnée.';
+                container.appendChild(empty);
+                return;
+            }
+
+            programme.regles.forEach((regle) => {
+                const card = document.createElement('div');
+                card.className = 'rule-card';
+
+                const header = document.createElement('div');
+                header.className = 'rule-header';
+                header.textContent = `${regle.titreRegle} (${regle.specialisation}) (${formatRuleCredits(regle)} crédits)`;
+                card.appendChild(header);
+
+                const courseList = document.createElement('div');
+                courseList.className = 'course-list';
+
+                if (regle.coursRegle.length) {
+                    regle.coursRegle.forEach((code, idx) => {
+                        const titre = regle.titresCoursRegle[idx] || '(Titre inconnu)';
+                        const courseCredits = regle.creditsCoursRegle[idx] || '(Crédits inconnus)';
+                        const line = document.createElement('div');
+                        line.className = 'course-line draggable-course';
+                        line.draggable = true;
+                        line.dataset.code = code;
+                        line.dataset.title = titre;
+                        line.dataset.credits = courseCredits;
+
+                        const spanCode = document.createElement('span');
+                        spanCode.className = 'code';
+                        spanCode.textContent = code;
+
+                        const spanTitle = document.createElement('span');
+                        spanTitle.className = 'title';
+                        spanTitle.textContent = titre;
+
+                        const spanCredits = document.createElement('span');
+                        spanCredits.className = 'credits';
+                        spanCredits.textContent = `(${courseCredits} crédits)`;
+
+                        const tile = document.createElement('span');
+                        tile.className = 'course-tile';
+                        tile.textContent = code;
+                        tile.dataset.code = code;
+                        tile.dataset.title = titre;
+                        tile.dataset.credits = courseCredits;
+                        tile.draggable = true;
+
+                        line.appendChild(spanCode);
+                        line.appendChild(spanTitle);
+                        line.appendChild(spanCredits);
+                        line.appendChild(tile);
+
+                        courseList.appendChild(line);
+                    });
+                } else {
+                    const empty = document.createElement('div');
+                    empty.textContent = 'Aucun cours défini pour cette règle.';
+                    courseList.appendChild(empty);
+                }
+
+                card.appendChild(courseList);
+                container.appendChild(card);
+            });
+
+            adjustTileSize();
+            setupCourseDragAndDrop();
+            // Initialiser la barre de défilement synchronisée au-dessus du tableau
+            (function() {
+                const bar = document.getElementById('scroll-sync-bar');
+                const wrapper = document.querySelector('.table-wrapper');
+                if (!bar || !wrapper) return;
+                syncScrollInnerWidth();
+                wrapper.addEventListener('scroll', () => { bar.scrollLeft = wrapper.scrollLeft; });
+                bar.addEventListener('scroll', () => { wrapper.scrollLeft = bar.scrollLeft; });
+            })();
+        }
+
+        function createDroppedTile(payload) {
+            const dropped = document.createElement('span');
+            dropped.className = 'dropped-tile';
+            dropped.draggable = true;
+            dropped.dataset.code = payload.code;
+            dropped.dataset.title = payload.title;
+            dropped.dataset.credits = payload.credits;
+
+            const codeSpan = document.createElement('span');
+            codeSpan.className = 'tile-code';
+            codeSpan.textContent = payload.code;
+            dropped.appendChild(codeSpan);
+
+            dropped.addEventListener('dragstart', (event) => {
+                event.dataTransfer.setData('application/json', JSON.stringify(payload));
+                event.dataTransfer.effectAllowed = 'copyMove';
+            });
+            return dropped;
+        }
+
+        // Retourne les sections du cours pour la session la plus récente (même saison)
+        // ayant un horaire publié. Retourne [] si aucune section connue.
+        function trouverSectionsDisponibles(cours, sessionCode) {
+            if (!cours || !sessionCode) return [];
+            const saison = sessionCode[0]; // 'A', 'H' ou 'E'
+            if (!/^[AHE]/.test(saison)) return [];
+
+            const candidats = cours.sessions.filter(s =>
+                s.code[0] === saison && !s.estFuture
+            );
+            if (candidats.length === 0) return [];
+
+            candidats.sort((a, b) =>
+                (parseInt(b.code.slice(1)) || 0) - (parseInt(a.code.slice(1)) || 0)
+            );
+            return candidats[0].sections;
+        }
+
+        // Met à jour (ou retire) le menu déroulant de section sur une tuile déposée
+        // en fonction de la colonne cible.
+        function mettreAJourSectionTile(tile, cell) {
+            // Retirer le menu existant si présent
+            const existing = tile.querySelector('select.section-select');
+            if (existing) existing.remove();
+
+            const headers = document.querySelectorAll('.table-wrapper thead tr th');
+            const colIndex = cell ? cell.cellIndex : -1;
+            const sessionCode = headers[colIndex] ? headers[colIndex].textContent.trim() : '';
+
+            // Ignorer les colonnes sans code de session valide (ex. "Cours complétés")
+            if (!/^[AHE]\d{2}$/.test(sessionCode)) return;
+
+            const cours = tousLesCours ? tousLesCours.get(tile.dataset.code) : null;
+            if (!cours) return;
+
+            const sections = trouverSectionsDisponibles(cours, sessionCode);
+            if (sections.length <= 1) return;
+
+            const select = document.createElement('select');
+            select.className = 'section-select';
+            sections.forEach(s => {
+                const opt = document.createElement('option');
+                opt.value = s.nom;
+                opt.textContent = s.nom;
+                select.appendChild(opt);
+            });
+            // Empêcher le select de déclencher le glisser-déposer
+            select.addEventListener('mousedown', e => e.stopPropagation());
+            select.addEventListener('dragstart', e => e.preventDefault());
+            select.addEventListener('change', () => {
+                verifierPrealablesTableau();
+                if (popupGrilleHoraire && !popupGrilleHoraire.closed) {
+                    try { popupGrilleHoraire.rafraichirGrilleHoraire(); } catch (e) {}
+                }
+            });
+            tile.appendChild(select);
+        }
+
+        function adjustTileSize() {
+            let sampleCell = document.querySelector('.table-wrapper tbody tr td:nth-child(2)');
+            if (!sampleCell) sampleCell = document.querySelector('.table-wrapper td');
+            if (!sampleCell) return;
+            // Use clientWidth/clientHeight (includes padding, excludes borders) so tile fits inside cell content box
+            const innerWidth = sampleCell.clientWidth;
+            const innerHeight = sampleCell.clientHeight;
+            // small gutter so tile doesn't touch cell borders exactly
+            const gutter = 4;
+            const width = Math.max(40, Math.round(innerWidth - gutter));
+            const height = Math.max(24, Math.round(innerHeight - gutter));
+            document.documentElement.style.setProperty('--cell-width', `${width}px`);
+            document.documentElement.style.setProperty('--cell-height', `${height}px`);
+        }
+
+        function setupDropCell(cell) {
+            cell.classList.add('drop-target');
+            cell.addEventListener('dragover', (event) => {
+                event.preventDefault();
+                cell.classList.add('drag-over');
+            });
+            cell.addEventListener('dragleave', () => {
+                cell.classList.remove('drag-over');
+            });
+            cell.addEventListener('drop', (event) => {
+                event.preventDefault();
+                cell.classList.remove('drag-over');
+                let payload;
+                try {
+                    payload = JSON.parse(event.dataTransfer.getData('application/json'));
+                } catch (error) {
+                    payload = { code: event.dataTransfer.getData('text/plain'), title: '', credits: '' };
+                }
+                if (!payload || !payload.code) return;
+
+                const existing = document.querySelector(`.table-wrapper .dropped-tile[data-code="${payload.code}"]`);
+                if (existing) {
+                    if (existing.parentElement === cell) return;
+                    cell.innerHTML = '';
+                    cell.appendChild(existing);
+                    mettreAJourSectionTile(existing, cell);
+                    const pt = document.querySelector(`.rules-panel .course-tile[data-code="${payload.code}"]`);
+                    if (pt) pt.classList.add('placed');
+                    verifierPrealablesTableau();
+                    return;
+                }
+
+                cell.innerHTML = '';
+                const dropped = createDroppedTile(payload);
+                cell.appendChild(dropped);
+                mettreAJourSectionTile(dropped, cell);
+                const pt = document.querySelector(`.rules-panel .course-tile[data-code="${payload.code}"]`);
+                if (pt) pt.classList.add('placed');
+                verifierPrealablesTableau();
+            });
+        }
+
+        function prochaineSession(code) {
+            if (!code || code.length < 3) return 'H26';
+            const saison = code[0];
+            const annee = parseInt(code.slice(1));
+            if (saison === 'H') return 'E' + String(annee).padStart(2, '0');
+            if (saison === 'E') return 'A' + String(annee).padStart(2, '0');
+            return 'H' + String((annee + 1) % 100).padStart(2, '0');
+        }
+
+        function syncScrollInnerWidth() {
+            const wrapper = document.querySelector('.table-wrapper');
+            const inner = document.getElementById('scroll-sync-inner');
+            if (wrapper && inner) inner.style.width = wrapper.scrollWidth + 'px';
+        }
+
+        function ajouterColonne() {
+            const headerCells = document.querySelectorAll('.table-wrapper thead tr th');
+            const lastCode = headerCells[headerCells.length - 1].textContent.trim();
+            const nextCode = /^[AHE]\d{2}$/.test(lastCode) ? prochaineSession(lastCode) : 'H26';
+
+            const thead = document.querySelector('.table-wrapper thead tr');
+            const th = document.createElement('th');
+            th.textContent = nextCode;
+            thead.appendChild(th);
+
+            document.querySelectorAll('.table-wrapper tbody tr').forEach(tr => {
+                const td = document.createElement('td');
+                setupDropCell(td);
+                tr.appendChild(td);
+            });
+
+            const table = document.querySelector('.table-wrapper table');
+            table.style.minWidth = (thead.cells.length * 140) + 'px';
+
+            syncScrollInnerWidth();
+            verifierPrealablesTableau();
+        }
+
+        function ajouterRangee() {
+            const colCount = document.querySelectorAll('.table-wrapper thead tr th').length;
+            const tr = document.createElement('tr');
+            for (let i = 0; i < colCount; i++) {
+                const td = document.createElement('td');
+                setupDropCell(td);
+                tr.appendChild(td);
+            }
+            document.querySelector('.table-wrapper tbody').appendChild(tr);
+            verifierPrealablesTableau();
+        }
+
+        function setupCourseDragAndDrop() {
+            const draggableLines = document.querySelectorAll('.course-line, .course-tile');
+            draggableLines.forEach((draggable) => {
+                draggable.addEventListener('dragstart', (event) => {
+                    const code = draggable.dataset.code;
+                    const title = draggable.dataset.title || '';
+                    const credits = draggable.dataset.credits || '';
+                    const payload = { code, title, credits };
+                    event.dataTransfer.setData('application/json', JSON.stringify(payload));
+                    event.dataTransfer.effectAllowed = 'copyMove';
+                });
+            });
+
+            // Allow dropping into any cell (including first column)
+            document.querySelectorAll('.table-wrapper td').forEach(cell => setupDropCell(cell));
+
+            // Allow dropping back onto the rules panel to unplace a course
+            const rulesContainer = document.getElementById('rules-list');
+            if (rulesContainer) {
+                rulesContainer.addEventListener('dragover', (e) => { e.preventDefault(); });
+                rulesContainer.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    let payload;
+                    try {
+                        payload = JSON.parse(e.dataTransfer.getData('application/json'));
+                    } catch (err) {
+                        payload = { code: e.dataTransfer.getData('text/plain') };
+                    }
+                    if (!payload || !payload.code) return;
+                    const existing = document.querySelector(`.table-wrapper .dropped-tile[data-code="${payload.code}"]`);
+                    if (existing && existing.parentElement) {
+                        existing.parentElement.removeChild(existing);
+                    }
+                    const pt = document.querySelector(`.rules-panel .course-tile[data-code="${payload.code}"]`);
+                    if (pt) pt.classList.remove('placed');
+                    verifierPrealablesTableau();
+                });
+            }
+        }
+
+        function setProgrammeSummary(text) { const summaryText = document.getElementById('programme-summary-text'); if (summaryText) summaryText.textContent = text; }
+
+        function renderCoursSummary(coursMap) {
+            const JOURS = { 1: 'Lun', 2: 'Mar', 3: 'Mer', 4: 'Jeu', 5: 'Ven', 6: 'Sam', 7: 'Dim' };
+            const MODES = { P: 'En classe', D: 'À distance', H: 'Hybride', C: 'Comodal' };
+            const lines = [`${coursMap.size} cours chargés`];
+
+            for (const cours of coursMap.values()) {
+                lines.push('');
+                lines.push(`${cours.sigle} — ${cours.titre} (${cours.credits} crédit${cours.credits !== 1 ? 's' : ''})`);
+                if (cours.prealables) lines.push(`  Préalables : ${cours.prealables}`);
+                if (cours.url) lines.push(`  URL : ${cours.url}`);
+
+                const sessionsConnues = cours.sessions.filter(s => !s.estFuture);
+                const sessionsFutures = cours.sessions.filter(s => s.estFuture);
+
+                if (sessionsConnues.length > 0) {
+                    lines.push('  Plages horaires :');
+                    for (const session of sessionsConnues) {
+                        for (const section of session.sections) {
+                            lines.push(`    ${session.code} — Section ${section.nom} (${MODES[section.mode] || section.mode}) :`);
+                            for (const p of section.plages) {
+                                lines.push(`      ${JOURS[p.jour] || `Jour ${p.jour}`}  ${p.heureDebut} – ${p.heureFin}`);
+                            }
+                        }
+                    }
+                }
+
+                if (sessionsFutures.length > 0) {
+                    lines.push(`  Sessions futures : ${sessionsFutures.map(s => s.code).join(', ')}`);
+                }
+            }
+
+            const box = document.getElementById('programme-summary-box');
+            if (box) {
+                const h2 = box.querySelector('h2');
+                if (h2) h2.textContent = 'Cours du programme';
+            }
+            const summaryText = document.getElementById('programme-summary-text');
+            if (summaryText) summaryText.textContent = lines.join('\n');
+        }
+
+        function populateSpecialisationOptions(selectElement, specialisations, selectedValue) {
+            if (!selectElement) return;
+            selectElement.innerHTML = '';
+            const defaultOption = document.createElement('option');
+            defaultOption.value = 'Cheminement sans concentration';
+            defaultOption.textContent = 'Cheminement sans concentration';
+            selectElement.appendChild(defaultOption);
+
+            specialisations.forEach((specialisation) => {
+                if (!specialisation) return;
+                if (specialisation === 'Cheminement sans concentration') return;
+                const option = document.createElement('option');
+                option.value = specialisation;
+                option.textContent = specialisation;
+                selectElement.appendChild(option);
+            });
+
+            if (selectedValue && [...selectElement.options].some(option => option.value === selectedValue)) {
+                selectElement.value = selectedValue;
+            } else {
+                selectElement.value = 'Cheminement sans concentration';
+            }
+        }
+
+        let tousLesCours = new Map();
+        let programmeActuel = null;
+        let popupGrilleHoraire = null;
+
+        // ---- Grille horaire de session ----------------------------------------
+
+        function collecterEvenementsSession(sessionCode) {
+            const headers = document.querySelectorAll('.table-wrapper thead tr th');
+            let colIndex = -1;
+            for (let i = 0; i < headers.length; i++) {
+                if (headers[i].textContent.trim() === sessionCode) { colIndex = i; break; }
+            }
+            if (colIndex < 0) return [];
+
+            const events = [];
+            document.querySelectorAll('.table-wrapper tbody tr').forEach(tr => {
+                const cell = tr.cells[colIndex];
+                if (!cell) return;
+                const tile = cell.querySelector('.dropped-tile');
+                if (!tile || !tile.dataset.code) return;
+
+                const sigle = tile.dataset.code;
+                const cours = tousLesCours ? tousLesCours.get(sigle) : null;
+                if (!cours) return;
+
+                const select = tile.querySelector('select.section-select');
+                const selectedNom = select ? select.value : null;
+
+                const sections = trouverSectionsDisponibles(cours, sessionCode);
+                if (sections.length === 0) return;
+
+                const section = selectedNom
+                    ? (sections.find(s => s.nom === selectedNom) || sections[0])
+                    : sections[0];
+
+                section.plages.forEach(plage => {
+                    if (!plage.heureDebut || !plage.heureFin) return;
+                    events.push({
+                        sigle,
+                        titre: cours.titre,
+                        jour: plage.jour,
+                        debut: plage.heureDebut,
+                        fin: plage.heureFin,
+                        mode: section.mode
+                    });
+                });
+            });
+            return events;
+        }
+
+        function ouvrirGrilleHoraire() {
+            if (popupGrilleHoraire && !popupGrilleHoraire.closed) {
+                popupGrilleHoraire.focus();
+                return;
+            }
+
+            const headerEls = Array.from(document.querySelectorAll('.table-wrapper thead tr th'));
+            const sessions = headerEls.slice(1).map(th => th.textContent.trim());
+
+            const popup = window.open('', '_blank', 'width=1200,height=860,scrollbars=yes,resizable=yes');
+            if (!popup) { alert('Veuillez autoriser les fenêtres contextuelles pour ce site.'); return; }
+            popupGrilleHoraire = popup;
+
+            const optionsHTML = sessions.map(s => '<option value="' + s + '">' + s + '</option>').join('');
+
+            popup.document.write(
+'<!DOCTYPE html>\n' +
+'<html lang="fr">\n' +
+'<head>\n' +
+'<meta charset="UTF-8">\n' +
+'<title>Grille horaire de session</title>\n' +
+'<style>\n' +
+'* { margin:0; padding:0; box-sizing:border-box; }\n' +
+'body { font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; background:#fafafa; color:#333; }\n' +
+'header { background:linear-gradient(135deg,#e30513 0%,#c70410 100%); color:white; padding:24px 28px; border-bottom:4px solid #ffc103; }\n' +
+'header h1 { font-size:20px; font-weight:700; }\n' +
+'.container { max-width:1140px; margin:24px auto; padding:0 20px; }\n' +
+'.controls { display:flex; align-items:center; gap:12px; margin-bottom:16px; }\n' +
+'.controls label { font-weight:600; color:#3c1b1b; font-size:14px; }\n' +
+'.controls select { padding:8px 12px; border-radius:6px; border:1px solid #ddd; font-size:14px; font-weight:600; background:white; }\n' +
+'.table-wrapper { background:white; border-radius:8px; box-shadow:0 4px 16px rgba(0,0,0,0.08); overflow:auto; border-top:5px solid #ffc103; }\n' +
+'table { border-collapse:collapse; width:100%; table-layout:fixed; min-width:820px; }\n' +
+'thead { background:linear-gradient(to bottom,#e30513,#d60310); color:white; }\n' +
+'th { padding:12px 6px; text-align:center; font-size:13px; font-weight:600; border-right:1px solid rgba(255,255,255,0.15); text-transform:uppercase; letter-spacing:0.3px; }\n' +
+'th:first-child { width:64px; }\n' +
+'th:last-child { border-right:none; }\n' +
+'td { padding:0; text-align:center; border-right:1px solid #e8e8e8; border-bottom:1px solid #f0f0f0; font-size:11px; height:22px; vertical-align:middle; }\n' +
+'td:last-child { border-right:none; }\n' +
+'td.time-col { font-size:11px; color:#888; font-weight:500; padding:0 6px; background:#f9f9f9; white-space:nowrap; width:64px; border-right:2px solid #e0e0e0; }\n' +
+'tbody tr:hover td:not(.event-cell) { background-color:#fafbff; }\n' +
+'tbody tr:hover td.time-col { background:#f0f0f0; }\n' +
+'td.event-cell { color:white; font-weight:700; font-size:11px; text-align:center; vertical-align:middle; cursor:default; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; padding:0 3px; }\n' +
+'.legend { margin-top:16px; display:flex; flex-wrap:wrap; gap:10px; }\n' +
+'.legend-item { display:flex; align-items:center; gap:6px; font-size:13px; }\n' +
+'.legend-dot { width:13px; height:13px; border-radius:3px; flex-shrink:0; }\n' +
+'.empty-msg { text-align:center; padding:40px; color:#888; font-size:15px; font-style:italic; }\n' +
+'</style>\n' +
+'</head>\n' +
+'<body>\n' +
+'<header><h1>Grille horaire de session — Bacalauréat en génie mécanique</h1></header>\n' +
+'<div class="container">\n' +
+'  <div class="controls">\n' +
+'    <label for="session-sel">Session :</label>\n' +
+'    <select id="session-sel">' + optionsHTML + '</select>\n' +
+'  </div>\n' +
+'  <div class="table-wrapper">\n' +
+'    <table>\n' +
+'      <thead><tr>\n' +
+'        <th>Heure</th><th>Dimanche</th><th>Lundi</th><th>Mardi</th><th>Mercredi</th><th>Jeudi</th><th>Vendredi</th><th>Samedi</th>\n' +
+'      </tr></thead>\n' +
+'      <tbody id="sched-body"></tbody>\n' +
+'    </table>\n' +
+'  </div>\n' +
+'  <div class="legend" id="legend"></div>\n' +
+'</div>\n' +
+'<script>\n' +
+'var SESSIONS=' + JSON.stringify(sessions) + ';\n' +
+'var DEBUT=510,FIN=1290,STEP=30,NB=(FIN-DEBUT)/STEP;\n' +
+'var JOURSCOL={7:1,1:2,2:3,3:4,4:5,5:6,6:7};\n' +
+'var PAL=["#e74c3c","#2980b9","#27ae60","#f39c12","#8e44ad","#16a085","#d35400","#2c3e50","#c0392b","#1a5276","#145a32","#784212"];\n' +
+'function couleur(s){var h=0;for(var i=0;i<s.length;i++)h=((h*31+s.charCodeAt(i))>>>0);return PAL[h%PAL.length];}\n' +
+'function toMin(str){if(!str)return NaN;var p=str.split(":");return parseInt(p[0])*60+(parseInt(p[1])||0);}\n' +
+'function label(m){var h=Math.floor(m/60),mn=m%60;return mn===0?h+"h":h+"h"+(mn<10?"0"+mn:mn);}\n' +
+'var currentSession=null;\n' +
+'function rafraichirGrilleHoraire(){if(currentSession)render(currentSession);}\n' +
+'function render(code){\n' +
+'  currentSession=code;\n' +
+'  var evts=[];\n' +
+'  try{evts=window.opener.collecterEvenementsSession(code)||[];}catch(e){}\n' +
+'  // Convertir chaque événement en {sigle,titre,jour,debut,fin,color}\n' +
+'  var parsed=evts.map(function(ev){\n' +
+'    var d=toMin(ev.debut),f=toMin(ev.fin);\n' +
+'    if(isNaN(d)||isNaN(f))return null;\n' +
+'    return{sigle:ev.sigle,titre:ev.titre,jour:ev.jour,debut:d,fin:f,color:couleur(ev.sigle)};\n' +
+'  }).filter(Boolean);\n' +
+'  // Construire la grille colonne par colonne (un jour à la fois)\n' +
+'  var cells=[];\n' +
+'  for(var r=0;r<NB;r++)cells.push([null,null,null,null,null,null,null,null]);\n' +
+'  for(var col=1;col<=7;col++){\n' +
+'    var dayEvts=parsed.filter(function(ev){return JOURSCOL[ev.jour]===col;});\n' +
+'    if(!dayEvts.length)continue;\n' +
+'    // Pour chaque slot de 30 min, lister les événements actifs\n' +
+'    var rowActive=[];\n' +
+'    for(var r=0;r<NB;r++){\n' +
+'      var sS=DEBUT+r*STEP,sE=sS+STEP;\n' +
+'      rowActive.push(dayEvts.filter(function(ev){return ev.debut<sE&&ev.fin>sS;}));\n' +
+'    }\n' +
+'    // Regrouper les slots consécutifs ayant le même ensemble de cours\n' +
+'    var r=0;\n' +
+'    while(r<NB){\n' +
+'      if(!rowActive[r].length){r++;continue;}\n' +
+'      var key=rowActive[r].map(function(e){return e.sigle;}).sort().join(",");\n' +
+'      var rs=1;\n' +
+'      while(r+rs<NB&&rowActive[r+rs].map(function(e){return e.sigle;}).sort().join(",")===key)rs++;\n' +
+'      var act=rowActive[r];\n' +
+'      cells[r][col]=act.length===1\n' +
+'        ?{type:"s",sigle:act[0].sigle,titre:act[0].titre,color:act[0].color,rs:rs,skip:false}\n' +
+'        :{type:"c",events:act,rs:rs,skip:false};\n' +
+'      for(var k=1;k<rs;k++)cells[r+k][col]={skip:true};\n' +
+'      r+=rs;\n' +
+'    }\n' +
+'  }\n' +
+'  // Afficher le tableau\n' +
+'  var tbody=document.getElementById("sched-body");\n' +
+'  tbody.innerHTML="";\n' +
+'  if(!parsed.length){\n' +
+'    var tr=document.createElement("tr");var td=document.createElement("td");\n' +
+'    td.colSpan=8;td.className="empty-msg";\n' +
+'    td.textContent="Aucun cours avec horaire publié pour cette session.";\n' +
+'    tr.appendChild(td);tbody.appendChild(tr);\n' +
+'  }else{\n' +
+'    for(var r=0;r<NB;r++){\n' +
+'      var tr=document.createElement("tr");\n' +
+'      var tdT=document.createElement("td");tdT.className="time-col";tdT.textContent=label(DEBUT+r*STEP);tr.appendChild(tdT);\n' +
+'      for(var c=1;c<=7;c++){\n' +
+'        var cell=cells[r][c];\n' +
+'        if(cell===null){tr.appendChild(document.createElement("td"));}\n' +
+'        else if(!cell.skip){\n' +
+'          var td=document.createElement("td");td.className="event-cell";td.rowSpan=cell.rs;\n' +
+'          if(cell.type==="s"){\n' +
+'            td.style.backgroundColor=cell.color;\n' +
+'            td.title=cell.sigle+" — "+cell.titre;\n' +
+'            td.textContent=cell.sigle;\n' +
+'          }else{\n' +
+'            var e1=cell.events[0],e2=cell.events[1];\n' +
+'            td.style.cssText="background:repeating-linear-gradient(45deg,"+e1.color+" 0px,"+e1.color+" 5px,"+e2.color+" 5px,"+e2.color+" 10px);white-space:normal;";\n' +
+'            td.title=e1.sigle+" et "+e2.sigle+" — conflit d\'horaire";\n' +
+'            var d1=document.createElement("div");d1.textContent=e1.sigle;\n' +
+'            d1.style.cssText="line-height:1.2;text-shadow:0 1px 3px rgba(0,0,0,0.85);";\n' +
+'            var d2=document.createElement("div");d2.textContent=e2.sigle;\n' +
+'            d2.style.cssText="line-height:1.2;text-shadow:0 1px 3px rgba(0,0,0,0.85);";\n' +
+'            td.appendChild(d1);td.appendChild(d2);\n' +
+'          }\n' +
+'          tr.appendChild(td);\n' +
+'        }\n' +
+'      }\n' +
+'      tbody.appendChild(tr);\n' +
+'    }\n' +
+'  }\n' +
+'  var leg=document.getElementById("legend");leg.innerHTML="";\n' +
+'  var seen={};\n' +
+'  parsed.forEach(function(ev){\n' +
+'    if(seen[ev.sigle])return;seen[ev.sigle]=true;\n' +
+'    var it=document.createElement("div");it.className="legend-item";\n' +
+'    var dot=document.createElement("div");dot.className="legend-dot";dot.style.backgroundColor=ev.color;\n' +
+'    var sp=document.createElement("span");sp.textContent=ev.sigle+" — "+ev.titre;\n' +
+'    it.appendChild(dot);it.appendChild(sp);leg.appendChild(it);\n' +
+'  });\n' +
+'}\n' +
+'document.getElementById("session-sel").addEventListener("change",function(){render(this.value);});\n' +
+'render(SESSIONS[0]||"");\n' +
+'<\/script>\n' +
+'</body></html>'
+            );
+            popup.document.close();
+        }
+
+        (async () => {
+            try {
+                const specialisationSelect = document.getElementById('cheminement-select');
+                const csvPath = 'b-gmc-a26.csv';
+
+                // Charger tous les cours des CSV une seule fois
+                try {
+                    tousLesCours = await chargeCours();
+                } catch (err) {
+                    console.warn('Impossible de charger les cours :', err);
+                    setProgrammeSummary(`Impossible de charger les cours : ${err.message}`);
+                }
+                detecterSiglesMalformes(tousLesCours);
+
+                async function loadProgram(selectedSpecialisation = 'Cheminement sans concentration') {
+                    const programme = await VersionProgramme.chargeVersionProgramme(csvPath, selectedSpecialisation);
+                    if (specialisationSelect) {
+                        populateSpecialisationOptions(specialisationSelect, programme.specialisations, selectedSpecialisation);
+                    }
+                    renderRulesPanel(programme, selectedSpecialisation);
+
+                    // Filtrer les cours du programme qui sont présents dans les CSV
+                    const siglesProgamme = new Set(programme.regles.flatMap(r => r.coursRegle));
+                    const coursProgramme = new Map(
+                        [...tousLesCours.entries()].filter(([sigle]) => siglesProgamme.has(sigle))
+                    );
+                    renderCoursSummary(coursProgramme);
+                    programmeActuel = programme;
+                    verifierPrealablesTableau();
+                }
+
+                if (specialisationSelect) {
+                    specialisationSelect.addEventListener('change', (event) => {
+                        loadProgram(event.target.value);
+                    });
+                }
+
+                await loadProgram();
+
+                // Initialiser la barre de recherche des cours dans le panneau
+                const coursSearchInput = document.getElementById('cours-search');
+                if (coursSearchInput) {
+                    coursSearchInput.addEventListener('input', () => {
+                        const query = coursSearchInput.value.trim().toUpperCase();
+                        document.querySelectorAll('#rules-list .course-line').forEach(line => {
+                            const code = (line.dataset.code || '').toUpperCase();
+                            line.style.display = (!query || code.includes(query)) ? '' : 'none';
+                        });
+                        document.querySelectorAll('#rules-list .rule-card').forEach(card => {
+                            const hasVisible = !query ||
+                                [...card.querySelectorAll('.course-line')].some(l => l.style.display !== 'none');
+                            card.style.display = hasVisible ? '' : 'none';
+                        });
+                    });
+                }
+
+                window.addEventListener('resize', () => {
+                    adjustTileSize();
+                });
+            } catch (err) {
+                console.error('Erreur de chargement CSV :', err);
+                setProgrammeSummary(`Erreur de chargement CSV : ${err.message}`);
+            }
+        })();
+    </script>
+</body>
+</html>
