@@ -181,9 +181,8 @@
         }
 
         .header-center h1 {
-            font-size: 32px;
-            margin-bottom: 8px;
-            order: 2;
+            font-size: 36px;
+            margin-bottom: 0;
         }
 
         .header-center p {
@@ -234,11 +233,67 @@
         }
 
         .programme-info {
-            margin-bottom: 16px;
-            font-size: 15px;
-            color: #333;
-            line-height: 1.6;
+            margin-top: 4px;
+            margin-bottom: 12px;
+            font-size: 13px;
+            color: #555;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        .rule-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            font-weight: 700;
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            padding: 6px 4px 4px;
+            border-bottom: 1px solid #ddd;
+            margin: 12px 0 8px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .rule-section-header:first-child {
+            margin-top: 0;
+        }
+
+        .section-toggle-arrow {
+            display: inline-block;
+            font-size: 10px;
+            margin-right: 5px;
+            transition: transform 0.15s ease;
+        }
+
+        .rule-section-header.collapsed .section-toggle-arrow {
+            transform: rotate(-90deg);
+        }
+
+        .rule-section-collapsible.hidden {
+            display: none;
+        }
+
+        .scolarite-checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
             font-weight: 600;
+            color: #555;
+            letter-spacing: 0;
+            text-transform: none;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .scolarite-checkbox-label input[type="checkbox"] {
+            width: 14px;
+            height: 14px;
+            cursor: pointer;
+            flex-shrink: 0;
         }
 
         .rule-card {
@@ -305,19 +360,19 @@
 
         .course-tile {
             display: inline-flex;
-            align-items: center;
-            justify-content: center;
+            align-items: stretch;
+            gap: 3px;
             width: var(--cell-width);
             height: var(--cell-height);
-            border-radius: 8px;
-            background: linear-gradient(135deg, #e30513, #ff6f61);
-            color: white;
+            border-radius: 6px;
+            background: linear-gradient(135deg, #ffb800, #ff6f61);
+            color: #111;
             font-weight: 700;
-            letter-spacing: 0.5px;
             cursor: grab;
             user-select: none;
-            padding: 6px;
+            padding: 3px 4px;
             box-sizing: border-box;
+            overflow: hidden;
         }
 
         /* When a course has been placed in the table, hide its tile in the rules panel */
@@ -343,29 +398,42 @@
             top: 50%;
             transform: translate(-50%, -50%);
             display: inline-flex;
-            align-items: center;
-            justify-content: center;
+            align-items: stretch;
+            gap: 3px;
             width: var(--cell-width);
             height: var(--cell-height);
             border-radius: 6px;
             background: linear-gradient(135deg, #ffb800, #ff6f61);
             color: #111;
             font-weight: 700;
-            text-align: center;
-            padding: 4px 6px;
+            padding: 3px 4px;
             box-sizing: border-box;
-            white-space: nowrap;
             overflow: hidden;
-            text-overflow: ellipsis;
+        }
+
+        .dropped-tile .tile-content, .course-tile .tile-content {
+            flex: 1 1 auto;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            gap: 1px;
+        }
+
+        .cheminement-controls-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 18px;
+            margin-bottom: 10px;
         }
 
         .left-panel {
-            margin-top: 18px;
-            margin-bottom: 18px;
             display: flex;
             align-items: center;
             gap: 12px;
-            justify-content: flex-start;
         }
 
         .left-panel label {
@@ -429,17 +497,31 @@
             box-shadow: 0 0 8px rgba(192, 57, 43, 0.5);
         }
 
-        .dropped-tile .tile-code {
-            flex: 1 1 auto;
-            min-width: 0;
+        .dropped-tile .tile-code, .course-tile .tile-code {
+            width: 100%;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
             text-align: center;
+            font-size: 11px;
+            line-height: 1.2;
+        }
+
+        .dropped-tile .tile-court, .course-tile .tile-court {
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            text-align: center;
+            font-size: 9px;
+            font-weight: 500;
+            opacity: 0.85;
+            line-height: 1.1;
         }
 
         .dropped-tile .section-select {
             flex: 0 0 auto;
+            align-self: stretch;
             font-size: 10px;
             padding: 1px 2px;
             border: 1px solid rgba(0, 0, 0, 0.2);
@@ -524,8 +606,48 @@
 
         .cheminement-actions {
             display: flex;
-            justify-content: flex-end;
-            margin-bottom: 10px;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #programme-select {
+            width: 90px;
+        }
+
+        #admission-select {
+            width: 80px;
+        }
+
+        #btn-sauvegarder-cheminement {
+            padding: 8px 18px;
+            background: linear-gradient(135deg, #1a4b8b, #10336b);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            letter-spacing: 0.3px;
+        }
+
+        #btn-sauvegarder-cheminement:hover {
+            background: linear-gradient(135deg, #10336b, #082050);
+        }
+
+        #btn-charger-cheminement {
+            padding: 8px 18px;
+            background: linear-gradient(135deg, #1a6b3c, #14522e);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            letter-spacing: 0.3px;
+        }
+
+        #btn-charger-cheminement:hover {
+            background: linear-gradient(135deg, #14522e, #0e3d22);
         }
 
         #btn-grille-horaire {
@@ -544,6 +666,80 @@
         #btn-grille-horaire:hover {
             background: linear-gradient(135deg, #c70410, #a5030d);
         }
+
+        /* Modal de chargement de cheminement */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.visible { display: flex; }
+
+        .modal-box {
+            background: white;
+            border-radius: 12px;
+            padding: 32px 28px 24px;
+            min-width: 360px;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-box h3 {
+            margin: 0 0 8px;
+            font-size: 18px;
+            color: #1a1a2e;
+        }
+
+        .modal-box p {
+            margin: 0 0 20px;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .modal-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .modal-btn {
+            width: 100%;
+            padding: 12px 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .modal-btn-primary {
+            background: linear-gradient(135deg, #e30513, #c70410);
+            color: white;
+        }
+
+        .modal-btn-primary:hover { background: linear-gradient(135deg, #c70410, #a5030d); }
+
+        .modal-btn-secondary {
+            background: #1a1a2e;
+            color: white;
+        }
+
+        .modal-btn-secondary:hover { background: #2e2e50; }
+
+        .modal-btn-cancel {
+            background: #f5f5f5;
+            color: #555;
+            border: 1px solid #ddd;
+            text-align: center;
+            margin-top: 6px;
+        }
+
+        .modal-btn-cancel:hover { background: #ebebeb; }
 
         .cheminement-table-top {
             display: flex;
@@ -609,24 +805,33 @@
                 </div>
             </div>
             <div class="header-center">
-                <h1>Baccalauréat en génie mécanique</h1>
-                <p>Grille de cheminement interactive</p>
+                <h1>Grille de cheminement interactive</h1>
             </div>
             <div class="header-right"></div>
         </div>
     </header>
 
     <div class="container">
-        <div class="left-panel">
-            <label for="cheminement-select">Spécialisation :</label>
-            <select id="cheminement-select">
-                <option>Cheminement sans concentration</option>
-                <option>Robotique</option>
-                <option>Génie du bâtiment durable</option>
-            </select>
-        </div>
-        <div class="cheminement-actions">
-            <button id="btn-grille-horaire" onclick="ouvrirGrilleHoraire()">Grille horaire de session</button>
+        <div class="cheminement-controls-row">
+            <div class="left-panel">
+                <label for="programme-select">Programme :</label>
+                <select id="programme-select">
+                </select>
+                <label for="admission-select">Session d'admission :</label>
+                <select id="admission-select">
+                </select>
+                <label for="cheminement-select">Spécialisation :</label>
+                <select id="cheminement-select">
+                    <option>Cheminement sans concentration</option>
+                    <option>Robotique</option>
+                    <option>Génie du bâtiment durable</option>
+                </select>
+            </div>
+            <div class="cheminement-actions">
+                <button id="btn-charger-cheminement" onclick="chargeGrilleDeCheminement()">Charger un cheminement</button>
+                <button id="btn-sauvegarder-cheminement" onclick="ouvrirModalSauvegarde()">Sauvegarder un cheminement</button>
+                <button id="btn-grille-horaire" onclick="ouvrirGrilleHoraire()">Grille horaire de session</button>
+            </div>
         </div>
         <div class="cheminement-table-top">
             <div id="scroll-sync-bar"><div id="scroll-sync-inner"></div></div>
@@ -731,7 +936,8 @@
         <div class="rules-log-wrapper">
             <div class="rules-panel" id="rules-panel">
                 <h2>Activités pédagogiques à compléter</h2>
-                <input type="search" id="cours-search" placeholder="Rechercher par sigle…" autocomplete="off">
+                <div id="programme-subtitle"></div>
+                <input type="search" id="cours-search" placeholder="Rechercher par sigle ou titre…" autocomplete="off">
                 <div id="rules-list">
                     <p>Aucun programme chargé pour le moment.</p>
                 </div>
@@ -907,6 +1113,22 @@
                 const specialisations = [];
                 const rules = [];
 
+                // Scolarité préparatoire (bloc optionnel avant "Activités de formation communes")
+                const scolariteIndex = findSectionIndex('Scolarité préparatoire');
+                if (scolariteIndex !== -1 && scolariteIndex < sectionIndex) {
+                    let si = scolariteIndex + 1;
+                    while (si < sectionIndex) {
+                        const row = rows[si];
+                        if (!row) { si += 1; continue; }
+                        if (getCell(row, 0)) break;
+                        if (!isRuleHeaderRow(row)) { si += 1; continue; }
+                        const { titreRegle, minCreditsRegle, maxCreditsRegle } = parseRuleHeader(row);
+                        const { cours, titres, credits, nextIndex } = collectCourseCodes(si + 1, sectionIndex);
+                        rules.push({ regle: new VersionProgramme.Regle(titreRegle, minCreditsRegle, maxCreditsRegle, cours, titres, credits, 'Scolarité préparatoire') });
+                        si = nextIndex;
+                    }
+                }
+
                 let i = sectionIndex + 1;
                 while (i < rows.length) {
                     const row = rows[i];
@@ -975,12 +1197,14 @@
         class Cours {
             #sigle;
             #titre;
+            #titreCourt;
+            #couleur;
             #credits;
             #prealables;
             #url;
             #sessions = [];
 
-            constructor(sigle, titre, credits, prealables, url) {
+            constructor(sigle, titre, titreCourt, couleur, credits, prealables, url) {
                 if (typeof sigle !== 'string' || !sigle) throw new TypeError('sigle doit être une chaîne non vide');
                 if (typeof titre !== 'string') throw new TypeError('titre doit être une chaîne');
                 if (!Number.isInteger(credits) || credits < 0) throw new RangeError('credits doit être un entier positif ou nul');
@@ -988,6 +1212,8 @@
                 if (typeof url !== 'string') throw new TypeError('url doit être une chaîne');
                 this.#sigle = sigle;
                 this.#titre = titre;
+                this.#titreCourt = titreCourt;
+                this.#couleur = couleur;
                 this.#credits = credits;
                 this.#prealables = prealables;
                 this.#url = url;
@@ -1000,6 +1226,8 @@
 
             get sigle() { return this.#sigle; }
             get titre() { return this.#titre; }
+            get titreCourt() { return this.#titreCourt; }
+            get couleur() { return this.#couleur; }
             get credits() { return this.#credits; }
             get prealables() { return this.#prealables; }
             get url() { return this.#url; }
@@ -1064,6 +1292,10 @@
         }
 
         async function chargeCours(siglesFiltre = null) {
+            // cours.csv uses semicolons; plages-horaires.csv uses commas
+            const parseCSVSemicolon = (text) =>
+                text.split(/\r?\n/).map(line => line.split(';').map(c => c.trim()));
+
             function parseCSVLine(line) {
                 const result = [];
                 let current = '';
@@ -1091,8 +1323,9 @@
             if (!coursResp.ok) throw new Error(`Impossible de charger cours.csv : ${coursResp.status}`);
             if (!plagesResp.ok) throw new Error(`Impossible de charger plages-horaires.csv : ${plagesResp.status}`);
 
-            const coursRows = parseCSV(await coursResp.text());
-            const plagesRows = parseCSV(await plagesResp.text());
+            // les deux CSV utilisent des point-virgules comme séparateur
+            const coursRows = parseCSVSemicolon(await coursResp.text());
+            const plagesRows = parseCSVSemicolon(await plagesResp.text());
             const coursMap = new Map();
 
             for (let i = 1; i < coursRows.length; i++) {
@@ -1102,10 +1335,12 @@
                 if (siglesFiltre && !siglesFiltre.has(sigle)) continue;
                 coursMap.set(sigle, new Cours(
                     sigle,
-                    (row[1] || '').trim(),
-                    parseInt(row[2]) || 0,
-                    (row[3] || '').trim(),
-                    (row[4] || '').trim(),
+                    (row[1] || '').trim(),       // titre
+                    (row[5] || '').trim(),       // titreCourt
+                    (row[6] || '').trim(),       // couleur
+                    parseInt(row[2]) || 0,       // crédits
+                    (row[3] || '').trim(),       // préalables
+                    (row[4] || '').trim(),       // url
                 ));
             }
 
@@ -1220,6 +1455,7 @@
 
             let totalAccumule = 0;
             let totalExige = 0;
+            let lastBilanSection = null;
 
             programme.regles.forEach(regle => {
                 let creditsAccumules = 0;
@@ -1233,8 +1469,12 @@
                 totalExige += creditsExiges;
 
                 const section = regle.specialisation || 'Activités communes';
+                if (section !== lastBilanSection) {
+                    logMessage(section, 'section', false);
+                    lastBilanSection = section;
+                }
                 const type = creditsAccumules >= creditsExiges ? 'info' : 'warning';
-                logMessage(`${regle.titreRegle} (${section}) : ${creditsAccumules} cr. / ${creditsExiges} cr.`, type, false);
+                logMessage(`${regle.titreRegle} : ${creditsAccumules} cr. / ${creditsExiges} cr.`, type, false);
             });
 
             const totalType = totalAccumule >= totalExige ? 'info' : 'warning';
@@ -1245,36 +1485,42 @@
         //                    (indices 0 à colIndex-1) — pour les préalables normaux.
         // siglesSimultanes : sigles des tuiles dans la même colonne ou à gauche
         //                    (indices 0 à colIndex) — pour les préalables simultanés (*).
-        function verifiePrealables(coursAVerifier, siglesAvant, siglesSimultanes = new Set()) {
+        function verifiePrealables(coursAVerifier, siglesAvant, siglesSimultanes = new Set(), creditsAccumules = 0) {
             const prealables = (coursAVerifier.prealables || '').trim();
-            if (!prealables) return { prealablesReussis: true, coursManquants: '' };
+            if (!prealables) return { prealablesReussis: true, coursManquants: '', creditsInsuffisants: false, creditsRequis: 0 };
 
             const manquants = [];
+            let creditsInsuffisants = false;
+            let creditsRequis = 0;
 
-            // 1. Supprimer les plages de crédits du type "1000 à 4999"
-            let expr = prealables.replace(/\d+\s*[àa]\s*\d+\s+/gi, '');
+            // 1. Détecter "1000 à 4999 Crédits exigés : X" et vérifier contre creditsAccumules
+            let expr = prealables.replace(/(?:\d+\s*[àa]\s*\d+\s+)?Cr[eé]dits\s+exig[eé]s?\s*:\s*(\d+)/gi, (match, n) => {
+                const requis = parseInt(n);
+                if (creditsAccumules < requis) {
+                    creditsInsuffisants = true;
+                    creditsRequis = requis;
+                }
+                return 'true';  // traité séparément, ne pas bloquer l'expression logique
+            });
 
-            // 2. Remplacer "Crédits exigés : N" par true (toujours satisfait)
-            expr = expr.replace(/Cr[eé]dits\s+exig[eé]s?\s*:\s*\d+/gi, 'true');
-
-            // 3. Préalable simultané SIGLE * : satisfait si présent dans la même colonne ou à gauche
+            // 2. Préalable simultané SIGLE * : satisfait si présent dans la même colonne ou à gauche
             expr = expr.replace(/([A-Z]{2,4}-\d{4})\s*\*/g, (match, sigle) => {
                 if (siglesSimultanes.has(sigle)) return 'true';
                 manquants.push(sigle + ' *');
                 return 'false';
             });
 
-            // 4. Préalable normal SIGLE : satisfait si présent dans une colonne strictement à gauche
+            // 3. Préalable normal SIGLE : satisfait si présent dans une colonne strictement à gauche
             expr = expr.replace(/[A-Z]{2,4}-\d{4}/g, (sigle) => {
                 if (siglesAvant.has(sigle)) return 'true';
                 manquants.push(sigle);
                 return 'false';
             });
 
-            // 5. Remplacer ET → && et OU → || (délimiteurs de mot pour éviter les faux positifs)
+            // 4. Remplacer ET → && et OU → || (délimiteurs de mot pour éviter les faux positifs)
             expr = expr.replace(/\bET\b/g, '&&').replace(/\bOU\b/g, '||');
 
-            // 6. Sanitisation : remplacer tout token résiduel non-JS par 'false'
+            // 5. Sanitisation : remplacer tout token résiduel non-JS par 'false'
             //    Cela couvre les sigles malformés (ex. "IFT 10426*" avec espace au lieu
             //    de tiret) qui n'ont pas été capturés par les étapes précédentes.
             //    — Les mots alphabétiques restants (ni true ni false) → false
@@ -1284,7 +1530,7 @@
             expr = expr.replace(/\*/g, '');
             expr = expr.replace(/\b\d+\b/g, '');
 
-            // 7. Évaluer l'expression avec le moteur JS
+            // 6. Évaluer l'expression avec le moteur JS
             let prealablesReussis = true;
             try {
                 prealablesReussis = !!new Function('"use strict"; return (' + expr + ')')();
@@ -1294,7 +1540,9 @@
 
             return {
                 prealablesReussis,
-                coursManquants: prealablesReussis ? '' : manquants.join(' ET ')
+                coursManquants: prealablesReussis ? '' : manquants.join(' ET '),
+                creditsInsuffisants,
+                creditsRequis,
             };
         }
 
@@ -1424,6 +1672,31 @@
 
             const headers = document.querySelectorAll('.table-wrapper thead tr th');
 
+            // Collecter les sigles des cours de stage (exclus du décompte de crédits accumulés)
+            const siglesStages = new Set();
+            if (programmeActuel) {
+                programmeActuel.regles.forEach(regle => {
+                    if (regle.titreRegle.toLowerCase().includes('stage')) {
+                        regle.coursRegle.forEach(sigle => siglesStages.add(sigle));
+                    }
+                });
+            }
+
+            // Scolarité préparatoire considérée comme complétée si la case est cochée
+            const siglesScolarite = new Set();
+            let creditsScolarite = 0;
+            const cbScolarite = document.getElementById('scolarite-completee');
+            if (cbScolarite && cbScolarite.checked && programmeActuel) {
+                programmeActuel.regles.forEach(regle => {
+                    if (regle.specialisation === 'Scolarité préparatoire') {
+                        regle.coursRegle.forEach((sigle, idx) => {
+                            siglesScolarite.add(sigle);
+                            creditsScolarite += parseInt(regle.creditsCoursRegle[idx]) || 0;
+                        });
+                    }
+                });
+            }
+
             // Vérifier les tuiles dans toutes les colonnes sauf la première (« Cours complétés »)
             document.querySelectorAll('.table-wrapper tbody tr td:not(:first-child) .dropped-tile').forEach(tile => {
                 const cours = tousLesCours.get(tile.dataset.code);
@@ -1447,26 +1720,42 @@
                     logMessage(`${tile.dataset.code} en ${sessionName} : Le cours ${tile.dataset.code} ne sera pas offert à la session ${sessionName}.`, 'error', false);
                 }
 
-                // Construire les deux ensembles en un seul parcours du tableau
-                const siglesAvant = new Set();      // colonnes 0 à colIndex-1 (préalables normaux)
-                const siglesSimultanes = new Set();  // colonnes 0 à colIndex   (préalables simultanés *)
+                // Construire les ensembles de sigles et calculer les crédits accumulés avant cette colonne
+                // Les cours de scolarité préparatoire cochés comme complétés sont préchargés
+                const siglesAvant = new Set(siglesScolarite);
+                const siglesSimultanes = new Set(siglesScolarite);
+                let creditsAccumules = creditsScolarite;
                 document.querySelectorAll('.table-wrapper tbody tr').forEach(tr => {
                     for (let c = 0; c <= colIndex; c++) {
                         const cell = tr.cells[c];
                         if (!cell) continue;
                         const t = cell.querySelector('.dropped-tile');
                         if (!t || !t.dataset.code) continue;
-                        if (c < colIndex) siglesAvant.add(t.dataset.code);
+                        if (c < colIndex) {
+                            siglesAvant.add(t.dataset.code);
+                            if (!siglesStages.has(t.dataset.code)) {
+                                creditsAccumules += parseInt(t.dataset.credits) || 0;
+                            }
+                        }
                         siglesSimultanes.add(t.dataset.code);
                     }
                 });
 
-                const { prealablesReussis, coursManquants } = verifiePrealables(cours, siglesAvant, siglesSimultanes);
-                tile.classList.toggle('prerequis-manquants', !prealablesReussis);
-                tile.title = prealablesReussis ? '' : `Préalables manquants : ${coursManquants}`;
+                const { prealablesReussis, coursManquants, creditsInsuffisants, creditsRequis } =
+                    verifiePrealables(cours, siglesAvant, siglesSimultanes, creditsAccumules);
+
+                tile.classList.toggle('prerequis-manquants', !prealablesReussis || creditsInsuffisants);
+
+                const tooltipParts = [];
+                if (!prealablesReussis) tooltipParts.push(`Préalables manquants : ${coursManquants}`);
+                if (creditsInsuffisants) tooltipParts.push(`Crédits insuffisants : ${creditsAccumules}/${creditsRequis} crédits accumulés`);
+                tile.title = tooltipParts.join('\n');
 
                 if (!prealablesReussis) {
                     logMessage(`${tile.dataset.code} en ${sessionName} : Il manque au moins un des cours préalables dans l'expression logique ${cours.prealables}.`, 'error', false);
+                }
+                if (creditsInsuffisants) {
+                    logMessage(`${tile.dataset.code} en ${sessionName} : Vous n'avez pas accumulé les ${creditsRequis} crédits requis en préalables à ce cours. Au début de la session ${sessionName}, vous aurez accumulé ${creditsAccumules} crédits.`, 'error', false);
                 }
             });
 
@@ -1499,10 +1788,11 @@
             const searchInput = document.getElementById('cours-search');
             if (searchInput) searchInput.value = '';
 
-            const programmeInfo = document.createElement('div');
-            programmeInfo.className = 'programme-info';
-            programmeInfo.textContent = `${programme.titre} - ${programme.version} - ${selectedSpecialisation}`;
-            container.appendChild(programmeInfo);
+            const subtitleEl = document.getElementById('programme-subtitle');
+            if (subtitleEl) {
+                subtitleEl.className = 'programme-info';
+                subtitleEl.textContent = `${programme.titre} — ${programme.version} — ${selectedSpecialisation}`;
+            }
 
             if (!programme.regles.length) {
                 const empty = document.createElement('p');
@@ -1511,7 +1801,52 @@
                 return;
             }
 
+            let lastSectionLabel = null;
+            let currentCollapsible = null;
             programme.regles.forEach((regle) => {
+                const sectionLabel = regle.specialisation || 'Activités communes';
+                if (sectionLabel !== lastSectionLabel) {
+                    const isScolarite = sectionLabel === 'Scolarité préparatoire';
+
+                    const secHeader = document.createElement('div');
+                    secHeader.className = 'rule-section-header' + (isScolarite ? ' collapsed' : '');
+
+                    const leftSpan = document.createElement('span');
+                    const arrow = document.createElement('span');
+                    arrow.className = 'section-toggle-arrow';
+                    arrow.textContent = '▾';
+                    leftSpan.appendChild(arrow);
+                    leftSpan.appendChild(document.createTextNode(' ' + sectionLabel));
+                    secHeader.appendChild(leftSpan);
+
+                    if (isScolarite) {
+                        const cbLabel = document.createElement('label');
+                        cbLabel.className = 'scolarite-checkbox-label';
+                        cbLabel.textContent = 'Scolarité préparatoire complétée :';
+                        const cb = document.createElement('input');
+                        cb.type = 'checkbox';
+                        cb.id = 'scolarite-completee';
+                        cb.checked = true;
+                        cb.addEventListener('change', () => verifierPrealablesTableau());
+                        cbLabel.appendChild(cb);
+                        cbLabel.addEventListener('click', e => e.stopPropagation());
+                        secHeader.appendChild(cbLabel);
+                    }
+
+                    const thisCollapsible = document.createElement('div');
+                    thisCollapsible.className = 'rule-section-collapsible' + (isScolarite ? ' hidden' : '');
+
+                    secHeader.addEventListener('click', () => {
+                        const nowCollapsed = secHeader.classList.toggle('collapsed');
+                        thisCollapsible.classList.toggle('hidden', nowCollapsed);
+                    });
+
+                    container.appendChild(secHeader);
+                    container.appendChild(thisCollapsible);
+                    currentCollapsible = thisCollapsible;
+                    lastSectionLabel = sectionLabel;
+                }
+
                 const card = document.createElement('div');
                 card.className = 'rule-card';
 
@@ -1548,11 +1883,28 @@
 
                         const tile = document.createElement('span');
                         tile.className = 'course-tile';
-                        tile.textContent = code;
                         tile.dataset.code = code;
                         tile.dataset.title = titre;
                         tile.dataset.credits = courseCredits;
                         tile.draggable = true;
+
+                        const cours = tousLesCours ? tousLesCours.get(code) : null;
+                        if (cours && cours.couleur) tile.style.background = cours.couleur;
+
+                        const tileContent = document.createElement('span');
+                        tileContent.className = 'tile-content';
+                        const tileCode = document.createElement('span');
+                        tileCode.className = 'tile-code';
+                        tileCode.textContent = code;
+                        tileContent.appendChild(tileCode);
+                        const titreCourt = cours ? cours.titreCourt : '';
+                        if (titreCourt) {
+                            const tileCourt = document.createElement('span');
+                            tileCourt.className = 'tile-court';
+                            tileCourt.textContent = titreCourt;
+                            tileContent.appendChild(tileCourt);
+                        }
+                        tile.appendChild(tileContent);
 
                         line.appendChild(spanCode);
                         line.appendChild(spanTitle);
@@ -1568,7 +1920,7 @@
                 }
 
                 card.appendChild(courseList);
-                container.appendChild(card);
+                currentCollapsible.appendChild(card);
             });
 
             adjustTileSize();
@@ -1592,10 +1944,26 @@
             dropped.dataset.title = payload.title;
             dropped.dataset.credits = payload.credits;
 
+            const cours = tousLesCours ? tousLesCours.get(payload.code) : null;
+            if (cours && cours.couleur) dropped.style.background = cours.couleur;
+
+            const content = document.createElement('span');
+            content.className = 'tile-content';
+
             const codeSpan = document.createElement('span');
             codeSpan.className = 'tile-code';
             codeSpan.textContent = payload.code;
-            dropped.appendChild(codeSpan);
+            content.appendChild(codeSpan);
+
+            const titreCourt = cours ? cours.titreCourt : '';
+            if (titreCourt) {
+                const courtSpan = document.createElement('span');
+                courtSpan.className = 'tile-court';
+                courtSpan.textContent = titreCourt;
+                content.appendChild(courtSpan);
+            }
+
+            dropped.appendChild(content);
 
             dropped.addEventListener('dragstart', (event) => {
                 event.dataTransfer.setData('application/json', JSON.stringify(payload));
@@ -1677,6 +2045,38 @@
             document.documentElement.style.setProperty('--cell-height', `${height}px`);
         }
 
+        // Pousse 'tile' vers la cellule en-dessous dans la colonne colIndex.
+        // Si cette cellule est occupée, cascade vers le bas. Ajoute une rangée si nécessaire.
+        function pousseTileVersLeBas(tile, colIndex) {
+            const tbody = document.querySelector('.table-wrapper tbody');
+            const currentRow = tile.closest('tr');
+            if (!currentRow) return;
+            const rowIndex = Array.from(tbody.rows).indexOf(currentRow);
+            if (rowIndex < 0) return;
+            const nextRowIndex = rowIndex + 1;
+
+            if (nextRowIndex >= tbody.rows.length) {
+                const colCount = document.querySelectorAll('.table-wrapper thead tr th').length;
+                const newTr = document.createElement('tr');
+                for (let i = 0; i < colCount; i++) {
+                    const td = document.createElement('td');
+                    setupDropCell(td);
+                    newTr.appendChild(td);
+                }
+                tbody.appendChild(newTr);
+            }
+
+            const targetCell = tbody.rows[nextRowIndex].cells[colIndex];
+            if (!targetCell) return;
+
+            const occupant = targetCell.querySelector('.dropped-tile');
+            if (occupant) pousseTileVersLeBas(occupant, colIndex);
+
+            targetCell.innerHTML = '';
+            targetCell.appendChild(tile);
+            mettreAJourSectionTile(tile, targetCell);
+        }
+
         function setupDropCell(cell) {
             cell.classList.add('drop-target');
             cell.addEventListener('dragover', (event) => {
@@ -1698,21 +2098,25 @@
                 if (!payload || !payload.code) return;
 
                 const existing = document.querySelector(`.table-wrapper .dropped-tile[data-code="${payload.code}"]`);
+
                 if (existing) {
                     if (existing.parentElement === cell) return;
+                    // Détacher la tuile de son emplacement actuel avant la cascade
+                    existing.remove();
+                    const occupant = cell.querySelector('.dropped-tile');
+                    if (occupant) pousseTileVersLeBas(occupant, cell.cellIndex);
                     cell.innerHTML = '';
                     cell.appendChild(existing);
                     mettreAJourSectionTile(existing, cell);
-                    const pt = document.querySelector(`.rules-panel .course-tile[data-code="${payload.code}"]`);
-                    if (pt) pt.classList.add('placed');
-                    verifierPrealablesTableau();
-                    return;
+                } else {
+                    const occupant = cell.querySelector('.dropped-tile');
+                    if (occupant) pousseTileVersLeBas(occupant, cell.cellIndex);
+                    cell.innerHTML = '';
+                    const dropped = createDroppedTile(payload);
+                    cell.appendChild(dropped);
+                    mettreAJourSectionTile(dropped, cell);
                 }
 
-                cell.innerHTML = '';
-                const dropped = createDroppedTile(payload);
-                cell.appendChild(dropped);
-                mettreAJourSectionTile(dropped, cell);
                 const pt = document.querySelector(`.rules-panel .course-tile[data-code="${payload.code}"]`);
                 if (pt) pt.classList.add('placed');
                 verifierPrealablesTableau();
@@ -1732,6 +2136,48 @@
             const wrapper = document.querySelector('.table-wrapper');
             const inner = document.getElementById('scroll-sync-inner');
             if (wrapper && inner) inner.style.width = wrapper.scrollWidth + 'px';
+        }
+
+        function reinitialiserColonnesTableau(sessionDepart) {
+            const thead = document.querySelector('.table-wrapper thead tr');
+            const tbody = document.querySelector('.table-wrapper tbody');
+            if (!thead || !tbody) return;
+
+            // Vider les tuiles et réinitialiser les pastilles du panneau
+            document.querySelectorAll('.table-wrapper .dropped-tile').forEach(t => t.remove());
+            document.querySelectorAll('.rules-panel .course-tile.placed').forEach(t => t.classList.remove('placed'));
+
+            // Générer la séquence de sessions (garder le même nombre de colonnes, min 11)
+            const nbSessions = Math.max(thead.cells.length - 1, 11);
+            const sessions = [];
+            let s = sessionDepart;
+            for (let i = 0; i < nbSessions; i++) {
+                sessions.push(s);
+                s = prochaineSession(s);
+            }
+
+            // Remplacer les en-têtes (colonne 0 = "Cours complétés" est conservée intacte)
+            while (thead.cells.length > 1) thead.deleteCell(1);
+            sessions.forEach(code => {
+                const th = document.createElement('th');
+                th.textContent = code;
+                thead.appendChild(th);
+            });
+
+            // Harmoniser les cellules du tbody avec le nouveau nombre de colonnes
+            const nbCols = thead.cells.length;
+            Array.from(tbody.rows).forEach(tr => {
+                while (tr.cells.length < nbCols) {
+                    const td = document.createElement('td');
+                    setupDropCell(td);
+                    tr.appendChild(td);
+                }
+                while (tr.cells.length > nbCols) tr.deleteCell(tr.cells.length - 1);
+            });
+
+            const table = document.querySelector('.table-wrapper table');
+            if (table) table.style.minWidth = (nbCols * 140) + 'px';
+            syncScrollInnerWidth();
         }
 
         function ajouterColonne() {
@@ -1915,6 +2361,7 @@
                     events.push({
                         sigle,
                         titre: cours.titre,
+                        couleur: cours.couleur || '',
                         jour: plage.jour,
                         debut: plage.heureDebut,
                         fin: plage.heureFin,
@@ -1924,6 +2371,250 @@
             });
             return events;
         }
+
+        // ── Chargement de cheminement ────────────────────────────────────────────
+
+        async function chargeGrilleDeCheminement() {
+            document.getElementById('input-fichier-cheminement').value = '';
+            await populerBoutonsCheminement();
+            document.getElementById('modal-chargement').classList.add('visible');
+        }
+
+        async function populerBoutonsCheminement() {
+            const container = document.getElementById('modal-cheminements-dynamiques');
+            container.innerHTML = '<p style="font-size:13px;color:#888;margin:0;">Chargement…</p>';
+            try {
+                const resp = await fetch('cheminements-types/cheminements-types.csv');
+                if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+                const rows = (await resp.text())
+                    .split(/\r?\n/)
+                    .map(line => line.split(';').map(cell => cell.replace(/^"|"$/g, '').trim()))
+                    .filter(row => row.length >= 2 && row[0] && row[1]);
+                container.innerHTML = '';
+                rows.forEach(([label, fichier]) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'modal-btn modal-btn-primary';
+                    btn.textContent = label;
+                    btn.onclick = () => chargerCheminementFichier('cheminements-types/' + fichier);
+                    container.appendChild(btn);
+                });
+                if (!rows.length) {
+                    container.innerHTML = '<p style="font-size:13px;color:#888;margin:0;">Aucun cheminement défini dans le fichier.</p>';
+                }
+            } catch (err) {
+                container.innerHTML = `<p style="font-size:13px;color:#c0392b;margin:0;">Impossible de charger la liste des cheminements&nbsp;: ${err.message}</p>`;
+            }
+        }
+
+        function fermerModalChargement() {
+            document.getElementById('modal-chargement').classList.remove('visible');
+        }
+
+        function ouvrirModalSauvegarde() {
+            document.getElementById('modal-sauvegarde').classList.add('visible');
+        }
+
+        function fermerModalSauvegarde() {
+            document.getElementById('modal-sauvegarde').classList.remove('visible');
+        }
+
+        function sauvegarderCheminementCSV() {
+            fermerModalSauvegarde();
+
+            const headers = document.querySelectorAll('.table-wrapper thead tr th');
+            const tbody = document.querySelector('.table-wrapper tbody');
+            const tableRows = Array.from(tbody.rows);
+            const lines = [];
+
+            for (let c = 0; c < headers.length; c++) {
+                const sessionCode = headers[c].textContent.trim();
+                const sigles = [];
+                tableRows.forEach(tr => {
+                    const cell = tr.cells[c];
+                    if (!cell) return;
+                    const tile = cell.querySelector('.dropped-tile');
+                    if (tile && tile.dataset.code) sigles.push(tile.dataset.code);
+                });
+                lines.push([sessionCode, ...sigles].join(';'));
+            }
+
+            const csvContent = lines.join('\r\n');
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'cheminement.csv';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function imprimerCheminement() {
+            fermerModalSauvegarde();
+
+            const tableEl = document.querySelector('.table-wrapper table');
+            const logEl = document.getElementById('log-content');
+            if (!tableEl) { alert('Aucun tableau de cheminement à imprimer.'); return; }
+
+            const tableHTML = tableEl.outerHTML;
+            const logHTML = logEl ? logEl.innerHTML : '';
+
+            const printWin = window.open('', '_blank', 'width=1200,height=850');
+            if (!printWin) { alert('Le navigateur a bloqué l\'ouverture d\'une fenêtre. Autorisez les popups pour ce site.'); return; }
+
+            printWin.document.write(`<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Grille de cheminement</title>
+<style>
+@page { size: letter landscape; margin: 10mm; }
+* { box-sizing: border-box; }
+body { font-family: system-ui, -apple-system, sans-serif; font-size: 10px; margin: 0; padding: 0; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+h2 { font-size: 13px; margin: 0 0 6px; color: #1a1a2e; }
+table { width: 100% !important; min-width: unset !important; border-collapse: collapse; table-layout: fixed; }
+th { background: #1a1a2e !important; color: white !important; padding: 4px 3px; font-size: 10px; text-align: center; white-space: nowrap; }
+td { border: 1px solid #ddd; padding: 3px; height: 40px; vertical-align: middle; text-align: center; }
+.dropped-tile {
+    display: inline-flex; align-items: stretch; gap: 2px;
+    width: 95%; max-height: 34px; border-radius: 5px;
+    color: #111 !important; font-weight: 700; padding: 2px 3px;
+    overflow: hidden;
+}
+.tile-content { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; overflow: hidden; }
+.tile-code { font-size: 8px; font-weight: 700; text-align: center; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tile-court { font-size: 7px; font-weight: 500; opacity: 0.9; text-align: center; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+select.section-select { display: none !important; }
+.log-section { margin-top: 10px; border-top: 1px solid #bbb; padding-top: 8px; }
+.log-entry { font-size: 10px; line-height: 1.6; margin: 0; }
+</style>
+</head>
+<body>
+<h2>Grille de cheminement</h2>
+${tableHTML}
+<div class="log-section">
+<h2>Bilan et vérifications</h2>
+${logHTML}
+</div>
+<script>window.addEventListener('load', function() { window.print(); });<\/script>
+</body>
+</html>`);
+            printWin.document.close();
+        }
+
+        async function chargerCheminementFichier(nomFichier) {
+            fermerModalChargement();
+            try {
+                const resp = await fetch(nomFichier);
+                if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+                chargerCheminementDepuisTexte(await resp.text());
+            } catch (err) {
+                alert(`Impossible de charger « ${nomFichier} » : ${err.message}`);
+            }
+        }
+
+        function chargerDepuisFichierLocal(input) {
+            const file = input.files[0];
+            if (!file) return;
+            fermerModalChargement();
+            const reader = new FileReader();
+            reader.onload = (e) => chargerCheminementDepuisTexte(e.target.result);
+            reader.readAsText(file);
+        }
+
+        function chargerCheminementDepuisTexte(text) {
+            // Détection du délimiteur (; ou ,)
+            const firstLine = text.split('\n')[0];
+            const delim = firstLine.split(';').length >= firstLine.split(',').length ? ';' : ',';
+
+            const rows = text.split(/\r?\n/)
+                .map(line => line.split(delim).map(c => c.trim()))
+                .filter(row => row.some(c => c));
+            if (!rows.length) return;
+
+            // Effacer toutes les tuiles et réinitialiser les pastilles du panneau
+            document.querySelectorAll('.table-wrapper .dropped-tile').forEach(t => t.remove());
+            document.querySelectorAll('.rules-panel .course-tile.placed').forEach(t => t.classList.remove('placed'));
+
+            const tbody = document.querySelector('.table-wrapper tbody');
+            const thead = document.querySelector('.table-wrapper thead tr');
+
+            rows.forEach((row, csvRowIndex) => {
+                const sigles = row.slice(1).filter(s => s);
+                if (!sigles.length) return;
+
+                // Première ligne → colonne 0 ("Cours complétés") ; autres → session par code
+                let colIndex;
+                if (csvRowIndex === 0) {
+                    colIndex = 0;
+                } else {
+                    const sessionCode = row[0];
+                    if (!sessionCode) return;
+                    colIndex = -1;
+                    for (let i = 0; i < thead.cells.length; i++) {
+                        if (thead.cells[i].textContent.trim() === sessionCode) { colIndex = i; break; }
+                    }
+                    if (colIndex < 0) {
+                        // Ajouter la colonne manquante
+                        const th = document.createElement('th');
+                        th.textContent = sessionCode;
+                        thead.appendChild(th);
+                        document.querySelectorAll('.table-wrapper tbody tr').forEach(tr => {
+                            const td = document.createElement('td');
+                            setupDropCell(td);
+                            tr.appendChild(td);
+                        });
+                        const table = document.querySelector('.table-wrapper table');
+                        table.style.minWidth = (thead.cells.length * 140) + 'px';
+                        colIndex = thead.cells.length - 1;
+                    }
+                }
+
+                sigles.forEach(sigle => {
+                    // Trouver la première cellule vide dans la colonne
+                    let targetCell = null;
+                    for (let r = 0; r < tbody.rows.length; r++) {
+                        const cell = tbody.rows[r].cells[colIndex];
+                        if (cell && !cell.querySelector('.dropped-tile')) { targetCell = cell; break; }
+                    }
+                    if (!targetCell) {
+                        // Ajouter une rangée sans déclencher verifierPrealablesTableau
+                        const colCount = thead.cells.length;
+                        const newTr = document.createElement('tr');
+                        for (let i = 0; i < colCount; i++) {
+                            const td = document.createElement('td');
+                            setupDropCell(td);
+                            newTr.appendChild(td);
+                        }
+                        tbody.appendChild(newTr);
+                        targetCell = newTr.cells[colIndex];
+                    }
+
+                    // Construire le payload depuis les données du panneau
+                    const panelEl = document.querySelector(`.rules-panel [data-code="${sigle}"]`);
+                    const cours = tousLesCours ? tousLesCours.get(sigle) : null;
+                    const payload = {
+                        code: sigle,
+                        title: (panelEl && panelEl.dataset.title) || (cours ? cours.titre : ''),
+                        credits: (panelEl && panelEl.dataset.credits) || (cours ? String(cours.credits) : '0'),
+                    };
+
+                    const dropped = createDroppedTile(payload);
+                    targetCell.innerHTML = '';
+                    targetCell.appendChild(dropped);
+                    mettreAJourSectionTile(dropped, targetCell);
+
+                    const pt = document.querySelector(`.rules-panel .course-tile[data-code="${sigle}"]`);
+                    if (pt) pt.classList.add('placed');
+                });
+            });
+
+            syncScrollInnerWidth();
+            verifierPrealablesTableau();
+        }
+
+        // ── Fin chargement de cheminement ────────────────────────────────────────
 
         function ouvrirGrilleHoraire() {
             if (popupGrilleHoraire && !popupGrilleHoraire.closed) {
@@ -2008,7 +2699,7 @@
 '  var parsed=evts.map(function(ev){\n' +
 '    var d=toMin(ev.debut),f=toMin(ev.fin);\n' +
 '    if(isNaN(d)||isNaN(f))return null;\n' +
-'    return{sigle:ev.sigle,titre:ev.titre,jour:ev.jour,debut:d,fin:f,color:couleur(ev.sigle)};\n' +
+'    return{sigle:ev.sigle,titre:ev.titre,jour:ev.jour,debut:d,fin:f,color:ev.couleur||couleur(ev.sigle)};\n' +
 '  }).filter(Boolean);\n' +
 '  // Construire la grille colonne par colonne (un jour à la fois)\n' +
 '  var cells=[];\n' +
@@ -2095,7 +2786,7 @@
         (async () => {
             try {
                 const specialisationSelect = document.getElementById('cheminement-select');
-                const csvPath = 'b-gmc-a26.csv';
+                const admissionSelect = document.getElementById('admission-select');
 
                 // Charger tous les cours des CSV une seule fois
                 try {
@@ -2106,8 +2797,48 @@
                 }
                 detecterSiglesMalformes(tousLesCours);
 
+                // Charger la liste des versions de programme disponibles
+                let versionsDisponibles = [];
+                try {
+                    const resp = await fetch('versions-programme/index.csv');
+                    if (resp.ok) {
+                        versionsDisponibles = (await resp.text())
+                            .split(/\r?\n/)
+                            .map(line => line.split(';').map(c => c.trim()))
+                            .filter(row => row.length >= 2 && row[0] && row[1])
+                            .map(([session, fichier]) => ({ session, path: 'versions-programme/' + fichier }));
+
+                        // Trier en ordre chronologique inversé (année décroissante, puis A > E > H)
+                        const saisonRang = { 'A': 3, 'E': 2, 'H': 1 };
+                        versionsDisponibles.sort((a, b) => {
+                            const anneeA = parseInt(a.session.slice(1)), anneeB = parseInt(b.session.slice(1));
+                            if (anneeA !== anneeB) return anneeB - anneeA;
+                            return (saisonRang[b.session[0]] || 0) - (saisonRang[a.session[0]] || 0);
+                        });
+                    }
+                } catch (err) {
+                    console.warn('Impossible de charger l\'index des versions de programme :', err);
+                }
+
+                // Peupler le menu déroulant "Session d'admission"
+                if (admissionSelect) {
+                    admissionSelect.innerHTML = '';
+                    versionsDisponibles.forEach(({ session }) => {
+                        const opt = document.createElement('option');
+                        opt.value = session;
+                        opt.textContent = session;
+                        admissionSelect.appendChild(opt);
+                    });
+                }
+
+                function getCsvPath() {
+                    if (!admissionSelect || !versionsDisponibles.length) return 'versions-programme/b-gmc-a26.csv';
+                    const v = versionsDisponibles.find(v => v.session === admissionSelect.value);
+                    return v ? v.path : versionsDisponibles[0].path;
+                }
+
                 async function loadProgram(selectedSpecialisation = 'Cheminement sans concentration') {
-                    const programme = await VersionProgramme.chargeVersionProgramme(csvPath, selectedSpecialisation);
+                    const programme = await VersionProgramme.chargeVersionProgramme(getCsvPath(), selectedSpecialisation);
                     if (specialisationSelect) {
                         populateSpecialisationOptions(specialisationSelect, programme.specialisations, selectedSpecialisation);
                     }
@@ -2123,10 +2854,23 @@
                     verifierPrealablesTableau();
                 }
 
+                if (admissionSelect) {
+                    admissionSelect.addEventListener('change', () => {
+                        reinitialiserColonnesTableau(admissionSelect.value);
+                        const spec = specialisationSelect ? specialisationSelect.value : 'Cheminement sans concentration';
+                        loadProgram(spec);
+                    });
+                }
+
                 if (specialisationSelect) {
                     specialisationSelect.addEventListener('change', (event) => {
                         loadProgram(event.target.value);
                     });
+                }
+
+                // Initialiser les colonnes du tableau selon la session d'admission par défaut
+                if (admissionSelect && admissionSelect.value) {
+                    reinitialiserColonnesTableau(admissionSelect.value);
                 }
 
                 await loadProgram();
@@ -2138,7 +2882,8 @@
                         const query = coursSearchInput.value.trim().toUpperCase();
                         document.querySelectorAll('#rules-list .course-line').forEach(line => {
                             const code = (line.dataset.code || '').toUpperCase();
-                            line.style.display = (!query || code.includes(query)) ? '' : 'none';
+                            const titre = (line.dataset.title || '').toUpperCase();
+                            line.style.display = (!query || code.includes(query) || titre.includes(query)) ? '' : 'none';
                         });
                         document.querySelectorAll('#rules-list .rule-card').forEach(card => {
                             const hasVisible = !query ||
@@ -2157,5 +2902,43 @@
             }
         })();
     </script>
+
+    <!-- Modal : Charger un cheminement -->
+    <div id="modal-chargement" class="modal-overlay" onclick="if(event.target===this) fermerModalChargement()">
+        <div class="modal-box">
+            <h3>Charger un cheminement</h3>
+            <p>Choisissez la source du cheminement à charger&nbsp;:</p>
+            <div class="modal-options">
+                <label style="display:contents;">
+                    <input type="file" id="input-fichier-cheminement" accept=".csv" style="display:none;"
+                           onchange="chargerDepuisFichierLocal(this)">
+                    <button class="modal-btn modal-btn-secondary"
+                            onclick="document.getElementById('input-fichier-cheminement').click()">
+                        📁&nbsp; Parcourir…
+                    </button>
+                </label>
+                <hr style="border:none; border-top:1px solid #e0e0e0; margin:4px 0;">
+                <div id="modal-cheminements-dynamiques" style="display:flex; flex-direction:column; gap:10px; max-height:55vh; overflow-y:auto; padding-right:4px;"></div>
+            </div>
+            <button class="modal-btn modal-btn-cancel" onclick="fermerModalChargement()">Annuler</button>
+        </div>
+    </div>
+
+    <!-- Modal : Sauvegarder un cheminement -->
+    <div id="modal-sauvegarde" class="modal-overlay" onclick="if(event.target===this) fermerModalSauvegarde()">
+        <div class="modal-box">
+            <h3>Sauvegarder un cheminement</h3>
+            <p>Choisissez l'action à effectuer&nbsp;:</p>
+            <div class="modal-options">
+                <button class="modal-btn modal-btn-primary" onclick="sauvegarderCheminementCSV()">
+                    💾&nbsp; Sauvegarder le cheminement en format .csv
+                </button>
+                <button class="modal-btn modal-btn-primary" onclick="imprimerCheminement()">
+                    🖨️&nbsp; Imprimer le cheminement
+                </button>
+            </div>
+            <button class="modal-btn modal-btn-cancel" onclick="fermerModalSauvegarde()">Annuler</button>
+        </div>
+    </div>
 </body>
 </html>
