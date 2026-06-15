@@ -1,0 +1,36 @@
+﻿Programme:;Chaîne de caractères représentant le nom du programme;;;
+Session d'admission:;Chaîne de trois caractères XYZ, où X vaut A, H ou E, et YZ sont deux chiffres indiquant l'année;;;
+Activités de formation communes;;;;
+;Chaîne de caractères représentant le nom de la règle A;;Nombre entier indiquant le nombre minimum de crédits à compléter dans la règle A;Nombre entier indiquant le nombre maximum de crédits à compléter dans la règle A
+;;Chaîne de huit caractères donnant le code du cours 1 de la règle A;Chaîne de caractères représentant le titre du cours 1 de la règle A;Nombre entier indiquant le nombre de crédits du cours 1 de la règle A
+;;Chaîne de huit caractères donnant le code du cours 2 de la règle A;Chaîne de caractères représentant le titre du cours 2 de la règle A;Nombre entier indiquant le nombre de crédits du cours 2  de la règle A
+;;Chaîne de huit caractères donnant le code du cours 3 de la règle A;Chaîne de caractères représentant le titre du cours 3 de la règle A;Nombre entier indiquant le nombre de crédits du cours 3 de la règle A
+;Chaîne de caractères représentant le nom de la règle B;;;Nombre entier indiquant le nombre maximum de crédits à compléter dans la règle A
+;;Chaîne de huit caractères donnant le code du cours 1 de la règle B;Chaîne de caractères représentant le titre du cours 1 de la règle A;Nombre entier indiquant le nombre de crédits du cours 1 de la règle B
+;Chaîne de caractères représentant le nom de la règle C;;;Nombre entier indiquant le nombre maximum de crédits à compléter dans la règle C
+;;Chaîne de huit caractères donnant le code du cours 1 de la règle C;Chaîne de caractères représentant le titre du cours 1 de la règle C;Nombre entier indiquant le nombre de crédits du cours 1 de la règle C
+;;Chaîne de huit caractères donnant le code du cours 2 de la règle C;Chaîne de caractères représentant le titre du cours 2 de la règle C;Nombre entier indiquant le nombre de crédits du cours 2 de la règle C
+Nom de la première spécialisation;;;;Nombre de crédits  à compléter dans la première spécialisation
+;Chaîne de caractères représentant le nom de la règle D;;Nombre entier indiquant le nombre minimum de crédits à compléter dans la règle D;Nombre entier indiquant le nombre maximum de crédits à compléter dans la règle D
+;;Chaîne de huit caractères donnant le code du cours 1 de la règle D;Chaîne de caractères représentant le titre du cours 1 de la règle D;Nombre entier indiquant le nombre de crédits du cours 1 de la règle D
+;;Chaîne de huit caractères donnant le code du cours 2 de la règle D;Chaîne de caractères représentant le titre du cours 2 de la règle D;Nombre entier indiquant le nombre de crédits du cours 2  de la règle D
+;;Chaîne de huit caractères donnant le code du cours 3 de la règle D;Chaîne de caractères représentant le titre du cours 3 de la règle D;Nombre entier indiquant le nombre de crédits du cours 3 de la règle D
+;Chaîne de caractères représentant le nom de la règle E;;;Nombre entier indiquant le nombre maximum de crédits à compléter dans la règle E
+;;Chaîne de huit caractères donnant le code du cours 1 de la règle E;Chaîne de caractères représentant le titre du cours 1 de la règle E;Nombre entier indiquant le nombre de crédits du cours 1 de la règle E
+Nom de la deuxième spécialisation;;;;Nombre de crédits  à compléter dans la deuxième spécialisation
+;Chaîne de caractères représentant le nom de la règle F;;;Nombre entier indiquant le nombre maximum de crédits à compléter dans la règle F
+;;Chaîne de huit caractères donnant le code du cours 1 de la règle F;Chaîne de caractères représentant le titre du cours 1 de la règle F;Nombre entier indiquant le nombre de crédits du cours 1 de la règle F
+;Chaîne de caractères représentant le nom de la règle G;;;Nombre entier indiquant le nombre maximum de crédits à compléter dans la règle G
+;;Chaîne de huit caractères donnant le code du cours 1 de la règle G;Chaîne de caractères représentant le titre du cours 1 de la règle G;Nombre entier indiquant le nombre de crédits du cours 1 de la règle G
+;;Chaîne de huit caractères donnant le code du cours 2 de la règle G;Chaîne de caractères représentant le titre du cours 2 de la règle G;Nombre entier indiquant le nombre de crédits du cours 2  de la règle G
+;;Chaîne de huit caractères donnant le code du cours 3 de la règle G;Chaîne de caractères représentant le titre du cours 3 de la règle G;Nombre entier indiquant le nombre de crédits du cours 3 de la règle G
+Nom de la troisième spécialisation;;;;Nombre de crédits  à compléter dans la troisième spécialisation
+;Chaîne de caractères représentant le nom de la règle H;;Nombre entier indiquant le nombre minimum de crédits à compléter dans la règle H;Nombre entier indiquant le nombre maximum de crédits à compléter dans la règle H
+;;Chaîne de huit caractères donnant le code du cours 1 de la règle H;Chaîne de caractères représentant le titre du cours 1 de la règle H;Nombre entier indiquant le nombre de crédits du cours 1 de la règle H
+;;Chaîne de huit caractères donnant le code du cours 2 de la règle H;Chaîne de caractères représentant le titre du cours 2 de la règle H;Nombre entier indiquant le nombre de crédits du cours 2  de la règle H
+;Chaîne de caractères représentant le nom de la règle I;;;Nombre entier indiquant le nombre maximum de crédits à compléter dans la règle I
+;;Chaîne de huit caractères donnant le code du cours 1 de la règle I;Chaîne de caractères représentant le titre du cours 1 de la règle I;Nombre entier indiquant le nombre de crédits du cours 1 de la règle I
+;;Chaîne de huit caractères donnant le code du cours 2 de la règle I;Chaîne de caractères représentant le titre du cours 2 de la règle I;Nombre entier indiquant le nombre de crédits du cours 2  de la règle I
+;;Chaîne de huit caractères donnant le code du cours 3 de la règle I;Chaîne de caractères représentant le titre du cours 3 de la règle I;Nombre entier indiquant le nombre de crédits du cours 3 de la règle I
+;Chaîne de caractères représentant le nom de la règle J;;;Nombre entier indiquant le nombre maximum de crédits à compléter dans la règle J
+;;Chaîne de huit caractères donnant le code du cours 1 de la règle J;Chaîne de caractères représentant le titre du cours 1 de la règle J;Nombre entier indiquant le nombre de crédits du cours 1 de la règle J
