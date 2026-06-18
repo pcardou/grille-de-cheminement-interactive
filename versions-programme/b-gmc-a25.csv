@@ -2,6 +2,7 @@
 Session d'admission:;A25;;;;;
 Scolarité préparatoire;;;;;;
 ;Cours compensateurs;;;18;;
+;;CHM-0150;Chimie générale;3;ChimieGé;#8C5A7B
 ;;MAT-0130;Algèbre vectorielle;3;AlgVecto;#8C5A7B
 ;;MAT-0150;Calcul différentiel;4;CalcDiff;#8C5A7B
 ;;MAT-0260;Calcul intégral;4;CalcInté;#8C5A7B
@@ -9,31 +10,31 @@ Scolarité préparatoire;;;;;;
 ;;PHY-0250;Physique : électricité et magnétisme;3;ÉlecMagn;#8C5A7B
 Activités de formation communes;;;;;;
 ;Cours obligatoires;;;99;;
-;;GLO-1901;Introduction à la programmation avec Python;3;InProgPy;#1D3557
-;;GMC-1001;Statique des corps rigides;3;Statique;#E30513
+;;GLO-1901;Introduction à la programmation avec Python;3;InProgPy;#F7A941
+;;GMC-1001;Statique des corps rigides;3;Statique;#F18289
 ;;GMC-1024;Modélisation 3D;3;Modéli3D;#7A8C4A
-;;GML-1001;Matériaux pour l'ingénierie;3;Matériau;#1D3557
+;;GML-1001;Matériaux pour l'ingénierie;3;Matériau;#F7A941
 ;;MAT-1900;Mathématiques pour l'ingénierie I;3;MathIng1;#E76F51
 ;;GMC-1003;Introduction à la mécanique des fluides;3;InMécFlu;#0099ff
-;;GMC-2001;Résistance des matériaux;3;RésMatér;#E30513
+;;GMC-2001;Résistance des matériaux;3;RésMatér;#F18289
 ;;MAT-1910;Mathématiques pour l'ingénierie II;3;MathIng2;#E76F51
 ;;MAT-2910;Analyse numérique pour l'ingénierie;3;AnaNumér;#E76F51
 ;;GMC-1002;Introduction à la thermodynamique;3;InThermo;#0099ff
-;;GMC-2002;Résistance des composantes de machines et des assemblages;3;RésCompo;#E30513
-;;GMC-2003;Dynamique des corps rigides;3;DynCorps;#E30513
+;;GMC-2002;Résistance des composantes de machines et des assemblages;3;RésCompo;#F18289
+;;GMC-2003;Dynamique des corps rigides;3;DynCorps;#F18289
 ;;GMC-2005;Dynamique des fluides appliquée;3;DynFluAp;#0099ff
 ;;GMC-2006;Équations aux dérivées partielles en génie mécanique;3;ÉqDérPar;#E76F51
 ;;GMC-2024;Ingénierie et conception I;3;IngConc1;#7A8C4A
 ;;GMC-2008;Machines thermiques;3;MachTher;#0099ff
 ;;GMC-2025;Ingénierie et conception II;3;IngConc2;#7A8C4A
-;;GMC-3000;Dynamique des vibrations;3;DynVibra;#E30513
+;;GMC-3000;Dynamique des vibrations;3;DynVibra;#F18289
 ;;GMC-3002;Dynamique de la commande appliquée;3;DynComAp;#702e78
 ;;GMC-3005;Transferts thermiques;3;TranTher;#0099ff
 ;;GMC-3009;Gestion de projets en ingénierie;3;GestProj;#FFC103
 ;;GMC-3024;Ingénierie et conception III;3;IngConc3;#7A8C4A
 ;;STT-1900;Méthodes statistiques pour l'ingénierie;3;MéthStat;#E76F51
-;;GMC-2007;Fabrication mécanique;3;FabrMéca;#E30513
-;;GMC-3003;Éléments de transmission de puissance;3;ÉléTrPui;#E30513
+;;GMC-2007;Fabrication mécanique;3;FabrMéca;#F18289
+;;GMC-3003;Éléments de transmission de puissance;3;ÉléTrPui;#F18289
 ;;GMC-3006;Introduction à la mesure et à la mécatronique;3;InMesMéc;#702e78
 ;;GMC-3025;Ingénierie et conception IV;3;IngConc4;#7A8C4A
 ;;GMC-3020;Investigation expérimentale en génie mécanique;3;InvExpér;#702e78
@@ -45,8 +46,8 @@ Activités de formation communes;;;;;;
 ;Stages;;;9;;
 ;;GMC-2580;Stage en génie mécanique II;9;StagGMC2;#51a27e
 ;Règle 1;;;3;;
-;;GMN-2902;Santé et sécurité en ingénierie III;3;SantéSéc;#1D3557
-;;MED-1100;Santé et sécurité au travail : notions de base;3;SantéSéc;#1D3557
+;;GMN-2902;Santé et sécurité en ingénierie III;3;SantéSéc;#F7A941
+;;MED-1100;Santé et sécurité au travail : notions de base;3;SantéSéc;#F7A941
 Cheminement sans concentration;;;;18;;
 ;Règle 1;;;15;;
 ;;OPT-ION1;Cours à option à déterminer;3;OptÀDét1;#5C7FA3
