@@ -2155,6 +2155,9 @@
 
                 if (existing) {
                     if (existing.parentElement === cell) return;
+                    // Retirer les classes d'erreur avant le déplacement pour éviter que
+                    // l'animation CSS ne persiste lors de la réinsertion dans le DOM.
+                    existing.classList.remove('cours-non-offert', 'prerequis-manquants', 'cours-en-conflit');
                     // Détacher la tuile de son emplacement actuel avant la cascade
                     existing.remove();
                     const occupant = cell.querySelector('.dropped-tile');
@@ -2432,7 +2435,7 @@
             container.innerHTML = '<p style="font-size:13px;color:#888;margin:0;">Chargement…</p>';
             const basePath = document.getElementById('programme-select')?.value || 'b-gmc';
             try {
-                const resp = await fetch(`${basePath}/cheminements-types/cheminements-types.csv`);
+                const resp = await fetch(`${basePath}/cheminements-types/index-cheminements-types.csv`);
                 if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
                 const rows = (await resp.text())
                     .split(/\r?\n/)
@@ -2870,7 +2873,7 @@ ${logHTML}
                     // Charger la liste des versions de programme disponibles
                     let versionsDisponibles = [];
                     try {
-                        const resp = await fetch(`${basePath}/programme/index.csv`);
+                        const resp = await fetch(`${basePath}/programme/index-versions-du-programme.csv`);
                         if (resp.ok) {
                             versionsDisponibles = (await resp.text())
                                 .split(/\r?\n/)
