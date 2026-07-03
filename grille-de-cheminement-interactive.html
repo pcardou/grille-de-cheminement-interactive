@@ -20,7 +20,7 @@
         header {
             background: linear-gradient(135deg, #e30513 0%, #c70410 100%);
             color: white;
-            padding: 40px 20px;
+            padding: 16px 20px;
             text-align: center;
             box-shadow: 0 4px 12px rgba(227, 5, 19, 0.2);
             border-bottom: 4px solid #ffc103;
@@ -320,7 +320,7 @@
             gap: 10px;
         }
 
-        :root { --cell-width: 110px; --cell-height: 44px; }
+        :root { --cell-width: 110px; --cell-height: 44px; --tile-font-size: 11px; }
 
         .course-line {
             display: flex;
@@ -500,26 +500,16 @@
             animation: clignoter-erreur 1s infinite;
         }
 
-        .dropped-tile .tile-code, .course-tile .tile-code {
-            width: 100%;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            text-align: center;
-            font-size: 11px;
-            line-height: 1.2;
-        }
-
+        .dropped-tile .tile-code, .course-tile .tile-code,
         .dropped-tile .tile-court, .course-tile .tile-court {
             width: 100%;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
             text-align: center;
-            font-size: 9px;
-            font-weight: 500;
-            opacity: 0.85;
-            line-height: 1.1;
+            font-size: var(--tile-font-size, 11px);
+            font-weight: 700;
+            line-height: 1.2;
         }
 
         .dropped-tile .section-select {
@@ -951,7 +941,7 @@
             </div>
         </div>
 
-        <div class="summary-box" id="programme-summary-box">
+        <div class="summary-box" id="programme-summary-box" style="display:none">
             <h2>Résumé du programme chargé</h2>
             <pre id="programme-summary-text">Aucun programme chargé pour le moment.</pre>
         </div>
@@ -969,6 +959,7 @@
             #specialisations = [];
             #creditsExiges;
             #regles = [];
+            #specialisationsCredits = new Map();
             #sourceName = '';
 
             constructor(titre, version, specialisations = [], creditsExiges = 0, sourceName = '') {
@@ -1048,6 +1039,7 @@
             #setCreditsExiges(value) { if (!Number.isInteger(value) || value < 0 || value > 255) throw new RangeError('credits-exiges doit être un entier entre 0 et 255'); this.#creditsExiges = value; }
 
             addRegle(regle) { if (!(regle instanceof VersionProgramme.Regle)) throw new TypeError('regle doit être une instance de VersionProgramme.Regle'); this.#regles.push(regle); }
+            setSpecialisationCredits(nom, credits) { this.#specialisationsCredits.set(nom, credits); }
 
             static async chargeVersionProgramme(path, selectedSpecialisation = 'Cheminement sans concentration') {
                 const resp = await fetch(path);
@@ -1114,6 +1106,7 @@
                 const programmeTitle = getCell(rows[0], 1) || 'Titre inconnu';
                 const programmeVersion = getCell(rows[1], 1) || '??';
                 const specialisations = [];
+                const specialisationsCreditsMap = new Map();
                 const rules = [];
 
                 // Scolarité préparatoire (bloc optionnel avant "Activités de formation communes")
@@ -1157,6 +1150,10 @@
                     const specialisationName = getCell(specRow, 0);
                     if (!specialisationName) { i += 1; continue; }
                     specialisations.push(specialisationName);
+                    const specCreditsTotal = parseCredits(getCell(specRow, 4));
+                    if (Number.isInteger(specCreditsTotal) && specCreditsTotal > 0) {
+                        specialisationsCreditsMap.set(specialisationName, specCreditsTotal);
+                    }
                     const nextSpec = findNextSpecialisation(i + 1);
                     const sectionEnd = nextSpec !== -1 ? nextSpec : rows.length;
                     if (specialisationName === selectedSpecialisation) {
@@ -1186,6 +1183,7 @@
                     programme.addRegle(regle);
                     programme[`regle${index + 1}`] = regle;
                 });
+                specialisationsCreditsMap.forEach((credits, nom) => programme.setSpecialisationCredits(nom, credits));
                 return programme;
             }
 
@@ -1194,6 +1192,7 @@
             get specialisations() { return [...this.#specialisations]; }
             get creditsExiges() { return this.#creditsExiges; }
             get regles() { return [...this.#regles]; }
+            get specialisationsCredits() { return new Map(this.#specialisationsCredits); }
             get sourceName() { return this.#sourceName; }
         }
 
@@ -1294,7 +1293,7 @@
             }
         }
 
-        async function chargeCours(siglesFiltre = null) {
+        async function chargeCours(siglesFiltre = null, basePath = 'b-gmc') {
             // cours.csv uses semicolons; plages-horaires.csv uses commas
             const parseCSVSemicolon = (text) =>
                 text.split(/\r?\n/).map(line => line.split(';').map(c => c.trim()));
@@ -1320,8 +1319,8 @@
             const parseCSV = (text) => text.split(/\r?\n/).map(parseCSVLine);
 
             const [coursResp, plagesResp] = await Promise.all([
-                fetch('cours.csv'),
-                fetch('plages-horaires.csv'),
+                fetch(`${basePath}/cours/cours.csv`),
+                fetch(`${basePath}/cours/plages-horaires.csv`),
             ]);
             if (!coursResp.ok) throw new Error(`Impossible de charger cours.csv : ${coursResp.status}`);
             if (!plagesResp.ok) throw new Error(`Impossible de charger plages-horaires.csv : ${plagesResp.status}`);
@@ -1455,39 +1454,76 @@
             document.querySelectorAll('.table-wrapper tbody tr td .dropped-tile').forEach(t => {
                 if (t.dataset.code) siglesGrille.add(t.dataset.code);
             });
-
-            // Si la case "Scolarité préparatoire complétée" est cochée, tous les cours
-            // de cette section comptent comme complétés pour le bilan.
             const cbScolarite = document.getElementById('scolarite-completee');
             const scolariteCompletee = cbScolarite && cbScolarite.checked;
 
-            let totalAccumule = 0;
-            let totalExige = 0;
-            let lastBilanSection = null;
-
+            // Grouper les règles par section en conservant l'ordre d'apparition
+            const sections = [];
+            const sectionIndexMap = new Map();
             programme.regles.forEach(regle => {
-                const estScolarite = regle.specialisation === 'Scolarité préparatoire';
+                const spec = regle.specialisation || 'Activités communes';
+                if (!sectionIndexMap.has(spec)) {
+                    sectionIndexMap.set(spec, sections.length);
+                    sections.push({ specialisation: spec, reglesData: [] });
+                }
+                const section = sections[sectionIndexMap.get(spec)];
+                const estScolarite = spec === 'Scolarité préparatoire';
                 let creditsAccumules = 0;
                 regle.coursRegle.forEach((code, idx) => {
                     if (siglesGrille.has(code) || (estScolarite && scolariteCompletee)) {
                         creditsAccumules += parseInt(regle.creditsCoursRegle[idx]) || 0;
                     }
                 });
-                const creditsExiges = regle.maxCreditsRegle;
-                totalAccumule += creditsAccumules;
-                totalExige += creditsExiges;
-
-                const section = regle.specialisation || 'Activités communes';
-                if (section !== lastBilanSection) {
-                    logMessage(section, 'section', false);
-                    lastBilanSection = section;
-                }
-                const type = creditsAccumules >= creditsExiges ? 'info' : 'warning';
-                logMessage(`${regle.titreRegle} : ${creditsAccumules} cr. / ${creditsExiges} cr.`, type, false);
+                section.reglesData.push({ regle, creditsAccumules });
             });
 
-            const totalType = totalAccumule >= totalExige ? 'info' : 'warning';
-            logMessage(`Total : ${totalAccumule} cr. / ${totalExige} cr.`, totalType, false);
+            const specialisationsCredits = programme.specialisationsCredits;
+            let totalAccumuleGlobal = 0;
+            let totalExigeGlobal = 0;
+
+            sections.forEach(({ specialisation, reglesData }) => {
+                const hasSpecTotal = specialisationsCredits.has(specialisation);
+                // Scolarité préparatoire et Stages sont affichés mais comptabilisés hors total global
+                const sectionExclue = specialisation === 'Scolarité préparatoire';
+                const reglesComptees = sectionExclue
+                    ? []
+                    : reglesData.filter(rd => rd.regle.titreRegle !== 'Stages');
+
+                // Total exigé pour le calcul global (hors sections/règles exclues)
+                const creditsExigesGlobal = (hasSpecTotal && !sectionExclue)
+                    ? specialisationsCredits.get(specialisation)
+                    : reglesComptees.reduce((sum, rd) => sum + rd.regle.maxCreditsRegle, 0);
+
+                // Crédits accumulés dans les règles comptées, plafonnés par leur max respectif
+                const totalCappedSection = reglesComptees.reduce(
+                    (sum, rd) => sum + Math.min(rd.creditsAccumules, rd.regle.maxCreditsRegle), 0
+                );
+                const contributionSection = Math.min(totalCappedSection, creditsExigesGlobal);
+
+                totalAccumuleGlobal += contributionSection;
+                totalExigeGlobal += creditsExigesGlobal;
+
+                // En-tête de section : crédits affichés seulement pour les spécialisations avec total CSV
+                if (hasSpecTotal && !sectionExclue) {
+                    logMessage(`${specialisation} : ${contributionSection} cr. / ${creditsExigesGlobal} cr.`, 'section', false);
+                } else {
+                    logMessage(specialisation, 'section', false);
+                }
+
+                // Toutes les règles sont affichées (y compris Stages et Scolarité préparatoire)
+                reglesData.forEach(({ regle, creditsAccumules }) => {
+                    const hasInterval = regle.minCreditsRegle !== regle.maxCreditsRegle;
+                    const exigesStr = hasInterval
+                        ? `(${regle.minCreditsRegle} à ${regle.maxCreditsRegle} cr.)`
+                        : `${regle.maxCreditsRegle} cr.`;
+                    const regleOk = creditsAccumules >= regle.minCreditsRegle;
+                    const type = regleOk ? 'info' : 'warning';
+                    logMessage(`${regle.titreRegle} : ${creditsAccumules} cr. / ${exigesStr}`, type, false);
+                });
+            });
+
+            const totalType = totalAccumuleGlobal >= totalExigeGlobal ? 'info' : 'warning';
+            logMessage(`Total : ${totalAccumuleGlobal} cr. / ${totalExigeGlobal} cr.`, totalType, false);
         }
 
         // siglesAvant      : sigles des tuiles dans les colonnes strictement à gauche
@@ -2052,6 +2088,15 @@
             const height = Math.max(24, Math.round(innerHeight - gutter));
             document.documentElement.style.setProperty('--cell-width', `${width}px`);
             document.documentElement.style.setProperty('--cell-height', `${height}px`);
+            // Taille de police maximale pour les deux lignes de texte (sigle + titre court)
+            // Contrainte hauteur : 2 lignes × line-height 1.2 ≤ hauteur intérieure (padding 3px×2)
+            // Contrainte largeur : 9 chars × ratio 0.62 ≤ largeur intérieure (padding 4px×2)
+            const tileInnerH = height - 6;
+            const tileInnerW = width - 8;
+            const maxParHauteur = tileInnerH / (2 * 1.2);
+            const maxParLargeur = tileInnerW / (9 * 0.62);
+            const taillePolicePastille = Math.max(6, Math.floor(Math.min(maxParHauteur, maxParLargeur)));
+            document.documentElement.style.setProperty('--tile-font-size', `${taillePolicePastille}px`);
         }
 
         // Pousse 'tile' vers la cellule en-dessous dans la colonne colIndex.
@@ -2309,24 +2354,17 @@
         function populateSpecialisationOptions(selectElement, specialisations, selectedValue) {
             if (!selectElement) return;
             selectElement.innerHTML = '';
-            const defaultOption = document.createElement('option');
-            defaultOption.value = 'Cheminement sans concentration';
-            defaultOption.textContent = 'Cheminement sans concentration';
-            selectElement.appendChild(defaultOption);
-
             specialisations.forEach((specialisation) => {
                 if (!specialisation) return;
-                if (specialisation === 'Cheminement sans concentration') return;
                 const option = document.createElement('option');
                 option.value = specialisation;
                 option.textContent = specialisation;
                 selectElement.appendChild(option);
             });
-
-            if (selectedValue && [...selectElement.options].some(option => option.value === selectedValue)) {
+            if (selectedValue && [...selectElement.options].some(opt => opt.value === selectedValue)) {
                 selectElement.value = selectedValue;
-            } else {
-                selectElement.value = 'Cheminement sans concentration';
+            } else if (selectElement.options.length > 0) {
+                selectElement.value = selectElement.options[0].value;
             }
         }
 
@@ -2392,8 +2430,9 @@
         async function populerBoutonsCheminement() {
             const container = document.getElementById('modal-cheminements-dynamiques');
             container.innerHTML = '<p style="font-size:13px;color:#888;margin:0;">Chargement…</p>';
+            const basePath = document.getElementById('programme-select')?.value || 'b-gmc';
             try {
-                const resp = await fetch('cheminements-types/cheminements-types.csv');
+                const resp = await fetch(`${basePath}/cheminements-types/cheminements-types.csv`);
                 if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
                 const rows = (await resp.text())
                     .split(/\r?\n/)
@@ -2404,7 +2443,7 @@
                     const btn = document.createElement('button');
                     btn.className = 'modal-btn modal-btn-primary';
                     btn.textContent = label;
-                    btn.onclick = () => chargerCheminementFichier('cheminements-types/' + fichier);
+                    btn.onclick = () => chargerCheminementFichier(`${basePath}/cheminements-types/` + fichier);
                     container.appendChild(btn);
                 });
                 if (!rows.length) {
@@ -2796,95 +2835,134 @@ ${logHTML}
             try {
                 const specialisationSelect = document.getElementById('cheminement-select');
                 const admissionSelect = document.getElementById('admission-select');
+                const programmeSelect = document.getElementById('programme-select');
 
-                // Charger tous les cours des CSV une seule fois
-                try {
-                    tousLesCours = await chargeCours();
-                } catch (err) {
-                    console.warn('Impossible de charger les cours :', err);
-                    setProgrammeSummary(`Impossible de charger les cours : ${err.message}`);
-                }
-                detecterSiglesMalformes(tousLesCours);
-
-                // Charger la liste des versions de programme disponibles
-                let versionsDisponibles = [];
-                try {
-                    const resp = await fetch('versions-programme/index.csv');
-                    if (resp.ok) {
-                        versionsDisponibles = (await resp.text())
-                            .split(/\r?\n/)
-                            .map(line => line.split(';').map(c => c.trim()))
-                            .filter(row => row.length >= 2 && row[0] && row[1])
-                            .map(([session, fichier]) => ({ session, path: 'versions-programme/' + fichier }));
-
-                        // Trier en ordre chronologique inversé (année décroissante, puis A > E > H)
-                        const saisonRang = { 'A': 3, 'E': 2, 'H': 1 };
-                        versionsDisponibles.sort((a, b) => {
-                            const anneeA = parseInt(a.session.slice(1)), anneeB = parseInt(b.session.slice(1));
-                            if (anneeA !== anneeB) return anneeB - anneeA;
-                            return (saisonRang[b.session[0]] || 0) - (saisonRang[a.session[0]] || 0);
-                        });
-                    }
-                } catch (err) {
-                    console.warn('Impossible de charger l\'index des versions de programme :', err);
-                }
-
-                // Peupler le menu déroulant "Session d'admission"
-                if (admissionSelect) {
-                    admissionSelect.innerHTML = '';
-                    versionsDisponibles.forEach(({ session }) => {
+                // Peupler le menu déroulant "Programme"
+                if (programmeSelect) {
+                    [['B-GMC', 'b-gmc'], ['B-GIN', 'b-gin']].forEach(([label, value]) => {
                         const opt = document.createElement('option');
-                        opt.value = session;
-                        opt.textContent = session;
-                        admissionSelect.appendChild(opt);
+                        opt.value = value;
+                        opt.textContent = label;
+                        programmeSelect.appendChild(opt);
                     });
                 }
 
-                function getCsvPath() {
-                    if (!admissionSelect || !versionsDisponibles.length) return 'versions-programme/b-gmc-a26.csv';
-                    const v = versionsDisponibles.find(v => v.session === admissionSelect.value);
-                    return v ? v.path : versionsDisponibles[0].path;
+                function getBasePath() {
+                    return (programmeSelect && programmeSelect.value) ? programmeSelect.value : 'b-gmc';
                 }
 
-                async function loadProgram(selectedSpecialisation = 'Cheminement sans concentration') {
-                    const programme = await VersionProgramme.chargeVersionProgramme(getCsvPath(), selectedSpecialisation);
-                    if (specialisationSelect) {
-                        populateSpecialisationOptions(specialisationSelect, programme.specialisations, selectedSpecialisation);
+                // Références aux écouteurs actifs pour les menus dépendants
+                let onAdmissionChange = null;
+                let onSpecialisationChange = null;
+
+                async function chargerProgramme() {
+                    const basePath = getBasePath();
+
+                    // Charger les cours du programme sélectionné
+                    try {
+                        tousLesCours = await chargeCours(null, basePath);
+                    } catch (err) {
+                        console.warn('Impossible de charger les cours :', err);
+                        setProgrammeSummary(`Impossible de charger les cours : ${err.message}`);
                     }
-                    renderRulesPanel(programme, selectedSpecialisation);
+                    detecterSiglesMalformes(tousLesCours);
 
-                    // Filtrer les cours du programme qui sont présents dans les CSV
-                    const siglesProgamme = new Set(programme.regles.flatMap(r => r.coursRegle));
-                    const coursProgramme = new Map(
-                        [...tousLesCours.entries()].filter(([sigle]) => siglesProgamme.has(sigle))
-                    );
-                    renderCoursSummary(coursProgramme);
-                    programmeActuel = programme;
-                    verifierPrealablesTableau();
-                }
+                    // Charger la liste des versions de programme disponibles
+                    let versionsDisponibles = [];
+                    try {
+                        const resp = await fetch(`${basePath}/programme/index.csv`);
+                        if (resp.ok) {
+                            versionsDisponibles = (await resp.text())
+                                .split(/\r?\n/)
+                                .map(line => line.split(';').map(c => c.trim()))
+                                .filter(row => row.length >= 2 && row[0] && row[1])
+                                .map(([session, fichier]) => ({ session, path: `${basePath}/programme/${fichier}` }));
 
-                if (admissionSelect) {
-                    admissionSelect.addEventListener('change', () => {
+                            const saisonRang = { 'A': 3, 'E': 2, 'H': 1 };
+                            versionsDisponibles.sort((a, b) => {
+                                const anneeA = parseInt(a.session.slice(1)), anneeB = parseInt(b.session.slice(1));
+                                if (anneeA !== anneeB) return anneeB - anneeA;
+                                return (saisonRang[b.session[0]] || 0) - (saisonRang[a.session[0]] || 0);
+                            });
+                        }
+                    } catch (err) {
+                        console.warn('Impossible de charger l\'index des versions de programme :', err);
+                    }
+
+                    // Peupler le menu déroulant "Session d'admission"
+                    if (admissionSelect) {
+                        admissionSelect.innerHTML = '';
+                        versionsDisponibles.forEach(({ session }) => {
+                            const opt = document.createElement('option');
+                            opt.value = session;
+                            opt.textContent = session;
+                            admissionSelect.appendChild(opt);
+                        });
+                    }
+
+                    function getCsvPath() {
+                        if (!admissionSelect || !versionsDisponibles.length) return versionsDisponibles[0]?.path || '';
+                        const v = versionsDisponibles.find(v => v.session === admissionSelect.value);
+                        return v ? v.path : versionsDisponibles[0].path;
+                    }
+
+                    async function loadProgram(selectedSpecialisation = null) {
+                        // Chargement initial : récupérer la liste des spécialisations du programme
+                        const programmeInit = await VersionProgramme.chargeVersionProgramme(getCsvPath(), selectedSpecialisation || '');
+
+                        // Si la spécialisation demandée est absente, utiliser la première disponible
+                        let specFinale = selectedSpecialisation;
+                        if (programmeInit.specialisations.length > 0 &&
+                            (!specFinale || !programmeInit.specialisations.includes(specFinale))) {
+                            specFinale = programmeInit.specialisations[0];
+                        }
+
+                        // Recharger avec la bonne spécialisation si elle a changé
+                        const programme = (specFinale && specFinale !== selectedSpecialisation)
+                            ? await VersionProgramme.chargeVersionProgramme(getCsvPath(), specFinale)
+                            : programmeInit;
+
+                        if (specialisationSelect) {
+                            populateSpecialisationOptions(specialisationSelect, programme.specialisations, specFinale);
+                        }
+                        renderRulesPanel(programme, specFinale);
+                        const siglesProgamme = new Set(programme.regles.flatMap(r => r.coursRegle));
+                        const coursProgramme = new Map(
+                            [...tousLesCours.entries()].filter(([sigle]) => siglesProgamme.has(sigle))
+                        );
+                        renderCoursSummary(coursProgramme);
+                        programmeActuel = programme;
+                        verifierPrealablesTableau();
+                    }
+
+                    // Remplacer les écouteurs des menus dépendants
+                    if (onAdmissionChange && admissionSelect) admissionSelect.removeEventListener('change', onAdmissionChange);
+                    if (onSpecialisationChange && specialisationSelect) specialisationSelect.removeEventListener('change', onSpecialisationChange);
+
+                    onAdmissionChange = () => {
                         reinitialiserColonnesTableau(admissionSelect.value);
                         const spec = specialisationSelect ? specialisationSelect.value : 'Cheminement sans concentration';
                         loadProgram(spec);
-                    });
+                    };
+                    onSpecialisationChange = (event) => loadProgram(event.target.value);
+
+                    if (admissionSelect) admissionSelect.addEventListener('change', onAdmissionChange);
+                    if (specialisationSelect) specialisationSelect.addEventListener('change', onSpecialisationChange);
+
+                    // Réinitialiser les colonnes du tableau selon la session d'admission
+                    if (admissionSelect && admissionSelect.value) {
+                        reinitialiserColonnesTableau(admissionSelect.value);
+                    }
+
+                    await loadProgram();
                 }
 
-                if (specialisationSelect) {
-                    specialisationSelect.addEventListener('change', (event) => {
-                        loadProgram(event.target.value);
-                    });
+                // Changer de programme recharge tout
+                if (programmeSelect) {
+                    programmeSelect.addEventListener('change', chargerProgramme);
                 }
 
-                // Initialiser les colonnes du tableau selon la session d'admission par défaut
-                if (admissionSelect && admissionSelect.value) {
-                    reinitialiserColonnesTableau(admissionSelect.value);
-                }
-
-                await loadProgram();
-
-                // Initialiser la barre de recherche des cours dans le panneau
+                // Initialiser la barre de recherche (une seule fois)
                 const coursSearchInput = document.getElementById('cours-search');
                 if (coursSearchInput) {
                     coursSearchInput.addEventListener('input', () => {
@@ -2902,9 +2980,11 @@ ${logHTML}
                     });
                 }
 
-                window.addEventListener('resize', () => {
-                    adjustTileSize();
-                });
+                window.addEventListener('resize', () => { adjustTileSize(); });
+
+                // Chargement initial
+                await chargerProgramme();
+
             } catch (err) {
                 console.error('Erreur de chargement CSV :', err);
                 setProgrammeSummary(`Erreur de chargement CSV : ${err.message}`);

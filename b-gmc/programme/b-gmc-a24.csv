@@ -1,0 +1,167 @@
+Programme:;Baccalauréat en génie mécanique;;;
+Session d'admission:;A24;;;
+Scolarité préparatoire;;;;
+;Cours compensateurs;;;21
+;;CHM-0150;Chimie générale;3
+;;MAT-0130;Algèbre vectorielle;3
+;;MAT-0150;Calcul différentiel;4
+;;MAT-0260;Calcul intégral;4
+;;PHY-0150;Physique : mécanique classique;4
+;;PHY-0250;Physique : électricité et magnétisme;3
+Activités de formation communes;;;;
+;Cours obligatoires;;;99
+;;GLO-1901;Introduction à la programmation avec Python;3
+;;GMC-1001;Statique des corps rigides;3
+;;GMC-1024;Modélisation 3D;3
+;;GML-1001;Matériaux pour l'ingénierie;3
+;;MAT-1900;Mathématiques pour l'ingénierie I;3
+;;GMC-1003;Introduction à la mécanique des fluides;3
+;;GMC-2001;Résistance des matériaux;3
+;;MAT-1910;Mathématiques pour l'ingénierie II;3
+;;MAT-2910;Analyse numérique pour l'ingénierie;3
+;;GMC-1002;Introduction à la thermodynamique;3
+;;GMC-2002;Résistance des composantes de machines et des assemblages;3
+;;GMC-2003;Dynamique des corps rigides;3
+;;GMC-2005;Dynamique des fluides appliquée;3
+;;GMC-2006;Équations aux dérivées partielles en génie mécanique;3
+;;GMC-2024;Ingénierie et conception I;3
+;;GMC-2008;Machines thermiques;3
+;;GMC-2025;Ingénierie et conception II;3
+;;GMC-3000;Dynamique des vibrations;3
+;;GMC-3002;Dynamique de la commande appliquée;3
+;;GMC-3005;Transferts thermiques;3
+;;GMC-3009;Gestion de projets en ingénierie;3
+;;GMC-3024;Ingénierie et conception III;3
+;;STT-1900;Méthodes statistiques pour l'ingénierie;3
+;;GMC-2007;Fabrication mécanique;3
+;;GMC-3003;Éléments de transmission de puissance;3
+;;GMC-3006;Introduction à la mesure et à la mécatronique;3
+;;GMC-3025;Ingénierie et conception IV;3
+;;GMC-3020;Investigation expérimentale en génie mécanique;3
+;;GMC-3034;Ingénierie et conception V;3
+;;PHI-2910;Génie et développement durable;3
+;;GMC-3035;Ingénierie et conception VI;3
+;;PHI-3900;Éthique et professionnalisme;3
+;;ECN-4901;Analyse économique en ingénierie;3
+;Stages;;;9
+;;GMC-2580;Stage en génie mécanique II;9
+;Règle 1;;;3
+;;GMN-2902;Santé et sécurité en ingénierie III;3
+;;MED-1100;Santé et sécurité au travail : notions de base;3
+Cheminement sans concentration;;;;18
+;Règle 1;;;15
+;;OPT-ION1;Cours à option à déterminer;3
+;;OPT-ION2;Cours à option à déterminer;3
+;;OPT-ION3;Cours à option à déterminer;3
+;;OPT-ION4;Cours à option à déterminer;3
+;;OPT-ION5;Cours à option à déterminer;3
+;;GMC-4054;Simulations numériques des écoulements industriels;3
+;;GMC-4150;Introduction à l'aérodynamique;3
+;;GMC-4151;Propulsion aéronautique et spatiale;3
+;;GMC-4350;Turbomachines;3
+;;PHY-2100;Sciences de l'espace;3
+;;ENT-1000;Savoir entreprendre : la passion de créer et d'agir;3
+;;ENT-4020;Introduction à l'entrepreneurship technologique;3
+;;GBO-4070;Enveloppe du bâtiment;3
+;;GCI-2007;Structures métalliques;3
+;;GCI-3001;Impacts environnementaux;3
+;;GEL-2003;Électrotechnique;4
+;;GEL-4100;Commande industrielle;3
+;;GEL-4799;Dangers de l'électricité;0
+;;GMC-3012;Introduction à la mécanique du bâtiment et aux énergies renouvelables;3
+;;GMC-3015;Conception intégrée des systèmes CVAC-R;3
+;;GML-4151;Introduction aux matériaux pour la santé;3
+;;GIN-2010;Gestion opérationnelle des systèmes d'entreprise;3
+;;GIN-2110;Optimisation des systèmes et des réseaux;3
+;;GIN-3010;Conception et implantation des systèmes de production;3
+;;GIN-3110;Environnement et cycle de vie des produits;3
+;;GIN-3220;Analyse des risques, fiabilité et maintenance;3
+;;GIN-4003;Science des données en ingénierie;3
+;;GSO-2105;Achat et approvisionnement;3
+;;GSO-3103;Ingénierie de la chaîne logistique;3
+;;GMC-4200;Automatisation industrielle;3
+;;GMC-4201;Ingénierie de la qualité;3
+;;GMC-4202;Procédés et développement de produits;3
+;;GIF-4101;Introduction à l'apprentissage automatique;3
+;;GLO-2100;Algorithmes et structures de données pour l'ingénierie;3
+;;IFT-4102;Techniques avancées en intelligence artificielle;3
+;;GMC-4250;Mécanique des matériaux composites;3
+;;GML-2007;Comportement mécanique et essais des matériaux;3
+;;GML-2251;Contrôle non destructif des matériaux;3
+;;GML-3000;Soudage des matériaux;3
+;;GEL-1000;Circuits;3
+;;GEL-4250;Commande des systèmes avancée;3
+;;GEL-4799;Dangers de l'électricité;0
+;;GIF-1003;Programmation avancée en C++ pour l'ingénierie;3
+;;GLO-4001;Introduction à la robotique mobile;3
+;;GMC-1300;Initiation à la mécatronique;3
+;;GMC-3300;Mécatronique appliquée;4
+;;GMC-3351;Éléments de robotique;3
+;;MAT-2930;Algèbre linéaire appliquée;3
+;;GAE-2005;Tracteurs et systèmes hydrauliques;3
+;;GMC-3016;Introduction au génie maritime;3
+;;GMC-4048;Analyse et synthèse cinématique des mécanismes;3
+;;GMC-4055;Simulation numérique en mécanique des structures;3
+;;GMC-4100;Commandes hydrauliques et pneumatiques;3
+;;GMC-4351;Modélisation et analyse en CAO;3
+;;GMC-3550;Projet spécialisé I;3
+;;GMC-3551;Projet spécialisé II;3
+;Règle 2;;;3
+;;LAN-GUES;Cours de langue selon le résultat VEPT;3
+Robotique;;;;18
+;Cours obligatoires;;;3
+;;GMC-3351;Éléments de robotique;3
+;Règle 1;;;12
+;;GEL-4250;Commande des systèmes avancée;3
+;;GIF-1003;Programmation avancée en C++ pour l'ingénierie;3
+;;GIF-4101;Introduction à l'apprentissage automatique;3
+;;GLO-4001;Introduction à la robotique mobile;3
+;;GMC-1300;Initiation à la mécatronique;3
+;;GMC-3300;Mécatronique appliquée;4
+;;GMC-3550;Projet spécialisé I;3
+;;GMC-3551;Projet spécialisé II;3
+;;GMC-4048;Analyse et synthèse cinématique des mécanismes;3
+;;GMC-4100;Commandes hydrauliques et pneumatiques;3
+;;GMC-4200;Automatisation industrielle;3
+;Règle 2;;;3
+;;LAN-GUES;Cours de langue selon le résultat VEPT;3
+Génie du développement durable;;;;18
+;Cours obligatoires;;;6
+;;GMC-3012;Introduction à la mécanique du bâtiment et aux énergies renouvelables;3
+;;GMC-3015;Conception intégrée des systèmes CVAC-R;3
+;Règle 1;;;9
+;;GBO-2040;Charpentes en bois I;3
+;;GBO-4070;Enveloppe du bâtiment;3
+;;GCI-2004;Structures de béton;3
+;;GCI-2007;Structures métalliques;3
+;;GCI-3001;Impacts environnementaux;3
+;;GCI-3002;Gestion des eaux;3
+;;GEL-2003;Électrotechnique;4
+;;GEL-4100;Commande industrielle;3
+;;GEL-4799;Dangers de l'électricité;0
+;;GMC-3551;Projet spécialisé II;3
+;;GMC-3550;Projet spécialisé I;3
+;;GMC-4100;Commandes hydrauliques et pneumatiques;3
+;Règle 2;;;3
+;;LAN-GUES;Cours de langue selon le résultat VEPT;3
+Profil entrepreneurial;;;;18
+;Cours obligatoires;;;9
+;;ENT-1000;Savoir entreprendre : la passion de créer et d'agir;3
+;;ENT-3000;Mon projet entrepreneurial en action 1;3
+;;ENT-3010;Mon projet entrepreneurial en action 2;3
+;Règle 1;;;3
+;;ENT-2023;Entrepreneuriat technologique;3
+;;ENT-4020;Introduction à l'entrepreneurship technologique;3
+;Règle 2;;;3
+;;LAN-GUES;Cours de langue selon le résultat VEPT;3
+;Règle 3;;;3
+;;OPT-ION1;Cours à option en génie mécanique;3
+Profil international;;;;18
+;Règle 1;;;15
+;;OPT-ION1;Cours à option à l'étranger;3
+;;OPT-ION2;Cours à option à l'étranger;3
+;;OPT-ION3;Cours à option à l'étranger;3
+;;OPT-ION4;Cours à option à l'étranger;3
+;;OPT-ION5;Cours à option à l'étranger ou à l'Université Laval;3
+;Règle 2;;;3
+;;LAN-GUES;Cours de langue selon le résultat VEPT;3

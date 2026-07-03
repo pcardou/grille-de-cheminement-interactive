@@ -1,0 +1,103 @@
+﻿sigle;titre;titre_court;couleur
+CHM-0150;Chimie générale;ChimieGé;#8C5A7B
+ECN-4901;Analyse économique en ingénierie;AnaÉcono;#FFC103
+ENT-1000;Savoir entreprendre : la passion de créer et d'agir;SavEntre;#5C7FA3
+ENT-2023;Entrepreneuriat technologique;EntrTech;#5C7FA3
+ENT-3000;Mon projet entrepreneurial en action 1;ProjEnt1;#5C7FA3
+ENT-3010;Mon projet entrepreneurial en action 2;ProjEnt2;#5C7FA3
+ENT-4020;Introduction à l'entrepreneurship technologique;InEntrep;#5C7FA3
+GAE-2005;Tracteurs et systèmes hydrauliques;Tracteur;#5C7FA3
+GBO-2040;Charpentes en bois I;CharBois;#5C7FA3
+GBO-4070;Enveloppe du bâtiment;EnvBâtim;#5C7FA3
+GCI-2004;Structures de béton;StrucBét;#5C7FA3
+GCI-2007;Structures métalliques;StrucMét;#5C7FA3
+GCI-3001;Impacts environnementaux;ImpEnvir;#5C7FA3
+GCI-3002;Gestion des eaux;GestEaux;#5C7FA3
+GEL-1000;Circuits;Circuits;#5C7FA3
+GEL-2003;Électrotechnique;Électrot;#5C7FA3
+GEL-4100;Commande industrielle;CommIndu;#5C7FA3
+GEL-4250;Commande des systèmes avancée;ComSysAv;#5C7FA3
+GEL-4799;Dangers de l'électricité;DangÉlec;#5C7FA3
+GIF-1003;Programmation avancée en C++ pour l'ingénierie;ProgrC++;#5C7FA3
+GIF-4101;Introduction à l'apprentissage automatique;InAppAut;#5C7FA3
+GIN-2010;Gestion opérationnelle des systèmes d'entreprise;GestOpér;#5C7FA3
+GIN-2110;Optimisation des systèmes et des réseaux;OptiSyst;#5C7FA3
+GIN-3010;Conception et implantation des systèmes de production;ConCVACR;#5C7FA3
+GIN-3110;Environnement et cycle de vie des produits;EnvCycle;#5C7FA3
+GIN-3220;Analyse des risques, fiabilité et maintenance;AnaRisqu;#5C7FA3
+GIN-4003;Science des données en ingénierie;ScDonnIn;#5C7FA3
+GLO-1901;Introduction à la programmation avec Python;InProgPy;#F7A941
+GLO-2100;Algorithmes et structures de données pour l'ingénierie;AlgoStru;#5C7FA3
+GLO-4001;Introduction à la robotique mobile;InRobMob;#5C7FA3
+GMC-1001;Statique des corps rigides;Statique;#F18289
+GMC-1002;Introduction à la thermodynamique;InThermo;#0099ff
+GMC-1003;Introduction à la mécanique des fluides;InMécFlu;#0099ff
+GMC-1004;Pratique du génie mécanique;PratiGMC;#F7A941
+GMC-1005;Communication technique et travail en équipe;ComTechn;#FFC103
+GMC-1024;Modélisation 3D;Modéli3D;#7A8C4A
+GMC-1300;Initiation à la mécatronique;InitMéca;#5C7FA3
+GMC-2001;Résistance des matériaux;RésMatér;#F18289
+GMC-2002;Résistance des composantes de machines et des assemblages;RésCompo;#F18289
+GMC-2003;Dynamique des corps rigides;DynCorps;#F18289
+GMC-2005;Dynamique des fluides appliquée;DynFluAp;#0099ff
+GMC-2006;Équations aux dérivées partielles en génie mécanique;ÉqDérPar;#E76F51
+GMC-2007;Fabrication mécanique;FabrMéca;#F18289
+GMC-2008;Machines thermiques;MachTher;#0099ff
+GMC-2024;Ingénierie et conception I;IngConc1;#7A8C4A
+GMC-2025;Ingénierie et conception II;IngConc2;#7A8C4A
+GMC-2580;Stage en génie mécanique II;StagGMC2;#51a27e
+GMC-3000;Dynamique des vibrations;DynVibra;#F18289
+GMC-3002;Dynamique de la commande appliquée;DynComAp;#702e78
+GMC-3003;Éléments de transmission de puissance;ÉléTrPui;#F18289
+GMC-3005;Transferts thermiques;TranTher;#0099ff
+GMC-3006;Introduction à la mesure et à la mécatronique;InMesMéc;#702e78
+GMC-3009;Gestion de projets en ingénierie;GestProj;#FFC103
+GMC-3012;Introduction à la mécanique du bâtiment et aux énergies renouvelables;InMécBât;#5C7FA3
+GMC-3015;Conception intégrée des systèmes CVAC-R;ConCVACR;#5C7FA3
+GMC-3016;Introduction au génie maritime;InGéMari;#5C7FA3
+GMC-3020;Investigation expérimentale en génie mécanique;InvExpér;#702e78
+GMC-3024;Ingénierie et conception III;IngConc3;#7A8C4A
+GMC-3025;Ingénierie et conception IV;IngConc4;#7A8C4A
+GMC-3034;Ingénierie et conception V;IngConc5;#7A8C4A
+GMC-3035;Ingénierie et conception VI;IngConc6;#7A8C4A
+GMC-3300;Mécatronique appliquée;Mécatron;#5C7FA3
+GMC-3351;Éléments de robotique;ÉlémRobo;#5C7FA3
+GMC-3550;Projet spécialisé I;ProjSpé1;#5C7FA3
+GMC-3551;Projet spécialisé II;ProjSpé2;#5C7FA3
+GMC-4048;Analyse et synthèse cinématique des mécanismes;CinMécan;#5C7FA3
+GMC-4054;Simulations numériques des écoulements industriels;SimNumÉc;#5C7FA3
+GMC-4055;Simulation numérique en mécanique des structures;SimNumSt;#5C7FA3
+GMC-4100;Commandes hydrauliques et pneumatiques;HydrPneu;#5C7FA3
+GMC-4150;Introduction à l'aérodynamique;InAérody;#5C7FA3
+GMC-4151;Propulsion aéronautique et spatiale;PropAéro;#5C7FA3
+GMC-4200;Automatisation industrielle;AutIndus;#5C7FA3
+GMC-4201;Ingénierie de la qualité;IngQuali;#5C7FA3
+GMC-4202;Procédés et développement de produits;PrDévPro;#5C7FA3
+GMC-4250;Mécanique des matériaux composites;MatéComp;#5C7FA3
+GMC-4350;Turbomachines;TurboMac;#5C7FA3
+GMC-4351;Modélisation et analyse en CAO;ModAnCAO;#5C7FA3
+GML-1001;Matériaux pour l'ingénierie;Matériau;#F7A941
+GML-2007;Comportement mécanique et essais des matériaux;MécEsMat;#5C7FA3
+GML-2251;Contrôle non destructif des matériaux;CNDMatér;#5C7FA3
+GML-3000;Soudage des matériaux;SoudMaté;#5C7FA3
+GML-4151;Introduction aux matériaux pour la santé;InMatSan;#5C7FA3
+GMN-2900;Santé et sécurité en ingénierie I;SantéSéc;#F7A941
+GMN-2902;Santé et sécurité en ingénierie III;SantéSéc;#F7A941
+GSO-2105;Achat et approvisionnement;AchatApp;#5C7FA3
+GSO-3103;Ingénierie de la chaîne logistique;IngChLog;#5C7FA3
+IFT-1903;Informatique pour l'ingénierie;InforIng;#F7A941
+IFT-4102;Techniques avancées en intelligence artificielle;TechAvIA;#5C7FA3
+MAT-0130;Algèbre vectorielle;AlgVecto;#8C5A7B
+MAT-0150;Calcul différentiel;CalcDiff;#8C5A7B
+MAT-0260;Calcul intégral;CalcInté;#8C5A7B
+MAT-1900;Mathématiques pour l'ingénierie I;MathIng1;#E76F51
+MAT-1910;Mathématiques pour l'ingénierie II;MathIng2;#E76F51
+MAT-2910;Analyse numérique pour l'ingénierie;AnaNumér;#E76F51
+MAT-2930;Algèbre linéaire appliquée;AlgèLiné;#5C7FA3
+MED-1100;Santé et sécurité au travail : notions de base;SantéSéc;#F7A941
+PHI-2910;Génie et développement durable;GénDévDu;#FFC103
+PHI-3900;Éthique et professionnalisme;ÉthiProf;#FFC103
+PHY-0150;Physique : mécanique classique;MécClass;#8C5A7B
+PHY-0250;Physique : électricité et magnétisme;ÉlecMagn;#8C5A7B
+PHY-2100;Sciences de l'espace;ScEspace;#5C7FA3
+STT-1900;Méthodes statistiques pour l'ingénierie;MéthStat;#E76F51
