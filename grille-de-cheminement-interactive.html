@@ -1675,6 +1675,7 @@
                     const sigle = tile.dataset.code;
                     const cours = tousLesCours.get(sigle);
                     if (!cours) return;
+                    if (!verifieCoursOffert(cours, sessionCode)) return;
 
                     const select = tile.querySelector('select.section-select');
                     const selectedNom = select ? select.value : null;
