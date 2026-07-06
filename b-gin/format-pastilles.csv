@@ -1,0 +1,98 @@
+﻿sigle;titre;titre_court;couleur
+BIO-0150;Biologie générale;BioGénér;#8C5A7B
+BIO-1910;Écologie et pollution;ÉcolPoll;#8C5A7B
+BIO-2909;Éléments de physiologie humaine;ÉlPhysHu;#8C5A7B
+BIO-4900;Écologie et environnement;ÉcoloEnv;#8C5A7B
+CHM-0150;Chimie générale;ChimieGé;#8C5A7B
+CHM-0160;Chimie des solutions;ChimieSo;#8C5A7B
+CHM-0170;Chimie générale et des solutions;ChiGénSo;#8C5A7B
+CHM-0250;Chimie organique;ChimieOr;#8C5A7B
+CTB-1001;Comptabilité de management;CompMana;
+ECN-4901;Analyse économique en ingénierie;AnaÉcono;#FFC103
+ENT-1000;Savoir entreprendre : la passion de créer et d'agir;SavEntre;#5C7FA3
+ENT-2023;Entrepreneuriat technologique;EntrTech;#5C7FA3
+ENT-2145;Devenir travailleur autonome et microentrepreneur;TravAuto;
+ENT-3000;Mon projet entrepreneurial en action 1;ProjEnt1;#5C7FA3
+ENT-3010;Mon projet entrepreneurial en action 2;ProjEnt2;#5C7FA3
+GGR-2109;Géographie des transports;GéoTrans;
+GIF-1003;Programmation avancée en C++ pour l'ingénierie;ProgrC++;#5C7FA3
+GIN-1500;Structure et organisation des entreprises;StruEntr;
+GIN-2010;Gestion opérationnelle des systèmes d'entreprise;GestOpér;#5C7FA3
+GIN-2110;Optimisation des systèmes et des réseaux;OptiSyst;#5C7FA3
+GIN-2120;Mécanique et ingénierie des matériaux;MécaMaté;
+GIN-3000;Simulation des systèmes industriels;SimuSyst;
+GIN-3010;Conception et implantation des systèmes de production;ConCVACR;#5C7FA3
+GIN-3020;Ingénierie et gestion de la qualité;GestQual;
+GIN-3030;Électricité et électronique industrielle;ÉlécIndu;
+GIN-3040;Systèmes thermiques et énergétiques;SystTher;
+GIN-3050;Projets de diagnostic et d'amélioration d'un système;DiagSyst;
+GIN-3060;Systèmes de gestion intégrée;SystGest;
+GIN-3080;Dynamique de la commande appliquée;DynaComm;
+GIN-3110;Environnement et cycle de vie des produits;EnvCycle;#5C7FA3
+GIN-3200;Projets de conception de systèmes industriels;ConcSyst;
+GIN-3220;Analyse des risques, fiabilité et maintenance;AnaRisqu;#5C7FA3
+GIN-3310;Projet de fin d'études I;ProjFin1;
+GIN-3320;Projet de fin d'études II;ProjFin2;
+GIN-3580;Stage en génie industriel I;StagGIn1;
+GIN-4003;Science des données en ingénierie;ScDonnIn;#5C7FA3
+GIN-4021;Recherche opérationnelle avancée;RechOpAv;
+GLG-1000;Planète Terre;PlanTerr;
+GLO-1901;Introduction à la programmation avec Python;InProgPy;#F7A941
+GLO-2004;Génie logiciel orienté objet;GLOObjet;
+GLO-2005;Modèles et langages des bases de données pour l'ingénierie;ModBases;
+GLO-2100;Algorithmes et structures de données pour l'ingénierie;AlgoStru;#5C7FA3
+GLO-4000;Interface personne-machine;InterfPM;
+GMC-1000;Dessin pour l'ingénierie;DessIngé;
+GMC-1300;Initiation à la mécatronique;InitMéca;#5C7FA3
+GMC-2007;Fabrication mécanique;FabrMéca;#F18289
+GMC-3016;Introduction au génie maritime;InGéMari;#5C7FA3
+GMC-4100;Commandes hydrauliques et pneumatiques;HydrPneu;#5C7FA3
+GMC-4200;Automatisation industrielle;AutIndus;#5C7FA3
+GMC-4202;Procédés et développement de produits;PrDévPro;#5C7FA3
+GSC-1000;Méthodologie de design en ingénierie;MéthDesi;
+GSO-2100;Introduction à la gestion de projets;GestProj;
+GSO-2102;Gestion de la demande et des stocks;GestStoc;
+GSO-2104;Distribution et entreposage;DistEntr;
+GSO-2105;Achat et approvisionnement;AchatApp;#5C7FA3
+GSO-2106;Gestion stratégique de la chaîne d'approvisionnement;GestChLo;
+GSO-3103;Ingénierie de la chaîne logistique;IngChLog;#5C7FA3
+GSO-3105;Opérations et logistique à l'ère de l'industrie 4.0;OpInd4.0;
+IFT-1003;Analyse et conception de systèmes d'information;AnalSyst;
+IFT-4102;Techniques avancées en intelligence artificielle;TechAvIA;#5C7FA3
+LAN-GUES;Cours de langue selon le résultat VEPT;CourVEPT;
+MAT-0130;Algèbre vectorielle;AlgVecto;#8C5A7B
+MAT-0150;Calcul différentiel;CalcDiff;#8C5A7B
+MAT-0260;Calcul intégral;CalcInté;#8C5A7B
+MAT-1900;Mathématiques pour l'ingénierie I;MathIng1;#E76F51
+MAT-1910;Mathématiques pour l'ingénierie II;MathIng2;#E76F51
+MAT-2910;Analyse numérique pour l'ingénierie;AnaNumér;#E76F51
+MED-1100;Santé et sécurité au travail : notions de base;SantéSéc;#F7A941
+MNG-2100;Fondements du management international;ManaInte;
+MNG-3103;Gestion du changement;GestChan;
+MQT-2100;Environnement de développement de SIAD;DéveSIAD;
+MQT-2101;Analyse et modélisation des données;AnalDonn;
+MQT-2102;Introduction à la simulation et à la visualisation;SimuVisu;
+MQT-3000;Introduction à l'analytique d'affaires;AnalAffa;
+OPT-ION1;Cours à option à déterminer;OptGInd1;
+OPT-ION2;Cours à option à déterminer;OptGInd2;
+OPT-ION3;Cours à option à déterminer;OptGInd3;
+OPT-ION4;Cours à option à déterminer;OptGInd4;
+OPT-ION5;Cours à option à déterminer;OptGInd5;
+PHI-3900;Éthique et professionnalisme;ÉthiProf;#FFC103
+PHY-0150;Physique : mécanique classique;MécClass;#8C5A7B
+PHY-0250;Physique : électricité et magnétisme;ÉlecMagn;#8C5A7B
+PHY-1000;Introduction à l'astrophysique;IntrAstr;
+PHY-2100;Sciences de l'espace;ScEspace;#5C7FA3
+RLT-1700;Aspects administratifs et humains de la gestion;AspAdmin;
+RLT-2002;Prévention primaire en SST;PrévSST1;
+RLT-3300;Introduction à l'ergonomie;IntrErgo;
+SAN-SÉCU;Cours de santé et sécurité au travail à déterminer;SantéSéc;
+SCI-NATU;Cours de sciences de la nature à déterminer;SciNatur;
+SIO-2100;Gestion stratégique des technologies de l'information;GestTISt;
+SIO-2103;Conception des systèmes d'information organisationnels I;ConcSIO1;
+SIO-2104;Gestion de l'innovation technologique;GestInno;
+SIO-3100;Conception des systèmes d'information organisationnels II;ConcSIO2;
+SIO-3105;Analyse d'affaires pour la transformation organisationnelle;AnalTran;
+STT-1100;Introduction à la science des données;IntrScDo;
+STT-1900;Méthodes statistiques pour l'ingénierie;MéthStat;#E76F51
+STT-4230;R pour scientifique;RScienti;
