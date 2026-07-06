@@ -8,6 +8,7 @@ Created on Tue Jun  9 10:30:07 2026
 from pathlib import Path
 import csv
 import re
+from datetime import date
 
 from bs4 import BeautifulSoup
 
@@ -102,6 +103,42 @@ def deduire_sessions_futures(sessions):
             futures.add(f"{saison}{annee+i:02d}")
 
     return sorted(futures)
+
+
+def deduire_sessions_passees(sessions):
+    """
+    Génère les 5 sessions passées précédant l'année universitaire en cours,
+    pour chaque saison observée dans `sessions`. L'année universitaire
+    commence à l'automne (septembre) ; avant septembre, c'est l'automne
+    de l'année civile précédente qui marque le début de l'année en cours.
+
+    Exemples (aujourd'hui = juillet 2026, donc année univ. courante = A25) :
+      Automne → A24, A23, A22, A21, A20
+      Hiver   → H25, H24, H23, H22, H21
+      Été     → E25, E24, E23, E22, E21
+    """
+
+    today = date.today()
+    annee = today.year % 100
+    if today.month < 9:
+        annee -= 1  # Avant septembre : l'année univ. a commencé l'automne précédent
+
+    passees = set()
+
+    for session in sessions:
+
+        saison = session[0]
+
+        if saison == 'A':
+            # Les 5 automnes précédant A{annee}
+            for i in range(1, 6):
+                passees.add(f"A{(annee - i) % 100:02d}")
+        else:
+            # H{annee} et E{annee} sont déjà passés (antérieurs à A{annee})
+            for i in range(0, 5):
+                passees.add(f"{saison}{(annee - i) % 100:02d}")
+
+    return sorted(passees)
 
 
 def parse_section_header(bloc, sigle):
@@ -524,8 +561,14 @@ def exporter(cours_liste):
                             plage[2]
                         ])
 
-            # Sessions futures prédites (sigle + session seulement)
+            # Sessions passées et futures prédites (sigle + session seulement)
             sessions = [v["session"] for v in cours["versions"]]
+
+            for s in deduire_sessions_passees(sessions):
+
+                writer.writerow([
+                    cours["sigle"], s, "", "", "", "", ""
+                ])
 
             for s in deduire_sessions_futures(sessions):
 

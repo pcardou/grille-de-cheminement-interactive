@@ -5,7 +5,7 @@ import requests
 from unidecode import unidecode
 
 BASE_URL = "https://www.ulaval.ca/etudes/cours/"
-DOSSIER_CACHE = "cache_html"
+DOSSIER_CACHE = "pages-html"
 
 def construire_url(sigle, titre):
     titre = unidecode(titre.lower())
@@ -14,6 +14,8 @@ def construire_url(sigle, titre):
     titre = re.sub(r"\s+", "-", titre.strip())
     return f"{BASE_URL}{sigle.lower()}-{titre}"
 
+PATTERN_SIGLE = re.compile(r'^[A-Z]{2,4}-\d{4}$')
+
 def lire_csv(fichier_csv):
     cours = []
     with open(fichier_csv, encoding="utf-8-sig") as f:
@@ -21,8 +23,13 @@ def lire_csv(fichier_csv):
         f.seek(0)
         sep = ";" if premiere.count(";") >= premiere.count(",") else ","
         for ligne in csv.reader(f, delimiter=sep):
-            if len(ligne) >= 2:
-                cours.append((ligne[0].strip(), ligne[1].strip()))
+            if len(ligne) < 2:
+                continue
+            sigle = ligne[0].strip()
+            titre = ligne[1].strip()
+            if not PATTERN_SIGLE.match(sigle) or not titre:
+                continue
+            cours.append((sigle, titre))
     return cours
 
 def telecharger_html(url):
