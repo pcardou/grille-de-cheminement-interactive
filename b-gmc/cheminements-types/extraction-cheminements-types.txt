@@ -1,0 +1,5 @@
+Bonjour Copilot,
+
+Voici en pièce jointe plusieurs "grilles de cheminement" pour le programme de baccalauréat en génie mécanique en format pdf. Dans cette grille, chaque colonne représente une session (p. ex., A26, H27, etc.) et chacune des boîtes d'une colonne représente un cours qui doit y être suivi. Chaque cours est représenté par son sigle selon le format ABC-1234. J'aimerais que tu extraies les cours suivis à chaque session pour chacun des cheminements et que pour chaque cheminement tu crées un nouveau fichier .csv dans lequel chaque rangée représente une session et chaque colonne représente un cours suivi sous la forme d'une chaîne de huit caractères "ABC-1234". Dans les grilles de cheminement en .csv, la première ligne prend toujours la forme "cours complétés;;;;;;", et le premier élément de chaque rangée représente toujours la session à l'Aide d'une chaîne de trois caractères, p. ex., "A26". Je te mets aussi en pièce jointe un exemple de fichier de cheminement en format .csv.
+
+Peux-tu me traduire chacun des fichiers pdf en fichier csv en suivant les consignes que je viens de te donner STP?
