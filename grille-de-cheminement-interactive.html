@@ -2435,23 +2435,30 @@
             const container = document.getElementById('modal-cheminements-dynamiques');
             container.innerHTML = '<p style="font-size:13px;color:#888;margin:0;">Chargement…</p>';
             const basePath = document.getElementById('programme-select')?.value || 'b-gmc';
+            const sessionAdmission = document.getElementById('admission-select')?.value || '';
             try {
                 const resp = await fetch(`${basePath}/cheminements-types/index-cheminements-types.csv`);
                 if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
                 const rows = (await resp.text())
                     .split(/\r?\n/)
                     .map(line => line.split(';').map(cell => cell.replace(/^"|"$/g, '').trim()))
-                    .filter(row => row.length >= 2 && row[0] && row[1]);
+                    .filter(row => row.length >= 3 && row[0] && row[1] && row[2]);
+                const rowsFiltres = sessionAdmission
+                    ? rows.filter(([session]) => session === sessionAdmission)
+                    : rows;
                 container.innerHTML = '';
-                rows.forEach(([label, fichier]) => {
+                rowsFiltres.forEach(([, label, fichier]) => {
                     const btn = document.createElement('button');
                     btn.className = 'modal-btn modal-btn-primary';
                     btn.textContent = label;
                     btn.onclick = () => chargerCheminementFichier(`${basePath}/cheminements-types/` + fichier);
                     container.appendChild(btn);
                 });
-                if (!rows.length) {
-                    container.innerHTML = '<p style="font-size:13px;color:#888;margin:0;">Aucun cheminement défini dans le fichier.</p>';
+                if (!rowsFiltres.length) {
+                    const msg = sessionAdmission
+                        ? `Aucun cheminement défini pour la session d'admission ${sessionAdmission}.`
+                        : 'Aucun cheminement défini dans le fichier.';
+                    container.innerHTML = `<p style="font-size:13px;color:#888;margin:0;">${msg}</p>`;
                 }
             } catch (err) {
                 container.innerHTML = `<p style="font-size:13px;color:#c0392b;margin:0;">Impossible de charger la liste des cheminements&nbsp;: ${err.message}</p>`;

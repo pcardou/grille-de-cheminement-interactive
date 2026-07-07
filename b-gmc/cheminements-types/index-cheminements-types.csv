@@ -1,7 +1,18 @@
-﻿"A26 - Sciences de la nature";"cheminement-type-b-gmc-a26.csv";
-"H27 - Sciences de la nature";"cheminement-type-b-gmc-h27.csv";
-"A26 - Sciences de la nature - Profil international";"cheminement-type-b-gmc-a26-pi.csv";
-"A26 - Sciences de la nature - Cheminement en 5 ans";"cheminement-type-b-gmc-a26-5a.csv";
-"A26 - Technique de génie mécanique - Scolarité préparatoire complétée";"cheminement-type-b-gmc-a26-tgmc-spc.csv";
-"H27 - Technique de génie mécanique - Scolarité préparatoire complétée";"cheminement-type-b-gmc-h27-tgmc-spc.csv";
-"A26 - Technique de génie mécanique - Scolarité préparatoire non-complétée";"cheminement-type-b-gmc-a26-tgmc-spnc.csv";
+﻿H27;"H27 - Sciences de la nature";"cheminement-type-b-gmc-h27.csv";
+H27;"H27 - Technique de génie mécanique - Scolarité préparatoire complétée";"cheminement-type-b-gmc-h27-tgmc-spc.csv";
+A26;"A26 - Sciences de la nature";"cheminement-type-b-gmc-a26.csv";
+A26;"A26 - Sciences de la nature - Profil international";"cheminement-type-b-gmc-a26-pi.csv";
+A26;"A26 - Sciences de la nature - Cheminement en 5 ans";"cheminement-type-b-gmc-a26-5a.csv";
+A26;"A26 - Technique de génie mécanique - Scolarité préparatoire complétée";"cheminement-type-b-gmc-a26-tgmc-spc.csv";
+A26;"A26 - Technique de génie mécanique - Scolarité préparatoire non-complétée";"cheminement-type-b-gmc-a26-tgmc-spnc.csv";
+H26;"H26 - Sciences de la nature";"cheminement-type-b-gmc-h26.csv";
+A25;"A25 - Sciences de la nature";"cheminement-type-b-gmc-a25.csv";
+A25;"A25 - Sciences de la nature - Profil international";"cheminement-type-b-gmc-a25-pi.csv";
+A25;"A25 - Technique de génie mécanique";"cheminement-type-b-gmc-a25-tgmc.csv";
+H25;"H25 - Sciences de la nature";"cheminement-type-b-gmc-h25.csv";
+A24;"A24 - Sciences de la nature";"cheminement-type-b-gmc-a24.csv";
+H24;"H24 - Sciences de la nature";"cheminement-type-b-gmc-h24.csv";
+A23;"A23 - Sciences de la nature";"cheminement-type-b-gmc-a23.csv";
+H23;"H23 - Sciences de la nature";"cheminement-type-b-gmc-h23.csv";
+A22;"A22 - Sciences de la nature";"cheminement-type-b-gmc-a22.csv";
+

@@ -504,9 +504,65 @@ def charger_titres_courts_et_couleurs():
     return mapping
 
 
+def charger_plages_supplementaires():
+    """
+    Charge plages-horaires-supplementaires.csv et retourne un dict
+    {(sigle, session): rows} où rows est :
+      - None  si le cours n'est pas offert à cette session (jour == "0")
+      - liste de tuples (section, mode, jour, heure_debut, heure_fin) sinon.
+    Retourne un dict vide si le fichier est absent.
+    """
+
+    chemin = BASE_DIR / "plages-horaires-supplementaires.csv"
+
+    if not chemin.exists():
+        return {}
+
+    brut = {}
+
+    with open(chemin, newline="", encoding="utf-8-sig") as f:
+
+        reader = csv.reader(f, delimiter=";")
+        next(reader, None)
+
+        for row in reader:
+
+            if len(row) < 5:
+                continue
+
+            sigle   = row[0].strip()
+            session = row[1].strip()
+
+            if not sigle or not session:
+                continue
+
+            brut.setdefault((sigle, session), []).append(row)
+
+    suppl = {}
+
+    for (sigle, session), rows in brut.items():
+
+        if any(len(r) > 4 and r[4].strip() == "0" for r in rows):
+            suppl[(sigle, session)] = None  # cours non offert
+        else:
+            suppl[(sigle, session)] = [
+                (
+                    r[2].strip() if len(r) > 2 else "",
+                    r[3].strip() if len(r) > 3 else "",
+                    r[4].strip() if len(r) > 4 else "",
+                    r[5].strip() if len(r) > 5 else "",
+                    r[6].strip() if len(r) > 6 else "",
+                )
+                for r in rows
+            ]
+
+    return suppl
+
+
 def exporter(cours_liste):
 
     titres_couleurs = charger_titres_courts_et_couleurs()
+    suppl = charger_plages_supplementaires()
 
     cours_csv = BASE_DIR / "cours.csv"
     plages_csv = BASE_DIR / "plages-horaires.csv"
@@ -544,15 +600,24 @@ def exporter(cours_liste):
 
         for cours in cours_liste:
 
+            sigle = cours["sigle"]
+
             # Plages des sessions connues
             for version in cours["versions"]:
+
+                # Si plages-horaires-supplementaires.csv indique que ce cours
+                # n'est pas offert à cette session, on ne l'écrit pas non plus.
+                if suppl.get((sigle, version["session"]), "") is None:
+                    continue
+
+                plages_ecrites = 0
 
                 for section in version["sections"]:
 
                     for plage in section["plages"]:
 
                         writer.writerow([
-                            cours["sigle"],
+                            sigle,
                             version["session"],
                             section["section"],
                             section["mode"],
@@ -560,21 +625,44 @@ def exporter(cours_liste):
                             plage[1],
                             plage[2]
                         ])
+                        plages_ecrites += 1
 
-            # Sessions passées et futures prédites (sigle + session seulement)
-            sessions = [v["session"] for v in cours["versions"]]
+                # Cours sans horaire fixe (ex. stages) : écrire une ligne vide
+                # pour indiquer que le cours est quand même offert à cette session.
+                if plages_ecrites == 0:
+                    writer.writerow([sigle, version["session"], "", "", "", "", ""])
 
-            for s in deduire_sessions_passees(sessions):
+            # Sessions passées et futures prédites, ainsi que les sessions
+            # présentes dans plages-horaires-supplementaires.csv mais non
+            # couvertes par la prédiction (ni par les sessions observées).
+            sessions_observees = [v["session"] for v in cours["versions"]]
+            sessions_observees_set = set(sessions_observees)
 
-                writer.writerow([
-                    cours["sigle"], s, "", "", "", "", ""
-                ])
+            sessions_predites = (
+                set(deduire_sessions_passees(sessions_observees))
+                | set(deduire_sessions_futures(sessions_observees))
+            ) - sessions_observees_set  # éviter les doublons avec la boucle précédente
+            sessions_suppl_seules = (
+                {s for (sg, s) in suppl if sg == sigle}
+                - sessions_predites
+                - sessions_observees_set
+            )
 
-            for s in deduire_sessions_futures(sessions):
+            for s in sorted(sessions_predites | sessions_suppl_seules):
 
-                writer.writerow([
-                    cours["sigle"], s, "", "", "", "", ""
-                ])
+                key = (sigle, s)
+
+                if key in suppl:
+
+                    if suppl[key] is not None:
+                        # Données supplémentaires disponibles : remplacent l'extrapolation
+                        for section, mode, jour, heure_debut, heure_fin in suppl[key]:
+                            writer.writerow([sigle, s, section, mode, jour, heure_debut, heure_fin])
+                    # suppl[key] is None → cours non offert, ne rien écrire
+
+                else:
+
+                    writer.writerow([sigle, s, "", "", "", "", ""])
 
 
 # ------------------------------------------------------------------
