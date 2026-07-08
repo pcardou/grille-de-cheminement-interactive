@@ -1,0 +1,222 @@
+﻿Programme:;Baccalauréat en génie industriel;;;
+Session d'admission:;H26;;;
+Scolarité préparatoire;;;;
+;Cours compensateurs;;;33
+;;MAT-0150;Calcul différentiel;4
+;;MAT-0260;Calcul intégral;4
+;;MAT-0130;Algèbre vectorielle;3
+;;PHY-0150;Physique : mécanique classique;4
+;;PHY-0250;Physique : électricité et magnétisme;3
+;;CHM-0150;Chimie générale;3
+;;CHM-0160;Chimie des solutions;3
+;;CHM-0250;Chimie organique;3
+;;CHM-0170;Éléments de chimie générale et des solutions;3
+;;BIO-0150;Biologie générale;3
+Activités de formation communes;;;;
+;Cours obligatoires;;;96
+;;GIN-1500;Structure et organisation des entreprises;3
+;;GMC-1000;Dessin pour l'ingénierie;3
+;;GSC-1000;Méthodologie de design en ingénierie;3
+;;MAT-1900;Mathématiques pour l'ingénierie I;3
+;;STT-1900;Méthodes statistiques pour l'ingénierie;3
+;;ECN-4901;Analyse économique en ingénierie;3
+;;GIN-2010;Gestion opérationnelle des systèmes d'entreprise;3
+;;GIN-3040;Systèmes thermiques et énergétiques;3
+;;GLO-1901;Introduction à la programmation avec Python;3
+;;MAT-1910;Mathématiques pour l'ingénierie II;3
+;;GIN-2110;Optimisation des systèmes et des réseaux;3
+;;GIN-2120;Mécanique et ingénierie des matériaux;3
+;;GIN-3030;Électricité et électronique industrielle;3
+;;GSO-2100;Introduction à la gestion de projets;3
+;;MAT-2910;Analyse numérique pour l'ingénierie;3
+;;GIN-3000;Simulation des systèmes industriels;3
+;;GIN-3010;Conception et implantation des systèmes de production;3
+;;GIN-3020;Ingénierie et gestion de la qualité;3
+;;MQT-2100;Environnement de développement de SIAD;3
+;;RLT-3300;Introduction à l'ergonomie;3
+;;GIN-3050;Projets de diagnostic et d'amélioration d'un système;3
+;;GIN-3060;Systèmes de gestion intégrée;3
+;;GIN-3080;Dynamique de la commande appliquée;3
+;;GIN-3110;Environnement et cycle de vie des produits;3
+;;GSO-3103;Ingénierie de la chaîne logistique;3
+;;GIN-3200;Projets de conception de systèmes industriels;3
+;;GIN-3220;Analyse des risques, fiabilité et maintenance;3
+;;CTB-1001;Comptabilité de management;3
+;;GIN-3310;Projet de fin d'études I;3
+;;RLT-1700;Aspects administratifs et humains de la gestion;3
+;;GIN-3320;Projet de fin d'études II;3
+;;PHI-3900;Éthique et professionnalisme;3
+;Stages;;;9
+;;GIN-3580;Stage en génie industriel I;9
+;Règle 1;;;3
+;;MED-1100;Santé et sécurité au travail : notions de base;3
+;;RLT-2002;Prévention primaire en SST;3
+;;SAN-SÉCU;Cours de santé et sécurité au travail à déterminer;3
+;Règle 2;;;3
+;;BIO-1910;Écologie et pollution;3
+;;BIO-2909;Éléments de physiologie humaine;3
+;;BIO-4900;Écologie et environnement;3
+;;GLG-1000;Planète Terre;3
+;;PHY-1000;Introduction à l'astrophysique;3
+;;PHY-2100;Sciences de l'espace;3
+;;SCI-NATU;Cours de sciences de la nature à déterminer;3
+;Autres exigences - Règle 1;;;3
+;;LAN-GUES;Cours de langue selon le résultat VEPT;3
+Approche généraliste;;;;15
+;Règle 1;;;15
+;;GIF-1003;Programmation avancée en C++ pour l'ingénierie;3
+;;GIN-4021;Recherche opérationnelle avancée;3
+;;GMC-2007;Fabrication mécanique;3
+;;GMC-4100;Commandes hydrauliques et pneumatiques;3
+;;GMC-4200;Automatisation industrielle;3
+;;GMC-4202;Procédés et développement de produits;3
+;;GSO-2102;Gestion de la demande et des stocks;3
+;;GSO-2104;Distribution et entreposage;3
+;;GSO-2105;Achat et approvisionnement;3
+;;IFT-1003;Analyse et conception de systèmes d'information;3
+;;MQT-2101;Analyse et modélisation des données;3
+;;MQT-3000;Introduction à l'analytique d'affaires;3
+;;STT-1100;Introduction à la science des données;3
+;;OPT-ION1;Cours à option à déterminer;3
+;;OPT-ION2;Cours à option à déterminer;3
+;;OPT-ION3;Cours à option à déterminer;3
+;;OPT-ION4;Cours à option à déterminer;3
+;;OPT-ION5;Cours à option à déterminer;3
+Ingénierie de la chaîne logistique et des réseaux de création de valeur;;;;15
+;Cours obligatoires;;;3
+;;GIN-4021;Recherche opérationnelle avancée;3
+;Règle 1;;3;9
+;;GSO-2102;Gestion de la demande et des stocks;3
+;;GSO-2104;Distribution et entreposage;3
+;;GSO-2105;Achat et approvisionnement;3
+;Règle 2;;3;9
+;;GGR-2109;Géographie des transports;3
+;;GIN-4003;Science des données en ingénierie;3
+;;GLO-2005;Modèles et langages des bases de données pour l'ingénierie;3
+;;GSO-2106;Gestion stratégique de la chaîne d'approvisionnement;3
+;;MNG-2100;Fondements du management international;3
+;;SIO-2100;Gestion stratégique des technologies de l'information;3
+;;SIO-2104;Gestion de l'innovation technologique;3
+;Règle 3;;0;6
+;;GIF-1003;Programmation avancée en C++ pour l'ingénierie;3
+;;GMC-1300;Initiation à la mécatronique;3
+;;GMC-2007;Fabrication mécanique;3
+;;GMC-3016;Introduction au génie maritime;3
+;;GMC-4100;Commandes hydrauliques et pneumatiques;3
+;;GMC-4200;Automatisation industrielle;3
+;;GMC-4202;Procédés et développement de produits;3
+;;IFT-1003;Analyse et conception de systèmes d'information;3
+;;MQT-2101;Analyse et modélisation des données;3
+;;MQT-3000;Introduction à l'analytique d'affaires;3
+;;STT-1100;Introduction à la science des données;3
+;Règle 4;;0;3
+;;MNG-3103;Gestion du changement;3
+Ingénierie en intelligence numérique des systèmes;;;;15
+;Cours obligatoires;;;3
+;;MQT-3000;Introduction à l'analytique d'affaires;3
+;Règle 1;;;3
+;;MQT-2101;Analyse et modélisation des données;3
+;;STT-1100;Introduction à la science des données;3
+;Règle 2;;6;9
+;;GIN-4003;Science des données en ingénierie;3
+;;GIN-4021;Recherche opérationnelle avancée;3
+;;GLO-2005;Modèles et langages des bases de données pour l'ingénierie;3
+;;GLO-4000;Interface personne-machine;3
+;;GSO-3105;Opérations et logistique à l'ère de l'industrie 4.0;3
+;;MQT-2102;Introduction à la simulation et à la visualisation;3
+;;SIO-3105;Analyse d'affaires pour la transformation organisationnelle;3
+;;STT-4230;R pour scientifique;3
+;Règle 3;;0;3
+;;GIF-1003;Programmation avancée en C++ pour l'ingénierie;3
+;;GMC-1300;Initiation à la mécatronique;3
+;;GMC-2007;Fabrication mécanique;3
+;;GMC-3016;Introduction au génie maritime;3
+;;GMC-4100;Commandes hydrauliques et pneumatiques;3
+;;GSO-2102;Gestion de la demande et des stocks;3
+;;GSO-2104;Distribution et entreposage;3
+;;GSO-2105;Achat et approvisionnement;3
+;;IFT-1003;Analyse et conception de systèmes d'information;3
+Ingénierie de l'informatisation des systèmes d'entreprise;;;;15
+;Cours obligatoires;;;3
+;;GIF-1003;Programmation avancée en C++ pour l'ingénierie;3
+;Règle 1;;;3
+;;IFT-1003;Analyse et conception de systèmes d'information;3
+;;SIO-2103;Conception des systèmes d'information organisationnels I;3
+;Règle 2;;3;9
+;;GIN-4003;Science des données en ingénierie;3
+;;GIN-4021;Recherche opérationnelle avancée;3
+;;GLO-2004;Génie logiciel orienté objet;3
+;;GLO-2005;Modèles et langages des bases de données pour l'ingénierie;3
+;;GLO-2100;Algorithmes et structures de données pour l'ingénierie;3
+;;GLO-4000;Interface personne-machine;3
+;;IFT-4102;Techniques avancées en intelligence artificielle;3
+;;SIO-2100;Gestion stratégique des technologies de l'information;3
+;;SIO-2104;Gestion de l'innovation technologique;3
+;;SIO-3100;Conception des systèmes d'information organisationnels II;3
+;Règle 3;;0;6
+;;GMC-1300;Initiation à la mécatronique;3
+;;GMC-2007;Fabrication mécanique;3
+;;GMC-3016;Introduction au génie maritime;3
+;;GMC-4100;Commandes hydrauliques et pneumatiques;3
+;;GMC-4200;Automatisation industrielle;3
+;;GMC-4202;Procédés et développement de produits;3
+;;GSO-2102;Gestion de la demande et des stocks;3
+;;GSO-2104;Distribution et entreposage;3
+;;GSO-2105;Achat et approvisionnement;3
+;;MQT-2101;Analyse et modélisation des données;3
+;;MQT-3000;Introduction à l'analytique d'affaires;3
+;;STT-1100;Introduction à la science des données;3
+;Règle 4;;0;3
+;;MNG-3103;Gestion du changement;3
+Systèmes productiques et distributiques;;;;15
+;Cours obligatoires;;;3
+;;GMC-2007;Fabrication mécanique;3
+;Règle 1;;6;9
+;;GMC-1300;Initiation à la mécatronique;3
+;;GMC-3016;Introduction au génie maritime;3
+;;GMC-4100;Commandes hydrauliques et pneumatiques;3
+;;GMC-4200;Automatisation industrielle;3
+;;GMC-4202;Procédés et développement de produits;3
+;Règle 2;;3;6
+;;GGR-2109;Géographie des transports;3
+;;GIN-4003;Science des données en ingénierie;3
+;;GLO-2005;Modèles et langages des bases de données pour l'ingénierie;3
+;;GSO-2102;Gestion de la demande et des stocks;3
+;;GSO-2104;Distribution et entreposage;3
+;Règle 3;;0;3
+;;GIF-1003;Programmation avancée en C++ pour l'ingénierie;3
+;;GIN-4021;Recherche opérationnelle avancée;3
+;;GSO-2105;Achat et approvisionnement;3
+;;IFT-1003;Analyse et conception de systèmes d'information;3
+;;MQT-2101;Analyse et modélisation des données;3
+;;MQT-3000;Introduction à l'analytique d'affaires;3
+;;STT-1100;Introduction à la science des données;3
+Profil entrepreneurial;;;;15
+;Cours obligatoires;;;9
+;;ENT-1000;Savoir entreprendre : la passion de créer et d'agir;3
+;;ENT-3000;Mon projet entrepreneurial en action 1;3
+;;ENT-3010;Mon projet entrepreneurial en action 2;3
+;Règle 1;;;3
+;;ENT-2023;Entrepreneuriat technologique;3
+;;ENT-2145;Devenir travailleur autonome et microentrepreneur;3
+;Règle 2;;;3
+;;GIF-1003;Programmation avancée en C++ pour l'ingénierie;3
+;;GIN-4021;Recherche opérationnelle avancée;3
+;;GMC-2007;Fabrication mécanique;3
+;;GMC-4100;Commandes hydrauliques et pneumatiques;3
+;;GMC-4200;Automatisation industrielle;3
+;;GMC-4202;Procédés et développement de produits;3
+;;GSO-2102;Gestion de la demande et des stocks;3
+;;GSO-2104;Distribution et entreposage;3
+;;GSO-2105;Achat et approvisionnement;3
+;;IFT-1003;Analyse et conception de systèmes d'information;3
+;;MQT-2101;Analyse et modélisation des données;3
+;;MQT-3000;Introduction à l'analytique d'affaires;3
+;;STT-1100;Introduction à la science des données;3
+Profil international;;;;15
+;Règle 1;;;15
+;;OPT-ION1;Cours à option à l'étranger;3
+;;OPT-ION2;Cours à option à l'étranger;3
+;;OPT-ION3;Cours à option à l'étranger;3
+;;OPT-ION4;Cours à option à l'étranger;3
+;;OPT-ION5;Cours à option à l'étranger ou à l'Université Laval;3

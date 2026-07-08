@@ -51,7 +51,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
             overflow-x: auto;
-            overflow-y: hidden;
+            overflow-y: auto;
             border-top: 5px solid #ffc103;
         }
 
@@ -100,6 +100,14 @@
 
         tbody tr:last-child td {
             border-bottom: none;
+        }
+
+        thead th {
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            background: linear-gradient(to bottom, #e30513, #d60310);
+            color: white;
         }
 
         tbody tr:hover {
@@ -743,6 +751,9 @@
 
         .cheminement-table-bottom {
             margin-top: 4px;
+            display: flex;
+            gap: 6px;
+            align-items: center;
         }
 
         #scroll-sync-bar {
@@ -828,6 +839,7 @@
         </div>
         <div class="cheminement-table-top">
             <div id="scroll-sync-bar"><div id="scroll-sync-inner"></div></div>
+            <button class="btn-add-table" onclick="supprimerDerniereColonne()" title="Retirer la dernière session">−</button>
             <button class="btn-add-table" onclick="ajouterColonne()" title="Ajouter une session">+</button>
         </div>
         <div class="table-wrapper">
@@ -923,7 +935,8 @@
             </table>
         </div>
         <div class="cheminement-table-bottom">
-            <button class="btn-add-table" onclick="ajouterRangee()" title="Ajouter une rangée">+</button>
+            <button class="btn-add-table" onclick="diminuerRangeesVisibles()" title="Afficher moins de rangées">−</button>
+            <button class="btn-add-table" onclick="augmenterRangeesVisibles()" title="Afficher plus de rangées">+</button>
         </div>
 
         <div class="rules-log-wrapper">
@@ -2177,6 +2190,7 @@
 
                 const pt = document.querySelector(`.rules-panel .course-tile[data-code="${payload.code}"]`);
                 if (pt) pt.classList.add('placed');
+                ajusterRangeesTableau();
                 verifierPrealablesTableau();
             });
         }
@@ -2236,6 +2250,7 @@
             const table = document.querySelector('.table-wrapper table');
             if (table) table.style.minWidth = (nbCols * 140) + 'px';
             syncScrollInnerWidth();
+            ajusterRangeesTableau();
         }
 
         function ajouterColonne() {
@@ -2261,15 +2276,79 @@
             verifierPrealablesTableau();
         }
 
-        function ajouterRangee() {
-            const colCount = document.querySelectorAll('.table-wrapper thead tr th').length;
-            const tr = document.createElement('tr');
-            for (let i = 0; i < colCount; i++) {
-                const td = document.createElement('td');
-                setupDropCell(td);
-                tr.appendChild(td);
+        let nbRangeesVisibles = 5;
+
+        function ajusterRangeesTableau() {
+            const tbody = document.querySelector('.table-wrapper tbody');
+            const thead = document.querySelector('.table-wrapper thead tr');
+            if (!tbody || !thead) return;
+            let maxCours = 0;
+            for (let c = 0; c < thead.cells.length; c++) {
+                let count = 0;
+                for (let r = 0; r < tbody.rows.length; r++) {
+                    if (tbody.rows[r].cells[c]?.querySelector('.dropped-tile')) count++;
+                }
+                maxCours = Math.max(maxCours, count);
             }
-            document.querySelector('.table-wrapper tbody').appendChild(tr);
+            const totalCible = Math.max(5, maxCours);
+            const colCount = thead.cells.length;
+            while (tbody.rows.length < totalCible) {
+                const tr = document.createElement('tr');
+                for (let i = 0; i < colCount; i++) {
+                    const td = document.createElement('td');
+                    setupDropCell(td);
+                    tr.appendChild(td);
+                }
+                tbody.appendChild(tr);
+            }
+            while (tbody.rows.length > totalCible) {
+                const lastRow = tbody.rows[tbody.rows.length - 1];
+                if (Array.from(lastRow.cells).some(td => td.querySelector('.dropped-tile'))) break;
+                tbody.deleteRow(tbody.rows.length - 1);
+            }
+            mettreAJourHauteurTableau();
+        }
+
+        function mettreAJourHauteurTableau() {
+            const wrapper = document.querySelector('.table-wrapper');
+            const tbody = document.querySelector('.table-wrapper tbody');
+            const thead = document.querySelector('.table-wrapper thead');
+            if (!wrapper || !tbody || !thead) return;
+            const totalRows = tbody.rows.length;
+            nbRangeesVisibles = Math.max(1, Math.min(nbRangeesVisibles, totalRows));
+            if (nbRangeesVisibles >= totalRows) {
+                wrapper.style.maxHeight = '';
+            } else {
+                const theadH = thead.offsetHeight || 40;
+                const rowH = tbody.rows[0] ? tbody.rows[0].offsetHeight : 62;
+                wrapper.style.maxHeight = (theadH + nbRangeesVisibles * rowH) + 'px';
+            }
+        }
+
+        function augmenterRangeesVisibles() {
+            const tbody = document.querySelector('.table-wrapper tbody');
+            if (!tbody) return;
+            nbRangeesVisibles = Math.min(nbRangeesVisibles + 1, tbody.rows.length);
+            mettreAJourHauteurTableau();
+        }
+
+        function diminuerRangeesVisibles() {
+            nbRangeesVisibles = Math.max(1, nbRangeesVisibles - 1);
+            mettreAJourHauteurTableau();
+        }
+
+        function supprimerDerniereColonne() {
+            const thead = document.querySelector('.table-wrapper thead tr');
+            const tbody = document.querySelector('.table-wrapper tbody');
+            if (!thead || thead.cells.length <= 2) return;
+            const lastIdx = thead.cells.length - 1;
+            const hasContent = Array.from(tbody.rows).some(tr => tr.cells[lastIdx]?.querySelector('.dropped-tile'));
+            if (hasContent) return;
+            thead.deleteCell(lastIdx);
+            Array.from(tbody.rows).forEach(tr => { if (tr.cells.length > lastIdx) tr.deleteCell(tr.cells.length - 1); });
+            const table = document.querySelector('.table-wrapper table');
+            table.style.minWidth = (thead.cells.length * 140) + 'px';
+            syncScrollInnerWidth();
             verifierPrealablesTableau();
         }
 
@@ -2308,6 +2387,7 @@
                     }
                     const pt = document.querySelector(`.rules-panel .course-tile[data-code="${payload.code}"]`);
                     if (pt) pt.classList.remove('placed');
+                    ajusterRangeesTableau();
                     verifierPrealablesTableau();
                 });
             }
@@ -2670,6 +2750,7 @@ ${logHTML}
             });
 
             syncScrollInnerWidth();
+            ajusterRangeesTableau();
             verifierPrealablesTableau();
         }
 
@@ -2991,7 +3072,7 @@ ${logHTML}
                     });
                 }
 
-                window.addEventListener('resize', () => { adjustTileSize(); });
+                window.addEventListener('resize', () => { adjustTileSize(); mettreAJourHauteurTableau(); });
 
                 // Chargement initial
                 await chargerProgramme();
