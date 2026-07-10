@@ -32,10 +32,10 @@ GIN-3200;Projets de conception de systèmes industriels;3;GIN-2110 ET GIN-2120 E
 GIN-3220;Analyse des risques, fiabilité et maintenance;3;GIN-2110;https://www.ulaval.ca/etudes/cours/gin-3220-analyse-des-risques-fiabilite-et-maintenance;AnaRisqu;#ECBB83
 GIN-3310;Projet de fin d'études I;3;GIN-3000 ET GIN-3110 * ET GIN-3200;https://www.ulaval.ca/etudes/cours/gin-3310-projet-de-fin-detudes-i;ProjFin1;#7A8C4A
 GIN-3320;Projet de fin d'études II;3;GIN-3310;https://www.ulaval.ca/etudes/cours/gin-3320-projet-de-fin-detudes-ii;ProjFin2;#7A8C4A
-GIN-3580;Stage en génie industriel I;9;(ECN-2901 OU ECN-4901 ) ET GIN-2010 ET GIN-3020 ET GMC-1000 ET GSC-1000;https://www.ulaval.ca/etudes/cours/gin-3580-stage-en-genie-industriel-i;StagGIn1;#1D3557
+GIN-3580;Stage en génie industriel I;9;(ECN-2901 OU ECN-4901 ) ET GIN-2010 ET GIN-3020 ET GMC-1000 ET GSC-1000;https://www.ulaval.ca/etudes/cours/gin-3580-stage-en-genie-industriel-i;StagGIn1;#ffc103
 GIN-4003;Science des données en ingénierie;3;( GLO-1901 OU IFT-1004 OU IFT-1903 ) ET ( STT-1000 OU STT-1900 OU STT-2920 );https://www.ulaval.ca/etudes/cours/gin-4003-science-des-donnees-en-ingenierie;ScDonnIn;#5C7FA3
 GIN-4021;Recherche opérationnelle avancée;3;GIN-2010 ET GIN-2110;https://www.ulaval.ca/etudes/cours/gin-4021-recherche-operationnelle-avancee;RechOpAv;#5C7FA3
-GLG-1000;Planète Terre;3;;https://www.ulaval.ca/etudes/cours/glg-1000-planete-terre;PlanTerr;#5C7FA3
+GLG-1000;Planète Terre;3;;https://www.ulaval.ca/etudes/cours/glg-1000-planete-terre;PlanTerr;#D97706
 GLO-1901;Introduction à la programmation avec Python;3;;https://www.ulaval.ca/etudes/cours/glo-1901-introduction-a-la-programmation-avec-python;InProgPy;#BFCFFF
 GLO-2004;Génie logiciel orienté objet;3;GIF-1003 OU IFT-1006;https://www.ulaval.ca/etudes/cours/glo-2004-genie-logiciel-oriente-objet;GLOObjet;#5C7FA3
 GLO-2005;Modèles et langages des bases de données pour l'ingénierie;3;IFT-1004 OU GLO-1901;https://www.ulaval.ca/etudes/cours/glo-2005-modeles-et-langages-des-bases-de-donnees-pour-lingenierie;ModBases;#5C7FA3

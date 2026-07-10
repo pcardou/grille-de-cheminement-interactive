@@ -1451,7 +1451,7 @@
                 while ((m = patternToken.exec(prealables)) !== null) {
                     const token = m[1];
                     const normalise = token.replace(/\s+/g, '-');
-                    if (!sigleStandard.test(normalise)) {
+                    if (!sigleStandard.test(normalise) && !(/\s/.test(token))) {
                         const cle = `${sigle}:${token}`;
                         if (!signales.has(cle)) {
                             signales.add(cle);
@@ -1850,7 +1850,9 @@
             const subtitleEl = document.getElementById('programme-subtitle');
             if (subtitleEl) {
                 subtitleEl.className = 'programme-info';
-                subtitleEl.textContent = `${programme.titre} — ${programme.version} — ${selectedSpecialisation}`;
+                const basePath = document.getElementById('programme-select')?.value || '';
+                const nomProgramme = programmesNoms.get(basePath) || programme.titre;
+                subtitleEl.textContent = `${nomProgramme} — ${programme.version} — ${selectedSpecialisation}`;
             }
 
             if (!programme.regles.length) {
@@ -2454,6 +2456,7 @@
 
         let tousLesCours = new Map();
         let programmeActuel = null;
+        let programmesNoms = new Map();
         let popupGrilleHoraire = null;
 
         // ---- Grille horaire de session ----------------------------------------
@@ -2929,14 +2932,26 @@ ${logHTML}
                 const admissionSelect = document.getElementById('admission-select');
                 const programmeSelect = document.getElementById('programme-select');
 
-                // Peupler le menu déroulant "Programme"
+                // Peupler le menu déroulant "Programme" depuis index-programmes.csv
                 if (programmeSelect) {
-                    [['B-GIN', 'b-gin'], ['B-GMC', 'b-gmc']].forEach(([label, value]) => {
-                        const opt = document.createElement('option');
-                        opt.value = value;
-                        opt.textContent = label;
-                        programmeSelect.appendChild(opt);
-                    });
+                    try {
+                        const respIdx = await fetch('index-programmes.csv');
+                        if (respIdx.ok) {
+                            const lignes = (await respIdx.text())
+                                .split(/\r?\n/)
+                                .map(l => l.split(';').map(c => c.trim()))
+                                .filter(cols => cols.length >= 1 && cols[0]);
+                            lignes.forEach(([acronyme, nom]) => {
+                                if (nom) programmesNoms.set(acronyme, nom);
+                                const opt = document.createElement('option');
+                                opt.value = acronyme;
+                                opt.textContent = acronyme.toUpperCase();
+                                programmeSelect.appendChild(opt);
+                            });
+                        }
+                    } catch (e) {
+                        console.warn('Impossible de charger index-programmes.csv :', e);
+                    }
                 }
 
                 function getBasePath() {

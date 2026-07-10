@@ -33,10 +33,10 @@ GIN-3200;Projets de conception de systèmes industriels;ConcSyst;#0099ff
 GIN-3220;Analyse des risques, fiabilité et maintenance;AnaRisqu;#ECBB83
 GIN-3310;Projet de fin d'études I;ProjFin1;#7A8C4A
 GIN-3320;Projet de fin d'études II;ProjFin2;#7A8C4A
-GIN-3580;Stage en génie industriel I;StagGIn1;#1D3557
+GIN-3580;Stage en génie industriel I;StagGIn1;#ffc103
 GIN-4003;Science des données en ingénierie;ScDonnIn;#5C7FA3
 GIN-4021;Recherche opérationnelle avancée;RechOpAv;#5C7FA3
-GLG-1000;Planète Terre;PlanTerr;#5C7FA3
+GLG-1000;Planète Terre;PlanTerr;#D97706
 GLO-1901;Introduction à la programmation avec Python;InProgPy;#BFCFFF
 GLO-2004;Génie logiciel orienté objet;GLOObjet;#5C7FA3
 GLO-2005;Modèles et langages des bases de données pour l'ingénierie;ModBases;#5C7FA3

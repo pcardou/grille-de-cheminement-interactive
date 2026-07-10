@@ -1,11 +1,15 @@
 Programme:;Baccalauréat en génie mécanique;;;
 Session d'admission:;A26;;;
 Scolarité préparatoire;;;;
-;Cours compensateurs;;;21
+;Cours compensateurs;;;33
+;;BIO-0150;Biologie générale;3
 ;;CHM-0150;Chimie générale;3
-;;MAT-0130;Algèbre vectorielle;3
+;;CHM-0160;Chimie des solutions;3
+;;CHM-0170;Éléments de chimie générale et des solutions;3
+;;CHM-0250;Chimie organique;3
 ;;MAT-0150;Calcul différentiel;4
 ;;MAT-0260;Calcul intégral;4
+;;MAT-0130;Algèbre vectorielle;3
 ;;PHY-0150;Physique : mécanique classique;4
 ;;PHY-0250;Physique : électricité et magnétisme;3
 Activités de formation communes;;;;
