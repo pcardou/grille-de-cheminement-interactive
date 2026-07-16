@@ -2757,6 +2757,110 @@ ${logHTML}
             verifierPrealablesTableau();
         }
 
+        // ── Capsule ───────────────────────────────────────────────────────────────
+
+        function ouvrirModalCapsule() {
+            fermerModalChargement();
+            document.getElementById('textarea-capsule').value = '';
+            document.getElementById('modal-capsule').style.display = 'flex';
+        }
+
+        function fermerModalCapsule() {
+            document.getElementById('modal-capsule').style.display = 'none';
+        }
+
+        function lisHTMLCapsule(html) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const notesCompletes = new Set(['D', 'D+', 'C-', 'C', 'C+', 'B-', 'B', 'B+', 'A-', 'A', 'A+', 'P']);
+            const siglePattern = /^[A-Z]{2,4}-\d{4}$/;
+            // Map sigle → bool (true = complété au moins une fois)
+            const resultats = new Map();
+            doc.querySelectorAll('tr').forEach(tr => {
+                const cells = Array.from(tr.querySelectorAll('td'));
+                if (cells.length < 4) return;
+                const sigle = cells[0].textContent.trim();
+                if (!siglePattern.test(sigle)) return;
+                const note = cells[3].textContent.trim();
+                if (notesCompletes.has(note)) {
+                    resultats.set(sigle, true);
+                } else if (!resultats.has(sigle)) {
+                    resultats.set(sigle, false);
+                }
+            });
+            return new Set([...resultats.entries()].filter(([, v]) => v).map(([k]) => k));
+        }
+
+        function chargerCoursDepuisCapsule() {
+            const html = document.getElementById('textarea-capsule').value.trim();
+            if (!html) { alert('Veuillez coller le code HTML du relevé de notes.'); return; }
+            fermerModalCapsule();
+
+            const coursCompletes = lisHTMLCapsule(html);
+            if (!coursCompletes.size) {
+                logMessage('Capsule : aucun cours complété trouvé dans le code HTML.', 'warning');
+                return;
+            }
+
+            const tbody = document.querySelector('.table-wrapper tbody');
+            const thead = document.querySelector('.table-wrapper thead tr');
+            let nbPlaces = 0;
+
+            coursCompletes.forEach(sigle => {
+                if (!tousLesCours || !tousLesCours.has(sigle)) return;
+
+                // Si déjà dans la colonne 0, ne rien faire
+                const existing = document.querySelector(`.table-wrapper .dropped-tile[data-code="${sigle}"]`);
+                if (existing) {
+                    const existingCell = existing.closest('td');
+                    if (existingCell && existingCell.cellIndex === 0) return;
+                    // Retirer de la colonne de session pour le déplacer en colonne 0
+                    existing.remove();
+                    const ptExist = document.querySelector(`.rules-panel .course-tile[data-code="${sigle}"]`);
+                    if (ptExist) ptExist.classList.remove('placed');
+                }
+
+                // Trouver la première cellule vide dans la colonne 0
+                let targetCell = null;
+                for (let r = 0; r < tbody.rows.length; r++) {
+                    const cell = tbody.rows[r].cells[0];
+                    if (cell && !cell.querySelector('.dropped-tile')) { targetCell = cell; break; }
+                }
+                if (!targetCell) {
+                    const colCount = thead.cells.length;
+                    const newTr = document.createElement('tr');
+                    for (let i = 0; i < colCount; i++) {
+                        const td = document.createElement('td');
+                        setupDropCell(td);
+                        newTr.appendChild(td);
+                    }
+                    tbody.appendChild(newTr);
+                    targetCell = newTr.cells[0];
+                }
+
+                const panelEl = document.querySelector(`.rules-panel [data-code="${sigle}"]`);
+                const cours = tousLesCours.get(sigle);
+                const payload = {
+                    code: sigle,
+                    title: (panelEl && panelEl.dataset.title) || (cours ? cours.titre : ''),
+                    credits: (panelEl && panelEl.dataset.credits) || (cours ? String(cours.credits) : '0'),
+                };
+                const dropped = createDroppedTile(payload);
+                targetCell.innerHTML = '';
+                targetCell.appendChild(dropped);
+                mettreAJourSectionTile(dropped, targetCell);
+
+                const pt = document.querySelector(`.rules-panel .course-tile[data-code="${sigle}"]`);
+                if (pt) pt.classList.add('placed');
+                nbPlaces++;
+            });
+
+            syncScrollInnerWidth();
+            ajusterRangeesTableau();
+            verifierPrealablesTableau();
+            logMessage(`Capsule : ${nbPlaces} cours complété(s) chargé(s).`, 'info');
+        }
+
         // ── Fin chargement de cheminement ────────────────────────────────────────
 
         function ouvrirGrilleHoraire() {
@@ -3113,10 +3217,28 @@ ${logHTML}
                         📁&nbsp; Parcourir…
                     </button>
                 </label>
+                <button class="modal-btn modal-btn-secondary" onclick="ouvrirModalCapsule()">
+                    🎓&nbsp; De Capsule…
+                </button>
                 <hr style="border:none; border-top:1px solid #e0e0e0; margin:4px 0;">
                 <div id="modal-cheminements-dynamiques" style="display:flex; flex-direction:column; gap:10px; max-height:55vh; overflow-y:auto; padding-right:4px;"></div>
             </div>
             <button class="modal-btn modal-btn-cancel" onclick="fermerModalChargement()">Annuler</button>
+        </div>
+    </div>
+
+    <!-- Modal : Charger depuis Capsule -->
+    <div id="modal-capsule" class="modal-overlay" style="display:none;" onclick="if(event.target===this) fermerModalCapsule()">
+        <div class="modal-box" style="width:min(680px,90vw);">
+            <h3>Cours complétés depuis Capsule</h3>
+            <textarea id="textarea-capsule" rows="14"
+                      style="width:100%;box-sizing:border-box;font-family:monospace;font-size:11px;resize:vertical;border:1px solid #ccc;border-radius:4px;padding:6px;margin-top:4px;"
+                      placeholder="Collez ici le code HTML du relevé de notes Capsule... (Faites Ctrl+U pour voir le code HTML dans votre navigateur.)"></textarea>
+            <div style="display:flex;gap:8px;margin-top:10px;justify-content:flex-end;align-items:stretch;">
+                <button class="modal-btn modal-btn-cancel" onclick="fermerModalCapsule()">Annuler</button>
+                <button class="modal-btn modal-btn-primary" onclick="chargerCoursDepuisCapsule()"
+                        style="display:flex;align-items:center;justify-content:center;">Charger</button>
+            </div>
         </div>
     </div>
 
