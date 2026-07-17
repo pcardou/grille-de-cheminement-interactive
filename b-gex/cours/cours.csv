@@ -1,0 +1,76 @@
+sigle;titre;credits;prealables;url;titre_court;couleur
+ANL-2020;Intermediate English II;3;ANL-2010 OU Examen TOEFL - version IBT avec résultat de 57 à 63 OU Examen Versant English Placement Test avec résultat de 48 à 52;https://www.ulaval.ca/etudes/cours/anl-2020-intermediate-english-ii;InteEngl;#A9DFBF
+BIO-0150;Biologie générale;3;;https://www.ulaval.ca/etudes/cours/bio-0150-biologie-generale;BioGénér;#8C5A7B
+BIO-1008;Écologie générale;3;Préalable préuniversitaire nécessaire s'il y a lieu : BIO-0150.;https://www.ulaval.ca/etudes/cours/bio-1008-ecologie-generale;Écolgéné;#8C5A7B
+BIO-1904;Organisation et physiologie des plantes;3;;https://www.ulaval.ca/etudes/cours/bio-1904-organisation-et-physiologie-des-plantes;Orgaphys;#8C5A7B
+CHM-0150;Chimie générale;3;;https://www.ulaval.ca/etudes/cours/chm-0150-chimie-generale;ChimieGé;#8C5A7B
+CHM-0160;Chimie des solutions;3;CHM-0150 OU Examen Chimie générale avec résultat de N à P;https://www.ulaval.ca/etudes/cours/chm-0160-chimie-des-solutions;ChiSolut;#8C5A7B
+CHM-0170;Éléments de chimie générale et des solutions;3;;https://www.ulaval.ca/etudes/cours/chm-0170-elements-de-chimie-generale-et-des-solutions;ÉlémChim;#8C5A7B
+CHM-0250;Chimie organique;3;CHM-0150 OU Examen Chimie générale avec résultat de N à P;https://www.ulaval.ca/etudes/cours/chm-0250-chimie-organique;ChiOrgan;#8C5A7B
+CHM-1903;Chimie des eaux;3;;https://www.ulaval.ca/etudes/cours/chm-1903-chimie-des-eaux;Chimdese;#F4C27A
+DDU-2000;Aménagement durable du territoire;3;;https://www.ulaval.ca/etudes/cours/ddu-2000-amenagement-durable-du-territoire;Améndura;#D5DBDB
+DRT-1721;Introduction au droit de l'environnement et au développement durable;3;;https://www.ulaval.ca/etudes/cours/drt-1721-introduction-au-droit-de-lenvironnement-et-au-developpement-durable;Intrdroi;#D5DBDB
+ECN-4901;Analyse économique en ingénierie;3;;https://www.ulaval.ca/etudes/cours/ecn-4901-analyse-economique-en-ingenierie;AnaÉcono;#F18289
+ENT-1000;Savoir entreprendre : la passion de créer et d'agir;3;;https://www.ulaval.ca/etudes/cours/ent-1000-savoir-entreprendre-la-passion-de-creer-et-dagir;Savoentr;#D5DBDB
+ENT-4020;Introduction à l'entrepreneurship technologique;3;1000 à 4999 Crédits exigés : 60;https://www.ulaval.ca/etudes/cours/ent-4020-introduction-a-lentrepreneurship-technologique;InEntrep;#F18289
+FLS-2093;Rédaction de textes argumentatifs;3;( FLS-2092 OU FLS-2062 OU Examen Français langue étrangère avec résultat de 81 à 100 OU (Examen TCF, épreuve obligatoire avec résultat de 500 à 599 ET Examen TCF, épreuve écrite avec résultat de 11 à 13) OU (Examen TCF, épreuve obligatoire avec résultat de 600 à 699 ET Examen TCF, épreuve écrite avec résultat de 10 à 13));https://www.ulaval.ca/etudes/cours/fls-2093-redaction-de-textes-argumentatifs;Rédatext;#D5DBDB
+FRN-1914;Communications pour scientifiques;3;;https://www.ulaval.ca/etudes/cours/frn-1914-communications-pour-scientifiques;Commpour;#D5DBDB
+GAE-3006;Irrigation;3;GAE-1004 OU GCI-1007;https://www.ulaval.ca/etudes/cours/gae-3006-irrigation;Irri;#D5DBDB
+GAE-3007;Drainage;3;GAE-1004 OU GCI-1007 OU GCI-1901;https://www.ulaval.ca/etudes/cours/gae-3007-drainage;Drai;#D5DBDB
+GAE-3008;Aménagement des cours d'eau et conservation des sols;3;(( GAE-1004 ET GAE-2000 ) OU GCI-2009 );https://www.ulaval.ca/etudes/cours/gae-3008-amenagement-des-cours-deau-et-conservation-des-sols;Améndesc;#D5DBDB
+GCI-1000;Matériaux de construction;3;Préalable préuniversitaire nécessaire s'il y a lieu : PHY-0150.;https://www.ulaval.ca/etudes/cours/gci-1000-materiaux-de-construction;Matécons;#F7DC6F
+GCI-1003;Eaux vives;3;;https://www.ulaval.ca/etudes/cours/gci-1003-eaux-vives;Eauxvive;#F7DC6F
+GCI-1004;Mécanique des fluides;3;(MAT-1900 *) ET (MAT-0150 ET MAT-0260 ET PHY-0150);https://www.ulaval.ca/etudes/cours/gci-1004-mecanique-des-fluides;Mécadesf;#F7DC6F
+GCI-1007;Mécanique des sols;3;GGL-2600 OU GLG-1900 OU GLG-1000;https://www.ulaval.ca/etudes/cours/gci-1007-mecanique-des-sols;Mécadess;#F7DC6F
+GCI-1010;Dessin, plans et BIM;3;;https://www.ulaval.ca/etudes/cours/gci-1010-dessin-plans-et-bim;Dessplan;#F7DC6F
+GCI-1011;SIG, territoire et infrastructures;3;;https://www.ulaval.ca/etudes/cours/gci-1011-sig-territoire-et-infrastructures;SIGterri;#F7DC6F
+GCI-1900;Introduction à la statique et à la résistance des matériaux;3;MAT-0150 ET MAT-0260 ET PHY-0150;https://www.ulaval.ca/etudes/cours/gci-1900-introduction-a-la-statique-et-a-la-resistance-des-materiaux;Intrstat;#F7DC6F
+GCI-2008;Systèmes hydrauliques;3;GCI-1004;https://www.ulaval.ca/etudes/cours/gci-2008-systemes-hydrauliques;Systhydr;#F7DC6F
+GCI-2009;Hydrologie;3;GCI-1004 ET ( IFT-1903 OU GLO-1901 );https://www.ulaval.ca/etudes/cours/gci-2009-hydrologie;Hydr;#F7DC6F
+GCI-2010;Laboratoire d'hydraulique;3;GCI-2008;https://www.ulaval.ca/etudes/cours/gci-2010-laboratoire-dhydraulique;Labodhyd;#F7DC6F
+GCI-2012;Hydraulique urbaine;3;GCI-2008 ET GCI-2009;https://www.ulaval.ca/etudes/cours/gci-2012-hydraulique-urbaine;Hydrurba;#F7DC6F
+GCI-3001;Impacts environnementaux;3;Crédits exigés : 45;https://www.ulaval.ca/etudes/cours/gci-3001-impacts-environnementaux;ImpEnvir;#51a27e
+GCI-3101;Projet de conception de systèmes de gestion des eaux pluviales;3;GCI-2012;https://www.ulaval.ca/etudes/cours/gci-3101-projet-de-conception-de-systemes-de-gestion-des-eaux-pluviales;Projconc;#F7DC6F
+GCI-4201;Géotechnique environnementale;3;GCI-1007 OU GCI-1901;https://www.ulaval.ca/etudes/cours/gci-4201-geotechnique-environnementale;Géotenvi;#F7DC6F
+GCI-4301;Aménagement hydraulique;3;GCI-2008;https://www.ulaval.ca/etudes/cours/gci-4301-amenagement-hydraulique;Aménhydr;#F7DC6F
+GEX-1000;Dispersion des polluants;3;GCI-1004;https://www.ulaval.ca/etudes/cours/gex-1000-dispersion-des-polluants;Dispdesp;#D5DBDB
+GEX-1002;Génie des eaux : introduction à la profession;1;;https://www.ulaval.ca/etudes/cours/gex-1002-genie-des-eaux-introduction-a-la-profession;Génidese;#D5DBDB
+GEX-1580;Stage en génie des eaux I;9;Crédits exigés : 24;https://www.ulaval.ca/etudes/cours/gex-1580-stage-en-genie-des-eaux-i;Staggéni;#D5DBDB
+GEX-2001;Interventions en bassin versant;3;GGL-2600 * ET ( GCI-2009 OU GGL-2609 ) ET ( GEX-1000 OU GCI-1005);https://www.ulaval.ca/etudes/cours/gex-2001-interventions-en-bassin-versant;Intebass;#D5DBDB
+GEX-2003;Production d'eau potable;3;(( CHM-1903 ET GEX-1000 ET MCB-1907 ) OU ( BIO-1003 ET GCH-1004 ));https://www.ulaval.ca/etudes/cours/gex-2003-production-deau-potable;Proddeau;#D5DBDB
+GEX-2004;Traitement des eaux usées;3;(( CHM-1903 ET GEX-1000 ET MCB-1907 ) OU ( BIO-1003 ET GCH-1004 ));https://www.ulaval.ca/etudes/cours/gex-2004-traitement-des-eaux-usees;Traidese;#D5DBDB
+GEX-3001;Génie côtier;3;GCI-2010 *;https://www.ulaval.ca/etudes/cours/gex-3001-genie-cotier;Génicôti;#D5DBDB
+GEX-3333;Projet intégrateur en génie des eaux I;3;(ECN-2901 OU ECN-4901 ) ET GCI-1011 ET GMC-3009 ET  Crédits exigés : 72;https://www.ulaval.ca/etudes/cours/gex-3333-projet-integrateur-en-genie-des-eaux-i;Projinté;#D5DBDB
+GEX-3335;Projet intégrateur en génie des eaux II;3;(ECN-2901 OU ECN-4901 ) ET GCI-1011 ET GCI-4301 ET GMC-3009 ET  Crédits exigés : 72;https://www.ulaval.ca/etudes/cours/gex-3335-projet-integrateur-en-genie-des-eaux-ii;Projinté;#D5DBDB
+GEX-3500;Projet de production d'eau potable;3;GEX-2003;https://www.ulaval.ca/etudes/cours/gex-3500-projet-de-production-deau-potable;Projprod;#D5DBDB
+GEX-3502;Projet de traitement d'eaux usées;3;GEX-2004;https://www.ulaval.ca/etudes/cours/gex-3502-projet-de-traitement-deaux-usees;Projtrai;#D5DBDB
+GEX-4002;Hydrologie opérationnelle;3;;https://www.ulaval.ca/etudes/cours/gex-4002-hydrologie-operationnelle;Hydropér;#D5DBDB
+GEX-4008;Approvisionnement en eau dans les communautés nordiques;3;GEX, Crédits exigés : 60;https://www.ulaval.ca/etudes/cours/gex-4008-approvisionnement-en-eau-dans-les-communautes-nordiques;Appreaud;#D5DBDB
+GGL-2600;Hydrogéologie;3;;https://www.ulaval.ca/etudes/cours/ggl-2600-hydrogeologie;Hydrogéo;#51a27e
+GGL-2601;Analyse et modélisation des systèmes naturels;3;STT-1900 *;https://www.ulaval.ca/etudes/cours/ggl-2601-analyse-et-modelisation-des-systemes-naturels;Analmodé;#D5DBDB
+GGL-2609;Hydrogéologie environnementale;3;GGL-2600;https://www.ulaval.ca/etudes/cours/ggl-2609-hydrogeologie-environnementale;HydEnvir;#51a27e
+GGL-4001;Projets en hydrogéologie;3;GGL-2600;https://www.ulaval.ca/etudes/cours/ggl-4001-projets-en-hydrogeologie;Projhydr;#D5DBDB
+GGR-1006;Changements climatiques;3;;https://www.ulaval.ca/etudes/cours/ggr-1006-changements-climatiques;Chanclim;#D5DBDB
+GGR-2307;Analyse des risques liés aux changements climatiques;3;;https://www.ulaval.ca/etudes/cours/ggr-2307-analyse-des-risques-lies-aux-changements-climatiques;Analdesr;#D5DBDB
+GMC-3009;Gestion de projets en ingénierie;3;Crédits exigés : 24;https://www.ulaval.ca/etudes/cours/gmc-3009-gestion-de-projets-en-ingenierie;Gestproj;#F9E79F
+GMN-2005;Environnement minier et métallurgique;3;;https://www.ulaval.ca/etudes/cours/gmn-2005-environnement-minier-et-metallurgique;Envimini;#D5DBDB
+GMN-2901;Santé et sécurité en ingénierie II;2;;https://www.ulaval.ca/etudes/cours/gmn-2901-sante-et-securite-en-ingenierie-ii;SSInGMN2;#F7A941
+GMN-2902;Santé et sécurité en ingénierie III;3;;https://www.ulaval.ca/etudes/cours/gmn-2902-sante-et-securite-en-ingenierie-iii;SSInGMN3;#F7A941
+GSC-1000;Méthodologie de design en ingénierie;3;;https://www.ulaval.ca/etudes/cours/gsc-1000-methodologie-de-design-en-ingenierie;Méthdesi;#D5DBDB
+IFT-1903;Informatique pour l'ingénierie;3;MAT-0150;https://www.ulaval.ca/etudes/cours/ift-1903-informatique-pour-lingenierie;Infopour;#AED6F1
+IFT-4902;Programmation avec R pour l'analyse de données;3;;https://www.ulaval.ca/etudes/cours/ift-4902-programmation-avec-r-pour-lanalyse-de-donnees;Progavec;#AED6F1
+MAT-0130;Algèbre vectorielle;3;;https://www.ulaval.ca/etudes/cours/mat-0130-algebre-vectorielle;AlgVecto;#8C5A7B
+MAT-0150;Calcul différentiel;4;Préalable : mathématiques 536 ou 526 ou l'équivalent selon le programme visé. Des séances de dépannage seront offertes tout au long de la session. Les étudiants seront informés en classe de l'horaire et des locaux par leur enseignant.Cours réservé exclusivement aux étudiants inscrits aux cours compensateurs et à la majeure en scolarité préparatoire.;https://www.ulaval.ca/etudes/cours/mat-0150-calcul-differentiel;CalcDiff;#8C5A7B
+MAT-0260;Calcul intégral;4;MAT-0150;https://www.ulaval.ca/etudes/cours/mat-0260-calcul-integral;CalcInté;#8C5A7B
+MAT-1900;Mathématiques pour l'ingénierie I;3;MAT-0130 ET MAT-0150 ET MAT-0260;https://www.ulaval.ca/etudes/cours/mat-1900-mathematiques-pour-lingenierie-i;Mathpour;#7FB3D5
+MAT-1910;Mathématiques pour l'ingénierie II;3;MAT-1900 OU MAT-1920 *;https://www.ulaval.ca/etudes/cours/mat-1910-mathematiques-pour-lingenierie-ii;Mathpour;#7FB3D5
+MAT-2910;Analyse numérique pour l'ingénierie;3;( MAT-1110 OU MAT-1900 OU PHY-1002 ) ET (IFT-1001* OU IFT-1903 * OU GLO-1900* OU GLO-1901 * OU IFT 10426* OU IFT-1904 OU IFT-1004 * OU IFT-1901 * OU GAE-2010 );https://www.ulaval.ca/etudes/cours/mat-2910-analyse-numerique-pour-lingenierie;Analnumé;#7FB3D5
+MCB-1907;Microbiologie pour l'ingénierie;3;;https://www.ulaval.ca/etudes/cours/mcb-1907-microbiologie-pour-lingenierie;Micrpour;#D5DBDB
+MCB-4003;Bioaérosols et aérobiologie;3;;https://www.ulaval.ca/etudes/cours/mcb-4003-bioaerosols-et-aerobiologie;Bioaaéro;#D5DBDB
+MED-1100;Santé et sécurité au travail : notions de base;3;;https://www.ulaval.ca/etudes/cours/med-1100-sante-et-securite-au-travail-notions-de-base;SSTrMED3;#F7A941
+PHI-2910;Génie et développement durable;3;Crédits exigés : 30;https://www.ulaval.ca/etudes/cours/phi-2910-genie-et-developpement-durable;GénDévDu;#FFC103
+PHI-3900;Éthique et professionnalisme;3;Crédits exigés : 60;https://www.ulaval.ca/etudes/cours/phi-3900-ethique-et-professionnalisme;ÉthiProf;#7A8C4A
+PHY-0150;Physique : mécanique classique;4;Préalables : avant la réforme physique 534 ou 584 ou 5043-2 ou l'équivalent et mathématiques 536 ou 5082-2 ou l'équivalent. Depuis la réforme : physique 053-504 et mathématiques technico-sciences 064-506 ou sciences naturelles 065-506 de 5e secondaire. Trois séances de laboratoire s'ajoutent à l'horaire régulier du cours. Ces séances ont lieu le vendredi, entre 8h30 et 17h20, réparties sur toute la session. L'inscription se fera au premier cours. Cours réservé exclusivement aux étudiants inscrits aux cours compensateurs et à la majeure en scolarité préparatoire.;https://www.ulaval.ca/etudes/cours/phy-0150-physique-mecanique-classique;MécClass;#8C5A7B
+PHY-0250;Physique : électricité et magnétisme;3;PHY-0150;https://www.ulaval.ca/etudes/cours/phy-0250-physique-electricite-et-magnetisme;ÉlecMagn;#8C5A7B
+PLG-2104;Infrastructures végétalisées : concepts et fonction;3;BIO-1904 OU BIO-1925 OU PLG-1002 OU GEX-1000;https://www.ulaval.ca/etudes/cours/plg-2104-infrastructures-vegetalisees-concepts-et-fonction;Infrvégé;#D5DBDB
+STT-1900;Méthodes statistiques pour l'ingénierie;3;MAT-0150 ET MAT-0260;https://www.ulaval.ca/etudes/cours/stt-1900-methodes-statistiques-pour-lingenierie;Méthstat;#D5DBDB
