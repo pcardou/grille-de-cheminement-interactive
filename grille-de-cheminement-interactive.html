@@ -1056,147 +1056,34 @@
 
             static async chargeVersionProgramme(path, selectedSpecialisation = 'Cheminement sans concentration') {
                 const resp = await fetch(path);
-                if (!resp.ok) throw new Error(`Impossible de charger le fichier CSV: ${resp.status} ${resp.statusText}`);
-                const text = await resp.text();
-                const rows = text.split(/\r?\n/).map(line => line.split(';').map(cell => cell.trim().replace(/^"|"$/g, '')));
-
-                const getCell = (row, index) => (row && typeof row[index] === 'string') ? row[index] : '';
-                const parseCredits = (value) => {
-                    const n = Number.parseInt(value, 10);
-                    return Number.isInteger(n) ? n : null;
-                };
-                const isRuleHeaderRow = (row) => row && !getCell(row, 0) && !!getCell(row, 1);
-
-                const parseRuleHeader = (row) => {
-                    const titreRegle = getCell(row, 1);
-                    const minCreditsRaw = getCell(row, 3);
-                    const maxCreditsRaw = getCell(row, 4);
-                    const minCreditsValue = parseCredits(minCreditsRaw);
-                    const maxCreditsValue = parseCredits(maxCreditsRaw);
-                    const minCreditsRegle = Number.isInteger(minCreditsValue) ? minCreditsValue : (Number.isInteger(maxCreditsValue) ? maxCreditsValue : 0);
-                    const maxCreditsRegle = Number.isInteger(maxCreditsValue) ? maxCreditsValue : minCreditsRegle;
-                    return { titreRegle, minCreditsRegle, maxCreditsRegle };
-                };
-
-                const collectCourseCodes = (startIndex, sectionEndIndex) => {
-                    const cours = [];
-                    const titres = [];
-                    const credits = [];
-                    let i = startIndex;
-                    for (; i < rows.length && i < sectionEndIndex; i += 1) {
-                        const row = rows[i];
-                        if (!row) continue;
-                        if (getCell(row, 0) || getCell(row, 1)) break;
-                        const code = getCell(row, 2);
-                        if (!code) continue;
-                        cours.push(code);
-                        titres.push(getCell(row, 3) || '');
-                        credits.push(getCell(row, 4) || '');
-                    }
-                    return { cours, titres, credits, nextIndex: i };
-                };
-
-                const loadRequiredCourseRule = (sectionStartIndex, specialisationName) => {
-                    let i = sectionStartIndex;
-                    while (i < rows.length && rows[i] && !isRuleHeaderRow(rows[i]) && !getCell(rows[i], 0)) {
-                        i += 1;
-                    }
-                    if (i >= rows.length || !isRuleHeaderRow(rows[i])) {
-                        return { regle: null, nextIndex: sectionStartIndex };
-                    }
-                    const { titreRegle, minCreditsRegle, maxCreditsRegle } = parseRuleHeader(rows[i]);
-                    if (titreRegle.toLowerCase() !== 'cours obligatoires') {
-                        return { regle: null, nextIndex: sectionStartIndex };
-                    }
-                    const { cours, titres, credits, nextIndex } = collectCourseCodes(i + 1, rows.length);
-                    return { regle: new VersionProgramme.Regle('Cours obligatoires', minCreditsRegle, maxCreditsRegle, cours, titres, credits, specialisationName), nextIndex };
-                };
-
-                const findSectionIndex = (label) => rows.findIndex(row => getCell(row, 0) === label);
-                const sectionIndex = findSectionIndex('Activités de formation communes');
-                if (sectionIndex === -1) throw new Error('Section "Activités de formation communes" introuvable');
-
-                const programmeTitle = getCell(rows[0], 1) || 'Titre inconnu';
-                const programmeVersion = getCell(rows[1], 1) || '??';
-                const specialisations = [];
-                const specialisationsCreditsMap = new Map();
-                const rules = [];
-
-                // Scolarité préparatoire (bloc optionnel avant "Activités de formation communes")
-                const scolariteIndex = findSectionIndex('Scolarité préparatoire');
-                if (scolariteIndex !== -1 && scolariteIndex < sectionIndex) {
-                    let si = scolariteIndex + 1;
-                    while (si < sectionIndex) {
-                        const row = rows[si];
-                        if (!row) { si += 1; continue; }
-                        if (getCell(row, 0)) break;
-                        if (!isRuleHeaderRow(row)) { si += 1; continue; }
-                        const { titreRegle, minCreditsRegle, maxCreditsRegle } = parseRuleHeader(row);
-                        const { cours, titres, credits, nextIndex } = collectCourseCodes(si + 1, sectionIndex);
-                        rules.push({ regle: new VersionProgramme.Regle(titreRegle, minCreditsRegle, maxCreditsRegle, cours, titres, credits, 'Scolarité préparatoire') });
-                        si = nextIndex;
-                    }
-                }
-
-                let i = sectionIndex + 1;
-                while (i < rows.length) {
-                    const row = rows[i];
-                    if (!row) { i += 1; continue; }
-                    if (getCell(row, 0)) break;
-                    if (!isRuleHeaderRow(row)) { i += 1; continue; }
-                    const { titreRegle, minCreditsRegle, maxCreditsRegle } = parseRuleHeader(row);
-                    const { cours, titres, credits, nextIndex } = collectCourseCodes(i + 1, rows.length);
-                    rules.push({ regle: new VersionProgramme.Regle(titreRegle, minCreditsRegle, maxCreditsRegle, cours, titres, credits, 'Activités communes') });
-                    i = nextIndex;
-                }
-
-                const findNextSpecialisation = (startIndex) => {
-                    for (let j = startIndex; j < rows.length; j += 1) {
-                        if (getCell(rows[j], 0)) return j;
-                    }
-                    return -1;
-                };
-
-                while (i < rows.length) {
-                    const specRow = rows[i];
-                    if (!specRow) { i += 1; continue; }
-                    const specialisationName = getCell(specRow, 0);
-                    if (!specialisationName) { i += 1; continue; }
-                    specialisations.push(specialisationName);
-                    const specCreditsTotal = parseCredits(getCell(specRow, 4));
-                    if (Number.isInteger(specCreditsTotal) && specCreditsTotal > 0) {
-                        specialisationsCreditsMap.set(specialisationName, specCreditsTotal);
-                    }
-                    const nextSpec = findNextSpecialisation(i + 1);
-                    const sectionEnd = nextSpec !== -1 ? nextSpec : rows.length;
-                    if (specialisationName === selectedSpecialisation) {
-                        const requiredCourseRule = loadRequiredCourseRule(i + 1, specialisationName);
-                        let ruleIndex = i + 1;
-                        if (requiredCourseRule.regle) {
-                            rules.push({ regle: requiredCourseRule.regle });
-                            ruleIndex = requiredCourseRule.nextIndex;
-                        }
-                        while (ruleIndex < sectionEnd) {
-                            const row = rows[ruleIndex];
-                            if (!row) { ruleIndex += 1; continue; }
-                            if (!isRuleHeaderRow(row)) { ruleIndex += 1; continue; }
-                            const { titreRegle, minCreditsRegle, maxCreditsRegle } = parseRuleHeader(row);
-                            const { cours, titres, credits, nextIndex } = collectCourseCodes(ruleIndex + 1, sectionEnd);
-                            rules.push({ regle: new VersionProgramme.Regle(titreRegle, minCreditsRegle, maxCreditsRegle, cours, titres, credits, specialisationName) });
-                            ruleIndex = nextIndex;
-                        }
-                    }
-                    i = sectionEnd;
-                }
+                if (!resp.ok) throw new Error(`Impossible de charger le fichier JSON : ${resp.status} ${resp.statusText}`);
+                const data = await resp.json();
 
                 const sourceName = path.replace(/^.*[\\\/]/, '').replace(/\.[^/.]+$/, '');
-                const programme = new VersionProgramme(programmeTitle, programmeVersion, specialisations, 0, sourceName);
-                rules.forEach((item, index) => {
-                    const { regle } = item;
-                    programme.addRegle(regle);
-                    programme[`regle${index + 1}`] = regle;
+                const programme = new VersionProgramme(
+                    data.titre || 'Titre inconnu',
+                    data.version || '??',
+                    data.specialisations || [],
+                    data.creditsExiges || 0,
+                    sourceName
+                );
+
+                Object.entries(data.specialisationsCredits || {}).forEach(([nom, credits]) =>
+                    programme.setSpecialisationCredits(nom, credits)
+                );
+
+                const communesOuScolarite = new Set(['Scolarité préparatoire', 'Activités communes']);
+                (data.regles || []).forEach(r => {
+                    if (!communesOuScolarite.has(r.specialisation) && r.specialisation !== selectedSpecialisation) return;
+                    const sigles  = (r.cours || []).map(c => c.sigle);
+                    const titres  = (r.cours || []).map(c => c.titre);
+                    const credits = (r.cours || []).map(c => c.credits);
+                    programme.addRegle(new VersionProgramme.Regle(
+                        r.titreRegle, r.minCredits, r.maxCredits,
+                        sigles, titres, credits, r.specialisation
+                    ));
                 });
-                specialisationsCreditsMap.forEach((credits, nom) => programme.setSpecialisationCredits(nom, credits));
+
                 return programme;
             }
 
