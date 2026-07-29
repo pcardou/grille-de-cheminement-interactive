@@ -610,9 +610,25 @@ def exporter(cours_liste):
                 if suppl.get((sigle, version["session"]), "") is None:
                     continue
 
-                plages_ecrites = 0
+                # Cours sans section du tout (ex. stages) : écrire une ligne vide
+                # pour indiquer que le cours est quand même offert à cette session.
+                if not version["sections"]:
+                    writer.writerow([sigle, version["session"], "", "", "", "", ""])
 
                 for section in version["sections"]:
+
+                    # Section sans horaire fixe (ex. à distance asynchrone) :
+                    # écrire une ligne vide pour cette section précisément,
+                    # sans dépendre des autres sections de la même session.
+                    if not section["plages"]:
+                        writer.writerow([
+                            sigle,
+                            version["session"],
+                            section["section"],
+                            section["mode"],
+                            "", "", ""
+                        ])
+                        continue
 
                     for plage in section["plages"]:
 
@@ -625,12 +641,6 @@ def exporter(cours_liste):
                             plage[1],
                             plage[2]
                         ])
-                        plages_ecrites += 1
-
-                # Cours sans horaire fixe (ex. stages) : écrire une ligne vide
-                # pour indiquer que le cours est quand même offert à cette session.
-                if plages_ecrites == 0:
-                    writer.writerow([sigle, version["session"], "", "", "", "", ""])
 
             # Sessions passées et futures prédites, ainsi que les sessions
             # présentes dans plages-horaires-supplementaires.csv mais non
