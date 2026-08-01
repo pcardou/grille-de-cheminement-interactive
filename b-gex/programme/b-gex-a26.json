@@ -1,678 +1,248 @@
 {
-  "titre": "Baccalauréat en génie des eaux",
+  "code": "b-gex",
   "version": "A26",
-  "sourceName": "b-gex-a26",
-  "creditsExiges": 120,
-  "specialisations": [
-    "Cheminement sans concentration",
-    "Profil international"
+  "year": 2026,
+  "title": "Baccalauréat en génie des eaux",
+  "cycle": 1,
+  "credits_required": 120,
+  "mandatory": [
+    "CHM-1903",
+    "GCI-1000",
+    "GCI-1003",
+    "GEX-1002",
+    "GSC-1000",
+    "MAT-1900",
+    "GCI-1004",
+    "GGL-2600",
+    "IFT-1903",
+    "MAT-1910",
+    "STT-1900",
+    "GCI-1007",
+    "GCI-1010",
+    "GCI-1011",
+    "GCI-2008",
+    "GCI-2009",
+    "MCB-1907",
+    "GCI-1900",
+    "GCI-2010",
+    "GEX-1000",
+    "MAT-2910",
+    "GCI-2012",
+    "GCI-4301",
+    "GEX-2004",
+    "GMC-3009",
+    "ECN-4901",
+    "GEX-2001",
+    "GEX-2003",
+    "GEX-3001",
+    "DRT-1721",
+    "GEX-3333",
+    "PHI-2910",
+    "GEX-3335",
+    "PHI-3900"
   ],
-  "specialisationsCredits": {
-    "Cheminement sans concentration": 20,
-    "Profil international": 20
-  },
-  "regles": [
+  "rules": [
     {
-      "titreRegle": "Cours compensateurs",
-      "minCredits": 33,
-      "maxCredits": 33,
-      "specialisation": "Scolarité préparatoire",
-      "cours": [
-        {
-          "sigle": "MAT-0150",
-          "titre": "Calcul différentiel",
-          "credits": "4"
-        },
-        {
-          "sigle": "MAT-0260",
-          "titre": "Calcul intégral",
-          "credits": "4"
-        },
-        {
-          "sigle": "MAT-0130",
-          "titre": "Algèbre vectorielle",
-          "credits": "3"
-        },
-        {
-          "sigle": "PHY-0150",
-          "titre": "Physique : mécanique classique",
-          "credits": "4"
-        },
-        {
-          "sigle": "PHY-0250",
-          "titre": "Physique : électricité et magnétisme",
-          "credits": "3"
-        },
-        {
-          "sigle": "CHM-0150",
-          "titre": "Chimie générale",
-          "credits": "3"
-        },
-        {
-          "sigle": "CHM-0160",
-          "titre": "Chimie des solutions",
-          "credits": "3"
-        },
-        {
-          "sigle": "CHM-0250",
-          "titre": "Chimie organique",
-          "credits": "3"
-        },
-        {
-          "sigle": "CHM-0170",
-          "titre": "Éléments de chimie générale et des solutions",
-          "credits": "3"
-        },
-        {
-          "sigle": "BIO-0150",
-          "titre": "Biologie générale",
-          "credits": "3"
-        }
+      "title": "Cours compensateurs",
+      "constraint": {
+        "min": 33,
+        "max": 33
+      },
+      "courses": [
+        "MAT-0150",
+        "MAT-0260",
+        "MAT-0130",
+        "PHY-0150",
+        "PHY-0250",
+        "CHM-0150",
+        "CHM-0160",
+        "CHM-0250",
+        "CHM-0170",
+        "BIO-0150"
       ]
     },
     {
-      "titreRegle": "Cours obligatoires",
-      "minCredits": 100,
-      "maxCredits": 100,
-      "specialisation": "Activités communes",
-      "cours": [
+      "title": "Stages",
+      "constraint": {
+        "min": 9,
+        "max": 9
+      },
+      "courses": [
+        "GEX-1580"
+      ]
+    }
+  ],
+  "concentrations": [
+    {
+      "title": "Cheminement sans concentration",
+      "credits_required": 20,
+      "mandatory": [],
+      "rules": [
         {
-          "sigle": "CHM-1903",
-          "titre": "Chimie des eaux",
-          "credits": "3"
+          "title": "Règle 1",
+          "constraint": {
+            "min": 2,
+            "max": 3
+          },
+          "courses": [
+            "MED-1100",
+            "GMN-2901",
+            "GMN-2902"
+          ]
         },
         {
-          "sigle": "GCI-1000",
-          "titre": "Matériaux de construction",
-          "credits": "3"
+          "title": "Règle 2",
+          "constraint": {
+            "min": 3,
+            "max": 9
+          },
+          "courses": [
+            "GCI-3101",
+            "GEX-3500",
+            "GEX-3502",
+            "GGL-4001",
+            "OPT-ION1",
+            "OPT-ION2"
+          ]
         },
         {
-          "sigle": "GCI-1003",
-          "titre": "Eaux vives",
-          "credits": "3"
+          "title": "Règle 3",
+          "constraint": {
+            "min": 3,
+            "max": 9
+          },
+          "courses": [
+            "GAE-3006",
+            "GAE-3007",
+            "GAE-3008",
+            "GCI-3001",
+            "GCI-4201",
+            "GEX-4002",
+            "GEX-4008",
+            "GGL-2609",
+            "GMN-2005",
+            "OPT-ION3",
+            "OPT-ION4"
+          ]
         },
         {
-          "sigle": "GEX-1002",
-          "titre": "Génie des eaux : introduction à la profession",
-          "credits": "1"
+          "title": "Règle 4",
+          "constraint": {
+            "min": 3,
+            "max": 3
+          },
+          "courses": [
+            "DDU-2000",
+            "ENT-1000",
+            "ENT-4020",
+            "GEX-3501",
+            "GGL-2601",
+            "IFT-4902",
+            "ANL-2020",
+            "FLS-2093",
+            "FRN-1914",
+            "ENT-1000",
+            "ENT-3020",
+            "MCB-4003",
+            "BIO-1008",
+            "BIO-1904",
+            "PLG-2104",
+            "DDU-2000",
+            "GGL-2601",
+            "GGR-1006",
+            "GGR-2307"
+          ]
         },
         {
-          "sigle": "GSC-1000",
-          "titre": "Méthodologie de design en ingénierie",
-          "credits": "3"
-        },
-        {
-          "sigle": "MAT-1900",
-          "titre": "Mathématiques pour l'ingénierie I",
-          "credits": "3"
-        },
-        {
-          "sigle": "GCI-1004",
-          "titre": "Mécanique des fluides",
-          "credits": "3"
-        },
-        {
-          "sigle": "GGL-2600",
-          "titre": "Hydrogéologie",
-          "credits": "3"
-        },
-        {
-          "sigle": "IFT-1903",
-          "titre": "Informatique pour l'ingénierie",
-          "credits": "3"
-        },
-        {
-          "sigle": "MAT-1910",
-          "titre": "Mathématiques pour l'ingénierie II",
-          "credits": "3"
-        },
-        {
-          "sigle": "STT-1900",
-          "titre": "Méthodes statistiques pour l'ingénierie",
-          "credits": "3"
-        },
-        {
-          "sigle": "GCI-1007",
-          "titre": "Mécanique des sols",
-          "credits": "3"
-        },
-        {
-          "sigle": "GCI-1010",
-          "titre": "Dessin, plans et BIM",
-          "credits": "3"
-        },
-        {
-          "sigle": "GCI-1011",
-          "titre": "SIG, territoire et infrastructures",
-          "credits": "3"
-        },
-        {
-          "sigle": "GCI-2008",
-          "titre": "Systèmes hydrauliques",
-          "credits": "3"
-        },
-        {
-          "sigle": "GCI-2009",
-          "titre": "Hydrologie",
-          "credits": "3"
-        },
-        {
-          "sigle": "MCB-1907",
-          "titre": "Microbiologie pour l'ingénierie",
-          "credits": "3"
-        },
-        {
-          "sigle": "GCI-1900",
-          "titre": "Introduction à la statique et à la résistance des matériaux",
-          "credits": "3"
-        },
-        {
-          "sigle": "GCI-2010",
-          "titre": "Laboratoire d'hydraulique",
-          "credits": "3"
-        },
-        {
-          "sigle": "GEX-1000",
-          "titre": "Dispersion des polluants",
-          "credits": "3"
-        },
-        {
-          "sigle": "MAT-2910",
-          "titre": "Analyse numérique pour l'ingénierie",
-          "credits": "3"
-        },
-        {
-          "sigle": "GCI-2012",
-          "titre": "Hydraulique urbaine",
-          "credits": "3"
-        },
-        {
-          "sigle": "GCI-4301",
-          "titre": "Aménagement hydraulique",
-          "credits": "3"
-        },
-        {
-          "sigle": "GEX-2004",
-          "titre": "Traitement des eaux usées",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-3009",
-          "titre": "Gestion de projets en ingénierie",
-          "credits": "3"
-        },
-        {
-          "sigle": "ECN-4901",
-          "titre": "Analyse économique en ingénierie",
-          "credits": "3"
-        },
-        {
-          "sigle": "GEX-2001",
-          "titre": "Interventions en bassin versant",
-          "credits": "3"
-        },
-        {
-          "sigle": "GEX-2003",
-          "titre": "Production d'eau potable",
-          "credits": "3"
-        },
-        {
-          "sigle": "GEX-3001",
-          "titre": "Génie côtier",
-          "credits": "3"
-        },
-        {
-          "sigle": "DRT-1721",
-          "titre": "Introduction au droit de l'environnement et au développement durable",
-          "credits": "3"
-        },
-        {
-          "sigle": "GEX-3333",
-          "titre": "Projet intégrateur en génie des eaux I",
-          "credits": "3"
-        },
-        {
-          "sigle": "PHI-2910",
-          "titre": "Génie et développement durable",
-          "credits": "3"
-        },
-        {
-          "sigle": "GEX-3335",
-          "titre": "Projet intégrateur en génie des eaux II",
-          "credits": "3"
-        },
-        {
-          "sigle": "PHI-3900",
-          "titre": "Éthique et professionnalisme",
-          "credits": "3"
+          "title": "Règle 5",
+          "constraint": {
+            "min": 3,
+            "max": 3
+          },
+          "courses": [
+            "AUC-HOIX"
+          ]
         }
       ]
-    },
+    }
+  ],
+  "profiles": [
     {
-      "titreRegle": "Stages",
-      "minCredits": 9,
-      "maxCredits": 9,
-      "specialisation": "Activités communes",
-      "cours": [
+      "title": "Profil international",
+      "credits_required": 20,
+      "mandatory": [],
+      "rules": [
         {
-          "sigle": "GEX-1580",
-          "titre": "Stage en génie des eaux I",
-          "credits": "9"
-        }
-      ]
-    },
-    {
-      "titreRegle": "Règle 1",
-      "minCredits": 2,
-      "maxCredits": 3,
-      "specialisation": "Cheminement sans concentration",
-      "cours": [
-        {
-          "sigle": "MED-1100",
-          "titre": "Santé et sécurité au travail : notions de base",
-          "credits": "3"
+          "title": "Règle 1",
+          "constraint": {
+            "min": 2,
+            "max": 3
+          },
+          "courses": [
+            "MED-1100",
+            "GMN-2901",
+            "GMN-2902"
+          ]
         },
         {
-          "sigle": "GMN-2901",
-          "titre": "Santé et sécurité en ingénierie II",
-          "credits": "2"
+          "title": "Règle 2",
+          "constraint": {
+            "min": 3,
+            "max": 9
+          },
+          "courses": [
+            "OPT-ETR1",
+            "OPT-ETR2"
+          ]
         },
         {
-          "sigle": "GMN-2902",
-          "titre": "Santé et sécurité en ingénierie III",
-          "credits": "3"
-        }
-      ]
-    },
-    {
-      "titreRegle": "Règle 2",
-      "minCredits": 3,
-      "maxCredits": 9,
-      "specialisation": "Cheminement sans concentration",
-      "cours": [
-        {
-          "sigle": "GCI-3101",
-          "titre": "Projet de conception de systèmes de gestion des eaux pluviales",
-          "credits": "3"
+          "title": "Règle 3",
+          "constraint": {
+            "min": 3,
+            "max": 9
+          },
+          "courses": [
+            "OPT-ETR3",
+            "OPT-ETR4"
+          ]
         },
         {
-          "sigle": "GEX-3500",
-          "titre": "Projet de production d'eau potable",
-          "credits": "3"
+          "title": "Règle 4",
+          "constraint": {
+            "min": 3,
+            "max": 3
+          },
+          "courses": [
+            "DDU-2000",
+            "ENT-1000",
+            "ENT-4020",
+            "GEX-3501",
+            "GGL-2601",
+            "IFT-4902",
+            "ANL-2020",
+            "FLS-2093",
+            "FRN-1914",
+            "ENT-1000",
+            "ENT-3020",
+            "MCB-4003",
+            "BIO-1008",
+            "BIO-1904",
+            "PLG-2104",
+            "DDU-2000",
+            "GGL-2601",
+            "GGR-1006",
+            "GGR-2307"
+          ]
         },
         {
-          "sigle": "GEX-3502",
-          "titre": "Projet de traitement d'eaux usées",
-          "credits": "3"
-        },
-        {
-          "sigle": "GGL-4001",
-          "titre": "Projets en hydrogéologie",
-          "credits": "3"
-        },
-        {
-          "sigle": "OPT-ION1",
-          "titre": "Cours à option à déterminer",
-          "credits": "3"
-        },
-        {
-          "sigle": "OPT-ION2",
-          "titre": "Cours à option à déterminer",
-          "credits": "3"
-        }
-      ]
-    },
-    {
-      "titreRegle": "Règle 3",
-      "minCredits": 3,
-      "maxCredits": 9,
-      "specialisation": "Cheminement sans concentration",
-      "cours": [
-        {
-          "sigle": "GAE-3006",
-          "titre": "Irrigation",
-          "credits": "3"
-        },
-        {
-          "sigle": "GAE-3007",
-          "titre": "Drainage",
-          "credits": "3"
-        },
-        {
-          "sigle": "GAE-3008",
-          "titre": "Aménagement des cours d'eau et conservation des sols",
-          "credits": "3"
-        },
-        {
-          "sigle": "GCI-3001",
-          "titre": "Impacts environnementaux",
-          "credits": "3"
-        },
-        {
-          "sigle": "GCI-4201",
-          "titre": "Géotechnique environnementale",
-          "credits": "3"
-        },
-        {
-          "sigle": "GEX-4002",
-          "titre": "Hydrologie opérationnelle",
-          "credits": "3"
-        },
-        {
-          "sigle": "GEX-4008",
-          "titre": "Approvisionnement en eau dans les communautés nordiques",
-          "credits": "3"
-        },
-        {
-          "sigle": "GGL-2609",
-          "titre": "Hydrogéologie environnementale",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMN-2005",
-          "titre": "Environnement minier et métallurgique",
-          "credits": "3"
-        },
-        {
-          "sigle": "OPT-ION3",
-          "titre": "Cours à option à déterminer",
-          "credits": "3"
-        },
-        {
-          "sigle": "OPT-ION4",
-          "titre": "Cours à option à déterminer",
-          "credits": "3"
-        }
-      ]
-    },
-    {
-      "titreRegle": "Règle 4",
-      "minCredits": 3,
-      "maxCredits": 3,
-      "specialisation": "Cheminement sans concentration",
-      "cours": [
-        {
-          "sigle": "DDU-2000",
-          "titre": "Aménagement durable du territoire",
-          "credits": "3"
-        },
-        {
-          "sigle": "ENT-1000",
-          "titre": "Savoir entreprendre : la passion de créer et d'agir",
-          "credits": "3"
-        },
-        {
-          "sigle": "ENT-4020",
-          "titre": "Introduction à l'entrepreneurship technologique",
-          "credits": "3"
-        },
-        {
-          "sigle": "GEX-3501",
-          "titre": "Projet en recherche",
-          "credits": "0"
-        },
-        {
-          "sigle": "GGL-2601",
-          "titre": "Analyse et modélisation des systèmes naturels",
-          "credits": "3"
-        },
-        {
-          "sigle": "IFT-4902",
-          "titre": "Programmation avec R pour l'analyse de données",
-          "credits": "3"
-        },
-        {
-          "sigle": "ANL-2020",
-          "titre": "Intermediate English II",
-          "credits": "3"
-        },
-        {
-          "sigle": "FLS-2093",
-          "titre": "Rédaction de textes argumentatifs",
-          "credits": "3"
-        },
-        {
-          "sigle": "FRN-1914",
-          "titre": "Communications pour scientifiques",
-          "credits": "3"
-        },
-        {
-          "sigle": "ENT-1000",
-          "titre": "Savoir entreprendre : la passion de créer et d'agir",
-          "credits": "3"
-        },
-        {
-          "sigle": "ENT-3020",
-          "titre": "Introduction à l'entrepreneurship technologique",
-          "credits": "0"
-        },
-        {
-          "sigle": "MCB-4003",
-          "titre": "Bioaérosols et aérobiologie",
-          "credits": "3"
-        },
-        {
-          "sigle": "BIO-1008",
-          "titre": "Écologie générale",
-          "credits": "3"
-        },
-        {
-          "sigle": "BIO-1904",
-          "titre": "Organisation et physiologie des plantes",
-          "credits": "3"
-        },
-        {
-          "sigle": "PLG-2104",
-          "titre": "Infrastructures végétalisées : concepts et fonction",
-          "credits": "3"
-        },
-        {
-          "sigle": "DDU-2000",
-          "titre": "Aménagement durable du territoire",
-          "credits": "3"
-        },
-        {
-          "sigle": "GGL-2601",
-          "titre": "Analyse et modélisation des systèmes naturels",
-          "credits": "3"
-        },
-        {
-          "sigle": "GGR-1006",
-          "titre": "Changements climatiques",
-          "credits": "3"
-        },
-        {
-          "sigle": "GGR-2307",
-          "titre": "Analyse des risques liés aux changements climatiques",
-          "credits": "3"
-        }
-      ]
-    },
-    {
-      "titreRegle": "Règle 5",
-      "minCredits": 3,
-      "maxCredits": 3,
-      "specialisation": "Cheminement sans concentration",
-      "cours": [
-        {
-          "sigle": "AUC-HOIX",
-          "titre": "Cours de 1er cycle au choix",
-          "credits": "3"
-        }
-      ]
-    },
-    {
-      "titreRegle": "Règle 1",
-      "minCredits": 2,
-      "maxCredits": 3,
-      "specialisation": "Profil international",
-      "cours": [
-        {
-          "sigle": "MED-1100",
-          "titre": "Santé et sécurité au travail : notions de base",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMN-2901",
-          "titre": "Santé et sécurité en ingénierie II",
-          "credits": "2"
-        },
-        {
-          "sigle": "GMN-2902",
-          "titre": "Santé et sécurité en ingénierie III",
-          "credits": "3"
-        }
-      ]
-    },
-    {
-      "titreRegle": "Règle 2",
-      "minCredits": 3,
-      "maxCredits": 9,
-      "specialisation": "Profil international",
-      "cours": [
-        {
-          "sigle": "OPT-ION1",
-          "titre": "Cours à option à l'étranger",
-          "credits": "3"
-        },
-        {
-          "sigle": "OPT-ION2",
-          "titre": "Cours à option à l'étranger",
-          "credits": "3"
-        }
-      ]
-    },
-    {
-      "titreRegle": "Règle 3",
-      "minCredits": 3,
-      "maxCredits": 9,
-      "specialisation": "Profil international",
-      "cours": [
-        {
-          "sigle": "OPT-ION3",
-          "titre": "Cours à option à l'étranger",
-          "credits": "3"
-        },
-        {
-          "sigle": "OPT-ION4",
-          "titre": "Cours à option à l'étranger",
-          "credits": "3"
-        }
-      ]
-    },
-    {
-      "titreRegle": "Règle 4",
-      "minCredits": 3,
-      "maxCredits": 3,
-      "specialisation": "Profil international",
-      "cours": [
-        {
-          "sigle": "DDU-2000",
-          "titre": "Aménagement durable du territoire",
-          "credits": "3"
-        },
-        {
-          "sigle": "ENT-1000",
-          "titre": "Savoir entreprendre : la passion de créer et d'agir",
-          "credits": "3"
-        },
-        {
-          "sigle": "ENT-4020",
-          "titre": "Introduction à l'entrepreneurship technologique",
-          "credits": "3"
-        },
-        {
-          "sigle": "GEX-3501",
-          "titre": "Projet en recherche",
-          "credits": "0"
-        },
-        {
-          "sigle": "GGL-2601",
-          "titre": "Analyse et modélisation des systèmes naturels",
-          "credits": "3"
-        },
-        {
-          "sigle": "IFT-4902",
-          "titre": "Programmation avec R pour l'analyse de données",
-          "credits": "3"
-        },
-        {
-          "sigle": "ANL-2020",
-          "titre": "Intermediate English II",
-          "credits": "3"
-        },
-        {
-          "sigle": "FLS-2093",
-          "titre": "Rédaction de textes argumentatifs",
-          "credits": "3"
-        },
-        {
-          "sigle": "FRN-1914",
-          "titre": "Communications pour scientifiques",
-          "credits": "3"
-        },
-        {
-          "sigle": "ENT-1000",
-          "titre": "Savoir entreprendre : la passion de créer et d'agir",
-          "credits": "3"
-        },
-        {
-          "sigle": "ENT-3020",
-          "titre": "Introduction à l'entrepreneurship technologique",
-          "credits": "0"
-        },
-        {
-          "sigle": "MCB-4003",
-          "titre": "Bioaérosols et aérobiologie",
-          "credits": "3"
-        },
-        {
-          "sigle": "BIO-1008",
-          "titre": "Écologie générale",
-          "credits": "3"
-        },
-        {
-          "sigle": "BIO-1904",
-          "titre": "Organisation et physiologie des plantes",
-          "credits": "3"
-        },
-        {
-          "sigle": "PLG-2104",
-          "titre": "Infrastructures végétalisées : concepts et fonction",
-          "credits": "3"
-        },
-        {
-          "sigle": "DDU-2000",
-          "titre": "Aménagement durable du territoire",
-          "credits": "3"
-        },
-        {
-          "sigle": "GGL-2601",
-          "titre": "Analyse et modélisation des systèmes naturels",
-          "credits": "3"
-        },
-        {
-          "sigle": "GGR-1006",
-          "titre": "Changements climatiques",
-          "credits": "3"
-        },
-        {
-          "sigle": "GGR-2307",
-          "titre": "Analyse des risques liés aux changements climatiques",
-          "credits": "3"
-        }
-      ]
-    },
-    {
-      "titreRegle": "Règle 5",
-      "minCredits": 3,
-      "maxCredits": 3,
-      "specialisation": "Profil international",
-      "cours": [
-        {
-          "sigle": "AUC-HOIX",
-          "titre": "Cours de 1er cycle au choix",
-          "credits": "3"
+          "title": "Règle 5",
+          "constraint": {
+            "min": 3,
+            "max": 3
+          },
+          "courses": [
+            "AUC-HOIX"
+          ]
         }
       ]
     }

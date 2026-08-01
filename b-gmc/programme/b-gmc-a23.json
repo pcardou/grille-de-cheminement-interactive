@@ -1,864 +1,318 @@
 {
-  "titre": "Baccalauréat en génie mécanique",
+  "code": "b-gmc",
   "version": "A23",
-  "sourceName": "b-gmc-a23",
-  "creditsExiges": 120,
-  "specialisations": [
-    "Cheminement sans concentration",
-    "Robotique",
-    "Génie du développement durable",
-    "Profil entrepreneurial",
-    "Profil international"
+  "year": 2023,
+  "title": "Baccalauréat en génie mécanique",
+  "cycle": 1,
+  "credits_required": 120,
+  "mandatory": [
+    "GLO-1901",
+    "GMC-1001",
+    "GMC-1024",
+    "GML-1001",
+    "MAT-1900",
+    "GMC-1003",
+    "GMC-2001",
+    "MAT-1910",
+    "MAT-2910",
+    "GMC-1002",
+    "GMC-2002",
+    "GMC-2003",
+    "GMC-2005",
+    "GMC-2006",
+    "GMC-2024",
+    "GMC-2008",
+    "GMC-2025",
+    "GMC-3000",
+    "GMC-3002",
+    "GMC-3005",
+    "GMC-3009",
+    "GMC-3024",
+    "STT-1900",
+    "GMC-2007",
+    "GMC-3003",
+    "GMC-3006",
+    "GMC-3025",
+    "GMC-3020",
+    "GMC-3034",
+    "PHI-2910",
+    "GMC-3035",
+    "PHI-3900",
+    "ECN-4901"
   ],
-  "specialisationsCredits": {
-    "Cheminement sans concentration": 18,
-    "Robotique": 18,
-    "Génie du développement durable": 18,
-    "Profil entrepreneurial": 18,
-    "Profil international": 18
-  },
-  "regles": [
+  "rules": [
     {
-      "titreRegle": "Cours compensateurs",
-      "minCredits": 21,
-      "maxCredits": 21,
-      "specialisation": "Scolarité préparatoire",
-      "cours": [
+      "title": "Cours compensateurs",
+      "constraint": {
+        "min": 21,
+        "max": 21
+      },
+      "courses": [
+        "CHM-0150",
+        "MAT-0130",
+        "MAT-0150",
+        "MAT-0260",
+        "PHY-0150",
+        "PHY-0250"
+      ]
+    },
+    {
+      "title": "Stages",
+      "constraint": {
+        "min": 9,
+        "max": 9
+      },
+      "courses": [
+        "GMC-2580"
+      ]
+    },
+    {
+      "title": "Règle 1",
+      "constraint": {
+        "min": 3,
+        "max": 3
+      },
+      "courses": [
+        "GMN-2902",
+        "MED-1100"
+      ]
+    }
+  ],
+  "concentrations": [
+    {
+      "title": "Cheminement sans concentration",
+      "credits_required": 18,
+      "mandatory": [],
+      "rules": [
         {
-          "sigle": "CHM-0150",
-          "titre": "Chimie générale",
-          "credits": "3"
+          "title": "Règle 1",
+          "constraint": {
+            "min": 15,
+            "max": 15
+          },
+          "courses": [
+            "OPT-ION1",
+            "OPT-ION2",
+            "OPT-ION3",
+            "OPT-ION4",
+            "OPT-ION5",
+            "GMC-4054",
+            "GMC-4150",
+            "GMC-4151",
+            "GMC-4350",
+            "PHY-2100",
+            "ENT-1000",
+            "ENT-4020",
+            "GBO-4070",
+            "GCI-2007",
+            "GCI-3001",
+            "GEL-2003",
+            "GEL-4100",
+            "GEL-4799",
+            "GMC-3012",
+            "GMC-3015",
+            "GML-4151",
+            "GIN-2010",
+            "GIN-2110",
+            "GIN-3010",
+            "GIN-3110",
+            "GIN-3220",
+            "GIN-4003",
+            "GSO-2105",
+            "GSO-3103",
+            "GMC-4200",
+            "GMC-4201",
+            "GMC-4202",
+            "GIF-4101",
+            "GLO-2100",
+            "IFT-4102",
+            "GMC-4250",
+            "GML-2007",
+            "GML-2251",
+            "GML-3000",
+            "GEL-1000",
+            "GEL-4250",
+            "GEL-4799",
+            "GIF-1003",
+            "GLO-4001",
+            "GMC-1300",
+            "GMC-3300",
+            "GMC-3351",
+            "MAT-2930",
+            "GAE-2005",
+            "GMC-3016",
+            "GMC-4048",
+            "GMC-4055",
+            "GMC-4100",
+            "GMC-4351",
+            "GMC-3550",
+            "GMC-3551"
+          ]
         },
         {
-          "sigle": "MAT-0130",
-          "titre": "Algèbre vectorielle",
-          "credits": "3"
-        },
-        {
-          "sigle": "MAT-0150",
-          "titre": "Calcul différentiel",
-          "credits": "4"
-        },
-        {
-          "sigle": "MAT-0260",
-          "titre": "Calcul intégral",
-          "credits": "4"
-        },
-        {
-          "sigle": "PHY-0150",
-          "titre": "Physique : mécanique classique",
-          "credits": "4"
-        },
-        {
-          "sigle": "PHY-0250",
-          "titre": "Physique : électricité et magnétisme",
-          "credits": "3"
+          "title": "Règle 2",
+          "constraint": {
+            "min": 3,
+            "max": 3
+          },
+          "courses": [
+            "LAN-GUES"
+          ]
         }
       ]
     },
     {
-      "titreRegle": "Cours obligatoires",
-      "minCredits": 99,
-      "maxCredits": 99,
-      "specialisation": "Activités communes",
-      "cours": [
+      "title": "Robotique",
+      "credits_required": 18,
+      "mandatory": [
+        "GMC-3351"
+      ],
+      "rules": [
         {
-          "sigle": "GLO-1901",
-          "titre": "Introduction à la programmation avec Python",
-          "credits": "3"
+          "title": "Règle 1",
+          "constraint": {
+            "min": 12,
+            "max": 12
+          },
+          "courses": [
+            "GEL-4250",
+            "GIF-1003",
+            "GIF-4101",
+            "GLO-4001",
+            "GMC-1300",
+            "GMC-3300",
+            "GMC-3550",
+            "GMC-3551",
+            "GMC-4048",
+            "GMC-4100",
+            "GMC-4200"
+          ]
         },
         {
-          "sigle": "GMC-1001",
-          "titre": "Statique des corps rigides",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-1024",
-          "titre": "Modélisation 3D",
-          "credits": "3"
-        },
-        {
-          "sigle": "GML-1001",
-          "titre": "Matériaux pour l'ingénierie",
-          "credits": "3"
-        },
-        {
-          "sigle": "MAT-1900",
-          "titre": "Mathématiques pour l'ingénierie I",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-1003",
-          "titre": "Introduction à la mécanique des fluides",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-2001",
-          "titre": "Résistance des matériaux",
-          "credits": "3"
-        },
-        {
-          "sigle": "MAT-1910",
-          "titre": "Mathématiques pour l'ingénierie II",
-          "credits": "3"
-        },
-        {
-          "sigle": "MAT-2910",
-          "titre": "Analyse numérique pour l'ingénierie",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-1002",
-          "titre": "Introduction à la thermodynamique",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-2002",
-          "titre": "Résistance des composantes de machines et des assemblages",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-2003",
-          "titre": "Dynamique des corps rigides",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-2005",
-          "titre": "Dynamique des fluides appliquée",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-2006",
-          "titre": "Équations aux dérivées partielles en génie mécanique",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-2024",
-          "titre": "Ingénierie et conception I",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-2008",
-          "titre": "Machines thermiques",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-2025",
-          "titre": "Ingénierie et conception II",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-3000",
-          "titre": "Dynamique des vibrations",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-3002",
-          "titre": "Dynamique de la commande appliquée",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-3005",
-          "titre": "Transferts thermiques",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-3009",
-          "titre": "Gestion de projets en ingénierie",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-3024",
-          "titre": "Ingénierie et conception III",
-          "credits": "3"
-        },
-        {
-          "sigle": "STT-1900",
-          "titre": "Méthodes statistiques pour l'ingénierie",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-2007",
-          "titre": "Fabrication mécanique",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-3003",
-          "titre": "Éléments de transmission de puissance",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-3006",
-          "titre": "Introduction à la mesure et à la mécatronique",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-3025",
-          "titre": "Ingénierie et conception IV",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-3020",
-          "titre": "Investigation expérimentale en génie mécanique",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-3034",
-          "titre": "Ingénierie et conception V",
-          "credits": "3"
-        },
-        {
-          "sigle": "PHI-2910",
-          "titre": "Génie et développement durable",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-3035",
-          "titre": "Ingénierie et conception VI",
-          "credits": "3"
-        },
-        {
-          "sigle": "PHI-3900",
-          "titre": "Éthique et professionnalisme",
-          "credits": "3"
-        },
-        {
-          "sigle": "ECN-4901",
-          "titre": "Analyse économique en ingénierie",
-          "credits": "3"
+          "title": "Règle 2",
+          "constraint": {
+            "min": 3,
+            "max": 3
+          },
+          "courses": [
+            "LAN-GUES"
+          ]
         }
       ]
     },
     {
-      "titreRegle": "Stages",
-      "minCredits": 9,
-      "maxCredits": 9,
-      "specialisation": "Activités communes",
-      "cours": [
+      "title": "Génie du développement durable",
+      "credits_required": 18,
+      "mandatory": [
+        "GMC-3012",
+        "GMC-3015"
+      ],
+      "rules": [
         {
-          "sigle": "GMC-2580",
-          "titre": "Stage en génie mécanique II",
-          "credits": "9"
+          "title": "Règle 1",
+          "constraint": {
+            "min": 9,
+            "max": 9
+          },
+          "courses": [
+            "GBO-2040",
+            "GBO-4070",
+            "GCI-2004",
+            "GCI-2007",
+            "GCI-3001",
+            "GCI-3002",
+            "GEL-2003",
+            "GEL-4100",
+            "GEL-4799",
+            "GMC-3551",
+            "GMC-3550",
+            "GMC-4100"
+          ]
+        },
+        {
+          "title": "Règle 2",
+          "constraint": {
+            "min": 3,
+            "max": 3
+          },
+          "courses": [
+            "LAN-GUES"
+          ]
+        }
+      ]
+    }
+  ],
+  "profiles": [
+    {
+      "title": "Profil entrepreneurial",
+      "credits_required": 18,
+      "mandatory": [
+        "ENT-1000",
+        "ENT-3000",
+        "ENT-3010"
+      ],
+      "rules": [
+        {
+          "title": "Règle 1",
+          "constraint": {
+            "min": 3,
+            "max": 3
+          },
+          "courses": [
+            "ENT-2023",
+            "ENT-4020"
+          ]
+        },
+        {
+          "title": "Règle 2",
+          "constraint": {
+            "min": 3,
+            "max": 3
+          },
+          "courses": [
+            "LAN-GUES"
+          ]
+        },
+        {
+          "title": "Règle 3",
+          "constraint": {
+            "min": 3,
+            "max": 3
+          },
+          "courses": [
+            "OPT-GMC1"
+          ]
         }
       ]
     },
     {
-      "titreRegle": "Règle 1",
-      "minCredits": 3,
-      "maxCredits": 3,
-      "specialisation": "Activités communes",
-      "cours": [
-        {
-          "sigle": "GMN-2902",
-          "titre": "Santé et sécurité en ingénierie III",
-          "credits": "3"
-        },
-        {
-          "sigle": "MED-1100",
-          "titre": "Santé et sécurité au travail : notions de base",
-          "credits": "3"
-        }
-      ]
-    },
-    {
-      "titreRegle": "Règle 1",
-      "minCredits": 15,
-      "maxCredits": 15,
-      "specialisation": "Cheminement sans concentration",
-      "cours": [
-        {
-          "sigle": "OPT-ION1",
-          "titre": "Cours à option à déterminer",
-          "credits": "3"
-        },
-        {
-          "sigle": "OPT-ION2",
-          "titre": "Cours à option à déterminer",
-          "credits": "3"
-        },
-        {
-          "sigle": "OPT-ION3",
-          "titre": "Cours à option à déterminer",
-          "credits": "3"
-        },
-        {
-          "sigle": "OPT-ION4",
-          "titre": "Cours à option à déterminer",
-          "credits": "3"
-        },
-        {
-          "sigle": "OPT-ION5",
-          "titre": "Cours à option à déterminer",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-4054",
-          "titre": "Simulations numériques des écoulements industriels",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-4150",
-          "titre": "Introduction à l'aérodynamique",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-4151",
-          "titre": "Propulsion aéronautique et spatiale",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-4350",
-          "titre": "Turbomachines",
-          "credits": "3"
-        },
-        {
-          "sigle": "PHY-2100",
-          "titre": "Sciences de l'espace",
-          "credits": "3"
-        },
-        {
-          "sigle": "ENT-1000",
-          "titre": "Savoir entreprendre : la passion de créer et d'agir",
-          "credits": "3"
-        },
-        {
-          "sigle": "ENT-4020",
-          "titre": "Introduction à l'entrepreneurship technologique",
-          "credits": "3"
-        },
-        {
-          "sigle": "GBO-4070",
-          "titre": "Enveloppe du bâtiment",
-          "credits": "3"
-        },
-        {
-          "sigle": "GCI-2007",
-          "titre": "Structures métalliques",
-          "credits": "3"
-        },
-        {
-          "sigle": "GCI-3001",
-          "titre": "Impacts environnementaux",
-          "credits": "3"
-        },
-        {
-          "sigle": "GEL-2003",
-          "titre": "Électrotechnique",
-          "credits": "4"
-        },
-        {
-          "sigle": "GEL-4100",
-          "titre": "Commande industrielle",
-          "credits": "3"
-        },
-        {
-          "sigle": "GEL-4799",
-          "titre": "Dangers de l'électricité",
-          "credits": "0"
-        },
-        {
-          "sigle": "GMC-3012",
-          "titre": "Introduction à la mécanique du bâtiment et aux énergies renouvelables",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-3015",
-          "titre": "Conception intégrée des systèmes CVAC-R",
-          "credits": "3"
-        },
-        {
-          "sigle": "GML-4151",
-          "titre": "Introduction aux matériaux pour la santé",
-          "credits": "3"
-        },
-        {
-          "sigle": "GIN-2010",
-          "titre": "Gestion opérationnelle des systèmes d'entreprise",
-          "credits": "3"
-        },
-        {
-          "sigle": "GIN-2110",
-          "titre": "Optimisation des systèmes et des réseaux",
-          "credits": "3"
-        },
-        {
-          "sigle": "GIN-3010",
-          "titre": "Conception et implantation des systèmes de production",
-          "credits": "3"
-        },
-        {
-          "sigle": "GIN-3110",
-          "titre": "Environnement et cycle de vie des produits",
-          "credits": "3"
-        },
-        {
-          "sigle": "GIN-3220",
-          "titre": "Analyse des risques, fiabilité et maintenance",
-          "credits": "3"
-        },
-        {
-          "sigle": "GIN-4003",
-          "titre": "Science des données en ingénierie",
-          "credits": "3"
-        },
-        {
-          "sigle": "GSO-2105",
-          "titre": "Achat et approvisionnement",
-          "credits": "3"
-        },
-        {
-          "sigle": "GSO-3103",
-          "titre": "Ingénierie de la chaîne logistique",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-4200",
-          "titre": "Automatisation industrielle",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-4201",
-          "titre": "Ingénierie de la qualité",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-4202",
-          "titre": "Procédés et développement de produits",
-          "credits": "3"
-        },
-        {
-          "sigle": "GIF-4101",
-          "titre": "Introduction à l'apprentissage automatique",
-          "credits": "3"
-        },
-        {
-          "sigle": "GLO-2100",
-          "titre": "Algorithmes et structures de données pour l'ingénierie",
-          "credits": "3"
-        },
-        {
-          "sigle": "IFT-4102",
-          "titre": "Techniques avancées en intelligence artificielle",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-4250",
-          "titre": "Mécanique des matériaux composites",
-          "credits": "3"
-        },
-        {
-          "sigle": "GML-2007",
-          "titre": "Comportement mécanique et essais des matériaux",
-          "credits": "3"
-        },
-        {
-          "sigle": "GML-2251",
-          "titre": "Contrôle non destructif des matériaux",
-          "credits": "3"
-        },
-        {
-          "sigle": "GML-3000",
-          "titre": "Soudage des matériaux",
-          "credits": "3"
-        },
-        {
-          "sigle": "GEL-1000",
-          "titre": "Circuits",
-          "credits": "3"
-        },
-        {
-          "sigle": "GEL-4250",
-          "titre": "Commande des systèmes avancée",
-          "credits": "3"
-        },
-        {
-          "sigle": "GEL-4799",
-          "titre": "Dangers de l'électricité",
-          "credits": "0"
-        },
-        {
-          "sigle": "GIF-1003",
-          "titre": "Programmation avancée en C++ pour l'ingénierie",
-          "credits": "3"
-        },
-        {
-          "sigle": "GLO-4001",
-          "titre": "Introduction à la robotique mobile",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-1300",
-          "titre": "Initiation à la mécatronique",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-3300",
-          "titre": "Mécatronique appliquée",
-          "credits": "4"
-        },
-        {
-          "sigle": "GMC-3351",
-          "titre": "Éléments de robotique",
-          "credits": "3"
-        },
-        {
-          "sigle": "MAT-2930",
-          "titre": "Algèbre linéaire appliquée",
-          "credits": "3"
-        },
-        {
-          "sigle": "GAE-2005",
-          "titre": "Tracteurs et systèmes hydrauliques",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-3016",
-          "titre": "Introduction au génie maritime",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-4048",
-          "titre": "Analyse et synthèse cinématique des mécanismes",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-4055",
-          "titre": "Simulation numérique en mécanique des structures",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-4100",
-          "titre": "Commandes hydrauliques et pneumatiques",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-4351",
-          "titre": "Modélisation et analyse en CAO",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-3550",
-          "titre": "Projet spécialisé I",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-3551",
-          "titre": "Projet spécialisé II",
-          "credits": "3"
-        }
-      ]
-    },
-    {
-      "titreRegle": "Règle 2",
-      "minCredits": 3,
-      "maxCredits": 3,
-      "specialisation": "Cheminement sans concentration",
-      "cours": [
-        {
-          "sigle": "LAN-GUES",
-          "titre": "Cours de langue selon le résultat VEPT",
-          "credits": "3"
-        }
-      ]
-    },
-    {
-      "titreRegle": "Cours obligatoires",
-      "minCredits": 3,
-      "maxCredits": 3,
-      "specialisation": "Robotique",
-      "cours": [
-        {
-          "sigle": "GMC-3351",
-          "titre": "Éléments de robotique",
-          "credits": "3"
-        }
-      ]
-    },
-    {
-      "titreRegle": "Règle 1",
-      "minCredits": 12,
-      "maxCredits": 12,
-      "specialisation": "Robotique",
-      "cours": [
-        {
-          "sigle": "GEL-4250",
-          "titre": "Commande des systèmes avancée",
-          "credits": "3"
-        },
-        {
-          "sigle": "GIF-1003",
-          "titre": "Programmation avancée en C++ pour l'ingénierie",
-          "credits": "3"
-        },
-        {
-          "sigle": "GIF-4101",
-          "titre": "Introduction à l'apprentissage automatique",
-          "credits": "3"
-        },
-        {
-          "sigle": "GLO-4001",
-          "titre": "Introduction à la robotique mobile",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-1300",
-          "titre": "Initiation à la mécatronique",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-3300",
-          "titre": "Mécatronique appliquée",
-          "credits": "4"
-        },
-        {
-          "sigle": "GMC-3550",
-          "titre": "Projet spécialisé I",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-3551",
-          "titre": "Projet spécialisé II",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-4048",
-          "titre": "Analyse et synthèse cinématique des mécanismes",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-4100",
-          "titre": "Commandes hydrauliques et pneumatiques",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-4200",
-          "titre": "Automatisation industrielle",
-          "credits": "3"
-        }
-      ]
-    },
-    {
-      "titreRegle": "Règle 2",
-      "minCredits": 3,
-      "maxCredits": 3,
-      "specialisation": "Robotique",
-      "cours": [
-        {
-          "sigle": "LAN-GUES",
-          "titre": "Cours de langue selon le résultat VEPT",
-          "credits": "3"
-        }
-      ]
-    },
-    {
-      "titreRegle": "Cours obligatoires",
-      "minCredits": 6,
-      "maxCredits": 6,
-      "specialisation": "Génie du développement durable",
-      "cours": [
-        {
-          "sigle": "GMC-3012",
-          "titre": "Introduction à la mécanique du bâtiment et aux énergies renouvelables",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-3015",
-          "titre": "Conception intégrée des systèmes CVAC-R",
-          "credits": "3"
-        }
-      ]
-    },
-    {
-      "titreRegle": "Règle 1",
-      "minCredits": 9,
-      "maxCredits": 9,
-      "specialisation": "Génie du développement durable",
-      "cours": [
-        {
-          "sigle": "GBO-2040",
-          "titre": "Charpentes en bois I",
-          "credits": "3"
-        },
-        {
-          "sigle": "GBO-4070",
-          "titre": "Enveloppe du bâtiment",
-          "credits": "3"
-        },
-        {
-          "sigle": "GCI-2004",
-          "titre": "Structures de béton",
-          "credits": "3"
-        },
-        {
-          "sigle": "GCI-2007",
-          "titre": "Structures métalliques",
-          "credits": "3"
-        },
-        {
-          "sigle": "GCI-3001",
-          "titre": "Impacts environnementaux",
-          "credits": "3"
-        },
-        {
-          "sigle": "GCI-3002",
-          "titre": "Gestion des eaux",
-          "credits": "3"
-        },
-        {
-          "sigle": "GEL-2003",
-          "titre": "Électrotechnique",
-          "credits": "4"
-        },
-        {
-          "sigle": "GEL-4100",
-          "titre": "Commande industrielle",
-          "credits": "3"
-        },
-        {
-          "sigle": "GEL-4799",
-          "titre": "Dangers de l'électricité",
-          "credits": "0"
-        },
-        {
-          "sigle": "GMC-3551",
-          "titre": "Projet spécialisé II",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-3550",
-          "titre": "Projet spécialisé I",
-          "credits": "3"
-        },
-        {
-          "sigle": "GMC-4100",
-          "titre": "Commandes hydrauliques et pneumatiques",
-          "credits": "3"
-        }
-      ]
-    },
-    {
-      "titreRegle": "Règle 2",
-      "minCredits": 3,
-      "maxCredits": 3,
-      "specialisation": "Génie du développement durable",
-      "cours": [
-        {
-          "sigle": "LAN-GUES",
-          "titre": "Cours de langue selon le résultat VEPT",
-          "credits": "3"
-        }
-      ]
-    },
-    {
-      "titreRegle": "Cours obligatoires",
-      "minCredits": 9,
-      "maxCredits": 9,
-      "specialisation": "Profil entrepreneurial",
-      "cours": [
-        {
-          "sigle": "ENT-1000",
-          "titre": "Savoir entreprendre : la passion de créer et d'agir",
-          "credits": "3"
-        },
-        {
-          "sigle": "ENT-3000",
-          "titre": "Mon projet entrepreneurial en action 1",
-          "credits": "3"
-        },
-        {
-          "sigle": "ENT-3010",
-          "titre": "Mon projet entrepreneurial en action 2",
-          "credits": "3"
-        }
-      ]
-    },
-    {
-      "titreRegle": "Règle 1",
-      "minCredits": 3,
-      "maxCredits": 3,
-      "specialisation": "Profil entrepreneurial",
-      "cours": [
-        {
-          "sigle": "ENT-2023",
-          "titre": "Entrepreneuriat technologique",
-          "credits": "3"
-        },
-        {
-          "sigle": "ENT-4020",
-          "titre": "Introduction à l'entrepreneurship technologique",
-          "credits": "3"
-        }
-      ]
-    },
-    {
-      "titreRegle": "Règle 2",
-      "minCredits": 3,
-      "maxCredits": 3,
-      "specialisation": "Profil entrepreneurial",
-      "cours": [
-        {
-          "sigle": "LAN-GUES",
-          "titre": "Cours de langue selon le résultat VEPT",
-          "credits": "3"
-        }
-      ]
-    },
-    {
-      "titreRegle": "Règle 3",
-      "minCredits": 3,
-      "maxCredits": 3,
-      "specialisation": "Profil entrepreneurial",
-      "cours": [
-        {
-          "sigle": "OPT-ION1",
-          "titre": "Cours à option en génie mécanique",
-          "credits": "3"
-        }
-      ]
-    },
-    {
-      "titreRegle": "Règle 1",
-      "minCredits": 15,
-      "maxCredits": 15,
-      "specialisation": "Profil international",
-      "cours": [
-        {
-          "sigle": "OPT-ION1",
-          "titre": "Cours à option à l'étranger",
-          "credits": "3"
-        },
-        {
-          "sigle": "OPT-ION2",
-          "titre": "Cours à option à l'étranger",
-          "credits": "3"
-        },
-        {
-          "sigle": "OPT-ION3",
-          "titre": "Cours à option à l'étranger",
-          "credits": "3"
-        },
-        {
-          "sigle": "OPT-ION4",
-          "titre": "Cours à option à l'étranger",
-          "credits": "3"
-        },
-        {
-          "sigle": "OPT-ION5",
-          "titre": "Cours à option à l'étranger ou à l'Université Laval",
-          "credits": "3"
-        }
-      ]
-    },
-    {
-      "titreRegle": "Règle 2",
-      "minCredits": 3,
-      "maxCredits": 3,
-      "specialisation": "Profil international",
-      "cours": [
-        {
-          "sigle": "LAN-GUES",
-          "titre": "Cours de langue selon le résultat VEPT",
-          "credits": "3"
+      "title": "Profil international",
+      "credits_required": 18,
+      "mandatory": [],
+      "rules": [
+        {
+          "title": "Règle 1",
+          "constraint": {
+            "min": 15,
+            "max": 15
+          },
+          "courses": [
+            "OPT-ETR1",
+            "OPT-ETR2",
+            "OPT-ETR3",
+            "OPT-ETR4",
+            "OPT-ETR5"
+          ]
+        },
+        {
+          "title": "Règle 2",
+          "constraint": {
+            "min": 3,
+            "max": 3
+          },
+          "courses": [
+            "LAN-GUES"
+          ]
         }
       ]
     }

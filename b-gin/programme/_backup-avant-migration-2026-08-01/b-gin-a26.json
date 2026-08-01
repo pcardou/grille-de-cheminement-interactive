@@ -1,0 +1,1168 @@
+{
+  "titre": "Baccalauréat en génie industriel",
+  "version": "A26",
+  "sourceName": "b-gin-a26",
+  "creditsExiges": 120,
+  "specialisations": [
+    "Approche généraliste",
+    "Ingénierie de la chaîne logistique et des réseaux de création de valeur",
+    "Ingénierie en intelligence numérique des systèmes",
+    "Ingénierie de l'informatisation des systèmes d'entreprise",
+    "Systèmes productiques et distributiques",
+    "Profil entrepreneurial",
+    "Profil international"
+  ],
+  "specialisationsCredits": {
+    "Approche généraliste": 15,
+    "Ingénierie de la chaîne logistique et des réseaux de création de valeur": 15,
+    "Ingénierie en intelligence numérique des systèmes": 15,
+    "Ingénierie de l'informatisation des systèmes d'entreprise": 15,
+    "Systèmes productiques et distributiques": 15,
+    "Profil entrepreneurial": 15,
+    "Profil international": 15
+  },
+  "regles": [
+    {
+      "titreRegle": "Cours compensateurs",
+      "minCredits": 33,
+      "maxCredits": 33,
+      "specialisation": "Scolarité préparatoire",
+      "cours": [
+        {
+          "sigle": "BIO-0150",
+          "titre": "Biologie générale",
+          "credits": "3"
+        },
+        {
+          "sigle": "CHM-0150",
+          "titre": "Chimie générale",
+          "credits": "3"
+        },
+        {
+          "sigle": "CHM-0160",
+          "titre": "Chimie des solutions",
+          "credits": "3"
+        },
+        {
+          "sigle": "CHM-0170",
+          "titre": "Éléments de chimie générale et des solutions",
+          "credits": "3"
+        },
+        {
+          "sigle": "CHM-0250",
+          "titre": "Chimie organique",
+          "credits": "3"
+        },
+        {
+          "sigle": "MAT-0150",
+          "titre": "Calcul différentiel",
+          "credits": "4"
+        },
+        {
+          "sigle": "MAT-0260",
+          "titre": "Calcul intégral",
+          "credits": "4"
+        },
+        {
+          "sigle": "MAT-0130",
+          "titre": "Algèbre vectorielle",
+          "credits": "3"
+        },
+        {
+          "sigle": "PHY-0150",
+          "titre": "Physique : mécanique classique",
+          "credits": "4"
+        },
+        {
+          "sigle": "PHY-0250",
+          "titre": "Physique : électricité et magnétisme",
+          "credits": "3"
+        }
+      ]
+    },
+    {
+      "titreRegle": "Cours obligatoires",
+      "minCredits": 96,
+      "maxCredits": 96,
+      "specialisation": "Activités communes",
+      "cours": [
+        {
+          "sigle": "GIN-1500",
+          "titre": "Structure et organisation des entreprises",
+          "credits": "3"
+        },
+        {
+          "sigle": "GMC-1000",
+          "titre": "Dessin pour l'ingénierie",
+          "credits": "3"
+        },
+        {
+          "sigle": "GSC-1000",
+          "titre": "Méthodologie de design en ingénierie",
+          "credits": "3"
+        },
+        {
+          "sigle": "MAT-1900",
+          "titre": "Mathématiques pour l'ingénierie I",
+          "credits": "3"
+        },
+        {
+          "sigle": "STT-1900",
+          "titre": "Méthodes statistiques pour l'ingénierie",
+          "credits": "3"
+        },
+        {
+          "sigle": "ECN-4901",
+          "titre": "Analyse économique en ingénierie",
+          "credits": "3"
+        },
+        {
+          "sigle": "GIN-2010",
+          "titre": "Gestion opérationnelle des systèmes d'entreprise",
+          "credits": "3"
+        },
+        {
+          "sigle": "GIN-3040",
+          "titre": "Systèmes thermiques et énergétiques",
+          "credits": "3"
+        },
+        {
+          "sigle": "GLO-1901",
+          "titre": "Introduction à la programmation avec Python",
+          "credits": "3"
+        },
+        {
+          "sigle": "MAT-1910",
+          "titre": "Mathématiques pour l'ingénierie II",
+          "credits": "3"
+        },
+        {
+          "sigle": "GIN-2110",
+          "titre": "Optimisation des systèmes et des réseaux",
+          "credits": "3"
+        },
+        {
+          "sigle": "GIN-2120",
+          "titre": "Mécanique et ingénierie des matériaux",
+          "credits": "3"
+        },
+        {
+          "sigle": "GIN-3030",
+          "titre": "Électricité et électronique industrielle",
+          "credits": "3"
+        },
+        {
+          "sigle": "GSO-2100",
+          "titre": "Introduction à la gestion de projets",
+          "credits": "3"
+        },
+        {
+          "sigle": "MAT-2910",
+          "titre": "Analyse numérique pour l'ingénierie",
+          "credits": "3"
+        },
+        {
+          "sigle": "GIN-3000",
+          "titre": "Simulation des systèmes industriels",
+          "credits": "3"
+        },
+        {
+          "sigle": "GIN-3010",
+          "titre": "Conception et implantation des systèmes de production",
+          "credits": "3"
+        },
+        {
+          "sigle": "GIN-3020",
+          "titre": "Ingénierie et gestion de la qualité",
+          "credits": "3"
+        },
+        {
+          "sigle": "MQT-2100",
+          "titre": "Environnement de développement de SIAD",
+          "credits": "3"
+        },
+        {
+          "sigle": "RLT-3300",
+          "titre": "Introduction à l'ergonomie",
+          "credits": "3"
+        },
+        {
+          "sigle": "GIN-3050",
+          "titre": "Projets de diagnostic et d'amélioration d'un système",
+          "credits": "3"
+        },
+        {
+          "sigle": "GIN-3060",
+          "titre": "Systèmes de gestion intégrée",
+          "credits": "3"
+        },
+        {
+          "sigle": "GIN-3080",
+          "titre": "Dynamique de la commande appliquée",
+          "credits": "3"
+        },
+        {
+          "sigle": "GIN-3110",
+          "titre": "Environnement et cycle de vie des produits",
+          "credits": "3"
+        },
+        {
+          "sigle": "GSO-3103",
+          "titre": "Ingénierie de la chaîne logistique",
+          "credits": "3"
+        },
+        {
+          "sigle": "GIN-3200",
+          "titre": "Projets de conception de systèmes industriels",
+          "credits": "3"
+        },
+        {
+          "sigle": "GIN-3220",
+          "titre": "Analyse des risques, fiabilité et maintenance",
+          "credits": "3"
+        },
+        {
+          "sigle": "CTB-1001",
+          "titre": "Comptabilité de management",
+          "credits": "3"
+        },
+        {
+          "sigle": "GIN-3310",
+          "titre": "Projet de fin d'études I",
+          "credits": "3"
+        },
+        {
+          "sigle": "RLT-1700",
+          "titre": "Aspects administratifs et humains de la gestion",
+          "credits": "3"
+        },
+        {
+          "sigle": "GIN-3320",
+          "titre": "Projet de fin d'études II",
+          "credits": "3"
+        },
+        {
+          "sigle": "PHI-3900",
+          "titre": "Éthique et professionnalisme",
+          "credits": "3"
+        }
+      ]
+    },
+    {
+      "titreRegle": "Stages",
+      "minCredits": 9,
+      "maxCredits": 9,
+      "specialisation": "Activités communes",
+      "cours": [
+        {
+          "sigle": "GIN-3580",
+          "titre": "Stage en génie industriel I",
+          "credits": "9"
+        }
+      ]
+    },
+    {
+      "titreRegle": "Règle 1",
+      "minCredits": 3,
+      "maxCredits": 3,
+      "specialisation": "Activités communes",
+      "cours": [
+        {
+          "sigle": "MED-1100",
+          "titre": "Santé et sécurité au travail : notions de base",
+          "credits": "3"
+        },
+        {
+          "sigle": "RLT-2002",
+          "titre": "Prévention primaire en SST",
+          "credits": "3"
+        },
+        {
+          "sigle": "SAN-SÉCU",
+          "titre": "Cours de santé et sécurité au travail à déterminer",
+          "credits": "3"
+        }
+      ]
+    },
+    {
+      "titreRegle": "Règle 2",
+      "minCredits": 3,
+      "maxCredits": 3,
+      "specialisation": "Activités communes",
+      "cours": [
+        {
+          "sigle": "BIO-1910",
+          "titre": "Écologie et pollution",
+          "credits": "3"
+        },
+        {
+          "sigle": "BIO-2909",
+          "titre": "Éléments de physiologie humaine",
+          "credits": "3"
+        },
+        {
+          "sigle": "BIO-4900",
+          "titre": "Écologie et environnement",
+          "credits": "3"
+        },
+        {
+          "sigle": "GLG-1000",
+          "titre": "Planète Terre",
+          "credits": "3"
+        },
+        {
+          "sigle": "PHY-1000",
+          "titre": "Introduction à l'astrophysique",
+          "credits": "3"
+        },
+        {
+          "sigle": "PHY-2100",
+          "titre": "Sciences de l'espace",
+          "credits": "3"
+        },
+        {
+          "sigle": "SCI-NATU",
+          "titre": "Cours de sciences de la nature à déterminer",
+          "credits": "3"
+        }
+      ]
+    },
+    {
+      "titreRegle": "Autres exigences - Règle 1",
+      "minCredits": 3,
+      "maxCredits": 3,
+      "specialisation": "Activités communes",
+      "cours": [
+        {
+          "sigle": "LAN-GUES",
+          "titre": "Cours de langue selon le résultat VEPT",
+          "credits": "3"
+        }
+      ]
+    },
+    {
+      "titreRegle": "Règle 1",
+      "minCredits": 15,
+      "maxCredits": 15,
+      "specialisation": "Approche généraliste",
+      "cours": [
+        {
+          "sigle": "GIF-1003",
+          "titre": "Programmation avancée en C++ pour l'ingénierie",
+          "credits": "3"
+        },
+        {
+          "sigle": "GIN-4021",
+          "titre": "Recherche opérationnelle avancée",
+          "credits": "3"
+        },
+        {
+          "sigle": "GMC-2007",
+          "titre": "Fabrication mécanique",
+          "credits": "3"
+        },
+        {
+          "sigle": "GMC-4100",
+          "titre": "Commandes hydrauliques et pneumatiques",
+          "credits": "3"
+        },
+        {
+          "sigle": "GMC-4200",
+          "titre": "Automatisation industrielle",
+          "credits": "3"
+        },
+        {
+          "sigle": "GMC-4202",
+          "titre": "Procédés et développement de produits",
+          "credits": "3"
+        },
+        {
+          "sigle": "GSO-2102",
+          "titre": "Gestion de la demande et des stocks",
+          "credits": "3"
+        },
+        {
+          "sigle": "GSO-2104",
+          "titre": "Distribution et entreposage",
+          "credits": "3"
+        },
+        {
+          "sigle": "GSO-2105",
+          "titre": "Achat et approvisionnement",
+          "credits": "3"
+        },
+        {
+          "sigle": "IFT-1003",
+          "titre": "Analyse et conception de systèmes d'information",
+          "credits": "3"
+        },
+        {
+          "sigle": "MQT-2101",
+          "titre": "Analyse et modélisation des données",
+          "credits": "3"
+        },
+        {
+          "sigle": "MQT-3000",
+          "titre": "Introduction à l'analytique d'affaires",
+          "credits": "3"
+        },
+        {
+          "sigle": "STT-1100",
+          "titre": "Introduction à la science des données",
+          "credits": "3"
+        },
+        {
+          "sigle": "OPT-ION1",
+          "titre": "Cours à option à déterminer",
+          "credits": "3"
+        },
+        {
+          "sigle": "OPT-ION2",
+          "titre": "Cours à option à déterminer",
+          "credits": "3"
+        },
+        {
+          "sigle": "OPT-ION3",
+          "titre": "Cours à option à déterminer",
+          "credits": "3"
+        },
+        {
+          "sigle": "OPT-ION4",
+          "titre": "Cours à option à déterminer",
+          "credits": "3"
+        },
+        {
+          "sigle": "OPT-ION5",
+          "titre": "Cours à option à déterminer",
+          "credits": "3"
+        }
+      ]
+    },
+    {
+      "titreRegle": "Cours obligatoires",
+      "minCredits": 3,
+      "maxCredits": 3,
+      "specialisation": "Ingénierie de la chaîne logistique et des réseaux de création de valeur",
+      "cours": [
+        {
+          "sigle": "GIN-4021",
+          "titre": "Recherche opérationnelle avancée",
+          "credits": "3"
+        }
+      ]
+    },
+    {
+      "titreRegle": "Règle 1",
+      "minCredits": 3,
+      "maxCredits": 9,
+      "specialisation": "Ingénierie de la chaîne logistique et des réseaux de création de valeur",
+      "cours": [
+        {
+          "sigle": "GSO-2102",
+          "titre": "Gestion de la demande et des stocks",
+          "credits": "3"
+        },
+        {
+          "sigle": "GSO-2104",
+          "titre": "Distribution et entreposage",
+          "credits": "3"
+        },
+        {
+          "sigle": "GSO-2105",
+          "titre": "Achat et approvisionnement",
+          "credits": "3"
+        }
+      ]
+    },
+    {
+      "titreRegle": "Règle 2",
+      "minCredits": 3,
+      "maxCredits": 9,
+      "specialisation": "Ingénierie de la chaîne logistique et des réseaux de création de valeur",
+      "cours": [
+        {
+          "sigle": "GGR-2109",
+          "titre": "Géographie des transports",
+          "credits": "3"
+        },
+        {
+          "sigle": "GIN-4003",
+          "titre": "Science des données en ingénierie",
+          "credits": "3"
+        },
+        {
+          "sigle": "GLO-2005",
+          "titre": "Modèles et langages des bases de données pour l'ingénierie",
+          "credits": "3"
+        },
+        {
+          "sigle": "GSO-2106",
+          "titre": "Gestion stratégique de la chaîne d'approvisionnement",
+          "credits": "3"
+        },
+        {
+          "sigle": "MNG-2100",
+          "titre": "Fondements du management international",
+          "credits": "3"
+        },
+        {
+          "sigle": "SIO-2100",
+          "titre": "Gestion stratégique des technologies de l'information",
+          "credits": "3"
+        },
+        {
+          "sigle": "SIO-2104",
+          "titre": "Gestion de l'innovation technologique",
+          "credits": "3"
+        }
+      ]
+    },
+    {
+      "titreRegle": "Règle 3",
+      "minCredits": 0,
+      "maxCredits": 6,
+      "specialisation": "Ingénierie de la chaîne logistique et des réseaux de création de valeur",
+      "cours": [
+        {
+          "sigle": "GIF-1003",
+          "titre": "Programmation avancée en C++ pour l'ingénierie",
+          "credits": "3"
+        },
+        {
+          "sigle": "GMC-1300",
+          "titre": "Initiation à la mécatronique",
+          "credits": "3"
+        },
+        {
+          "sigle": "GMC-2007",
+          "titre": "Fabrication mécanique",
+          "credits": "3"
+        },
+        {
+          "sigle": "GMC-3016",
+          "titre": "Introduction au génie maritime",
+          "credits": "3"
+        },
+        {
+          "sigle": "GMC-4100",
+          "titre": "Commandes hydrauliques et pneumatiques",
+          "credits": "3"
+        },
+        {
+          "sigle": "GMC-4200",
+          "titre": "Automatisation industrielle",
+          "credits": "3"
+        },
+        {
+          "sigle": "GMC-4202",
+          "titre": "Procédés et développement de produits",
+          "credits": "3"
+        },
+        {
+          "sigle": "IFT-1003",
+          "titre": "Analyse et conception de systèmes d'information",
+          "credits": "3"
+        },
+        {
+          "sigle": "MQT-2101",
+          "titre": "Analyse et modélisation des données",
+          "credits": "3"
+        },
+        {
+          "sigle": "MQT-3000",
+          "titre": "Introduction à l'analytique d'affaires",
+          "credits": "3"
+        },
+        {
+          "sigle": "STT-1100",
+          "titre": "Introduction à la science des données",
+          "credits": "3"
+        }
+      ]
+    },
+    {
+      "titreRegle": "Règle 4",
+      "minCredits": 0,
+      "maxCredits": 3,
+      "specialisation": "Ingénierie de la chaîne logistique et des réseaux de création de valeur",
+      "cours": [
+        {
+          "sigle": "MNG-3103",
+          "titre": "Gestion du changement",
+          "credits": "3"
+        }
+      ]
+    },
+    {
+      "titreRegle": "Cours obligatoires",
+      "minCredits": 3,
+      "maxCredits": 3,
+      "specialisation": "Ingénierie en intelligence numérique des systèmes",
+      "cours": [
+        {
+          "sigle": "MQT-3000",
+          "titre": "Introduction à l'analytique d'affaires",
+          "credits": "3"
+        }
+      ]
+    },
+    {
+      "titreRegle": "Règle 1",
+      "minCredits": 3,
+      "maxCredits": 3,
+      "specialisation": "Ingénierie en intelligence numérique des systèmes",
+      "cours": [
+        {
+          "sigle": "MQT-2101",
+          "titre": "Analyse et modélisation des données",
+          "credits": "3"
+        },
+        {
+          "sigle": "STT-1100",
+          "titre": "Introduction à la science des données",
+          "credits": "3"
+        }
+      ]
+    },
+    {
+      "titreRegle": "Règle 2",
+      "minCredits": 6,
+      "maxCredits": 9,
+      "specialisation": "Ingénierie en intelligence numérique des systèmes",
+      "cours": [
+        {
+          "sigle": "GIN-4003",
+          "titre": "Science des données en ingénierie",
+          "credits": "3"
+        },
+        {
+          "sigle": "GIN-4021",
+          "titre": "Recherche opérationnelle avancée",
+          "credits": "3"
+        },
+        {
+          "sigle": "GLO-2005",
+          "titre": "Modèles et langages des bases de données pour l'ingénierie",
+          "credits": "3"
+        },
+        {
+          "sigle": "GLO-4000",
+          "titre": "Interface personne-machine",
+          "credits": "3"
+        },
+        {
+          "sigle": "GSO-3105",
+          "titre": "Opérations et logistique à l'ère de l'industrie 4.0",
+          "credits": "3"
+        },
+        {
+          "sigle": "MQT-2102",
+          "titre": "Introduction à la simulation et à la visualisation",
+          "credits": "3"
+        },
+        {
+          "sigle": "SIO-3105",
+          "titre": "Analyse d'affaires pour la transformation organisationnelle",
+          "credits": "3"
+        },
+        {
+          "sigle": "STT-4230",
+          "titre": "R pour scientifique",
+          "credits": "3"
+        }
+      ]
+    },
+    {
+      "titreRegle": "Règle 3",
+      "minCredits": 0,
+      "maxCredits": 3,
+      "specialisation": "Ingénierie en intelligence numérique des systèmes",
+      "cours": [
+        {
+          "sigle": "GIF-1003",
+          "titre": "Programmation avancée en C++ pour l'ingénierie",
+          "credits": "3"
+        },
+        {
+          "sigle": "GMC-1300",
+          "titre": "Initiation à la mécatronique",
+          "credits": "3"
+        },
+        {
+          "sigle": "GMC-2007",
+          "titre": "Fabrication mécanique",
+          "credits": "3"
+        },
+        {
+          "sigle": "GMC-3016",
+          "titre": "Introduction au génie maritime",
+          "credits": "3"
+        },
+        {
+          "sigle": "GMC-4100",
+          "titre": "Commandes hydrauliques et pneumatiques",
+          "credits": "3"
+        },
+        {
+          "sigle": "GSO-2102",
+          "titre": "Gestion de la demande et des stocks",
+          "credits": "3"
+        },
+        {
+          "sigle": "GSO-2104",
+          "titre": "Distribution et entreposage",
+          "credits": "3"
+        },
+        {
+          "sigle": "GSO-2105",
+          "titre": "Achat et approvisionnement",
+          "credits": "3"
+        },
+        {
+          "sigle": "IFT-1003",
+          "titre": "Analyse et conception de systèmes d'information",
+          "credits": "3"
+        }
+      ]
+    },
+    {
+      "titreRegle": "Cours obligatoires",
+      "minCredits": 3,
+      "maxCredits": 3,
+      "specialisation": "Ingénierie de l'informatisation des systèmes d'entreprise",
+      "cours": [
+        {
+          "sigle": "GIF-1003",
+          "titre": "Programmation avancée en C++ pour l'ingénierie",
+          "credits": "3"
+        }
+      ]
+    },
+    {
+      "titreRegle": "Règle 1",
+      "minCredits": 3,
+      "maxCredits": 3,
+      "specialisation": "Ingénierie de l'informatisation des systèmes d'entreprise",
+      "cours": [
+        {
+          "sigle": "IFT-1003",
+          "titre": "Analyse et conception de systèmes d'information",
+          "credits": "3"
+        },
+        {
+          "sigle": "SIO-2103",
+          "titre": "Conception des systèmes d'information organisationnels I",
+          "credits": "3"
+        }
+      ]
+    },
+    {
+      "titreRegle": "Règle 2",
+      "minCredits": 3,
+      "maxCredits": 9,
+      "specialisation": "Ingénierie de l'informatisation des systèmes d'entreprise",
+      "cours": [
+        {
+          "sigle": "GIN-4003",
+          "titre": "Science des données en ingénierie",
+          "credits": "3"
+        },
+        {
+          "sigle": "GIN-4021",
+          "titre": "Recherche opérationnelle avancée",
+          "credits": "3"
+        },
+        {
+          "sigle": "GLO-2004",
+          "titre": "Génie logiciel orienté objet",
+          "credits": "3"
+        },
+        {
+          "sigle": "GLO-2005",
+          "titre": "Modèles et langages des bases de données pour l'ingénierie",
+          "credits": "3"
+        },
+        {
+          "sigle": "GLO-2100",
+          "titre": "Algorithmes et structures de données pour l'ingénierie",
+          "credits": "3"
+        },
+        {
+          "sigle": "GLO-4000",
+          "titre": "Interface personne-machine",
+          "credits": "3"
+        },
+        {
+          "sigle": "IFT-4102",
+          "titre": "Techniques avancées en intelligence artificielle",
+          "credits": "3"
+        },
+        {
+          "sigle": "SIO-2100",
+          "titre": "Gestion stratégique des technologies de l'information",
+          "credits": "3"
+        },
+        {
+          "sigle": "SIO-2104",
+          "titre": "Gestion de l'innovation technologique",
+          "credits": "3"
+        },
+        {
+          "sigle": "SIO-3100",
+          "titre": "Conception des systèmes d'information organisationnels II",
+          "credits": "3"
+        }
+      ]
+    },
+    {
+      "titreRegle": "Règle 3",
+      "minCredits": 0,
+      "maxCredits": 6,
+      "specialisation": "Ingénierie de l'informatisation des systèmes d'entreprise",
+      "cours": [
+        {
+          "sigle": "GMC-1300",
+          "titre": "Initiation à la mécatronique",
+          "credits": "3"
+        },
+        {
+          "sigle": "GMC-2007",
+          "titre": "Fabrication mécanique",
+          "credits": "3"
+        },
+        {
+          "sigle": "GMC-3016",
+          "titre": "Introduction au génie maritime",
+          "credits": "3"
+        },
+        {
+          "sigle": "GMC-4100",
+          "titre": "Commandes hydrauliques et pneumatiques",
+          "credits": "3"
+        },
+        {
+          "sigle": "GMC-4200",
+          "titre": "Automatisation industrielle",
+          "credits": "3"
+        },
+        {
+          "sigle": "GMC-4202",
+          "titre": "Procédés et développement de produits",
+          "credits": "3"
+        },
+        {
+          "sigle": "GSO-2102",
+          "titre": "Gestion de la demande et des stocks",
+          "credits": "3"
+        },
+        {
+          "sigle": "GSO-2104",
+          "titre": "Distribution et entreposage",
+          "credits": "3"
+        },
+        {
+          "sigle": "GSO-2105",
+          "titre": "Achat et approvisionnement",
+          "credits": "3"
+        },
+        {
+          "sigle": "MQT-2101",
+          "titre": "Analyse et modélisation des données",
+          "credits": "3"
+        },
+        {
+          "sigle": "MQT-3000",
+          "titre": "Introduction à l'analytique d'affaires",
+          "credits": "3"
+        },
+        {
+          "sigle": "STT-1100",
+          "titre": "Introduction à la science des données",
+          "credits": "3"
+        }
+      ]
+    },
+    {
+      "titreRegle": "Règle 4",
+      "minCredits": 0,
+      "maxCredits": 3,
+      "specialisation": "Ingénierie de l'informatisation des systèmes d'entreprise",
+      "cours": [
+        {
+          "sigle": "MNG-3103",
+          "titre": "Gestion du changement",
+          "credits": "3"
+        }
+      ]
+    },
+    {
+      "titreRegle": "Cours obligatoires",
+      "minCredits": 3,
+      "maxCredits": 3,
+      "specialisation": "Systèmes productiques et distributiques",
+      "cours": [
+        {
+          "sigle": "GMC-2007",
+          "titre": "Fabrication mécanique",
+          "credits": "3"
+        }
+      ]
+    },
+    {
+      "titreRegle": "Règle 1",
+      "minCredits": 6,
+      "maxCredits": 9,
+      "specialisation": "Systèmes productiques et distributiques",
+      "cours": [
+        {
+          "sigle": "GMC-1300",
+          "titre": "Initiation à la mécatronique",
+          "credits": "3"
+        },
+        {
+          "sigle": "GMC-3016",
+          "titre": "Introduction au génie maritime",
+          "credits": "3"
+        },
+        {
+          "sigle": "GMC-4100",
+          "titre": "Commandes hydrauliques et pneumatiques",
+          "credits": "3"
+        },
+        {
+          "sigle": "GMC-4200",
+          "titre": "Automatisation industrielle",
+          "credits": "3"
+        },
+        {
+          "sigle": "GMC-4202",
+          "titre": "Procédés et développement de produits",
+          "credits": "3"
+        }
+      ]
+    },
+    {
+      "titreRegle": "Règle 2",
+      "minCredits": 3,
+      "maxCredits": 6,
+      "specialisation": "Systèmes productiques et distributiques",
+      "cours": [
+        {
+          "sigle": "GGR-2109",
+          "titre": "Géographie des transports",
+          "credits": "3"
+        },
+        {
+          "sigle": "GIN-4003",
+          "titre": "Science des données en ingénierie",
+          "credits": "3"
+        },
+        {
+          "sigle": "GLO-2005",
+          "titre": "Modèles et langages des bases de données pour l'ingénierie",
+          "credits": "3"
+        },
+        {
+          "sigle": "GSO-2102",
+          "titre": "Gestion de la demande et des stocks",
+          "credits": "3"
+        },
+        {
+          "sigle": "GSO-2104",
+          "titre": "Distribution et entreposage",
+          "credits": "3"
+        }
+      ]
+    },
+    {
+      "titreRegle": "Règle 3",
+      "minCredits": 0,
+      "maxCredits": 3,
+      "specialisation": "Systèmes productiques et distributiques",
+      "cours": [
+        {
+          "sigle": "GIF-1003",
+          "titre": "Programmation avancée en C++ pour l'ingénierie",
+          "credits": "3"
+        },
+        {
+          "sigle": "GIN-4021",
+          "titre": "Recherche opérationnelle avancée",
+          "credits": "3"
+        },
+        {
+          "sigle": "GSO-2105",
+          "titre": "Achat et approvisionnement",
+          "credits": "3"
+        },
+        {
+          "sigle": "IFT-1003",
+          "titre": "Analyse et conception de systèmes d'information",
+          "credits": "3"
+        },
+        {
+          "sigle": "MQT-2101",
+          "titre": "Analyse et modélisation des données",
+          "credits": "3"
+        },
+        {
+          "sigle": "MQT-3000",
+          "titre": "Introduction à l'analytique d'affaires",
+          "credits": "3"
+        },
+        {
+          "sigle": "STT-1100",
+          "titre": "Introduction à la science des données",
+          "credits": "3"
+        }
+      ]
+    },
+    {
+      "titreRegle": "Cours obligatoires",
+      "minCredits": 9,
+      "maxCredits": 9,
+      "specialisation": "Profil entrepreneurial",
+      "cours": [
+        {
+          "sigle": "ENT-1000",
+          "titre": "Savoir entreprendre : la passion de créer et d'agir",
+          "credits": "3"
+        },
+        {
+          "sigle": "ENT-3000",
+          "titre": "Mon projet entrepreneurial en action 1",
+          "credits": "3"
+        },
+        {
+          "sigle": "ENT-3010",
+          "titre": "Mon projet entrepreneurial en action 2",
+          "credits": "3"
+        }
+      ]
+    },
+    {
+      "titreRegle": "Règle 1",
+      "minCredits": 3,
+      "maxCredits": 3,
+      "specialisation": "Profil entrepreneurial",
+      "cours": [
+        {
+          "sigle": "ENT-2023",
+          "titre": "Entrepreneuriat technologique",
+          "credits": "3"
+        },
+        {
+          "sigle": "ENT-2145",
+          "titre": "Devenir travailleur autonome et microentrepreneur",
+          "credits": "3"
+        }
+      ]
+    },
+    {
+      "titreRegle": "Règle 2",
+      "minCredits": 3,
+      "maxCredits": 3,
+      "specialisation": "Profil entrepreneurial",
+      "cours": [
+        {
+          "sigle": "GIF-1003",
+          "titre": "Programmation avancée en C++ pour l'ingénierie",
+          "credits": "3"
+        },
+        {
+          "sigle": "GIN-4021",
+          "titre": "Recherche opérationnelle avancée",
+          "credits": "3"
+        },
+        {
+          "sigle": "GMC-2007",
+          "titre": "Fabrication mécanique",
+          "credits": "3"
+        },
+        {
+          "sigle": "GMC-4100",
+          "titre": "Commandes hydrauliques et pneumatiques",
+          "credits": "3"
+        },
+        {
+          "sigle": "GMC-4200",
+          "titre": "Automatisation industrielle",
+          "credits": "3"
+        },
+        {
+          "sigle": "GMC-4202",
+          "titre": "Procédés et développement de produits",
+          "credits": "3"
+        },
+        {
+          "sigle": "GSO-2102",
+          "titre": "Gestion de la demande et des stocks",
+          "credits": "3"
+        },
+        {
+          "sigle": "GSO-2104",
+          "titre": "Distribution et entreposage",
+          "credits": "3"
+        },
+        {
+          "sigle": "GSO-2105",
+          "titre": "Achat et approvisionnement",
+          "credits": "3"
+        },
+        {
+          "sigle": "IFT-1003",
+          "titre": "Analyse et conception de systèmes d'information",
+          "credits": "3"
+        },
+        {
+          "sigle": "MQT-2101",
+          "titre": "Analyse et modélisation des données",
+          "credits": "3"
+        },
+        {
+          "sigle": "MQT-3000",
+          "titre": "Introduction à l'analytique d'affaires",
+          "credits": "3"
+        },
+        {
+          "sigle": "STT-1100",
+          "titre": "Introduction à la science des données",
+          "credits": "3"
+        }
+      ]
+    },
+    {
+      "titreRegle": "Règle 1",
+      "minCredits": 15,
+      "maxCredits": 15,
+      "specialisation": "Profil international",
+      "cours": [
+        {
+          "sigle": "OPT-ION1",
+          "titre": "Cours à option à l'étranger",
+          "credits": "3"
+        },
+        {
+          "sigle": "OPT-ION2",
+          "titre": "Cours à option à l'étranger",
+          "credits": "3"
+        },
+        {
+          "sigle": "OPT-ION3",
+          "titre": "Cours à option à l'étranger",
+          "credits": "3"
+        },
+        {
+          "sigle": "OPT-ION4",
+          "titre": "Cours à option à l'étranger",
+          "credits": "3"
+        },
+        {
+          "sigle": "OPT-ION5",
+          "titre": "Cours à option à l'étranger ou à l'Université Laval",
+          "credits": "3"
+        }
+      ]
+    }
+  ]
+}

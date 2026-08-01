@@ -1054,35 +1054,74 @@
             addRegle(regle) { if (!(regle instanceof VersionProgramme.Regle)) throw new TypeError('regle doit être une instance de VersionProgramme.Regle'); this.#regles.push(regle); }
             setSpecialisationCredits(nom, credits) { this.#specialisationsCredits.set(nom, credits); }
 
-            static async chargeVersionProgramme(path, selectedSpecialisation = 'Cheminement sans concentration') {
+            static async chargeVersionProgramme(path, selectedSpecialisation = 'Cheminement sans concentration', coursCatalogue = new Map()) {
                 const resp = await fetch(path);
                 if (!resp.ok) throw new Error(`Impossible de charger le fichier JSON : ${resp.status} ${resp.statusText}`);
                 const data = await resp.json();
 
                 const sourceName = path.replace(/^.*[\\\/]/, '').replace(/\.[^/.]+$/, '');
+                const concentrations = data.concentrations || [];
+                const profiles = data.profiles || [];
+                const toutesSpecialisations = [...concentrations, ...profiles];
+
                 const programme = new VersionProgramme(
-                    data.titre || 'Titre inconnu',
+                    data.title || 'Titre inconnu',
                     data.version || '??',
-                    data.specialisations || [],
-                    data.creditsExiges || 0,
+                    toutesSpecialisations.map(s => s.title),
+                    data.credits_required || 0,
                     sourceName
                 );
 
-                Object.entries(data.specialisationsCredits || {}).forEach(([nom, credits]) =>
-                    programme.setSpecialisationCredits(nom, credits)
+                toutesSpecialisations.forEach(s =>
+                    programme.setSpecialisationCredits(s.title, s.credits_required || 0)
                 );
 
-                const communesOuScolarite = new Set(['Scolarité préparatoire', 'Activités communes']);
-                (data.regles || []).forEach(r => {
-                    if (!communesOuScolarite.has(r.specialisation) && r.specialisation !== selectedSpecialisation) return;
-                    const sigles  = (r.cours || []).map(c => c.sigle);
-                    const titres  = (r.cours || []).map(c => c.titre);
-                    const credits = (r.cours || []).map(c => c.credits);
+                // Résout une liste de sigles (codes bruts) en titres/crédits via le
+                // catalogue de cours déjà chargé (cours.csv + cours-hors-catalogue.csv).
+                const resoudre = (sigles) => {
+                    const titres = [];
+                    const credits = [];
+                    (sigles || []).forEach(sigle => {
+                        const cours = coursCatalogue.get(sigle);
+                        if (!cours) console.warn(`Sigle introuvable dans le catalogue de cours : ${sigle}`);
+                        titres.push(cours ? cours.titre : '');
+                        credits.push(String(cours ? cours.credits : 0));
+                    });
+                    return { titres, credits };
+                };
+
+                const ajouterRegleMandatory = (sigles, specialisation) => {
+                    if (!sigles || !sigles.length) return;
+                    const { titres, credits } = resoudre(sigles);
+                    const total = credits.reduce((somme, c) => somme + (parseInt(c) || 0), 0);
                     programme.addRegle(new VersionProgramme.Regle(
-                        r.titreRegle, r.minCredits, r.maxCredits,
-                        sigles, titres, credits, r.specialisation
+                        'Cours obligatoires', total, total, sigles, titres, credits, specialisation
                     ));
-                });
+                };
+
+                const ajouterRegles = (rules, specialisation) => {
+                    (rules || []).forEach(r => {
+                        // La scolarité préparatoire partage les règles communes au niveau
+                        // racine, mais conserve son tag interne dédié (exclusion du total).
+                        const spec = (specialisation === 'Activités communes' && r.title === 'Cours compensateurs')
+                            ? 'Scolarité préparatoire'
+                            : specialisation;
+                        const { titres, credits } = resoudre(r.courses);
+                        programme.addRegle(new VersionProgramme.Regle(
+                            r.title, r.constraint?.min ?? 0, r.constraint?.max ?? 0,
+                            r.courses || [], titres, credits, spec
+                        ));
+                    });
+                };
+
+                ajouterRegleMandatory(data.mandatory, 'Activités communes');
+                ajouterRegles(data.rules, 'Activités communes');
+
+                const specSelectionnee = toutesSpecialisations.find(s => s.title === selectedSpecialisation);
+                if (specSelectionnee) {
+                    ajouterRegleMandatory(specSelectionnee.mandatory, specSelectionnee.title);
+                    ajouterRegles(specSelectionnee.rules, specSelectionnee.title);
+                }
 
                 return programme;
             }
@@ -1244,6 +1283,34 @@
                     (row[3] || '').trim(),       // préalables
                     (row[4] || '').trim(),       // url
                 ));
+            }
+
+            // Cours hors catalogue ULaval (pseudo-cours d'options à déterminer,
+            // cours préuniversitaires non scrapés, etc.) : fichier annexe optionnel,
+            // jamais régénéré par analyse-cours-ulaval.py.
+            try {
+                const horsCatalogueResp = await fetch(`${basePath}/cours/cours-hors-catalogue.csv`);
+                if (horsCatalogueResp.ok) {
+                    const horsCatalogueRows = parseCSVSemicolon(await horsCatalogueResp.text());
+                    for (let i = 1; i < horsCatalogueRows.length; i++) {
+                        const row = horsCatalogueRows[i];
+                        if (!row || !(row[0] || '').trim()) continue;
+                        const sigle = row[0].trim();
+                        if (siglesFiltre && !siglesFiltre.has(sigle)) continue;
+                        if (coursMap.has(sigle)) continue;
+                        coursMap.set(sigle, new Cours(
+                            sigle,
+                            (row[1] || '').trim(),   // titre
+                            '',                      // titreCourt
+                            '',                      // couleur
+                            parseInt(row[2]) || 0,   // crédits
+                            '',                      // préalables
+                            '',                      // url
+                        ));
+                    }
+                }
+            } catch (e) {
+                console.warn('Impossible de charger cours-hors-catalogue.csv :', e);
             }
 
             const sessionsIndex = new Map();  // "sigle:session" → Session
@@ -3006,7 +3073,7 @@ ${logHTML}
 
                     async function loadProgram(selectedSpecialisation = null) {
                         // Chargement initial : récupérer la liste des spécialisations du programme
-                        const programmeInit = await VersionProgramme.chargeVersionProgramme(getCsvPath(), selectedSpecialisation || '');
+                        const programmeInit = await VersionProgramme.chargeVersionProgramme(getCsvPath(), selectedSpecialisation || '', tousLesCours);
 
                         // Si la spécialisation demandée est absente, utiliser la première disponible
                         let specFinale = selectedSpecialisation;
@@ -3017,7 +3084,7 @@ ${logHTML}
 
                         // Recharger avec la bonne spécialisation si elle a changé
                         const programme = (specFinale && specFinale !== selectedSpecialisation)
-                            ? await VersionProgramme.chargeVersionProgramme(getCsvPath(), specFinale)
+                            ? await VersionProgramme.chargeVersionProgramme(getCsvPath(), specFinale, tousLesCours)
                             : programmeInit;
 
                         if (specialisationSelect) {
