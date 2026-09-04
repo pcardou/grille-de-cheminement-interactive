@@ -40,6 +40,24 @@
             letter-spacing: 0.3px;
         }
 
+        .avertissement-banner {
+            background: #fff8e1;
+            color: #7a5c00;
+            border: 1px solid #ffc103;
+            border-radius: 6px;
+            padding: 12px 20px;
+            margin: 16px 20px 0;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .avertissement-banner .emoji {
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
         .container {
             max-width: 1800px;
             margin: 40px auto;
@@ -814,6 +832,11 @@
             <div class="header-right"></div>
         </div>
     </header>
+
+    <div class="avertissement-banner">
+        <span class="emoji" aria-hidden="true">⚠️</span>
+        <span>Cet outil peut contenir des erreurs et les horaires des cours sont sujets à changements sans préavis. Pour ces raisons, vous devez vérifier le cheminement produit à l'aide du site web officiel de l'UL et à chaque nouvelle période d'inscription.</span>
+    </div>
 
     <div class="container">
         <div class="cheminement-controls-row">
