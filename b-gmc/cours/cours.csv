@@ -101,3 +101,19 @@ PHY-0150;Physique : mécanique classique;4;Préalables : avant la réforme physi
 PHY-0250;Physique : électricité et magnétisme;3;PHY-0150;https://www.ulaval.ca/etudes/cours/phy-0250-physique-electricite-et-magnetisme;ÉlecMagn;#8C5A7B
 PHY-2100;Sciences de l'espace;3;MAT-0150 ET MAT-0260 ET MAT-0130 ET PHY-0150 ET PHY-0250 ET PHY-0260;https://www.ulaval.ca/etudes/cours/phy-2100-sciences-de-lespace;ScEspace;#5C7FA3
 STT-1900;Méthodes statistiques pour l'ingénierie;3;MAT-0150 ET MAT-0260;https://www.ulaval.ca/etudes/cours/stt-1900-methodes-statistiques-pour-lingenierie;MéthStat;#E76F51
+BIO-0150;Biologie générale;3;;;;
+CHM-0160;Chimie des solutions;3;;;;
+CHM-0170;Éléments de chimie générale et des solutions;3;;;;
+CHM-0250;Chimie organique;3;;;;
+LAN-GUES;Cours de langue selon le résultat VEPT;3;;;;
+OPT-ETR1;Cours à option à l'étranger;3;;;;
+OPT-ETR2;Cours à option à l'étranger;3;;;;
+OPT-ETR3;Cours à option à l'étranger;3;;;;
+OPT-ETR4;Cours à option à l'étranger;3;;;;
+OPT-ETR5;Cours à option à l'étranger ou à l'Université Laval;3;;;;
+OPT-GMC1;Cours à option en génie mécanique;3;;;;
+OPT-ION1;Cours à option à déterminer;3;;;;
+OPT-ION2;Cours à option à déterminer;3;;;;
+OPT-ION3;Cours à option à déterminer;3;;;;
+OPT-ION4;Cours à option à déterminer;3;;;;
+OPT-ION5;Cours à option à déterminer;3;;;;

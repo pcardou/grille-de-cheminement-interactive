@@ -816,6 +816,10 @@
             border-top: 1px solid #45475a;
             padding-top: 8px;
         }
+
+        @media print {
+            @page { size: 11in 8.5in; margin: 10mm; }
+        }
     </style>
 </head>
 <body>
@@ -2537,7 +2541,7 @@
             document.getElementById('modal-sauvegarde').classList.remove('visible');
         }
 
-        function sauvegarderCheminementCSV() {
+        async function sauvegarderCheminementCSV() {
             fermerModalSauvegarde();
 
             const headers = document.querySelectorAll('.table-wrapper thead tr th');
@@ -2558,6 +2562,27 @@
             }
 
             const csvContent = lines.join('\r\n');
+
+            // Navigateurs supportant la File System Access API (Chrome, Edge...) :
+            // boîte de dialogue native pour choisir le dossier et le nom du fichier.
+            if (window.showSaveFilePicker) {
+                try {
+                    const handle = await window.showSaveFilePicker({
+                        suggestedName: 'cheminement.csv',
+                        types: [{ description: 'Fichier CSV', accept: { 'text/csv': ['.csv'] } }],
+                    });
+                    const writable = await handle.createWritable();
+                    await writable.write(csvContent);
+                    await writable.close();
+                    return;
+                } catch (e) {
+                    if (e.name === 'AbortError') return; // annulé par l'utilisateur
+                    console.warn('showSaveFilePicker a échoué, repli sur le téléchargement standard :', e);
+                }
+            }
+
+            // Repli pour les navigateurs sans File System Access API (Firefox, Safari) :
+            // téléchargement direct dans le dossier de téléchargements par défaut.
             const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -2588,7 +2613,7 @@
 <meta charset="UTF-8">
 <title>Grille de cheminement</title>
 <style>
-@page { size: letter landscape; margin: 10mm; }
+@page { size: 11in 8.5in; margin: 10mm; }
 * { box-sizing: border-box; }
 body { font-family: system-ui, -apple-system, sans-serif; font-size: 10px; margin: 0; padding: 0; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
 h2 { font-size: 13px; margin: 0 0 6px; color: #1a1a2e; }

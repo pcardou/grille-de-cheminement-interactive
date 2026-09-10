@@ -523,9 +523,15 @@ def charger_plages_supplementaires():
     with open(chemin, newline="", encoding="utf-8-sig") as f:
 
         reader = csv.reader(f, delimiter=";")
-        next(reader, None)
+        rows = list(reader)
 
-        for row in reader:
+        # Ignorer la première ligne seulement si c'est vraiment un en-tête
+        # (sinon un fichier sans en-tête se ferait amputer de sa première
+        # ligne de données, silencieusement).
+        if rows and not re.fullmatch(r"[A-Z]{2,4}-\d{4}", (rows[0][0].strip() if rows[0] else "")):
+            rows = rows[1:]
+
+        for row in rows:
 
             if len(row) < 5:
                 continue
@@ -557,6 +563,57 @@ def charger_plages_supplementaires():
             ]
 
     return suppl
+
+
+def charger_cours_hors_catalogue():
+    """
+    Charge cours-hors-catalogue.csv (sigle;titre;credits) : des pseudo-cours
+    ou cours sans page ULaval (options à déterminer, cours de langue, cours
+    préuniversitaires non scrapés, etc.). Retourne une liste de dicts au même
+    format que ceux produits par analyser_fichier(), avec versions=[] (pas
+    d'horaire scrapé — leurs sessions viennent uniquement de
+    plages-horaires-supplementaires.csv). Retourne une liste vide si le
+    fichier est absent.
+    """
+
+    chemin = BASE_DIR / "cours-hors-catalogue.csv"
+
+    if not chemin.exists():
+        return []
+
+    cours_liste = []
+
+    with open(chemin, newline="", encoding="utf-8-sig") as f:
+
+        reader = csv.reader(f, delimiter=";")
+        rows = list(reader)
+
+        if rows and rows[0] and rows[0][0].strip().lower() == "sigle":
+            rows = rows[1:]
+
+        for row in rows:
+
+            if len(row) < 1:
+                continue
+
+            sigle = row[0].strip()
+
+            if not sigle:
+                continue
+
+            titre = row[1].strip() if len(row) > 1 else ""
+            credits_bruts = row[2].strip() if len(row) > 2 else ""
+
+            cours_liste.append({
+                "sigle": sigle,
+                "titre": titre,
+                "credits": int(credits_bruts) if credits_bruts.isdigit() else None,
+                "prealables": "",
+                "url": "",
+                "versions": [],
+            })
+
+    return cours_liste
 
 
 def exporter(cours_liste):
@@ -706,6 +763,18 @@ def main():
             )
 
             print(e)
+
+    sigles_deja_presents = {c["sigle"] for c in cours_liste}
+
+    for cours in charger_cours_hors_catalogue():
+
+        if cours["sigle"] in sigles_deja_presents:
+            print(f"IGNORÉ (déjà scrapé) : {cours['sigle']} présent à la fois dans pages-html/ et cours-hors-catalogue.csv")
+            continue
+
+        cours_liste.append(cours)
+        sigles_deja_presents.add(cours["sigle"])
+        print(f"OK (hors catalogue) : {cours['sigle']}")
 
     exporter(cours_liste)
 
