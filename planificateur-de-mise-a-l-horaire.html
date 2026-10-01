@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Planificateur de mise à l'horaire</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        background-color: #fafafa;
+        color: #333;
+    }
+
+    header {
+        background: linear-gradient(135deg, #e30513 0%, #c70410 100%);
+        color: white;
+        padding: 20px 28px;
+        box-shadow: 0 4px 12px rgba(227, 5, 19, 0.2);
+        border-bottom: 4px solid #ffc103;
+    }
+
+    header h1 {
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: -0.3px;
+    }
+
+    header p {
+        font-size: 14px;
+        opacity: 0.95;
+        margin-top: 4px;
+        font-weight: 300;
+    }
+
+    .container {
+        max-width: 1500px;
+        margin: 24px auto;
+        padding: 0 20px 40px;
+    }
+
+    .controls-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 14px 18px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .controls-row label {
+        font-weight: 600;
+        color: #3c1b1b;
+        font-size: 14px;
+    }
+
+    .controls-row select {
+        padding: 8px 12px;
+        border-radius: 6px;
+        border: 1px solid #ddd;
+        font-size: 14px;
+        font-weight: 600;
+        background: white;
+        min-width: 90px;
+    }
+
+    .main-layout {
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+    }
+
+    .structure-panel {
+        flex: 0 0 460px;
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 22px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        max-height: calc(100vh - 180px);
+        overflow-y: auto;
+    }
+
+    .structure-panel h2 {
+        margin: 0 0 4px;
+        font-size: 20px;
+        color: #1f1f1f;
+    }
+
+    .programme-info {
+        margin-bottom: 12px;
+        font-size: 13px;
+        color: #555;
+        font-weight: 500;
+    }
+
+    .rule-section-header {
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        font-weight: 700;
+        color: #777;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        padding: 6px 4px 4px;
+        border-bottom: 1px solid #ddd;
+        margin: 12px 0 8px;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .rule-section-header:first-child { margin-top: 0; }
+
+    .section-toggle-arrow {
+        display: inline-block;
+        font-size: 10px;
+        margin-right: 5px;
+        transition: transform 0.15s ease;
+    }
+
+    .rule-section-header.collapsed .section-toggle-arrow { transform: rotate(-90deg); }
+    .rule-section-collapsible.hidden { display: none; }
+
+    .rule-card {
+        border: 1px solid #eee;
+        border-radius: 10px;
+        padding: 14px;
+        margin-bottom: 14px;
+        background: #fafafa;
+    }
+
+    .rule-header {
+        font-size: 14px;
+        color: #2d2d2d;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    .course-list { display: grid; gap: 8px; }
+
+    .course-line {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 8px 10px;
+        background: white;
+        border: 1px solid #e6e6e6;
+        border-radius: 8px;
+    }
+
+    .course-line.cours-non-offert { opacity: 0.55; }
+
+    .course-line .code {
+        flex: 0 0 78px;
+        font-weight: 700;
+        font-size: 13px;
+    }
+
+    .course-line .title {
+        flex: 1 1 160px;
+        font-size: 13px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .course-line .credits {
+        flex: 0 0 auto;
+        font-size: 12px;
+        color: #555;
+        font-weight: 600;
+    }
+
+    .non-offert-note {
+        flex: 0 0 100%;
+        font-size: 12px;
+        font-style: italic;
+        color: #a33;
+    }
+
+    .section-checkboxes {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .section-checkbox {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 12px;
+        font-weight: 600;
+        color: #333;
+        cursor: pointer;
+        background: #f0f0f0;
+        border-radius: 6px;
+        padding: 3px 8px;
+    }
+
+    .section-checkbox input { cursor: pointer; }
+
+    .schedule-panel { flex: 1 1 auto; min-width: 0; }
+
+    .table-wrapper {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        overflow: auto;
+        border-top: 5px solid #ffc103;
+    }
+
+    table { border-collapse: collapse; width: 100%; table-layout: fixed; min-width: 820px; }
+    thead { background: linear-gradient(to bottom, #e30513, #d60310); color: white; }
+
+    th {
+        padding: 12px 6px;
+        text-align: center;
+        font-size: 13px;
+        font-weight: 600;
+        border-right: 1px solid rgba(255, 255, 255, 0.15);
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+    }
+
+    th:first-child { width: 64px; }
+    th:last-child { border-right: none; }
+
+    td {
+        padding: 0;
+        text-align: center;
+        border-right: 1px solid #e8e8e8;
+        border-bottom: 1px solid #f0f0f0;
+        font-size: 11px;
+        height: 22px;
+        vertical-align: middle;
+    }
+
+    td:last-child { border-right: none; }
+
+    td.time-col {
+        font-size: 11px;
+        color: #888;
+        font-weight: 500;
+        padding: 0 6px;
+        background: #f9f9f9;
+        white-space: nowrap;
+        width: 64px;
+        border-right: 2px solid #e0e0e0;
+    }
+
+    tbody tr:hover td:not(.event-cell) { background-color: #fafbff; }
+    tbody tr:hover td.time-col { background: #f0f0f0; }
+
+    td.event-cell {
+        color: white;
+        font-weight: 700;
+        font-size: 10px;
+        text-align: center;
+        vertical-align: middle;
+        cursor: default;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding: 0 3px;
+    }
+
+    .legend {
+        margin-top: 16px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .legend-item { display: flex; align-items: center; gap: 6px; font-size: 13px; }
+    .legend-dot { width: 13px; height: 13px; border-radius: 3px; flex-shrink: 0; }
+
+    .empty-msg {
+        text-align: center;
+        padding: 40px;
+        color: #888;
+        font-size: 15px;
+        font-style: italic;
+    }
+
+    @media (max-width: 1000px) {
+        .main-layout { flex-direction: column; }
+        .structure-panel { flex: 1 1 auto; max-height: none; width: 100%; }
+    }
+</style>
+</head>
+<body>
+    <header>
+        <h1>Planificateur de mise à l'horaire</h1>
+        <p>Cochez les cours (ou les sections) qui vous intéressent pour voir leur horaire hebdomadaire.</p>
+    </header>
+
+    <div class="container">
+        <div class="controls-row">
+            <label for="programme-select">Programme :</label>
+            <select id="programme-select"></select>
+            <label for="session-select">Session courante :</label>
+            <select id="session-select"></select>
+        </div>
+
+        <div class="main-layout">
+            <div class="structure-panel">
+                <h2>Activités pédagogiques communes</h2>
+                <div id="programme-subtitle" class="programme-info"></div>
+                <div id="rules-list"></div>
+            </div>
+
+            <div class="schedule-panel">
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Heure</th><th>Dimanche</th><th>Lundi</th><th>Mardi</th>
+                                <th>Mercredi</th><th>Jeudi</th><th>Vendredi</th><th>Samedi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sched-body"></tbody>
+                    </table>
+                </div>
+                <div class="legend" id="legend"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ------------------------------------------------------------------
+        // Modèle de données (repris de grille-de-cheminement-interactive.html)
+        // ------------------------------------------------------------------
+
+        class VersionProgramme {
+            #titre;
+            #version;
+            #specialisations = [];
+            #creditsExiges;
+            #regles = [];
+            #specialisationsCredits = new Map();
+            #sourceName = '';
+
+            constructor(titre, version, specialisations = [], creditsExiges = 0, sourceName = '') {
+                this.#setTitre(titre);
+                this.#setVersion(version);
+                this.#setSpecialisations(specialisations);
+                this.#setCreditsExiges(creditsExiges);
+                this.#sourceName = sourceName;
+            }
+
+            static Regle = class {
+                #titreRegle;
+                #minCreditsRegle;
+                #maxCreditsRegle;
+                #coursRegle;
+                #titresCoursRegle;
+                #creditsCoursRegle;
+                #specialisation;
+
+                constructor(titreRegle, minCreditsRegle, maxCreditsRegle, coursRegle = [], titresCoursRegle = [], creditsCoursRegle = [], specialisation = '') {
+                    this.#setTitreRegle(titreRegle);
+                    this.#setMinCreditsRegle(minCreditsRegle);
+                    this.#setMaxCreditsRegle(maxCreditsRegle);
+                    this.#setCoursRegle(coursRegle);
+                    this.#setTitresCoursRegle(titresCoursRegle);
+                    this.#setCreditsCoursRegle(creditsCoursRegle);
+                    this.#setSpecialisation(specialisation);
+                }
+
+                #setTitreRegle(value) {
+                    if (typeof value !== 'string') throw new TypeError('titre-regle doit être une chaîne de caractères');
+                    this.#titreRegle = value;
+                }
+
+                #setSpecialisation(value) {
+                    if (typeof value !== 'string') throw new TypeError('specialisation doit être une chaîne de caractères');
+                    this.#specialisation = value;
+                }
+
+                #setMinCreditsRegle(value) {
+                    if (!Number.isInteger(value) || value < 0 || value > 255) throw new RangeError('min-credits-regle doit être un entier entre 0 et 255');
+                    this.#minCreditsRegle = value;
+                }
+
+                #setMaxCreditsRegle(value) {
+                    if (!Number.isInteger(value) || value < 0 || value > 255) throw new RangeError('max-credits-regle doit être un entier entre 0 et 255');
+                    this.#maxCreditsRegle = value;
+                }
+
+                #setCoursRegle(value) {
+                    if (!Array.isArray(value) || !value.every(item => typeof item === 'string')) throw new TypeError('cours-regle doit être une liste de chaînes');
+                    this.#coursRegle = [...value];
+                }
+
+                #setTitresCoursRegle(value) {
+                    if (!Array.isArray(value) || !value.every(item => typeof item === 'string')) throw new TypeError('titres-cours-regle doit être une liste de chaînes');
+                    this.#titresCoursRegle = [...value];
+                }
+
+                #setCreditsCoursRegle(value) {
+                    if (!Array.isArray(value) || !value.every(item => typeof item === 'string')) throw new TypeError('credits-cours-regle doit être une liste de chaînes');
+                    this.#creditsCoursRegle = [...value];
+                }
+
+                get titreRegle() { return this.#titreRegle; }
+                get minCreditsRegle() { return this.#minCreditsRegle; }
+                get maxCreditsRegle() { return this.#maxCreditsRegle; }
+                get coursRegle() { return [...this.#coursRegle]; }
+                get titresCoursRegle() { return [...this.#titresCoursRegle]; }
+                get creditsCoursRegle() { return [...this.#creditsCoursRegle]; }
+                get specialisation() { return this.#specialisation; }
+            };
+
+            #setTitre(value) { if (typeof value !== 'string') throw new TypeError('titre doit être une chaîne de caractères'); this.#titre = value; }
+            #setVersion(value) { if (typeof value !== 'string') throw new TypeError('version doit être une chaîne de caractères'); this.#version = value; }
+            #setSpecialisations(value) { if (!Array.isArray(value) || !value.every(item => typeof item === 'string')) throw new TypeError('specialisations doit être une liste de chaînes de caractères'); this.#specialisations = [...value]; }
+            #setCreditsExiges(value) { if (!Number.isInteger(value) || value < 0 || value > 255) throw new RangeError('credits-exiges doit être un entier entre 0 et 255'); this.#creditsExiges = value; }
+
+            addRegle(regle) { if (!(regle instanceof VersionProgramme.Regle)) throw new TypeError('regle doit être une instance de VersionProgramme.Regle'); this.#regles.push(regle); }
+            setSpecialisationCredits(nom, credits) { this.#specialisationsCredits.set(nom, credits); }
+
+            // Ne charge que les règles communes (mandatory + rules racine, dont
+            // "Cours compensateurs" et "Stages") : selectedSpecialisation vide ne
+            // correspond à aucune concentration/profil, donc ce bloc n'est jamais ajouté.
+            static async chargeVersionProgramme(path, selectedSpecialisation = '', coursCatalogue = new Map()) {
+                const resp = await fetch(path);
+                if (!resp.ok) throw new Error(`Impossible de charger le fichier JSON : ${resp.status} ${resp.statusText}`);
+                const data = await resp.json();
+
+                const sourceName = path.replace(/^.*[\\\/]/, '').replace(/\.[^/.]+$/, '');
+                const concentrations = data.concentrations || [];
+                const profiles = data.profiles || [];
+                const toutesSpecialisations = [...concentrations, ...profiles];
+
+                const programme = new VersionProgramme(
+                    data.title || 'Titre inconnu',
+                    data.version || '??',
+                    toutesSpecialisations.map(s => s.title),
+                    data.credits_required || 0,
+                    sourceName
+                );
+
+                toutesSpecialisations.forEach(s =>
+                    programme.setSpecialisationCredits(s.title, s.credits_required || 0)
+                );
+
+                const resoudre = (sigles) => {
+                    const titres = [];
+                    const credits = [];
+                    (sigles || []).forEach(sigle => {
+                        const cours = coursCatalogue.get(sigle);
+                        if (!cours) console.warn(`Sigle introuvable dans le catalogue de cours : ${sigle}`);
+                        titres.push(cours ? cours.titre : '');
+                        credits.push(String(cours ? cours.credits : 0));
+                    });
+                    return { titres, credits };
+                };
+
+                const ajouterRegleMandatory = (sigles, specialisation) => {
+                    if (!sigles || !sigles.length) return;
+                    const { titres, credits } = resoudre(sigles);
+                    const total = credits.reduce((somme, c) => somme + (parseInt(c) || 0), 0);
+                    programme.addRegle(new VersionProgramme.Regle(
+                        'Cours obligatoires', total, total, sigles, titres, credits, specialisation
+                    ));
+                };
+
+                const ajouterRegles = (rules, specialisation) => {
+                    (rules || []).forEach(r => {
+                        const spec = (specialisation === 'Activités communes' && r.title === 'Cours compensateurs')
+                            ? 'Scolarité préparatoire'
+                            : specialisation;
+                        const { titres, credits } = resoudre(r.courses);
+                        programme.addRegle(new VersionProgramme.Regle(
+                            r.title, r.constraint?.min ?? 0, r.constraint?.max ?? 0,
+                            r.courses || [], titres, credits, spec
+                        ));
+                    });
+                };
+
+                ajouterRegleMandatory(data.mandatory, 'Activités communes');
+                ajouterRegles(data.rules, 'Activités communes');
+
+                const specSelectionnee = toutesSpecialisations.find(s => s.title === selectedSpecialisation);
+                if (specSelectionnee) {
+                    ajouterRegleMandatory(specSelectionnee.mandatory, specSelectionnee.title);
+                    ajouterRegles(specSelectionnee.rules, specSelectionnee.title);
+                }
+
+                return programme;
+            }
+
+            get titre() { return this.#titre; }
+            get version() { return this.#version; }
+            get specialisations() { return [...this.#specialisations]; }
+            get creditsExiges() { return this.#creditsExiges; }
+            get regles() { return [...this.#regles]; }
+            get specialisationsCredits() { return new Map(this.#specialisationsCredits); }
+            get sourceName() { return this.#sourceName; }
+        }
+
+        class Cours {
+            #sigle;
+            #titre;
+            #titreCourt;
+            #couleur;
+            #credits;
+            #prealables;
+            #url;
+            #sessions = [];
+
+            constructor(sigle, titre, titreCourt, couleur, credits, prealables, url) {
+                if (typeof sigle !== 'string' || !sigle) throw new TypeError('sigle doit être une chaîne non vide');
+                if (typeof titre !== 'string') throw new TypeError('titre doit être une chaîne');
+                if (!Number.isInteger(credits) || credits < 0) throw new RangeError('credits doit être un entier positif ou nul');
+                if (typeof prealables !== 'string') throw new TypeError('prealables doit être une chaîne');
+                if (typeof url !== 'string') throw new TypeError('url doit être une chaîne');
+                this.#sigle = sigle;
+                this.#titre = titre;
+                this.#titreCourt = titreCourt;
+                this.#couleur = couleur;
+                this.#credits = credits;
+                this.#prealables = prealables;
+                this.#url = url;
+            }
+
+            addSession(session) {
+                if (!(session instanceof Cours.Session)) throw new TypeError('session doit être une instance de Cours.Session');
+                this.#sessions.push(session);
+            }
+
+            get sigle() { return this.#sigle; }
+            get titre() { return this.#titre; }
+            get titreCourt() { return this.#titreCourt; }
+            get couleur() { return this.#couleur; }
+            get credits() { return this.#credits; }
+            get prealables() { return this.#prealables; }
+            get url() { return this.#url; }
+            get sessions() { return [...this.#sessions]; }
+
+            static Session = class Session {
+                #code;
+                #sections = [];
+
+                constructor(code) {
+                    if (typeof code !== 'string' || !code) throw new TypeError('code doit être une chaîne non vide');
+                    this.#code = code;
+                }
+
+                addSection(section) {
+                    if (!(section instanceof Session.Section)) throw new TypeError('section doit être une instance de Cours.Session.Section');
+                    this.#sections.push(section);
+                }
+
+                get code() { return this.#code; }
+                get sections() { return [...this.#sections]; }
+                get estFuture() { return this.#sections.length === 0; }
+
+                static Section = class Section {
+                    #nom;
+                    #mode;
+                    #plages = [];
+
+                    constructor(nom, mode) {
+                        if (typeof nom !== 'string' || !nom) throw new TypeError('nom doit être une chaîne non vide');
+                        if (typeof mode !== 'string') throw new TypeError('mode doit être une chaîne');
+                        this.#nom = nom;
+                        this.#mode = mode;
+                    }
+
+                    addPlage(plage) {
+                        if (!(plage instanceof Section.PlageHoraire)) throw new TypeError('plage doit être une instance de Cours.Session.Section.PlageHoraire');
+                        this.#plages.push(plage);
+                    }
+
+                    get nom() { return this.#nom; }
+                    get mode() { return this.#mode; }
+                    get plages() { return [...this.#plages]; }
+
+                    static PlageHoraire = class PlageHoraire {
+                        #jour;
+                        #heureDebut;
+                        #heureFin;
+
+                        constructor(jour, heureDebut, heureFin) {
+                            this.#jour = Number.isInteger(jour) ? jour : (parseInt(jour) || 0);
+                            this.#heureDebut = heureDebut;
+                            this.#heureFin = heureFin;
+                        }
+
+                        get jour() { return this.#jour; }
+                        get heureDebut() { return this.#heureDebut; }
+                        get heureFin() { return this.#heureFin; }
+                    }
+                }
+            }
+        }
+
+        async function chargeCours(siglesFiltre = null, basePath = 'b-gmc') {
+            const parseCSVSemicolon = (text) =>
+                text.split(/\r?\n/).map(line => line.split(';').map(c => c.trim()));
+
+            const [coursResp, plagesResp] = await Promise.all([
+                fetch(`${basePath}/cours/cours.csv`),
+                fetch(`${basePath}/cours/plages-horaires.csv`),
+            ]);
+            if (!coursResp.ok) throw new Error(`Impossible de charger cours.csv : ${coursResp.status}`);
+            if (!plagesResp.ok) throw new Error(`Impossible de charger plages-horaires.csv : ${plagesResp.status}`);
+
+            const coursRows = parseCSVSemicolon(await coursResp.text());
+            const plagesRows = parseCSVSemicolon(await plagesResp.text());
+            const coursMap = new Map();
+
+            for (let i = 1; i < coursRows.length; i++) {
+                const row = coursRows[i];
+                if (!row || !(row[0] || '').trim()) continue;
+                const sigle = row[0].trim();
+                if (siglesFiltre && !siglesFiltre.has(sigle)) continue;
+                coursMap.set(sigle, new Cours(
+                    sigle,
+                    (row[1] || '').trim(),
+                    (row[5] || '').trim(),
+                    (row[6] || '').trim(),
+                    parseInt(row[2]) || 0,
+                    (row[3] || '').trim(),
+                    (row[4] || '').trim(),
+                ));
+            }
+
+            // Cours hors catalogue ULaval (pseudo-cours d'options à déterminer,
+            // cours préuniversitaires non scrapés, etc.) : fichier annexe optionnel,
+            // jamais régénéré par analyse-cours-ulaval.py.
+            try {
+                const horsCatalogueResp = await fetch(`${basePath}/cours/cours-hors-catalogue.csv`);
+                if (horsCatalogueResp.ok) {
+                    const horsCatalogueRows = parseCSVSemicolon(await horsCatalogueResp.text());
+                    for (let i = 1; i < horsCatalogueRows.length; i++) {
+                        const row = horsCatalogueRows[i];
+                        if (!row || !(row[0] || '').trim()) continue;
+                        const sigle = row[0].trim();
+                        if (siglesFiltre && !siglesFiltre.has(sigle)) continue;
+                        if (coursMap.has(sigle)) continue;
+                        coursMap.set(sigle, new Cours(
+                            sigle,
+                            (row[1] || '').trim(),
+                            '',
+                            '',
+                            parseInt(row[2]) || 0,
+                            '',
+                            '',
+                        ));
+                    }
+                }
+            } catch (e) {
+                console.warn('Impossible de charger cours-hors-catalogue.csv :', e);
+            }
+
+            const sessionsIndex = new Map();
+            const sectionsIndex = new Map();
+
+            for (let i = 1; i < plagesRows.length; i++) {
+                const row = plagesRows[i];
+                if (!row || !(row[0] || '').trim()) continue;
+                const sigle = row[0].trim();
+                const cours = coursMap.get(sigle);
+                if (!cours) continue;
+                const codeSession = (row[1] || '').trim();
+                const nomSection = (row[2] || '').trim();
+
+                const sessionKey = `${sigle}:${codeSession}`;
+                if (!sessionsIndex.has(sessionKey)) {
+                    const sessionObj = new Cours.Session(codeSession);
+                    cours.addSession(sessionObj);
+                    sessionsIndex.set(sessionKey, sessionObj);
+                }
+
+                if (!nomSection) continue;
+
+                const sectionKey = `${sessionKey}:${nomSection}`;
+                if (!sectionsIndex.has(sectionKey)) {
+                    const sectionObj = new Cours.Session.Section(nomSection, (row[3] || '').trim());
+                    sessionsIndex.get(sessionKey).addSection(sectionObj);
+                    sectionsIndex.set(sectionKey, sectionObj);
+                }
+
+                sectionsIndex.get(sectionKey).addPlage(new Cours.Session.Section.PlageHoraire(
+                    parseInt(row[4]) || 0,
+                    (row[5] || '').trim(),
+                    (row[6] || '').trim(),
+                ));
+            }
+
+            return coursMap;
+        }
+
+        // Retourne les sections du cours pour la session la plus récente (même saison)
+        // ayant un horaire publié. Retourne [] si aucune section connue.
+        function trouverSectionsDisponibles(cours, sessionCode) {
+            if (!cours || !sessionCode) return [];
+            const saison = sessionCode[0];
+            if (!/^[AHE]/.test(saison)) return [];
+
+            const candidats = cours.sessions.filter(s =>
+                s.code[0] === saison && !s.estFuture
+            );
+            if (candidats.length === 0) return [];
+
+            candidats.sort((a, b) =>
+                (parseInt(b.code.slice(1)) || 0) - (parseInt(a.code.slice(1)) || 0)
+            );
+            return candidats[0].sections;
+        }
+
+        function formatRuleCredits(regle) {
+            if (regle.minCreditsRegle === regle.maxCreditsRegle) return `${regle.minCreditsRegle}`;
+            return `${regle.minCreditsRegle} à ${regle.maxCreditsRegle}`;
+        }
+
+        // ------------------------------------------------------------------
+        // Sessions : tri chronologique et présélection de la session courante
+        // ------------------------------------------------------------------
+
+        function quarterIndex(code) {
+            const rang = { H: 0, E: 1, A: 2 };
+            const saison = code[0];
+            const annee = parseInt(code.slice(1), 10) || 0;
+            return annee * 3 + (rang[saison] ?? 0);
+        }
+
+        // Même logique que l'année universitaire côté Python (analyse-cours-ulaval.py) :
+        // l'année débute en septembre (Automne).
+        function sessionCourantePreferee() {
+            const today = new Date();
+            const mois = today.getMonth() + 1;
+            const annee2 = today.getFullYear() % 100;
+            let saison;
+            if (mois >= 9) saison = 'A';
+            else if (mois >= 5) saison = 'E';
+            else saison = 'H';
+            return `${saison}${String(annee2).padStart(2, '0')}`;
+        }
+
+        function peuplerSessions(sessionsSet) {
+            const select = document.getElementById('session-select');
+            const valeurActuelle = select.value;
+            const trie = [...sessionsSet].sort((a, b) => quarterIndex(a) - quarterIndex(b));
+
+            select.innerHTML = '';
+            trie.forEach(code => {
+                const opt = document.createElement('option');
+                opt.value = code;
+                opt.textContent = code;
+                select.appendChild(opt);
+            });
+
+            if (trie.includes(valeurActuelle)) {
+                select.value = valeurActuelle;
+                return valeurActuelle;
+            }
+
+            const qPreferee = quarterIndex(sessionCourantePreferee());
+            const choix = trie.find(c => quarterIndex(c) >= qPreferee) || trie[trie.length - 1];
+            if (choix) select.value = choix;
+            return choix;
+        }
+
+        // ------------------------------------------------------------------
+        // Panneau de structure du programme (cases à cocher par section)
+        // ------------------------------------------------------------------
+
+        function renderStructurePanel(programme, coursCatalogue, sessionCode) {
+            const container = document.getElementById('rules-list');
+            container.innerHTML = '';
+
+            if (!programme || !programme.regles.length) {
+                const empty = document.createElement('p');
+                empty.textContent = 'Aucune règle commune trouvée pour ce programme.';
+                container.appendChild(empty);
+                return;
+            }
+
+            let lastSectionLabel = null;
+            let currentCollapsible = null;
+
+            programme.regles.forEach(regle => {
+                const sectionLabel = regle.specialisation || 'Activités communes';
+                if (sectionLabel !== lastSectionLabel) {
+                    const secHeader = document.createElement('div');
+                    secHeader.className = 'rule-section-header';
+
+                    const leftSpan = document.createElement('span');
+                    const arrow = document.createElement('span');
+                    arrow.className = 'section-toggle-arrow';
+                    arrow.textContent = '▾';
+                    leftSpan.appendChild(arrow);
+                    leftSpan.appendChild(document.createTextNode(' ' + sectionLabel));
+                    secHeader.appendChild(leftSpan);
+
+                    const thisCollapsible = document.createElement('div');
+                    thisCollapsible.className = 'rule-section-collapsible';
+
+                    secHeader.addEventListener('click', () => {
+                        const nowCollapsed = secHeader.classList.toggle('collapsed');
+                        thisCollapsible.classList.toggle('hidden', nowCollapsed);
+                    });
+
+                    container.appendChild(secHeader);
+                    container.appendChild(thisCollapsible);
+                    currentCollapsible = thisCollapsible;
+                    lastSectionLabel = sectionLabel;
+                }
+
+                const card = document.createElement('div');
+                card.className = 'rule-card';
+
+                const header = document.createElement('div');
+                header.className = 'rule-header';
+                header.textContent = `${regle.titreRegle} (${formatRuleCredits(regle)} crédits)`;
+                card.appendChild(header);
+
+                const courseList = document.createElement('div');
+                courseList.className = 'course-list';
+
+                if (regle.coursRegle.length) {
+                    regle.coursRegle.forEach((code, idx) => {
+                        const titre = regle.titresCoursRegle[idx] || '(Titre inconnu)';
+                        const courseCredits = regle.creditsCoursRegle[idx] || '?';
+
+                        const line = document.createElement('div');
+                        line.className = 'course-line';
+
+                        const spanCode = document.createElement('span');
+                        spanCode.className = 'code';
+                        spanCode.textContent = code;
+
+                        const spanTitle = document.createElement('span');
+                        spanTitle.className = 'title';
+                        spanTitle.textContent = titre;
+
+                        const spanCredits = document.createElement('span');
+                        spanCredits.className = 'credits';
+                        spanCredits.textContent = `(${courseCredits} crédits)`;
+
+                        line.appendChild(spanCode);
+                        line.appendChild(spanTitle);
+                        line.appendChild(spanCredits);
+
+                        const cours = coursCatalogue.get(code);
+                        const sections = cours ? trouverSectionsDisponibles(cours, sessionCode) : [];
+
+                        if (!sections.length) {
+                            line.classList.add('cours-non-offert');
+                            const note = document.createElement('span');
+                            note.className = 'non-offert-note';
+                            note.textContent = 'Non offert à cette session';
+                            line.appendChild(note);
+                        } else {
+                            const boxes = document.createElement('div');
+                            boxes.className = 'section-checkboxes';
+                            sections.forEach(section => {
+                                const label = document.createElement('label');
+                                label.className = 'section-checkbox';
+                                const cb = document.createElement('input');
+                                cb.type = 'checkbox';
+                                cb.dataset.sigle = code;
+                                cb.dataset.section = section.nom;
+                                cb.addEventListener('change', renderGrilleHoraire);
+                                label.appendChild(cb);
+                                label.appendChild(document.createTextNode(section.nom));
+                                boxes.appendChild(label);
+                            });
+                            line.appendChild(boxes);
+                        }
+
+                        courseList.appendChild(line);
+                    });
+                } else {
+                    const empty = document.createElement('div');
+                    empty.textContent = 'Aucun cours défini pour cette règle.';
+                    courseList.appendChild(empty);
+                }
+
+                card.appendChild(courseList);
+                currentCollapsible.appendChild(card);
+            });
+        }
+
+        // ------------------------------------------------------------------
+        // Grille horaire (adapté de la popup "Grille horaire de session" de
+        // grille-de-cheminement-interactive.html) — identité des événements
+        // par sigle + code de section, pour distinguer deux sections cochées
+        // simultanément pour un même cours.
+        // ------------------------------------------------------------------
+
+        const DEBUT = 510, FIN = 1290, STEP = 30, NB = (FIN - DEBUT) / STEP;
+        const JOURSCOL = { 7: 1, 1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: 7 };
+        const PALETTE = ["#e74c3c", "#2980b9", "#27ae60", "#f39c12", "#8e44ad", "#16a085", "#d35400", "#2c3e50", "#c0392b", "#1a5276", "#145a32", "#784212"];
+
+        function couleurPourSigle(s) {
+            let h = 0;
+            for (let i = 0; i < s.length; i++) h = ((h * 31 + s.charCodeAt(i)) >>> 0);
+            return PALETTE[h % PALETTE.length];
+        }
+
+        function toMin(str) {
+            if (!str) return NaN;
+            const p = str.split(':');
+            return parseInt(p[0]) * 60 + (parseInt(p[1]) || 0);
+        }
+
+        function labelHeure(m) {
+            const h = Math.floor(m / 60), mn = m % 60;
+            return mn === 0 ? `${h}h` : `${h}h${mn < 10 ? '0' + mn : mn}`;
+        }
+
+        function collecterEvenementsCoches(sessionCode) {
+            const events = [];
+            document.querySelectorAll('#rules-list input[type="checkbox"][data-sigle]:checked').forEach(cb => {
+                const sigle = cb.dataset.sigle;
+                const nomSection = cb.dataset.section;
+                const cours = tousLesCours.get(sigle);
+                if (!cours) return;
+
+                const sections = trouverSectionsDisponibles(cours, sessionCode);
+                const section = sections.find(s => s.nom === nomSection);
+                if (!section) return;
+
+                section.plages.forEach(plage => {
+                    if (!plage.heureDebut || !plage.heureFin) return;
+                    events.push({
+                        sigle,
+                        section: nomSection,
+                        titre: cours.titre,
+                        couleur: cours.couleur || '',
+                        jour: plage.jour,
+                        debut: plage.heureDebut,
+                        fin: plage.heureFin,
+                    });
+                });
+            });
+            return events;
+        }
+
+        function renderGrilleHoraire() {
+            const sessionCode = document.getElementById('session-select').value;
+            const evts = collecterEvenementsCoches(sessionCode);
+
+            const parsed = evts.map(ev => {
+                const d = toMin(ev.debut), f = toMin(ev.fin);
+                if (isNaN(d) || isNaN(f)) return null;
+                return {
+                    cle: `${ev.sigle}-${ev.section}`,
+                    sigle: ev.sigle,
+                    section: ev.section,
+                    titre: ev.titre,
+                    jour: ev.jour,
+                    debut: d,
+                    fin: f,
+                    color: ev.couleur || couleurPourSigle(ev.sigle),
+                };
+            }).filter(Boolean);
+
+            const cells = [];
+            for (let r = 0; r < NB; r++) cells.push([null, null, null, null, null, null, null, null]);
+
+            for (let col = 1; col <= 7; col++) {
+                const dayEvts = parsed.filter(ev => JOURSCOL[ev.jour] === col);
+                if (!dayEvts.length) continue;
+
+                const rowActive = [];
+                for (let r = 0; r < NB; r++) {
+                    const sS = DEBUT + r * STEP, sE = sS + STEP;
+                    rowActive.push(dayEvts.filter(ev => ev.debut < sE && ev.fin > sS));
+                }
+
+                let r = 0;
+                while (r < NB) {
+                    if (!rowActive[r].length) { r++; continue; }
+                    const key = rowActive[r].map(e => e.cle).sort().join(',');
+                    let rs = 1;
+                    while (r + rs < NB && rowActive[r + rs].map(e => e.cle).sort().join(',') === key) rs++;
+                    const act = rowActive[r];
+                    cells[r][col] = act.length === 1
+                        ? { type: 's', ...act[0], rs, skip: false }
+                        : { type: 'c', events: act, rs, skip: false };
+                    for (let k = 1; k < rs; k++) cells[r + k][col] = { skip: true };
+                    r += rs;
+                }
+            }
+
+            const tbody = document.getElementById('sched-body');
+            tbody.innerHTML = '';
+
+            if (!parsed.length) {
+                const tr = document.createElement('tr');
+                const td = document.createElement('td');
+                td.colSpan = 8;
+                td.className = 'empty-msg';
+                td.textContent = 'Aucun cours coché avec horaire publié pour cette session.';
+                tr.appendChild(td);
+                tbody.appendChild(tr);
+            } else {
+                for (let r = 0; r < NB; r++) {
+                    const tr = document.createElement('tr');
+                    const tdT = document.createElement('td');
+                    tdT.className = 'time-col';
+                    tdT.textContent = labelHeure(DEBUT + r * STEP);
+                    tr.appendChild(tdT);
+
+                    for (let c = 1; c <= 7; c++) {
+                        const cell = cells[r][c];
+                        if (cell === null) {
+                            tr.appendChild(document.createElement('td'));
+                        } else if (!cell.skip) {
+                            const td = document.createElement('td');
+                            td.className = 'event-cell';
+                            td.rowSpan = cell.rs;
+
+                            if (cell.type === 's') {
+                                td.style.backgroundColor = cell.color;
+                                td.title = `${cell.sigle} (${cell.section}) — ${cell.titre}`;
+                                td.textContent = `${cell.sigle}-${cell.section}`;
+                            } else {
+                                const e1 = cell.events[0], e2 = cell.events[1];
+                                td.style.cssText = `background:repeating-linear-gradient(45deg,${e1.color} 0px,${e1.color} 5px,${e2.color} 5px,${e2.color} 10px);white-space:normal;`;
+                                td.title = `${e1.sigle}-${e1.section} et ${e2.sigle}-${e2.section} — conflit d'horaire`;
+                                const d1 = document.createElement('div');
+                                d1.textContent = `${e1.sigle}-${e1.section}`;
+                                d1.style.cssText = 'line-height:1.2;text-shadow:0 1px 3px rgba(0,0,0,0.85);';
+                                const d2 = document.createElement('div');
+                                d2.textContent = `${e2.sigle}-${e2.section}`;
+                                d2.style.cssText = 'line-height:1.2;text-shadow:0 1px 3px rgba(0,0,0,0.85);';
+                                td.appendChild(d1);
+                                td.appendChild(d2);
+                            }
+                            tr.appendChild(td);
+                        }
+                    }
+                    tbody.appendChild(tr);
+                }
+            }
+
+            const leg = document.getElementById('legend');
+            leg.innerHTML = '';
+            const seen = new Set();
+            parsed.forEach(ev => {
+                if (seen.has(ev.cle)) return;
+                seen.add(ev.cle);
+                const it = document.createElement('div');
+                it.className = 'legend-item';
+                const dot = document.createElement('div');
+                dot.className = 'legend-dot';
+                dot.style.backgroundColor = ev.color;
+                const sp = document.createElement('span');
+                sp.textContent = `${ev.sigle}-${ev.section} — ${ev.titre}`;
+                it.appendChild(dot);
+                it.appendChild(sp);
+                leg.appendChild(it);
+            });
+        }
+
+        // ------------------------------------------------------------------
+        // Chargement du programme sélectionné
+        // ------------------------------------------------------------------
+
+        let tousLesCours = new Map();
+        let programmeActuel = null;
+        const programmesNoms = new Map();
+
+        async function chargerProgramme() {
+            const programmeSelect = document.getElementById('programme-select');
+            const subtitleEl = document.getElementById('programme-subtitle');
+            const basePath = (programmeSelect && programmeSelect.value) ? programmeSelect.value : 'b-gmc';
+
+            try {
+                tousLesCours = await chargeCours(null, basePath);
+            } catch (err) {
+                console.warn('Impossible de charger les cours :', err);
+                if (subtitleEl) subtitleEl.textContent = `Impossible de charger les cours : ${err.message}`;
+                return;
+            }
+
+            let versionsDisponibles = [];
+            try {
+                const resp = await fetch(`${basePath}/programme/index-versions-du-programme.csv`);
+                if (resp.ok) {
+                    versionsDisponibles = (await resp.text())
+                        .split(/\r?\n/)
+                        .map(line => line.split(';').map(c => c.trim()))
+                        .filter(row => row.length >= 2 && row[0] && row[1])
+                        .map(([session, fichier]) => ({ session, path: `${basePath}/programme/${fichier}` }));
+
+                    const saisonRang = { 'A': 3, 'E': 2, 'H': 1 };
+                    versionsDisponibles.sort((a, b) => {
+                        const anneeA = parseInt(a.session.slice(1)), anneeB = parseInt(b.session.slice(1));
+                        if (anneeA !== anneeB) return anneeB - anneeA;
+                        return (saisonRang[b.session[0]] || 0) - (saisonRang[a.session[0]] || 0);
+                    });
+                }
+            } catch (err) {
+                console.warn("Impossible de charger l'index des versions de programme :", err);
+            }
+
+            if (!versionsDisponibles.length) {
+                if (subtitleEl) subtitleEl.textContent = 'Aucune version de programme trouvée.';
+                document.getElementById('rules-list').innerHTML = '';
+                renderGrilleHoraire();
+                return;
+            }
+
+            try {
+                programmeActuel = await VersionProgramme.chargeVersionProgramme(
+                    versionsDisponibles[0].path, '', tousLesCours
+                );
+            } catch (err) {
+                console.warn('Impossible de charger la structure du programme :', err);
+                if (subtitleEl) subtitleEl.textContent = `Impossible de charger la structure du programme : ${err.message}`;
+                return;
+            }
+
+            if (subtitleEl) {
+                const nomProgramme = programmesNoms.get(basePath) || programmeActuel.titre;
+                subtitleEl.textContent = `${nomProgramme} — ${programmeActuel.version}`;
+            }
+
+            const sessions = new Set();
+            tousLesCours.forEach(cours => {
+                cours.sessions.forEach(s => sessions.add(s.code));
+            });
+
+            const sessionChoisie = peuplerSessions(sessions);
+            renderStructurePanel(programmeActuel, tousLesCours, sessionChoisie);
+            renderGrilleHoraire();
+        }
+
+        (async () => {
+            const programmeSelect = document.getElementById('programme-select');
+            const sessionSelect = document.getElementById('session-select');
+
+            try {
+                const respIdx = await fetch('index-programmes.csv');
+                if (respIdx.ok) {
+                    const lignes = (await respIdx.text())
+                        .split(/\r?\n/)
+                        .map(l => l.split(';').map(c => c.trim()))
+                        .filter(cols => cols.length >= 1 && cols[0]);
+                    lignes.forEach(([acronyme, nom]) => {
+                        if (nom) programmesNoms.set(acronyme, nom);
+                        const opt = document.createElement('option');
+                        opt.value = acronyme;
+                        opt.textContent = acronyme.toUpperCase();
+                        programmeSelect.appendChild(opt);
+                    });
+                }
+            } catch (e) {
+                console.warn('Impossible de charger index-programmes.csv :', e);
+            }
+
+            programmeSelect.addEventListener('change', chargerProgramme);
+            sessionSelect.addEventListener('change', () => {
+                renderStructurePanel(programmeActuel, tousLesCours, sessionSelect.value);
+                renderGrilleHoraire();
+            });
+
+            await chargerProgramme();
+        })();
+    </script>
+</body>
+</html>
