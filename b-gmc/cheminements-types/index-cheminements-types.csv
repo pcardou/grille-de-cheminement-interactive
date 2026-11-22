@@ -1,4 +1,9 @@
-﻿H27;"H27 - Sciences de la nature";"cheminement-type-b-gmc-h27.csv";
+﻿A27;"A27 - Sciences de la nature";"cheminement-type-b-gmc-a27.csv";
+A27;"A27 - Sciences de la nature - Profil international";"cheminement-type-b-gmc-a27-pi.csv";
+A27;"A27 - Sciences de la nature - Cheminement en 5 ans";"cheminement-type-b-gmc-a27-5a.csv";
+A27;"A27 - Technique de génie mécanique - Scolarité préparatoire complétée";"cheminement-type-b-gmc-a27-tgmc-spc.csv";
+A27;"A27 - Technique de génie mécanique - Scolarité préparatoire non-complétée";"cheminement-type-b-gmc-a27-tgmc-spnc.csv";
+H27;"H27 - Sciences de la nature";"cheminement-type-b-gmc-h27.csv";
 H27;"H27 - Technique de génie mécanique - Scolarité préparatoire complétée";"cheminement-type-b-gmc-h27-tgmc-spc.csv";
 A26;"A26 - Sciences de la nature";"cheminement-type-b-gmc-a26.csv";
 A26;"A26 - Sciences de la nature - Profil international";"cheminement-type-b-gmc-a26-pi.csv";

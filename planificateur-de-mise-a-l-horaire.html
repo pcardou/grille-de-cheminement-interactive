@@ -303,13 +303,15 @@
         <div class="controls-row">
             <label for="programme-select">Programme :</label>
             <select id="programme-select"></select>
+            <label for="specialisation-select">Spécialisation :</label>
+            <select id="specialisation-select"></select>
             <label for="session-select">Session courante :</label>
             <select id="session-select"></select>
         </div>
 
         <div class="main-layout">
             <div class="structure-panel">
-                <h2>Activités pédagogiques communes</h2>
+                <h2>Activités pédagogiques</h2>
                 <div id="programme-subtitle" class="programme-info"></div>
                 <div id="rules-list"></div>
             </div>
@@ -483,8 +485,17 @@
                     });
                 };
 
+                // Scolarité préparatoire d'abord, puis les cours obligatoires, les
+                // stages et les autres règles communes regroupés sous un seul
+                // en-tête "Activités communes" contigu (plutôt que scindé de part
+                // et d'autre de la scolarité préparatoire).
+                const reglesRacine = data.rules || [];
+                const reglesScolarite = reglesRacine.filter(r => r.title === 'Cours compensateurs');
+                const reglesCommunes = reglesRacine.filter(r => r.title !== 'Cours compensateurs');
+
+                ajouterRegles(reglesScolarite, 'Activités communes');
                 ajouterRegleMandatory(data.mandatory, 'Activités communes');
-                ajouterRegles(data.rules, 'Activités communes');
+                ajouterRegles(reglesCommunes, 'Activités communes');
 
                 const specSelectionnee = toutesSpecialisations.find(s => s.title === selectedSpecialisation);
                 if (specSelectionnee) {
@@ -1070,10 +1081,40 @@
 
         let tousLesCours = new Map();
         let programmeActuel = null;
+        let cheminVersionActuelle = '';
         const programmesNoms = new Map();
+
+        // Recharge la structure du programme pour une spécialisation donnée
+        // (règles communes toujours incluses + celles de la spécialisation
+        // choisie) et redessine le panneau de gauche et la grille horaire.
+        async function chargerStructureProgramme(specialisation, sessionCode) {
+            const subtitleEl = document.getElementById('programme-subtitle');
+            const sessionSelect = document.getElementById('session-select');
+            sessionCode = sessionCode || (sessionSelect ? sessionSelect.value : '');
+
+            try {
+                programmeActuel = await VersionProgramme.chargeVersionProgramme(
+                    cheminVersionActuelle, specialisation, tousLesCours
+                );
+            } catch (err) {
+                console.warn('Impossible de charger la structure du programme :', err);
+                if (subtitleEl) subtitleEl.textContent = `Impossible de charger la structure du programme : ${err.message}`;
+                return;
+            }
+
+            if (subtitleEl) {
+                const basePath = document.getElementById('programme-select')?.value || '';
+                const nomProgramme = programmesNoms.get(basePath) || programmeActuel.titre;
+                subtitleEl.textContent = `${nomProgramme} — ${programmeActuel.version} — ${specialisation}`;
+            }
+
+            renderStructurePanel(programmeActuel, tousLesCours, sessionCode);
+            renderGrilleHoraire();
+        }
 
         async function chargerProgramme() {
             const programmeSelect = document.getElementById('programme-select');
+            const specialisationSelect = document.getElementById('specialisation-select');
             const subtitleEl = document.getElementById('programme-subtitle');
             const basePath = (programmeSelect && programmeSelect.value) ? programmeSelect.value : 'b-gmc';
 
@@ -1109,13 +1150,19 @@
             if (!versionsDisponibles.length) {
                 if (subtitleEl) subtitleEl.textContent = 'Aucune version de programme trouvée.';
                 document.getElementById('rules-list').innerHTML = '';
+                if (specialisationSelect) specialisationSelect.innerHTML = '';
                 renderGrilleHoraire();
                 return;
             }
 
+            cheminVersionActuelle = versionsDisponibles[0].path;
+
+            // Premier chargement (sans spécialisation) : sert uniquement à
+            // connaître la liste des spécialisations pour peupler le menu.
+            let programmeInit;
             try {
-                programmeActuel = await VersionProgramme.chargeVersionProgramme(
-                    versionsDisponibles[0].path, '', tousLesCours
+                programmeInit = await VersionProgramme.chargeVersionProgramme(
+                    cheminVersionActuelle, '', tousLesCours
                 );
             } catch (err) {
                 console.warn('Impossible de charger la structure du programme :', err);
@@ -1123,9 +1170,20 @@
                 return;
             }
 
-            if (subtitleEl) {
-                const nomProgramme = programmesNoms.get(basePath) || programmeActuel.titre;
-                subtitleEl.textContent = `${nomProgramme} — ${programmeActuel.version}`;
+            let specChoisie = '';
+            if (specialisationSelect) {
+                const specPrecedente = specialisationSelect.value;
+                specialisationSelect.innerHTML = '';
+                programmeInit.specialisations.forEach(nom => {
+                    const opt = document.createElement('option');
+                    opt.value = nom;
+                    opt.textContent = nom;
+                    specialisationSelect.appendChild(opt);
+                });
+                specChoisie = programmeInit.specialisations.includes(specPrecedente)
+                    ? specPrecedente
+                    : (programmeInit.specialisations[0] || '');
+                if (specChoisie) specialisationSelect.value = specChoisie;
             }
 
             const sessions = new Set();
@@ -1134,12 +1192,12 @@
             });
 
             const sessionChoisie = peuplerSessions(sessions);
-            renderStructurePanel(programmeActuel, tousLesCours, sessionChoisie);
-            renderGrilleHoraire();
+            await chargerStructureProgramme(specChoisie, sessionChoisie);
         }
 
         (async () => {
             const programmeSelect = document.getElementById('programme-select');
+            const specialisationSelect = document.getElementById('specialisation-select');
             const sessionSelect = document.getElementById('session-select');
 
             try {
@@ -1162,6 +1220,9 @@
             }
 
             programmeSelect.addEventListener('change', chargerProgramme);
+            specialisationSelect.addEventListener('change', () => {
+                chargerStructureProgramme(specialisationSelect.value, sessionSelect.value);
+            });
             sessionSelect.addEventListener('change', () => {
                 renderStructurePanel(programmeActuel, tousLesCours, sessionSelect.value);
                 renderGrilleHoraire();

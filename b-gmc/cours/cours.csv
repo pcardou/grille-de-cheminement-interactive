@@ -20,7 +20,7 @@ GEL-4250;Commande des systèmes avancée;3;GEL-2005 OU GMC-3002;https://www.ulav
 GEL-4799;Dangers de l'électricité;;;https://www.ulaval.ca/etudes/cours/gel-4799-dangers-de-lelectricite;DangÉlec;#5C7FA3
 GIF-1003;Programmation avancée en C++ pour l'ingénierie;3;IFT-1004 OU GLO-1901;https://www.ulaval.ca/etudes/cours/gif-1003-programmation-avancee-en-c-pour-lingenierie;ProgrC++;#5C7FA3
 GIF-4101;Introduction à l'apprentissage automatique;3;( GPL-1008 OU MQT-1102 OU STT-1000 OU STT-1900 OU STT-2920 ) ET ( MAT-1200 OU MAT-1903 OU MAT-1910 OU MAT-2930 OU PHY-1001 );https://www.ulaval.ca/etudes/cours/gif-4101-introduction-a-lapprentissage-automatique;InAppAut;#5C7FA3
-GIN-2010;Gestion opérationnelle des systèmes d'entreprise;3;(( GIN-1500 ET STT-1900 ) OU ( GIN-1500 ET STT-1000 ) OU ( GMC-3009 ET STT-1900 ) OU ( GMC-3009 ET STT-1000 ));https://www.ulaval.ca/etudes/cours/gin-2010-gestion-operationnelle-des-systemes-dentreprise;GestOpér;#5C7FA3
+GIN-2010;Gestion opérationnelle des systèmes d'entreprise;3;(( GIN-1500 ET STT-1900 *) OU ( GIN-1500 ET STT-1000 *) OU ( GMC-3009 ET STT-1900 *) OU ( GMC-3009 ET STT-1000 *));https://www.ulaval.ca/etudes/cours/gin-2010-gestion-operationnelle-des-systemes-dentreprise;GestOpér;#5C7FA3
 GIN-2110;Optimisation des systèmes et des réseaux;3;MAT-1910;https://www.ulaval.ca/etudes/cours/gin-2110-optimisation-des-systemes-et-des-reseaux;OptiSyst;#5C7FA3
 GIN-3010;Conception et implantation des systèmes de production;3;GIN-2010;https://www.ulaval.ca/etudes/cours/gin-3010-conception-et-implantation-des-systemes-de-production;ConCVACR;#5C7FA3
 GIN-3110;Environnement et cycle de vie des produits;3;(GAL, Crédits exigés : 12 OU GIN, Crédits exigés : 24 OU GML, Crédits exigés : 24 OU GMC, Crédits exigés : 24 OU ( GSO-2106 ET GSO-3100 ));https://www.ulaval.ca/etudes/cours/gin-3110-environnement-et-cycle-de-vie-des-produits;EnvCycle;#5C7FA3
@@ -34,31 +34,33 @@ GMC-1002;Introduction à la thermodynamique;3;MAT-1900 * OU PHY-1002 *;https://w
 GMC-1003;Introduction à la mécanique des fluides;3;MAT-1910 * OU PHY-1001 *;https://www.ulaval.ca/etudes/cours/gmc-1003-introduction-a-la-mecanique-des-fluides;InMécFlu;#0099ff
 GMC-1004;Pratique du génie mécanique;1;;https://www.ulaval.ca/etudes/cours/gmc-1004-pratique-du-genie-mecanique;PratiGMC;#F7A941
 GMC-1005;Communication technique et travail en équipe;1;;https://www.ulaval.ca/etudes/cours/gmc-1005-communication-technique-et-travail-en-equipe;ComTechn;#FFC103
+GMC-1006;Informatique en génie mécanique;3;;https://www.ulaval.ca/etudes/cours/gmc-1006-informatique-en-genie-mecanique;InforGMC;#F7A941
 GMC-1024;Modélisation 3D;3;;https://www.ulaval.ca/etudes/cours/gmc-1024-modelisation-3d;Modéli3D;#7A8C4A
-GMC-1300;Initiation à la mécatronique;3;GAE-2010 * OU GLO-1901 * OU IFT-1004 *;https://www.ulaval.ca/etudes/cours/gmc-1300-initiation-a-la-mecatronique;InitMéca;#5C7FA3
+GMC-1300;Initiation à la mécatronique;3;GAE-2010 * OU GLO-1901 * OU IFT-1004 * OU IFT-1903 *;https://www.ulaval.ca/etudes/cours/gmc-1300-initiation-a-la-mecatronique;InitMéca;#5C7FA3
 GMC-2001;Résistance des matériaux;3;PHY-1003 OU GMC-1001;https://www.ulaval.ca/etudes/cours/gmc-2001-resistance-des-materiaux;RésMatér;#F18289
 GMC-2002;Résistance des composantes de machines et des assemblages;3;GMC-2001 OU GCI-1900;https://www.ulaval.ca/etudes/cours/gmc-2002-resistance-des-composantes-de-machines-et-des-assemblages;RésCompo;#F18289
 GMC-2003;Dynamique des corps rigides;3;GMC-1001 ET MAT-1910 *;https://www.ulaval.ca/etudes/cours/gmc-2003-dynamique-des-corps-rigides;DynCorps;#F18289
 GMC-2005;Dynamique des fluides appliquée;3;GMC-1003;https://www.ulaval.ca/etudes/cours/gmc-2005-dynamique-des-fluides-appliquee;DynFluAp;#0099ff
 GMC-2006;Équations aux dérivées partielles en génie mécanique;3;MAT-1910 ET MAT-2910 *;https://www.ulaval.ca/etudes/cours/gmc-2006-equations-aux-derivees-partielles-en-genie-mecanique;ÉqDérPar;#E76F51
 GMC-2007;Fabrication mécanique;3;GML-1001 OU GIN-2120;https://www.ulaval.ca/etudes/cours/gmc-2007-fabrication-mecanique;FabrMéca;#F18289
-GMC-2008;Machines thermiques;3;GMC-1002;https://www.ulaval.ca/etudes/cours/gmc-2008-machines-thermiques;MachTher;#0099ff
-GMC-2024;Ingénierie et conception I;3;GMC-1024 ET  Crédits exigés : 24;https://www.ulaval.ca/etudes/cours/gmc-2024-ingenierie-et-conception-i;IngConc1;#7A8C4A
+GMC-2008;Machines thermiques;3;GMC-1002 OU GIN-3040;https://www.ulaval.ca/etudes/cours/gmc-2008-machines-thermiques;MachTher;#0099ff
+GMC-2024;Ingénierie et conception I;3;GMC-1024 ET GMC-2001;https://www.ulaval.ca/etudes/cours/gmc-2024-ingenierie-et-conception-i;IngConc1;#7A8C4A
 GMC-2025;Ingénierie et conception II;3;GMC-2024 *;https://www.ulaval.ca/etudes/cours/gmc-2025-ingenierie-et-conception-ii;IngConc2;#7A8C4A
 GMC-2580;Stage en génie mécanique II;9;GMC-1002 ET ( GMC-3001 OU GMC-2025 ) ET  1000 à 4999 Crédits exigés : 42;https://www.ulaval.ca/etudes/cours/gmc-2580-stage-en-genie-mecanique-ii;StagGMC2;#51a27e
 GMC-3000;Dynamique des vibrations;3;GMC-2003;https://www.ulaval.ca/etudes/cours/gmc-3000-dynamique-des-vibrations;DynVibra;#F18289
-GMC-3002;Dynamique de la commande appliquée;3;GLO-1901 ET ( GMC-3001 OU ( GMC-1003 ET GMC-3000 ));https://www.ulaval.ca/etudes/cours/gmc-3002-dynamique-de-la-commande-appliquee;DynComAp;#702e78
+GMC-3002;Dynamique de la commande appliquée;3;( GLO-1901 OU IFT-1903 ) ET GMC-1003 ET GMC-3000;https://www.ulaval.ca/etudes/cours/gmc-3002-dynamique-de-la-commande-appliquee;DynComAp;#702e78
 GMC-3003;Éléments de transmission de puissance;3;GMC-2002;https://www.ulaval.ca/etudes/cours/gmc-3003-elements-de-transmission-de-puissance;ÉléTrPui;#F18289
 GMC-3005;Transferts thermiques;3;GMC-1002 ET GMC-2005;https://www.ulaval.ca/etudes/cours/gmc-3005-transferts-thermiques;TranTher;#0099ff
 GMC-3006;Introduction à la mesure et à la mécatronique;3;GMC-2001 ET GMC-2005 * ET GMC-2006 * ET GMC-3000 *;https://www.ulaval.ca/etudes/cours/gmc-3006-introduction-a-la-mesure-et-a-la-mecatronique;InMesMéc;#702e78
 GMC-3009;Gestion de projets en ingénierie;3;Crédits exigés : 24;https://www.ulaval.ca/etudes/cours/gmc-3009-gestion-de-projets-en-ingenierie;GestProj;#FFC103
 GMC-3012;Introduction à la mécanique du bâtiment et aux énergies renouvelables;3;GMC-3005 *;https://www.ulaval.ca/etudes/cours/gmc-3012-introduction-a-la-mecanique-du-batiment-et-aux-energies-renouvelables;InMécBât;#5C7FA3
+GMC-3013;Investigation expérimentale en génie mécanique;4;GMC-2008 ET GMC-3000 ET GMC-3002 ET GMC-3005 ET GMC-3006;https://www.ulaval.ca/etudes/cours/gmc-3013-investigation-experimentale-en-genie-mecanique;InvExpér;#702e78
 GMC-3015;Conception intégrée des systèmes CVAC-R;3;GMC-3012;https://www.ulaval.ca/etudes/cours/gmc-3015-conception-integree-des-systemes-cvac-r;ConCVACR;#5C7FA3
 GMC-3016;Introduction au génie maritime;3;Crédits exigés : 30;https://www.ulaval.ca/etudes/cours/gmc-3016-introduction-au-genie-maritime;InGéMari;#5C7FA3
 GMC-3020;Investigation expérimentale en génie mécanique;3;GMC-2008 ET GMC-3000 ET GMC-3002 ET GMC-3005 ET GMC-3006;https://www.ulaval.ca/etudes/cours/gmc-3020-investigation-experimentale-en-genie-mecanique;InvExpér;#702e78
-GMC-3024;Ingénierie et conception III;3;GMC-2024 * ET GML-1001;https://www.ulaval.ca/etudes/cours/gmc-3024-ingenierie-et-conception-iii;IngConc3;#7A8C4A
+GMC-3024;Ingénierie et conception III;3;GMC-2002 ET GMC-2024 * ET GML-1001;https://www.ulaval.ca/etudes/cours/gmc-3024-ingenierie-et-conception-iii;IngConc3;#7A8C4A
 GMC-3025;Ingénierie et conception IV;3;GMC-2025 * ET GMC-3003 * ET GMC-3024 *;https://www.ulaval.ca/etudes/cours/gmc-3025-ingenierie-et-conception-iv;IngConc4;#7A8C4A
-GMC-3034;Ingénierie et conception V;3;(ECN-2901* OU ECN-4901 *) ET GMC-2007 ET GMC-2008 ET GMC-3000 ET GMC-3002 ET GMC-3005 ET GMC-3006 ET GMC-3009 ET GMC-3025 ET ( GMC-3003 OU GMC-3023 ) ET  1000 à 4999 Crédits exigés : 54;https://www.ulaval.ca/etudes/cours/gmc-3034-ingenierie-et-conception-v;IngConc5;#7A8C4A
+GMC-3034;Ingénierie et conception V;3;(ECN-2901* OU ECN-4901 *) ET GMC-2007 ET GMC-2008 ET GMC-3000 ET GMC-3002 ET GMC-3005 ET GMC-3006 ET GMC-3009 ET GMC-3025 ET ( GMC-3003 OU GMC-3023) ET  1000 à 4999 Crédits exigés : 54;https://www.ulaval.ca/etudes/cours/gmc-3034-ingenierie-et-conception-v;IngConc5;#7A8C4A
 GMC-3035;Ingénierie et conception VI;3;GMC-3034 * ET PHI-3900 *;https://www.ulaval.ca/etudes/cours/gmc-3035-ingenierie-et-conception-vi;IngConc6;#7A8C4A
 GMC-3300;Mécatronique appliquée;4;GMC-3006;https://www.ulaval.ca/etudes/cours/gmc-3300-mecatronique-appliquee;Mécatron;#5C7FA3
 GMC-3351;Éléments de robotique;3;GMC-2003 ET GMC-2006 ET GMC-3002;https://www.ulaval.ca/etudes/cours/gmc-3351-elements-de-robotique;ÉlémRobo;#5C7FA3
@@ -83,12 +85,12 @@ GML-3000;Soudage des matériaux;3;GML-1001;https://www.ulaval.ca/etudes/cours/gm
 GML-4151;Introduction aux matériaux pour la santé;3;GML-1001;https://www.ulaval.ca/etudes/cours/gml-4151-introduction-aux-materiaux-pour-la-sante;InMatSan;#5C7FA3
 GMN-2900;Santé et sécurité en ingénierie I;1;;https://www.ulaval.ca/etudes/cours/gmn-2900-sante-et-securite-en-ingenierie-i;SantéSéc;#F7A941
 GMN-2902;Santé et sécurité en ingénierie III;3;;https://www.ulaval.ca/etudes/cours/gmn-2902-sante-et-securite-en-ingenierie-iii;SantéSéc;#F7A941
-GSO-2105;Achat et approvisionnement;3;GSO-1000 * OU GSO-1001 OU GSO-1100 * OU GIN-2010 *;https://www.ulaval.ca/etudes/cours/gso-2105-achat-et-approvisionnement;AchatApp;#5C7FA3
+GSO-2105;Achat et approvisionnement;3;Crédits exigés : 3;https://www.ulaval.ca/etudes/cours/gso-2105-achat-et-approvisionnement;AchatApp;#5C7FA3
 GSO-3103;Ingénierie de la chaîne logistique;3;( GSO-1000 OU GSO-1100 OU GIN-2010 *) ET ( MQT-1101 OU GIN-2110 );https://www.ulaval.ca/etudes/cours/gso-3103-ingenierie-de-la-chaine-logistique;IngChLog;#5C7FA3
 IFT-1903;Informatique pour l'ingénierie;3;MAT-0150;https://www.ulaval.ca/etudes/cours/ift-1903-informatique-pour-lingenierie;InforIng;#F7A941
 IFT-4102;Techniques avancées en intelligence artificielle;3;(IFT-2000 OU IFT-2900 OU GLO-2100 OU IFT-2008 ) ET ( GPL-1008 OU STT-1000 OU STT-2920 OU STT-1900 OU MQT-1102 );https://www.ulaval.ca/etudes/cours/ift-4102-techniques-avancees-en-intelligence-artificielle;TechAvIA;#5C7FA3
 MAT-0130;Algèbre vectorielle;3;;https://www.ulaval.ca/etudes/cours/mat-0130-algebre-vectorielle;AlgVecto;#8C5A7B
-MAT-0150;Calcul différentiel;4;Préalable : mathématiques 536 ou 526 ou l'équivalent selon le programme visé. Des séances de dépannage seront offertes tout au long de la session. Les étudiants seront informés en classe de l'horaire et des locaux par leur enseignant.Cours réservé exclusivement aux étudiants inscrits aux cours compensateurs et à la majeure en scolarité préparatoire.;https://www.ulaval.ca/etudes/cours/mat-0150-calcul-differentiel;CalcDiff;#8C5A7B
+MAT-0150;Calcul différentiel;4;Préalable : mathématiques 536 ou 526 ou l'équivalent selon le programme visé. Des séances de dépannage seront offertes tout au long de la session. Les étudiants seront informés en classe de l'horaire et des locaux par leur enseignant. Cours réservé exclusivement aux étudiants inscrits à la majeure en scolarité préparatoire.;https://www.ulaval.ca/etudes/cours/mat-0150-calcul-differentiel;CalcDiff;#8C5A7B
 MAT-0260;Calcul intégral;4;MAT-0150;https://www.ulaval.ca/etudes/cours/mat-0260-calcul-integral;CalcInté;#8C5A7B
 MAT-1900;Mathématiques pour l'ingénierie I;3;MAT-0130 ET MAT-0150 ET MAT-0260;https://www.ulaval.ca/etudes/cours/mat-1900-mathematiques-pour-lingenierie-i;MathIng1;#E76F51
 MAT-1910;Mathématiques pour l'ingénierie II;3;MAT-1900 OU MAT-1920 *;https://www.ulaval.ca/etudes/cours/mat-1910-mathematiques-pour-lingenierie-ii;MathIng2;#E76F51
@@ -106,6 +108,7 @@ CHM-0160;Chimie des solutions;3;;;;
 CHM-0170;Éléments de chimie générale et des solutions;3;;;;
 CHM-0250;Chimie organique;3;;;;
 LAN-GUES;Cours de langue selon le résultat VEPT;3;;;;
+AUC-HOIX;Cours au choix;3;;;;
 OPT-ETR1;Cours à option à l'étranger;3;;;;
 OPT-ETR2;Cours à option à l'étranger;3;;;;
 OPT-ETR3;Cours à option à l'étranger;3;;;;

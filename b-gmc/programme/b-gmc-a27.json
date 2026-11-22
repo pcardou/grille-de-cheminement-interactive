@@ -1,0 +1,374 @@
+{
+  "code": "b-gmc",
+  "version": "H27",
+  "year": 2027,
+  "title": "Baccalauréat en génie mécanique",
+  "cycle": 1,
+  "credits_required": 120,
+  "mandatory": [
+    "GMC-1001",
+    "GMC-1004",
+    "GMC-1005",
+    "GMC-1024",
+    "GML-1001",
+    "MAT-1900",
+    "GMC-1003",
+    "GMC-2001",
+    "MAT-1910",
+    "MAT-2910",
+    "GMC-1002",
+    "GMC-2002",
+    "GMC-2003",
+    "GMC-2005",
+    "GMC-2006",
+    "GMC-2024",
+    "GMC-2008",
+    "GMC-2025",
+    "GMC-3000",
+    "GMC-3002",
+    "GMC-3005",
+    "GMC-3009",
+    "GMC-3024",
+    "STT-1900",
+    "GMC-2007",
+    "GMC-3003",
+    "GMC-3006",
+    "GMC-3025",
+    "GMC-3020",
+    "GMC-3034",
+    "PHI-2910",
+    "GMC-3035",
+    "PHI-3900",
+    "ECN-4901",
+    "GMN-2900"
+  ],
+  "rules": [
+    {
+      "title": "Cours compensateurs",
+      "constraint": {
+        "min": 21,
+        "max": 21
+      },
+      "courses": [
+        "CHM-0150",
+        "MAT-0130",
+        "MAT-0150",
+        "MAT-0260",
+        "PHY-0150",
+        "PHY-0250"
+      ]
+    },
+    {
+      "title": "Stages",
+      "constraint": {
+        "min": 9,
+        "max": 9
+      },
+      "courses": [
+        "GMC-2580"
+      ]
+    },
+    {
+      "title": "Règle 1",
+      "constraint": {
+        "min": 3,
+        "max": 3
+      },
+      "courses": [
+        "GLO-1901",
+        "GMC-1006",
+        "IFT-1903"
+      ]
+    }
+  ],
+  "concentrations": [
+    {
+      "title": "Cheminement sans concentration",
+      "credits_required": 18,
+      "mandatory": [],
+      "rules": [
+        {
+          "title": "Règle 1",
+          "constraint": {
+            "min": 12,
+            "max": 15
+          },
+          "courses": [
+            "OPT-ION1",
+            "OPT-ION2",
+            "OPT-ION3",
+            "OPT-ION4",
+            "OPT-ION5",
+            "GMC-4054",
+            "GMC-4150",
+            "GMC-4151",
+            "GMC-4350",
+            "PHY-2100",
+            "ENT-1000",
+            "ENT-4020",
+            "GBO-4070",
+            "GCI-2007",
+            "GCI-3001",
+            "GEL-2003",
+            "GEL-4100",
+            "GEL-4799",
+            "GMC-3012",
+            "GMC-3015",
+            "GML-4151",
+            "GIN-2010",
+            "GIN-2110",
+            "GIN-3010",
+            "GIN-3110",
+            "GIN-3220",
+            "GIN-4003",
+            "GSO-2105",
+            "GSO-3103",
+            "GMC-4200",
+            "GMC-4201",
+            "GMC-4202",
+            "GMC-3016",
+            "GMC-4000",
+            "GIF-4101",
+            "GLO-2100",
+            "IFT-4102",
+            "GMC-4250",
+            "GML-2007",
+            "GML-2251",
+            "GML-3000",
+            "GEL-1000",
+            "GEL-4250",
+            "GEL-4799",
+            "GIF-1003",
+            "GLO-4001",
+            "GMC-1300",
+            "GMC-3300",
+            "GMC-3351",
+            "MAT-2930",
+            "GAE-2005",
+            "GMC-4048",
+            "GMC-4055",
+            "GMC-4100",
+            "GMC-4351",
+            "GMC-3550",
+            "GMC-3551"
+          ]
+        },
+        {
+          "title": "Règle 2",
+          "constraint": {
+            "min": 0,
+            "max": 3
+          },
+          "courses": [
+            "LAN-GUES"
+          ]
+        },
+        {
+          "title": "Règle 3",
+          "constraint": {
+            "min": 3,
+            "max": 3
+          },
+          "courses": [
+            "AUC-HOIX"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Robotique",
+      "credits_required": 18,
+      "mandatory": [
+        "GMC-3351"
+      ],
+      "rules": [
+        {
+          "title": "Règle 1",
+          "constraint": {
+            "min": 12,
+            "max": 12
+          },
+          "courses": [
+            "GEL-4250",
+            "GIF-1003",
+            "GIF-4101",
+            "GLO-4001",
+            "GMC-1300",
+            "GMC-3300",
+            "GMC-3550",
+            "GMC-3551",
+            "GMC-4048",
+            "GMC-4100",
+            "GMC-4200"
+          ]
+        },
+        {
+          "title": "Règle 2",
+          "constraint": {
+            "min": 0,
+            "max": 3
+          },
+          "courses": [
+            "LAN-GUES"
+          ]
+        },
+        {
+          "title": "Règle 3",
+          "constraint": {
+            "min": 3,
+            "max": 3
+          },
+          "courses": [
+            "AUC-HOIX"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Génie du développement durable",
+      "credits_required": 18,
+      "mandatory": [
+        "GMC-3012",
+        "GMC-3015"
+      ],
+      "rules": [
+        {
+          "title": "Règle 1",
+          "constraint": {
+            "min": 9,
+            "max": 9
+          },
+          "courses": [
+            "GBO-2040",
+            "GBO-4070",
+            "GCI-2004",
+            "GCI-2007",
+            "GCI-3001",
+            "GCI-3002",
+            "GEL-2003",
+            "GEL-4100",
+            "GEL-4799",
+            "GMC-3551",
+            "GMC-3550",
+            "GMC-4100"
+          ]
+        },
+        {
+          "title": "Règle 2",
+          "constraint": {
+            "min": 0,
+            "max": 3
+          },
+          "courses": [
+            "LAN-GUES"
+          ]
+        },
+        {
+          "title": "Règle 3",
+          "constraint": {
+            "min": 3,
+            "max": 3
+          },
+          "courses": [
+            "AUC-HOIX"
+          ]
+        }
+      ]
+    }
+  ],
+  "profiles": [
+    {
+      "title": "Profil entrepreneurial",
+      "credits_required": 18,
+      "mandatory": [
+        "ENT-1000",
+        "ENT-3000",
+        "ENT-3010"
+      ],
+      "rules": [
+        {
+          "title": "Règle 1",
+          "constraint": {
+            "min": 3,
+            "max": 3
+          },
+          "courses": [
+            "ENT-2023",
+            "ENT-4020"
+          ]
+        },
+        {
+          "title": "Règle 2",
+          "constraint": {
+            "min": 0,
+            "max": 3
+          },
+          "courses": [
+            "LAN-GUES"
+          ]
+        },
+        {
+          "title": "Règle 3",
+          "constraint": {
+            "min": 3,
+            "max": 3
+          },
+          "courses": [
+            "AUC-HOIX"
+          ]
+        },
+        {
+          "title": "Règle 4",
+          "constraint": {
+            "min": 0,
+            "max": 3
+          },
+          "courses": [
+            "OPT-ION1"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Profil international",
+      "credits_required": 18,
+      "mandatory": [],
+      "rules": [
+        {
+          "title": "Règle 1",
+          "constraint": {
+            "min": 12,
+            "max": 15
+          },
+          "courses": [
+            "OPT-ETR1",
+            "OPT-ETR2",
+            "OPT-ETR3",
+            "OPT-ETR4",
+            "OPT-ETR5"
+          ]
+        },
+        {
+          "title": "Règle 2",
+          "constraint": {
+            "min": 0,
+            "max": 3
+          },
+          "courses": [
+            "LAN-GUES"
+          ]
+        },
+        {
+          "title": "Règle 3",
+          "constraint": {
+            "min": 3,
+            "max": 3
+          },
+          "courses": [
+            "AUC-HOIX"
+          ]
+        }
+      ]
+    }
+  ]
+}

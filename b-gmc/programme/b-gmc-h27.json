@@ -7,6 +7,8 @@
   "credits_required": 120,
   "mandatory": [
     "GMC-1001",
+    "GMC-1004",
+    "GMC-1005",
     "GMC-1024",
     "GML-1001",
     "MAT-1900",
@@ -38,8 +40,6 @@
     "GMC-3035",
     "PHI-3900",
     "ECN-4901",
-    "GMC-1004",
-    "GMC-1005",
     "GMN-2900"
   ],
   "rules": [
@@ -76,6 +76,7 @@
       },
       "courses": [
         "GLO-1901",
+        "GMC-1006",
         "IFT-1903"
       ]
     }
@@ -89,7 +90,7 @@
         {
           "title": "Règle 1",
           "constraint": {
-            "min": 15,
+            "min": 12,
             "max": 15
           },
           "courses": [
@@ -125,6 +126,8 @@
             "GMC-4200",
             "GMC-4201",
             "GMC-4202",
+            "GMC-3016",
+            "GMC-4000",
             "GIF-4101",
             "GLO-2100",
             "IFT-4102",
@@ -142,7 +145,6 @@
             "GMC-3351",
             "MAT-2930",
             "GAE-2005",
-            "GMC-3016",
             "GMC-4048",
             "GMC-4055",
             "GMC-4100",
@@ -154,11 +156,21 @@
         {
           "title": "Règle 2",
           "constraint": {
-            "min": 3,
+            "min": 0,
             "max": 3
           },
           "courses": [
             "LAN-GUES"
+          ]
+        },
+        {
+          "title": "Règle 3",
+          "constraint": {
+            "min": 3,
+            "max": 3
+          },
+          "courses": [
+            "AUC-HOIX"
           ]
         }
       ]
@@ -193,11 +205,21 @@
         {
           "title": "Règle 2",
           "constraint": {
-            "min": 3,
+            "min": 0,
             "max": 3
           },
           "courses": [
             "LAN-GUES"
+          ]
+        },
+        {
+          "title": "Règle 3",
+          "constraint": {
+            "min": 3,
+            "max": 3
+          },
+          "courses": [
+            "AUC-HOIX"
           ]
         }
       ]
@@ -234,11 +256,21 @@
         {
           "title": "Règle 2",
           "constraint": {
-            "min": 3,
+            "min": 0,
             "max": 3
           },
           "courses": [
             "LAN-GUES"
+          ]
+        },
+        {
+          "title": "Règle 3",
+          "constraint": {
+            "min": 3,
+            "max": 3
+          },
+          "courses": [
+            "AUC-HOIX"
           ]
         }
       ]
@@ -268,7 +300,7 @@
         {
           "title": "Règle 2",
           "constraint": {
-            "min": 3,
+            "min": 0,
             "max": 3
           },
           "courses": [
@@ -282,7 +314,17 @@
             "max": 3
           },
           "courses": [
-            "OPT-GMC1"
+            "AUC-HOIX"
+          ]
+        },
+        {
+          "title": "Règle 4",
+          "constraint": {
+            "min": 0,
+            "max": 3
+          },
+          "courses": [
+            "OPT-ION1"
           ]
         }
       ]
@@ -295,7 +337,7 @@
         {
           "title": "Règle 1",
           "constraint": {
-            "min": 15,
+            "min": 12,
             "max": 15
           },
           "courses": [
@@ -309,11 +351,21 @@
         {
           "title": "Règle 2",
           "constraint": {
-            "min": 3,
+            "min": 0,
             "max": 3
           },
           "courses": [
             "LAN-GUES"
+          ]
+        },
+        {
+          "title": "Règle 3",
+          "constraint": {
+            "min": 3,
+            "max": 3
+          },
+          "courses": [
+            "AUC-HOIX"
           ]
         }
       ]

@@ -58,6 +58,16 @@
             flex-shrink: 0;
         }
 
+        .avertissement-banner a {
+            color: #7a5c00;
+            font-weight: 600;
+            text-decoration: underline;
+        }
+
+        .avertissement-banner a:hover {
+            color: #4d3900;
+        }
+
         .container {
             max-width: 1800px;
             margin: 40px auto;
@@ -760,6 +770,81 @@
 
         .modal-btn-cancel:hover { background: #ebebeb; }
 
+        .modal-checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .modal-checkbox-label input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .modal-field {
+            margin-top: 16px;
+        }
+
+        .modal-field > label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 6px;
+        }
+
+        .modal-field input[type="text"] {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .modal-emplacement {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background: #fafafa;
+        }
+
+        .modal-emplacement span {
+            flex: 1 1 auto;
+            font-size: 13px;
+            color: #333;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .modal-btn-parcourir {
+            flex: 0 0 auto;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background: white;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .modal-btn-parcourir:hover { background: #f0f0f0; }
+
+        .modal-note {
+            margin: 10px 0 0;
+            font-size: 12px;
+            color: #888;
+            font-style: italic;
+        }
+
         .cheminement-table-top {
             display: flex;
             align-items: center;
@@ -839,7 +924,7 @@
 
     <div class="avertissement-banner">
         <span class="emoji" aria-hidden="true">⚠️</span>
-        <span>Cet outil peut contenir des erreurs et les horaires des cours sont sujets à changements sans préavis. Pour ces raisons, vous devez vérifier le cheminement produit à l'aide du site web officiel de l'UL et à chaque nouvelle période d'inscription.</span>
+        <span>Cet outil peut contenir des erreurs et les horaires des cours sont sujets à changements sans préavis. Pour ces raisons, vous devez valider le cheminement produit à chaque nouvelle période d'inscription à partir de votre Rapport de cheminement détaillé sur <a href="https://capsuleweb.ulaval.ca/" target="_blank" rel="noopener">Capsule</a>.</span>
     </div>
 
     <div class="container">
@@ -991,6 +1076,13 @@
         <p>&copy; 2026 Université Laval. Tous droits réservés.</p>
         <p style="margin-top: 8px;">Pour toute question, commentaire ou problème à signaler, veuillez écrire à Philippe Cardou&#8202;<a href="mailto:pcardou@gmc.ulaval.ca" title="pcardou@gmc.ulaval.ca" style="color: #e30513; text-decoration: none;">&#9993;</a>.</p>
     </footer>
+
+    <!-- Génération de PDF côté client (sans pilote d'imprimante), utilisées
+         uniquement par la case "Sauvegarder en format .pdf" du modal de
+         sauvegarde. Fichiers locaux (lib/) pour que le reste de l'outil
+         continue de fonctionner hors ligne. -->
+    <script src="lib/jspdf.umd.min.js"></script>
+    <script src="lib/html2canvas.min.js"></script>
 
     <script>
         class VersionProgramme {
@@ -2533,7 +2625,28 @@
             document.getElementById('modal-chargement').classList.remove('visible');
         }
 
+        // Dossier choisi via showDirectoryPicker() pour cette ouverture du modal
+        // (Chrome/Edge seulement) ; null = pas de dossier choisi, on retombe sur
+        // showSaveFilePicker()/téléchargement standard par fichier.
+        let dossierSauvegardeHandle = null;
+
         function ouvrirModalSauvegarde() {
+            dossierSauvegardeHandle = null;
+
+            const affichage = document.getElementById('sauvegarde-emplacement-affichage');
+            const btnChoisir = document.getElementById('btn-choisir-emplacement');
+            const note = document.getElementById('sauvegarde-note');
+
+            if (affichage) affichage.textContent = 'Téléchargements (par défaut)';
+
+            if (window.showDirectoryPicker) {
+                if (btnChoisir) btnChoisir.style.display = '';
+                if (note) note.textContent = '';
+            } else {
+                if (btnChoisir) btnChoisir.style.display = 'none';
+                if (note) note.textContent = "Votre navigateur ne permet pas de choisir le dossier depuis cette page : les fichiers seront enregistrés dans votre dossier de téléchargements.";
+            }
+
             document.getElementById('modal-sauvegarde').classList.add('visible');
         }
 
@@ -2541,9 +2654,22 @@
             document.getElementById('modal-sauvegarde').classList.remove('visible');
         }
 
-        async function sauvegarderCheminementCSV() {
-            fermerModalSauvegarde();
+        async function choisirEmplacementSauvegarde() {
+            try {
+                // Demander la permission d'écriture dès le choix du dossier (pendant
+                // que le clic est "frais") : sinon, l'écriture différée après la
+                // génération du PDF (plus lente) peut échouer silencieusement faute
+                // d'activation utilisateur récente, et retomber sur une 2e boîte de
+                // dialogue (showSaveFilePicker).
+                dossierSauvegardeHandle = await window.showDirectoryPicker({ mode: 'readwrite' });
+                const affichage = document.getElementById('sauvegarde-emplacement-affichage');
+                if (affichage) affichage.textContent = dossierSauvegardeHandle.name;
+            } catch (e) {
+                if (e.name !== 'AbortError') console.warn('showDirectoryPicker a échoué :', e);
+            }
+        }
 
+        function genererContenuCSV() {
             const headers = document.querySelectorAll('.table-wrapper thead tr th');
             const tbody = document.querySelector('.table-wrapper tbody');
             const tableRows = Array.from(tbody.rows);
@@ -2561,90 +2687,211 @@
                 lines.push([sessionCode, ...sigles].join(';'));
             }
 
-            const csvContent = lines.join('\r\n');
+            return lines.join('\r\n');
+        }
 
-            // Navigateurs supportant la File System Access API (Chrome, Edge...) :
-            // boîte de dialogue native pour choisir le dossier et le nom du fichier.
-            if (window.showSaveFilePicker) {
+        // Génère le PDF entièrement côté client (jsPDF + html2canvas, chargés
+        // localement depuis lib/) : aucun pilote d'imprimante requis. Format
+        // lettre, orientation paysage, en couleurs.
+        async function genererBlobPDF() {
+            const tableEl = document.querySelector('.table-wrapper table');
+            const logEl = document.getElementById('log-content');
+            if (!tableEl) throw new Error('Aucun tableau de cheminement à exporter.');
+            if (!window.jspdf || !window.html2canvas) {
+                throw new Error("Les librairies de génération de PDF (lib/jspdf.umd.min.js, lib/html2canvas.min.js) n'ont pas pu être chargées.");
+            }
+
+            const texteProgramme = document.getElementById('programme-select')?.selectedOptions[0]?.textContent.trim() || '';
+            const texteAdmission = document.getElementById('admission-select')?.selectedOptions[0]?.textContent.trim() || '';
+            const texteSpecialisation = document.getElementById('cheminement-select')?.selectedOptions[0]?.textContent.trim() || '';
+            const texteEnTete = [
+                texteProgramme,
+                texteAdmission ? `Admission ${texteAdmission}` : '',
+                texteSpecialisation,
+            ].filter(Boolean).join(' · ');
+
+            // Contenu hors écran, avec son propre style adapté à l'export PDF
+            // (même esprit visuel que l'impression, mais autonome). Positionné
+            // à (0,0) mais derrière tout le reste (z-index négatif) plutôt
+            // qu'à un décalage énorme : certains moteurs de rendu produisent
+            // une capture vide pour un élément placé très loin hors écran.
+            const conteneur = document.createElement('div');
+            conteneur.style.cssText = 'position:fixed; left:0; top:0; z-index:-1000; width:1250px; background:white; font-family:system-ui,-apple-system,sans-serif; color:#111;';
+            conteneur.innerHTML = `
+                <style>
+                    .pdf-export * { box-sizing: border-box; }
+                    .pdf-export h2 { font-size: 16px; margin: 0; color: #1a1a2e; }
+                    .pdf-export .pdf-header-row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+                    .pdf-export .pdf-header-meta { font-size: 12px; color: #333; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+                    /* min-width:0 annule le "min-width: 1680px" de la feuille de style
+                       principale (pensée pour le défilement horizontal à l'écran) ET
+                       le style EN LIGNE (table.style.minWidth = nbCols*140px) que le
+                       tableau réel porte toujours (ajusterLargeurColonnes()) : sans
+                       !important ici, un style en ligne gagnerait de toute façon contre
+                       n'importe quelle règle de feuille de style, et le tableau
+                       refuserait de rétrécir sous sa largeur d'origine, coupant les
+                       dernières colonnes à la capture. */
+                    .pdf-export table { width: 100% !important; min-width: 0 !important; border-collapse: collapse; table-layout: fixed; }
+                    .pdf-export th, .pdf-export td { width: auto !important; }
+                    .pdf-export th { background: #1a1a2e; color: white; padding: 5px 4px; font-size: 11px; text-align: center; white-space: nowrap; }
+                    .pdf-export td { border: 1px solid #ddd; padding: 3px; height: 42px; vertical-align: middle; text-align: center; }
+                    /* Empilement en bloc (pas flexbox) : html2canvas ne calcule pas
+                       toujours correctement la position d'enfants flex centrés
+                       verticalement, ce qui peut faire disparaître le sigle (premier
+                       enfant) derrière le titre court (second enfant). */
+                    .pdf-export .dropped-tile { display: block; box-sizing: border-box; width: 95%; border-radius: 5px; color: #111; font-weight: 700; padding: 4px 3px; overflow: hidden; }
+                    .pdf-export .tile-content { display: block; }
+                    .pdf-export .tile-code { display: block; font-size: 9px; font-weight: 700; text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+                    .pdf-export .tile-court { display: block; font-size: 8px; font-weight: 500; opacity: 0.9; text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-top: 1px; }
+                    .pdf-export select.section-select { display: none !important; }
+                    .pdf-export .log-section { margin-top: 12px; border-top: 1px solid #bbb; padding-top: 8px; }
+                    /* Couleurs du journal pensées pour un fond sombre à l'écran :
+                       on les assombrit ici pour qu'elles restent lisibles sur fond blanc. */
+                    .pdf-export .log-entry { font-size: 11px; line-height: 1.6; margin: 0; color: #222; }
+                    .pdf-export .log-entry.log-info    { color: #1b6a7a; }
+                    .pdf-export .log-entry.log-warning { color: #8a5a00; }
+                    .pdf-export .log-entry.log-error   { color: #a3123a; }
+                    .pdf-export .log-entry.log-section { color: #1a1a2e; font-weight: 600; margin-top: 8px; border-top: 1px solid #bbb; padding-top: 8px; }
+                </style>
+                <div class="pdf-export">
+                    <div class="pdf-header-row">
+                        <h2>Grille de cheminement</h2>
+                        <div class="pdf-header-meta">${texteEnTete}</div>
+                    </div>
+                    ${tableEl.outerHTML}
+                    <div class="log-section">
+                        <h2>Bilan et vérifications</h2>
+                        ${logEl ? logEl.innerHTML : ''}
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(conteneur);
+
+            try {
+                // On laisse les polices finir de charger avant la capture : du
+                // texte rendu avec une police non encore prête peut fausser les
+                // mesures de html2canvas.
+                if (document.fonts && document.fonts.ready) {
+                    try { await document.fonts.ready; } catch (e) { /* ignorer */ }
+                }
+
+                const canvas = await window.html2canvas(conteneur, {
+                    scale: 1.5,   // suffisant pour l'impression ; scale:2 produisait des PDF énormes (60+ Mo) sur une grille complète
+                    useCORS: true,
+                    backgroundColor: '#ffffff',
+                    windowWidth: 1250,
+                    width: 1250,
+                });
+
+                console.log(`[export PDF] canvas capturé : ${canvas.width}x${canvas.height}px`);
+                if (!canvas.width || !canvas.height) {
+                    throw new Error('La capture du contenu a produit une image vide (0×0).');
+                }
+
+                // On construit nous-mêmes le PDF à partir du canvas, découpé en
+                // autant de pages lettre-paysage que nécessaire, plutôt que de
+                // confier tout le processus à jsPDF.html() : cette dernière peut
+                // produire une page blanche lorsque le contenu est plus haut
+                // qu'une seule page.
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'letter' });
+                const marge = 5;
+                const largeurUtile = doc.internal.pageSize.getWidth() - marge * 2;
+                const hauteurUtile = doc.internal.pageSize.getHeight() - marge * 2;
+                const pxParMm = canvas.width / largeurUtile;
+                const hauteurPagePx = Math.floor(hauteurUtile * pxParMm);
+
+                let y = 0;
+                let page = 0;
+                while (y < canvas.height) {
+                    const hauteurTranchePx = Math.min(hauteurPagePx, canvas.height - y);
+                    const tranche = document.createElement('canvas');
+                    tranche.width = canvas.width;
+                    tranche.height = hauteurTranchePx;
+                    tranche.getContext('2d').drawImage(
+                        canvas, 0, y, canvas.width, hauteurTranchePx,
+                        0, 0, canvas.width, hauteurTranchePx
+                    );
+
+                    const hauteurTrancheMm = hauteurTranchePx / pxParMm;
+                    if (page > 0) doc.addPage();
+                    // JPEG plutôt que PNG : fichier final beaucoup plus léger pour un
+                    // contenu de ce type (tableau coloré + texte), sans perte visible à l'impression.
+                    doc.addImage(tranche.toDataURL('image/jpeg', 0.85), 'JPEG', marge, marge, largeurUtile, hauteurTrancheMm);
+
+                    y += hauteurTranchePx;
+                    page++;
+                }
+
+                console.log(`[export PDF] ${page} page(s) générée(s)`);
+                return doc.output('blob');
+            } finally {
+                document.body.removeChild(conteneur);
+            }
+        }
+
+        // Écrit un fichier (texte ou Blob) à l'emplacement choisi : dans le
+        // dossier sélectionné via choisirEmplacementSauvegarde() s'il y en a
+        // un (le même dossier sert alors pour le .csv et le .pdf, sans
+        // redemander), sinon en téléchargement standard et silencieux vers le
+        // dossier de téléchargements par défaut du navigateur. On ne passe
+        // plus par showSaveFilePicker() ici : appelée pour chaque fichier,
+        // elle rouvrirait une boîte de dialogue distincte à chaque fois.
+        async function sauvegarderFichier(contenu, nomFichier, mimeType) {
+            const blob = (contenu instanceof Blob) ? contenu : new Blob([contenu], { type: mimeType });
+
+            if (dossierSauvegardeHandle) {
                 try {
-                    const handle = await window.showSaveFilePicker({
-                        suggestedName: 'cheminement.csv',
-                        types: [{ description: 'Fichier CSV', accept: { 'text/csv': ['.csv'] } }],
-                    });
-                    const writable = await handle.createWritable();
-                    await writable.write(csvContent);
+                    const fileHandle = await dossierSauvegardeHandle.getFileHandle(nomFichier, { create: true });
+                    const writable = await fileHandle.createWritable();
+                    await writable.write(blob);
                     await writable.close();
                     return;
                 } catch (e) {
-                    if (e.name === 'AbortError') return; // annulé par l'utilisateur
-                    console.warn('showSaveFilePicker a échoué, repli sur le téléchargement standard :', e);
+                    console.warn(`Écriture dans le dossier choisi impossible pour ${nomFichier}, repli sur le téléchargement standard :`, e);
                 }
             }
 
-            // Repli pour les navigateurs sans File System Access API (Firefox, Safari) :
-            // téléchargement direct dans le dossier de téléchargements par défaut.
-            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'cheminement.csv';
+            a.download = nomFichier;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
         }
 
-        function imprimerCheminement() {
+        async function executerSauvegarde() {
+            const veutCSV = document.getElementById('chk-sauvegarde-csv').checked;
+            const veutPDF = document.getElementById('chk-sauvegarde-pdf').checked;
+            const nomBase = (document.getElementById('sauvegarde-nom-fichier').value || 'cheminement').trim() || 'cheminement';
+
+            if (!veutCSV && !veutPDF) {
+                alert('Veuillez cocher au moins un format à sauvegarder.');
+                return;
+            }
+
             fermerModalSauvegarde();
 
-            const tableEl = document.querySelector('.table-wrapper table');
-            const logEl = document.getElementById('log-content');
-            if (!tableEl) { alert('Aucun tableau de cheminement à imprimer.'); return; }
+            if (veutCSV) {
+                try {
+                    await sauvegarderFichier(genererContenuCSV(), `${nomBase}.csv`, 'text/csv;charset=utf-8;');
+                } catch (e) {
+                    console.warn('Échec de la sauvegarde CSV :', e);
+                    alert(`La sauvegarde du fichier .csv a échoué : ${e.message}`);
+                }
+            }
 
-            const tableHTML = tableEl.outerHTML;
-            const logHTML = logEl ? logEl.innerHTML : '';
-
-            const printWin = window.open('', '_blank', 'width=1200,height=850');
-            if (!printWin) { alert('Le navigateur a bloqué l\'ouverture d\'une fenêtre. Autorisez les popups pour ce site.'); return; }
-
-            printWin.document.write(`<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
-<title>Grille de cheminement</title>
-<style>
-@page { size: 11in 8.5in; margin: 10mm; }
-* { box-sizing: border-box; }
-body { font-family: system-ui, -apple-system, sans-serif; font-size: 10px; margin: 0; padding: 0; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
-h2 { font-size: 13px; margin: 0 0 6px; color: #1a1a2e; }
-table { width: 100% !important; min-width: unset !important; border-collapse: collapse; table-layout: fixed; }
-th { background: #1a1a2e !important; color: white !important; padding: 4px 3px; font-size: 10px; text-align: center; white-space: nowrap; }
-td { border: 1px solid #ddd; padding: 3px; height: 40px; vertical-align: middle; text-align: center; }
-.dropped-tile {
-    display: inline-flex; align-items: stretch; gap: 2px;
-    width: 95%; max-height: 34px; border-radius: 5px;
-    color: #111 !important; font-weight: 700; padding: 2px 3px;
-    overflow: hidden;
-}
-.tile-content { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; overflow: hidden; }
-.tile-code { font-size: 8px; font-weight: 700; text-align: center; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.tile-court { font-size: 7px; font-weight: 500; opacity: 0.9; text-align: center; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-select.section-select { display: none !important; }
-.log-section { margin-top: 10px; border-top: 1px solid #bbb; padding-top: 8px; }
-.log-entry { font-size: 10px; line-height: 1.6; margin: 0; }
-</style>
-</head>
-<body>
-<h2>Grille de cheminement</h2>
-${tableHTML}
-<div class="log-section">
-<h2>Bilan et vérifications</h2>
-${logHTML}
-</div>
-<script>window.addEventListener('load', function() { window.print(); });<\/script>
-</body>
-</html>`);
-            printWin.document.close();
+            if (veutPDF) {
+                try {
+                    const blobPDF = await genererBlobPDF();
+                    await sauvegarderFichier(blobPDF, `${nomBase}.pdf`, 'application/pdf');
+                } catch (e) {
+                    console.warn('Échec de la génération/sauvegarde du PDF :', e);
+                    alert(`La génération du fichier .pdf a échoué : ${e.message}`);
+                }
+            }
         }
 
         async function chargerCheminementFichier(nomFichier) {
@@ -3248,15 +3495,32 @@ ${logHTML}
     <div id="modal-sauvegarde" class="modal-overlay" onclick="if(event.target===this) fermerModalSauvegarde()">
         <div class="modal-box">
             <h3>Sauvegarder un cheminement</h3>
-            <p>Choisissez l'action à effectuer&nbsp;:</p>
+
             <div class="modal-options">
-                <button class="modal-btn modal-btn-primary" onclick="sauvegarderCheminementCSV()">
-                    💾&nbsp; Sauvegarder le cheminement en format .csv
-                </button>
-                <button class="modal-btn modal-btn-primary" onclick="imprimerCheminement()">
-                    🖨️&nbsp; Imprimer le cheminement
-                </button>
+                <label class="modal-checkbox-label">
+                    <input type="checkbox" id="chk-sauvegarde-csv" checked> Sauvegarder en format .csv
+                </label>
+                <label class="modal-checkbox-label">
+                    <input type="checkbox" id="chk-sauvegarde-pdf" checked> Sauvegarder en format .pdf
+                </label>
             </div>
+
+            <div class="modal-field">
+                <label for="btn-choisir-emplacement">Emplacement :</label>
+                <div class="modal-emplacement">
+                    <span id="sauvegarde-emplacement-affichage">Téléchargements (par défaut)</span>
+                    <button type="button" class="modal-btn-parcourir" id="btn-choisir-emplacement" onclick="choisirEmplacementSauvegarde()">Choisir…</button>
+                </div>
+            </div>
+
+            <div class="modal-field">
+                <label for="sauvegarde-nom-fichier">Nom du fichier :</label>
+                <input type="text" id="sauvegarde-nom-fichier" value="cheminement">
+            </div>
+
+            <p class="modal-note" id="sauvegarde-note"></p>
+
+            <button class="modal-btn modal-btn-primary" onclick="executerSauvegarde()">💾&nbsp; Sauvegarder</button>
             <button class="modal-btn modal-btn-cancel" onclick="fermerModalSauvegarde()">Annuler</button>
         </div>
     </div>
