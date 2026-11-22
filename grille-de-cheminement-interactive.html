@@ -633,6 +633,25 @@
         .log-entry.log-warning { color: #f9e2af; }
         .log-entry.log-error   { color: #f38ba8; }
 
+        .log-note {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #45475a;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+            font-size: 11px;
+            line-height: 1.5;
+            font-style: italic;
+            color: #9399b2;
+        }
+
+        .log-note a {
+            color: #89dceb;
+            font-weight: 600;
+            text-decoration: underline;
+        }
+
+        .log-note a:hover { color: #74c7ec; }
+
         .cheminement-actions {
             display: flex;
             align-items: center;
@@ -1063,6 +1082,7 @@
             <div class="log-box" id="log-box">
                 <h2>Analyse du cheminement</h2>
                 <div id="log-content"></div>
+                <div class="log-note" id="log-note">Note : Cet outil ne vérifie pas toutes les exigences qui doivent être satisfaites pour diplômer. Notamment, il ne vérifie pas la satisfaction des exigences de langue. Pour voir ces autres exigences, allez dans votre Rapport de cheminement détaillé sur <a href="https://capsuleweb.ulaval.ca/" target="_blank" rel="noopener">Capsule</a>.</div>
             </div>
         </div>
 
@@ -2696,6 +2716,7 @@
         async function genererBlobPDF() {
             const tableEl = document.querySelector('.table-wrapper table');
             const logEl = document.getElementById('log-content');
+            const noteEl = document.getElementById('log-note');
             if (!tableEl) throw new Error('Aucun tableau de cheminement à exporter.');
             if (!window.jspdf || !window.html2canvas) {
                 throw new Error("Les librairies de génération de PDF (lib/jspdf.umd.min.js, lib/html2canvas.min.js) n'ont pas pu être chargées.");
@@ -2752,6 +2773,8 @@
                     .pdf-export .log-entry.log-warning { color: #8a5a00; }
                     .pdf-export .log-entry.log-error   { color: #a3123a; }
                     .pdf-export .log-entry.log-section { color: #1a1a2e; font-weight: 600; margin-top: 8px; border-top: 1px solid #bbb; padding-top: 8px; }
+                    .pdf-export .log-note { margin-top: 10px; padding-top: 8px; border-top: 1px solid #bbb; font-size: 10px; font-style: italic; color: #444; }
+                    .pdf-export .log-note a { color: #1b6a7a; font-weight: 600; text-decoration: underline; }
                 </style>
                 <div class="pdf-export">
                     <div class="pdf-header-row">
@@ -2762,6 +2785,7 @@
                     <div class="log-section">
                         <h2>Bilan et vérifications</h2>
                         ${logEl ? logEl.innerHTML : ''}
+                        ${noteEl ? noteEl.outerHTML : ''}
                     </div>
                 </div>
             `;
