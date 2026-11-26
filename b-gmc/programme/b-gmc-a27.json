@@ -341,15 +341,15 @@
             "max": 15
           },
           "courses": [
-            "OPT-ETR1",
-            "OPT-ETR2",
-            "OPT-ETR3",
-            "OPT-ETR4",
-            "OPT-ETR5"
+            "OPT-ION1",
+            "OPT-ION2",
+            "OPT-ION3",
+            "OPT-ION4",
+            "OPT-ION5"
           ]
         },
         {
-          "title": "Règle 2",
+          "title": "Exigence de langue",
           "constraint": {
             "min": 0,
             "max": 3

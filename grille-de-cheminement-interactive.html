@@ -312,7 +312,7 @@
             display: none;
         }
 
-        .scolarite-checkbox-label {
+        .regle-checkbox-label {
             display: flex;
             align-items: center;
             gap: 6px;
@@ -325,11 +325,14 @@
             white-space: nowrap;
         }
 
-        .scolarite-checkbox-label input[type="checkbox"] {
+        .regle-checkbox-label input[type="checkbox"] {
             width: 14px;
             height: 14px;
             cursor: pointer;
             flex-shrink: 0;
+        }
+        .rule-header .regle-checkbox-label {
+            margin-left: auto;
         }
 
         .rule-card {
@@ -1566,7 +1569,7 @@
             // Grouper les règles par section en conservant l'ordre d'apparition
             const sections = [];
             const sectionIndexMap = new Map();
-            programme.regles.forEach(regle => {
+            programme.regles.forEach((regle, indexRegle) => {
                 const spec = regle.specialisation || 'Activités communes';
                 if (!sectionIndexMap.has(spec)) {
                     sectionIndexMap.set(spec, sections.length);
@@ -1580,7 +1583,18 @@
                         creditsAccumules += parseInt(regle.creditsCoursRegle[idx]) || 0;
                     }
                 });
-                section.reglesData.push({ regle, creditsAccumules });
+
+                // Exigence de langue : la case « déjà satisfaite » n'ajoute pas de
+                // crédits accumulés, elle abaisse plutôt la cible à atteindre (de
+                // maxCreditsRegle à minCreditsRegle).
+                const estExigenceLangue = regle.titreRegle === 'Exigence de langue';
+                let cible = regle.minCreditsRegle;
+                if (estExigenceLangue) {
+                    const cbLangue = document.getElementById(`langue-completee-${indexRegle}`);
+                    cible = (cbLangue && cbLangue.checked) ? regle.minCreditsRegle : regle.maxCreditsRegle;
+                }
+
+                section.reglesData.push({ regle, creditsAccumules, cible, estExigenceLangue });
             });
 
             const specialisationsCredits = programme.specialisationsCredits;
@@ -1600,9 +1614,12 @@
                     ? specialisationsCredits.get(specialisation)
                     : reglesComptees.reduce((sum, rd) => sum + rd.regle.maxCreditsRegle, 0);
 
-                // Crédits accumulés dans les règles comptées, plafonnés par leur max respectif
+                // Crédits accumulés dans les règles comptées, plafonnés par leur max respectif.
+                // Pour l'exigence de langue, le plafond suit sa cible : maximum si la case
+                // n'est pas cochée, minimum si elle l'est (le cours de langue, s'il est placé,
+                // ne compte alors plus, et doit être compensé par un cours d'une autre règle).
                 const totalCappedSection = reglesComptees.reduce(
-                    (sum, rd) => sum + Math.min(rd.creditsAccumules, rd.regle.maxCreditsRegle), 0
+                    (sum, rd) => sum + Math.min(rd.creditsAccumules, rd.estExigenceLangue ? rd.cible : rd.regle.maxCreditsRegle), 0
                 );
                 const contributionSection = Math.min(totalCappedSection, creditsExigesGlobal);
 
@@ -1617,12 +1634,14 @@
                 }
 
                 // Toutes les règles sont affichées (y compris Stages et Scolarité préparatoire)
-                reglesData.forEach(({ regle, creditsAccumules }) => {
+                reglesData.forEach(({ regle, creditsAccumules, cible, estExigenceLangue }) => {
                     const hasInterval = regle.minCreditsRegle !== regle.maxCreditsRegle;
-                    const exigesStr = hasInterval
-                        ? `(${regle.minCreditsRegle} à ${regle.maxCreditsRegle} cr.)`
-                        : `${regle.maxCreditsRegle} cr.`;
-                    const regleOk = creditsAccumules >= regle.minCreditsRegle;
+                    const exigesStr = estExigenceLangue
+                        ? `${cible} cr.`
+                        : (hasInterval
+                            ? `(${regle.minCreditsRegle} à ${regle.maxCreditsRegle} cr.)`
+                            : `${regle.maxCreditsRegle} cr.`);
+                    const regleOk = creditsAccumules >= cible;
                     const type = regleOk ? 'info' : 'warning';
                     logMessage(`${regle.titreRegle} : ${creditsAccumules} cr. / ${exigesStr}`, type, false);
                 });
@@ -1957,7 +1976,7 @@
 
             let lastSectionLabel = null;
             let currentCollapsible = null;
-            programme.regles.forEach((regle) => {
+            programme.regles.forEach((regle, indexRegle) => {
                 const sectionLabel = regle.specialisation || 'Activités communes';
                 if (sectionLabel !== lastSectionLabel) {
                     const isScolarite = sectionLabel === 'Scolarité préparatoire';
@@ -1975,7 +1994,7 @@
 
                     if (isScolarite) {
                         const cbLabel = document.createElement('label');
-                        cbLabel.className = 'scolarite-checkbox-label';
+                        cbLabel.className = 'regle-checkbox-label';
                         cbLabel.textContent = 'Scolarité préparatoire complétée :';
                         const cb = document.createElement('input');
                         cb.type = 'checkbox';
@@ -2007,6 +2026,20 @@
                 const header = document.createElement('div');
                 header.className = 'rule-header';
                 header.textContent = `${regle.titreRegle} (${regle.specialisation}) (${formatRuleCredits(regle)} crédits)`;
+
+                if (regle.titreRegle === 'Exigence de langue') {
+                    const cbLabel = document.createElement('label');
+                    cbLabel.className = 'regle-checkbox-label';
+                    cbLabel.textContent = 'Exigence satisfaite (francophones: VEPT >= 53; non-francophones: TCF-TP>=400/699 et TCF-ÉÉ>=14/20) :';
+                    const cb = document.createElement('input');
+                    cb.type = 'checkbox';
+                    cb.id = `langue-completee-${indexRegle}`;
+                    cb.checked = false;
+                    cb.addEventListener('change', () => verifierPrealablesTableau());
+                    cbLabel.appendChild(cb);
+                    header.appendChild(cbLabel);
+                }
+
                 card.appendChild(header);
 
                 const courseList = document.createElement('div');

@@ -1,7 +1,7 @@
 {
   "code": "b-gin",
-  "version": "H27",
-  "year": 2027,
+  "version": "A26",
+  "year": 2026,
   "title": "Baccalauréat en génie industriel",
   "cycle": 1,
   "credits_required": 120,
@@ -135,7 +135,7 @@
           ]
         },
         {
-      "title": "Règle 2",
+      "title": "Exigence de langue",
       "constraint": {
         "min": 0,
         "max": 3
@@ -215,7 +215,7 @@
           ]
         },
         {
-      "title": "Règle 4",
+      "title": "Exigence de langue",
       "constraint": {
         "min": 0,
         "max": 3
@@ -293,7 +293,7 @@
           ]
         },
         {
-      "title": "Règle 4",
+      "title": "Exigence de langue",
       "constraint": {
         "min": 0,
         "max": 3
@@ -375,7 +375,7 @@
           ]
         },
         {
-      "title": "Règle 4",
+      "title": "Exigence de langue",
       "constraint": {
         "min": 0,
         "max": 3
@@ -449,7 +449,7 @@
           ]
         },
          {
-      "title": "Règle 4",
+      "title": "Exigence de langue",
       "constraint": {
         "min": 0,
         "max": 3
@@ -474,7 +474,7 @@
   "profiles": [
     {
       "title": "Profil entrepreneurial",
-      "credits_required": 12,
+      "credits_required": 18,
       "mandatory": [
         "ENT-1000",
         "ENT-3000",
@@ -485,33 +485,76 @@
           "title": "Règle 1",
           "constraint": {
             "min": 3,
-            "max": 3
+            "max": 6
           },
           "courses": [
             "ENT-2023",
-            "ENT-2145"
+            "ENT-2145",
+            "OPT-ION1"
           ]
-        }
+        },
+         {
+      "title": "Exigence de langue",
+      "constraint": {
+        "min": 0,
+        "max": 3
+      },
+      "courses": [
+        "LAN-GUES"
+      ]
+    },
+    {
+      "title": "Règle 3",
+      "constraint": {
+        "min": 3,
+        "max": 3
+      },
+      "courses": [
+        "AUC-HOIX"
+      ]
+    }
       ]
     },
     {
       "title": "Profil international",
-      "credits_required": 12,
+      "credits_required": 18,
       "mandatory": [],
       "rules": [
         {
           "title": "Règle 1",
           "constraint": {
             "min": 12,
-            "max": 12
+            "max": 15
           },
           "courses": [
             "OPT-ETR1",
             "OPT-ETR2",
             "OPT-ETR3",
-            "OPT-ETR4"
+            "OPT-ETR4",
+            "OPT-ETR5",
+            "OPT-ION1"
           ]
-        }
+        },
+         {
+      "title": "Exigence de langue",
+      "constraint": {
+        "min": 0,
+        "max": 3
+      },
+      "courses": [
+        "LAN-GUES"
+      ]
+    },
+    {
+      "title": "Règle 3",
+      "constraint": {
+        "min": 3,
+        "max": 3
+      },
+      "courses": [
+        "AUC-HOIX"
+      ]
+    }
       ]
     }
   ]
