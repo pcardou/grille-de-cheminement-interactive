@@ -1,13 +1,14 @@
 ﻿sigle;titre;titre_court;couleur
+AUC-HOIX;Cours au choix;CAuChoix;#5C7FA3
 BIO-0150;Biologie générale;BioGénér;#D97706
 BIO-1910;Écologie et pollution;ÉcolPoll;#D97706
 BIO-2909;Éléments de physiologie humaine;ÉlPhysHu;#D97706
 BIO-4900;Écologie et environnement;ÉcoloEnv;#D97706
 CHM-0150;Chimie générale;ChimieGé;#D97706
 CHM-0160;Chimie des solutions;ChimieSo;#D97706
-CHM-0170;Chimie générale et des solutions;ChiGénSo;#D97706
 CHM-0250;Chimie organique;ChimieOr;#D97706
 CTB-1001;Comptabilité de management;CompMana;#ECBB83
+DES-2005;Conception, fabrication et mise en marché X.0;ConFabMM;#5C7FA3
 ECN-4901;Analyse économique en ingénierie;AnaÉcono;#F18289
 ENT-1000;Savoir entreprendre : la passion de créer et d'agir;SavEntre;#5C7FA3
 ENT-2023;Entrepreneuriat technologique;EntrTech;#5C7FA3
@@ -45,6 +46,7 @@ GLO-4000;Interface personne-machine;InterfPM;#5C7FA3
 GMC-1000;Dessin pour l'ingénierie;DessIngé;#F18289
 GMC-1300;Initiation à la mécatronique;InitMéca;#5C7FA3
 GMC-2007;Fabrication mécanique;FabrMéca;#5C7FA3
+GMC-2008;Machines thermiques;MachTher;#5C7FA3
 GMC-3016;Introduction au génie maritime;InGéMari;#5C7FA3
 GMC-4100;Commandes hydrauliques et pneumatiques;HydrPneu;#5C7FA3
 GMC-4200;Automatisation industrielle;AutIndus;#5C7FA3
@@ -58,6 +60,8 @@ GSO-2106;Gestion stratégique de la chaîne d'approvisionnement;GestChLo;#5C7FA3
 GSO-3103;Ingénierie de la chaîne logistique;IngChLog;#ECBB83
 GSO-3105;Opérations et logistique à l'ère de l'industrie 4.0;OpInd4.0;#5C7FA3
 IFT-1003;Analyse et conception de systèmes d'information;AnalSyst;#5C7FA3
+IFT-2008;Algorithmes et structures de données;AlgStrDo;#5C7FA3
+IFT-2009;Initiation à l'apprentissage automatique;InAppAut;#5C7FA3
 IFT-4102;Techniques avancées en intelligence artificielle;TechAvIA;#5C7FA3
 LAN-GUES;Cours de langue selon le résultat VEPT;CourVEPT;#702e78
 MAT-0130;Algèbre vectorielle;AlgVecto;#8C5A7B
@@ -73,6 +77,10 @@ MQT-2100;Environnement de développement de SIAD;DéveSIAD;#ECBB83
 MQT-2101;Analyse et modélisation des données;AnalDonn;#5C7FA3
 MQT-2102;Introduction à la simulation et à la visualisation;SimuVisu;#5C7FA3
 MQT-3000;Introduction à l'analytique d'affaires;AnalAffa;#5C7FA3
+OPT-ETR1;Cours à option à l'étranger à déterminer;OpEtran1;#5C7FA3
+OPT-ETR2;Cours à option à l'étranger à déterminer;OpEtran2;#5C7FA3
+OPT-ETR3;Cours à option à l'étranger à déterminer;OpEtran3;#5C7FA3
+OPT-ETR4;Cours à option à l'étranger à déterminer;OpEtran4;#5C7FA3
 OPT-ION1;Cours à option à déterminer;OptGInd1;#5C7FA3
 OPT-ION2;Cours à option à déterminer;OptGInd2;#5C7FA3
 OPT-ION3;Cours à option à déterminer;OptGInd3;#5C7FA3
@@ -81,6 +89,7 @@ OPT-ION5;Cours à option à déterminer;OptGInd5;#5C7FA3
 PHI-3900;Éthique et professionnalisme;ÉthiProf;#ECBB83
 PHY-0150;Physique : mécanique classique;MécClass;#8C5A7B
 PHY-0250;Physique : électricité et magnétisme;ÉlecMagn;#8C5A7B
+PHY-0260;Physique : ondes et corpuscules;OndeCorp;#8C5A7B
 PHY-1000;Introduction à l'astrophysique;IntrAstr;#D97706
 PHY-2100;Sciences de l'espace;ScEspace;#D97706
 RLT-1700;Aspects administratifs et humains de la gestion;AspAdmin;#ECBB83

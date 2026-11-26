@@ -7,6 +7,7 @@ CHM-0150;Chimie générale;3;;https://www.ulaval.ca/etudes/cours/chm-0150-chimie
 CHM-0160;Chimie des solutions;3;CHM-0150;https://www.ulaval.ca/etudes/cours/chm-0160-chimie-des-solutions;ChimieSo;#D97706
 CHM-0250;Chimie organique;3;CHM-0150;https://www.ulaval.ca/etudes/cours/chm-0250-chimie-organique;ChimieOr;#D97706
 CTB-1001;Comptabilité de management;3;CTB-1000 * OU CTB-1003 OU ECN-2901 OU ECN-4901;https://www.ulaval.ca/etudes/cours/ctb-1001-comptabilite-de-management;CompMana;#ECBB83
+DES-2005;Conception, fabrication et mise en marché X.0;3;;https://www.ulaval.ca/etudes/cours/des-2005-conception-fabrication-et-mise-en-marche-x0;ConFabMM;#5C7FA3
 ECN-4901;Analyse économique en ingénierie;3;;https://www.ulaval.ca/etudes/cours/ecn-4901-analyse-economique-en-ingenierie;AnaÉcono;#F18289
 ENT-1000;Savoir entreprendre : la passion de créer et d'agir;3;;https://www.ulaval.ca/etudes/cours/ent-1000-savoir-entreprendre-la-passion-de-creer-et-dagir;SavEntre;#5C7FA3
 ENT-2023;Entrepreneuriat technologique;3;;https://www.ulaval.ca/etudes/cours/ent-2023-entrepreneuriat-technologique;EntrTech;#5C7FA3
@@ -44,6 +45,7 @@ GLO-4000;Interface personne-machine;3;;https://www.ulaval.ca/etudes/cours/glo-40
 GMC-1000;Dessin pour l'ingénierie;3;;https://www.ulaval.ca/etudes/cours/gmc-1000-dessin-pour-lingenierie;DessIngé;#F18289
 GMC-1300;Initiation à la mécatronique;3;GAE-2010 * OU GLO-1901 * OU IFT-1004 * OU IFT-1903 *;https://www.ulaval.ca/etudes/cours/gmc-1300-initiation-a-la-mecatronique;InitMéca;#5C7FA3
 GMC-2007;Fabrication mécanique;3;GML-1001 OU GIN-2120;https://www.ulaval.ca/etudes/cours/gmc-2007-fabrication-mecanique;FabrMéca;#5C7FA3
+GMC-2008;Machines thermiques;3;GMC-1002 OU GIN-3040;https://www.ulaval.ca/etudes/cours/gmc-2008-machines-thermiques;MachTher;#5C7FA3
 GMC-3016;Introduction au génie maritime;3;Crédits exigés : 30;https://www.ulaval.ca/etudes/cours/gmc-3016-introduction-au-genie-maritime;InGéMari;#5C7FA3
 GMC-4100;Commandes hydrauliques et pneumatiques;3;GMC-3002 OU GIN-3080;https://www.ulaval.ca/etudes/cours/gmc-4100-commandes-hydrauliques-et-pneumatiques;HydrPneu;#5C7FA3
 GMC-4200;Automatisation industrielle;3;GIN-3030 OU GMC-2007;https://www.ulaval.ca/etudes/cours/gmc-4200-automatisation-industrielle;AutIndus;#5C7FA3
@@ -57,6 +59,8 @@ GSO-2106;Gestion stratégique de la chaîne d'approvisionnement;3;GSO-2105;https
 GSO-3103;Ingénierie de la chaîne logistique;3;( GSO-1000 OU GSO-1100 OU GIN-2010 *) ET ( MQT-1101 OU GIN-2110 );https://www.ulaval.ca/etudes/cours/gso-3103-ingenierie-de-la-chaine-logistique;IngChLog;#ECBB83
 GSO-3105;Opérations et logistique à l'ère de l'industrie 4.0;3;GSO-1000 OU GIN-2010;https://www.ulaval.ca/etudes/cours/gso-3105-operations-et-logistique-a-lere-de-lindustrie-40;OpInd4.0;#5C7FA3
 IFT-1003;Analyse et conception de systèmes d'information;3;;https://www.ulaval.ca/etudes/cours/ift-1003-analyse-et-conception-de-systemes-dinformation;AnalSyst;#5C7FA3
+IFT-2008;Algorithmes et structures de données;3;GIF-1003 OU IFT-1006;https://www.ulaval.ca/etudes/cours/ift-2008-algorithmes-et-structures-de-donnees;AlgStrDo;#5C7FA3
+IFT-2009;Initiation à l'apprentissage automatique;3;( IFT-1004 OU IFT-1903 OU GLO-1901 OU GLO-2100 OU IFT-2008 ) ET ( GPL-1008 OU STT-1000 OU STT-2920 OU STT-1900 OU MQT-1102 );https://www.ulaval.ca/etudes/cours/ift-2009-initiation-a-lapprentissage-automatique;InAppAut;#5C7FA3
 IFT-4102;Techniques avancées en intelligence artificielle;3;(IFT-2000 OU IFT-2900 OU GLO-2100 OU IFT-2008 ) ET ( GPL-1008 OU STT-1000 OU STT-2920 OU STT-1900 OU MQT-1102 );https://www.ulaval.ca/etudes/cours/ift-4102-techniques-avancees-en-intelligence-artificielle;TechAvIA;#5C7FA3
 MAT-0130;Algèbre vectorielle;3;;https://www.ulaval.ca/etudes/cours/mat-0130-algebre-vectorielle;AlgVecto;#8C5A7B
 MAT-0150;Calcul différentiel;4;Préalable : mathématiques 536 ou 526 ou l'équivalent selon le programme visé. Des séances de dépannage seront offertes tout au long de la session. Les étudiants seront informés en classe de l'horaire et des locaux par leur enseignant. Cours réservé exclusivement aux étudiants inscrits à la majeure en scolarité préparatoire.;https://www.ulaval.ca/etudes/cours/mat-0150-calcul-differentiel;CalcDiff;#8C5A7B
@@ -74,6 +78,7 @@ MQT-3000;Introduction à l'analytique d'affaires;3;( MQT-1101 OU GIN-2110 ) ET (
 PHI-3900;Éthique et professionnalisme;3;Crédits exigés : 60;https://www.ulaval.ca/etudes/cours/phi-3900-ethique-et-professionnalisme;ÉthiProf;#ECBB83
 PHY-0150;Physique : mécanique classique;4;Préalables : avant la réforme physique 534 ou 584 ou 5043-2 ou l'équivalent et mathématiques 536 ou 5082-2 ou l'équivalent. Depuis la réforme : physique 053-504 et mathématiques technico-sciences 064-506 ou sciences naturelles 065-506 de 5e secondaire. Trois séances de laboratoire s'ajoutent à l'horaire régulier du cours. Ces séances ont lieu le vendredi, entre 8h30 et 17h20, réparties sur toute la session. L'inscription se fera au premier cours. Cours réservé exclusivement aux étudiants inscrits aux cours compensateurs et à la majeure en scolarité préparatoire.;https://www.ulaval.ca/etudes/cours/phy-0150-physique-mecanique-classique;MécClass;#8C5A7B
 PHY-0250;Physique : électricité et magnétisme;3;PHY-0150;https://www.ulaval.ca/etudes/cours/phy-0250-physique-electricite-et-magnetisme;ÉlecMagn;#8C5A7B
+PHY-0260;Physique : ondes et corpuscules;3;PHY-0150;https://www.ulaval.ca/etudes/cours/phy-0260-physique-ondes-et-corpuscules;OndeCorp;#8C5A7B
 PHY-1000;Introduction à l'astrophysique;3;MAT-0150 ET MAT-0260 ET MAT-0130 ET PHY-0150 ET PHY-0260;https://www.ulaval.ca/etudes/cours/phy-1000-introduction-a-lastrophysique;IntrAstr;#D97706
 PHY-2100;Sciences de l'espace;3;MAT-0150 ET MAT-0260 ET MAT-0130 ET PHY-0150 ET PHY-0250 ET PHY-0260;https://www.ulaval.ca/etudes/cours/phy-2100-sciences-de-lespace;ScEspace;#D97706
 RLT-1700;Aspects administratifs et humains de la gestion;3;;https://www.ulaval.ca/etudes/cours/rlt-1700-aspects-administratifs-et-humains-de-la-gestion;AspAdmin;#ECBB83
@@ -87,17 +92,18 @@ SIO-3105;Analyse d'affaires pour la transformation organisationnelle;3;;https://
 STT-1100;Introduction à la science des données;3;;https://www.ulaval.ca/etudes/cours/stt-1100-introduction-a-la-science-des-donnees;IntrScDo;#5C7FA3
 STT-1900;Méthodes statistiques pour l'ingénierie;3;MAT-0150 ET MAT-0260;https://www.ulaval.ca/etudes/cours/stt-1900-methodes-statistiques-pour-lingenierie;MéthStat;#F18289
 STT-4230;R pour scientifique;3;;https://www.ulaval.ca/etudes/cours/stt-4230-r-pour-scientifique;RScienti;#5C7FA3
-CHM-0170;Éléments de chimie générale et des solutions;3;;;ChiGénSo;#D97706
+CHM-0170;Éléments de chimie générale et des solutions;3;;;;
 LAN-GUES;Cours de langue selon le résultat VEPT;3;;;CourVEPT;#702e78
-OPT-ETR1;Cours à option à l'étranger;3;;;;
-OPT-ETR2;Cours à option à l'étranger;3;;;;
-OPT-ETR3;Cours à option à l'étranger;3;;;;
-OPT-ETR4;Cours à option à l'étranger;3;;;;
+OPT-ETR1;Cours à option à l'étranger;3;;;OpEtran1;#5C7FA3
+OPT-ETR2;Cours à option à l'étranger;3;;;OpEtran2;#5C7FA3
+OPT-ETR3;Cours à option à l'étranger;3;;;OpEtran3;#5C7FA3
+OPT-ETR4;Cours à option à l'étranger;3;;;OpEtran4;#5C7FA3
 OPT-ETR5;Cours à option à l'étranger ou à l'Université Laval;3;;;;
 OPT-ION1;Cours à option à déterminer;3;;;OptGInd1;#5C7FA3
 OPT-ION2;Cours à option à déterminer;3;;;OptGInd2;#5C7FA3
 OPT-ION3;Cours à option à déterminer;3;;;OptGInd3;#5C7FA3
 OPT-ION4;Cours à option à déterminer;3;;;OptGInd4;#5C7FA3
 OPT-ION5;Cours à option à déterminer;3;;;OptGInd5;#5C7FA3
+AUC-HOIX;Cours au choix;3;;;CAuChoix;#5C7FA3
 SAN-SÉCU;Cours de santé et sécurité au travail à déterminer;3;;;SantéSéc;#ECBB83
 SCI-NATU;Cours de sciences de la nature à déterminer;3;;;SciNatur;#D97706

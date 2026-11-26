@@ -47,16 +47,16 @@
         "max": 33
       },
       "courses": [
+        "BIO-0150",
+        "CHM-0150",
+        "CHM-0160",
+        "CHM-0250",
         "MAT-0150",
         "MAT-0260",
         "MAT-0130",
         "PHY-0150",
         "PHY-0250",
-        "CHM-0150",
-        "CHM-0160",
-        "CHM-0250",
-        "CHM-0170",
-        "BIO-0150"
+        "PHY-0260"
       ]
     },
     {
@@ -96,34 +96,28 @@
         "PHY-2100",
         "SCI-NATU"
       ]
-    },
-    {
-      "title": "Autres exigences - Règle 1",
-      "constraint": {
-        "min": 3,
-        "max": 3
-      },
-      "courses": [
-        "LAN-GUES"
-      ]
     }
   ],
   "concentrations": [
     {
       "title": "Approche généraliste",
-      "credits_required": 15,
+      "credits_required": 18,
       "mandatory": [],
       "rules": [
         {
           "title": "Règle 1",
           "constraint": {
-            "min": 15,
+            "min": 12,
             "max": 15
           },
           "courses": [
+            "DES-2005",
             "GIF-1003",
             "GIN-4021",
+            "GMC-1300",
             "GMC-2007",
+            "GMC-2008",
+            "GMC-3016",
             "GMC-4100",
             "GMC-4200",
             "GMC-4202",
@@ -133,19 +127,38 @@
             "IFT-1003",
             "MQT-2101",
             "MQT-3000",
-            "STT-1100",
             "OPT-ION1",
             "OPT-ION2",
             "OPT-ION3",
             "OPT-ION4",
             "OPT-ION5"
           ]
-        }
+        },
+        {
+      "title": "Règle 2",
+      "constraint": {
+        "min": 0,
+        "max": 3
+      },
+      "courses": [
+        "LAN-GUES"
+      ]
+    },
+    {
+      "title": "Règle 3",
+      "constraint": {
+        "min": 3,
+        "max": 3
+      },
+      "courses": [
+        "AUC-HOIX"
+      ]
+    }
       ]
     },
     {
       "title": "Ingénierie de la chaîne logistique et des réseaux de création de valeur",
-      "credits_required": 15,
+      "credits_required": 18,
       "mandatory": [
         "GIN-4021"
       ],
@@ -185,34 +198,47 @@
             "max": 6
           },
           "courses": [
+            "DES-2005",
             "GIF-1003",
+            "GIN-4003",
             "GMC-1300",
             "GMC-2007",
+            "GMC-2008",
             "GMC-3016",
             "GMC-4100",
             "GMC-4200",
             "GMC-4202",
             "IFT-1003",
+            "MNG-3103",
             "MQT-2101",
-            "MQT-3000",
-            "STT-1100"
+            "MQT-3000"
           ]
         },
         {
-          "title": "Règle 4",
-          "constraint": {
-            "min": 0,
-            "max": 3
-          },
-          "courses": [
-            "MNG-3103"
-          ]
-        }
+      "title": "Règle 4",
+      "constraint": {
+        "min": 0,
+        "max": 3
+      },
+      "courses": [
+        "LAN-GUES"
+      ]
+    },
+     {
+      "title": "Règle 5",
+      "constraint": {
+        "min": 3,
+        "max": 3
+      },
+      "courses": [
+        "AUC-HOIX"
+      ]
+    }
       ]
     },
     {
       "title": "Ingénierie en intelligence numérique des systèmes",
-      "credits_required": 15,
+      "credits_required": 18,
       "mandatory": [
         "MQT-3000"
       ],
@@ -224,8 +250,9 @@
             "max": 3
           },
           "courses": [
-            "MQT-2101",
-            "STT-1100"
+            "GIN-4003",
+            "MQT-2101"
+            
           ]
         },
         {
@@ -235,7 +262,6 @@
             "max": 9
           },
           "courses": [
-            "GIN-4003",
             "GIN-4021",
             "GLO-2005",
             "GLO-4000",
@@ -252,22 +278,45 @@
             "max": 3
           },
           "courses": [
+            "DES-2005",
             "GIF-1003",
             "GMC-1300",
             "GMC-2007",
+            "GMC-2008",
             "GMC-3016",
             "GMC-4100",
+            "GMC-4200",
             "GSO-2102",
             "GSO-2104",
             "GSO-2105",
             "IFT-1003"
           ]
-        }
+        },
+        {
+      "title": "Règle 4",
+      "constraint": {
+        "min": 0,
+        "max": 3
+      },
+      "courses": [
+        "LAN-GUES"
+      ]
+    },
+    {
+      "title": "Règle 5",
+      "constraint": {
+        "min": 3,
+        "max": 3
+      },
+      "courses": [
+        "AUC-HOIX"
+      ]
+    }
       ]
     },
     {
       "title": "Ingénierie de l'informatisation des systèmes d'entreprise",
-      "credits_required": 15,
+      "credits_required": 18,
       "mandatory": [
         "GIF-1003"
       ],
@@ -296,7 +345,8 @@
             "GLO-2005",
             "GLO-2100",
             "GLO-4000",
-            "IFT-4102",
+            "IFT-2008",
+            "IFT-2009",
             "SIO-2100",
             "SIO-2104",
             "SIO-3100"
@@ -309,8 +359,10 @@
             "max": 6
           },
           "courses": [
+            "DES-2005",
             "GMC-1300",
             "GMC-2007",
+            "GMC-2008",
             "GMC-3016",
             "GMC-4100",
             "GMC-4200",
@@ -319,25 +371,34 @@
             "GSO-2104",
             "GSO-2105",
             "MQT-2101",
-            "MQT-3000",
-            "STT-1100"
+            "MQT-3000"
           ]
         },
         {
-          "title": "Règle 4",
-          "constraint": {
-            "min": 0,
-            "max": 3
-          },
-          "courses": [
-            "MNG-3103"
-          ]
-        }
+      "title": "Règle 4",
+      "constraint": {
+        "min": 0,
+        "max": 3
+      },
+      "courses": [
+        "LAN-GUES"
+      ]
+    },
+    {
+      "title": "Règle 5",
+      "constraint": {
+        "min": 3,
+        "max": 3
+      },
+      "courses": [
+        "AUC-HOIX"
+      ]
+    }
       ]
     },
     {
       "title": "Systèmes productiques et distributiques",
-      "credits_required": 15,
+      "credits_required": 18,
       "mandatory": [
         "GMC-2007"
       ],
@@ -349,7 +410,9 @@
             "max": 9
           },
           "courses": [
+            "DES-2005",
             "GMC-1300",
+            "GMC-2008",
             "GMC-3016",
             "GMC-4100",
             "GMC-4200",
@@ -364,7 +427,6 @@
           },
           "courses": [
             "GGR-2109",
-            "GIN-4003",
             "GLO-2005",
             "GSO-2102",
             "GSO-2104"
@@ -378,21 +440,41 @@
           },
           "courses": [
             "GIF-1003",
+            "GIN-4003",
             "GIN-4021",
             "GSO-2105",
             "IFT-1003",
             "MQT-2101",
-            "MQT-3000",
-            "STT-1100"
+            "MQT-3000"
           ]
-        }
+        },
+         {
+      "title": "Règle 4",
+      "constraint": {
+        "min": 0,
+        "max": 3
+      },
+      "courses": [
+        "LAN-GUES"
+      ]
+    },
+    {
+      "title": "Règle 5",
+      "constraint": {
+        "min": 3,
+        "max": 3
+      },
+      "courses": [
+        "AUC-HOIX"
+      ]
+    }
       ]
     }
   ],
   "profiles": [
     {
       "title": "Profil entrepreneurial",
-      "credits_required": 15,
+      "credits_required": 12,
       "mandatory": [
         "ENT-1000",
         "ENT-3000",
@@ -409,48 +491,25 @@
             "ENT-2023",
             "ENT-2145"
           ]
-        },
-        {
-          "title": "Règle 2",
-          "constraint": {
-            "min": 3,
-            "max": 3
-          },
-          "courses": [
-            "GIF-1003",
-            "GIN-4021",
-            "GMC-2007",
-            "GMC-4100",
-            "GMC-4200",
-            "GMC-4202",
-            "GSO-2102",
-            "GSO-2104",
-            "GSO-2105",
-            "IFT-1003",
-            "MQT-2101",
-            "MQT-3000",
-            "STT-1100"
-          ]
         }
       ]
     },
     {
       "title": "Profil international",
-      "credits_required": 15,
+      "credits_required": 12,
       "mandatory": [],
       "rules": [
         {
           "title": "Règle 1",
           "constraint": {
-            "min": 15,
-            "max": 15
+            "min": 12,
+            "max": 12
           },
           "courses": [
             "OPT-ETR1",
             "OPT-ETR2",
             "OPT-ETR3",
-            "OPT-ETR4",
-            "OPT-ETR5"
+            "OPT-ETR4"
           ]
         }
       ]
